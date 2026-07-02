@@ -1702,7 +1702,7 @@ PROVINCE_FULL_NAMES['西藏自治区'] = '西藏';
                 showToast('该省份地图不可用', 'error');
                 return;
             }
-            fetch('provinces/' + code + '.json')
+            fetch('provinces/' + code + '.json?v=' + Date.now())
                 .then(function(response) {
                     if (!response.ok) throw new Error('HTTP ' + response.status);
                     return response.json();
