@@ -1696,27 +1696,47 @@ PROVINCE_FULL_NAMES['西藏自治区'] = '西藏';
         }
         
         function loadProvinceMap(province) {
+            console.log('[DEBUG] loadProvinceMap called with:', province);
             const normalized = PROVINCE_FULL_NAMES[province] || normalizeProvince(province);
+            console.log('[DEBUG] normalized:', normalized);
             const code = PROVINCE_CODES[normalized];
+            console.log('[DEBUG] code:', code);
             if (!code) {
-                showToast('该省份地图不可用', 'error');
+                showToast('该省份地图数据缺失: ' + normalized, 'error');
                 return;
             }
-            
-            console.log('Loading province map for:', province, 'code:', code);
-            fetch('provinces/' + code + '.json')
+            const url = 'provinces/' + code + '.json';
+            console.log('[DEBUG] fetching:', url);
+            fetch(url)
                 .then(function(response) {
+                    console.log('[DEBUG] fetch response status:', response.status);
                     if (!response.ok) throw new Error('HTTP ' + response.status);
                     return response.json();
                 })
                 .then(function(geoJson) {
-                    console.log('Province GeoJSON loaded, features:', geoJson.features ? geoJson.features.length : 0);
-                    echarts.registerMap('province', geoJson);
-                    renderProvinceMap(geoJson, province, normalized);
-                    document.getElementById('backToChinaBtn').style.display = 'block';
+                    console.log('[DEBUG] JSON parsed, features:', geoJson.features ? geoJson.features.length : 0);
+                    try {
+                        echarts.registerMap('province', geoJson);
+                        console.log('[DEBUG] map registered');
+                        renderProvinceMap(geoJson, province, normalized);
+                        console.log('[DEBUG] renderProvinceMap done');
+                        document.getElementById('backToChinaBtn').style.display = 'block';
+                    } catch(e) {
+                        console.error('[DEBUG] render error:', e);
+                        showToast('省份地图渲染失败: ' + e.message, 'error');
+                    }
                 })
                 .catch(function(error) {
-                    console.error('Failed to load province map:', error);
+                    console.error('[DEBUG] fetch/parse error:', error);
+                    // Show detailed error on page
+                    var diag = document.getElementById('mapDiag');
+                    if (!diag) {
+                        diag = document.createElement('div');
+                        diag.id = 'mapDiag';
+                        diag.style.cssText = 'position:fixed;bottom:80px;right:20px;background:#161b22;border:1px solid #f85149;border-radius:8px;padding:12px 16px;color:#f85149;font-size:12px;z-index:9999;max-width:400px;';
+                        document.body.appendChild(diag);
+                    }
+                    diag.innerHTML = '<strong>地图加载失败</strong><br>错误: ' + error.message + '<br>请F12看console日志';
                     showToast('省份地图加载失败', 'error');
                     loadChinaMap();
                 });
