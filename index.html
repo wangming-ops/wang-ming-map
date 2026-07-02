@@ -1492,7 +1492,7 @@ PROVINCE_FULL_NAMES['西藏自治区'] = '西藏';
         
         // Data Loading
         function loadData() {
-            fetch('data_new.json')
+            fetch('data_new.json?v=' + Date.now())
                 .then(response => response.json())
                 .then(data => {
                     allData = data;
@@ -1683,7 +1683,7 @@ PROVINCE_FULL_NAMES['西藏自治区'] = '西藏';
         }
         
         function loadChinaMap() {
-            fetch('china.json')
+            fetch('china.json?v=' + Date.now())
                 .then(response => response.json())
                 .then(chinaGeoJson => {
                     echarts.registerMap('china', chinaGeoJson);
