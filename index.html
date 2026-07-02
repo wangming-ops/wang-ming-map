@@ -501,6 +501,30 @@
             box-shadow: 0 6px 20px rgba(63, 185, 80, 0.3);
         }
         
+        .filter-bar {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .filter-bar label {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+        .filter-bar select {
+            background: var(--bg-input);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 13px;
+            cursor: pointer;
+        }
+        .filter-bar select:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
         .project-list {
             max-height: 600px;
             overflow-y: auto;
@@ -555,6 +579,28 @@
             border-color: var(--accent-blue);
         }
         
+        .archive-btn {
+            background: #21262d;
+            border: 1px solid #30363d;
+            color: #c9d1d9;
+            padding: 6px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 13px;
+            transition: all 0.2s;
+        }
+        .archive-btn:hover {
+            background: #30363d;
+            border-color: #8b949e;
+        }
+        .project-meta {
+            display: flex;
+            gap: 16px;
+            font-size: 12px;
+            color: var(--text-secondary);
+            flex-wrap: wrap;
+            margin-top: 4px;
+        }
         .delete-btn {
             padding: 8px 12px;
             background: rgba(248, 81, 73, 0.1);
@@ -1184,6 +1230,10 @@
                     <h2 class="list-title">📝 已签约项目列表</h2>
                     <button class="add-project-btn" onclick="openAddProjectModal('signed')">+ 新增项目</button>
                 </div>
+                <div class="filter-bar" id="signedFilter">
+                    <label>省份:</label><select onchange="filterProjects('signed', 'province', this.value)"><option value="">全部</option></select>
+                    <label>负责人:</label><select onchange="filterProjects('signed', 'manager', this.value)"><option value="">全部</option></select>
+                </div>
                 <div class="project-list" id="signedList"></div>
                 <div class="pagination" id="signedPagination"></div>
             </div>
@@ -1194,6 +1244,10 @@
                 <div class="list-header">
                     <h2 class="list-title">🚧 已开工项目列表</h2>
                     <button class="add-project-btn" onclick="openAddProjectModal('started')">+ 新增项目</button>
+                </div>
+                <div class="filter-bar" id="startedFilter">
+                    <label>省份:</label><select onchange="filterProjects('started', 'province', this.value)"><option value="">全部</option></select>
+                    <label>负责人:</label><select onchange="filterProjects('started', 'manager', this.value)"><option value="">全部</option></select>
                 </div>
                 <div class="project-list" id="startedList"></div>
                 <div class="pagination" id="startedPagination"></div>
@@ -1206,6 +1260,10 @@
                     <h2 class="list-title">✅ 已批复未开工项目列表</h2>
                     <button class="add-project-btn" onclick="openAddProjectModal('approved')">+ 新增项目</button>
                 </div>
+                <div class="filter-bar" id="approvedFilter">
+                    <label>省份:</label><select onchange="filterProjects('approved', 'province', this.value)"><option value="">全部</option></select>
+                    <label>负责人:</label><select onchange="filterProjects('approved', 'manager', this.value)"><option value="">全部</option></select>
+                </div>
                 <div class="project-list" id="approvedList"></div>
                 <div class="pagination" id="approvedPagination"></div>
             </div>
@@ -1217,6 +1275,10 @@
                     <h2 class="list-title">⭐ 重点推进项目列表</h2>
                     <button class="add-project-btn" onclick="openAddProjectModal('priority')">+ 新增项目</button>
                 </div>
+                <div class="filter-bar" id="priorityFilter">
+                    <label>省份:</label><select onchange="filterProjects('priority', 'province', this.value)"><option value="">全部</option></select>
+                    <label>负责人:</label><select onchange="filterProjects('priority', 'manager', this.value)"><option value="">全部</option></select>
+                </div>
                 <div class="project-list" id="priorityList"></div>
                 <div class="pagination" id="priorityPagination"></div>
             </div>
@@ -1227,6 +1289,10 @@
                 <div class="list-header">
                     <h2 class="list-title">❌ 无法推进项目列表</h2>
                     <button class="add-project-btn" onclick="openAddProjectModal('blocked')">+ 新增项目</button>
+                </div>
+                <div class="filter-bar" id="blockedFilter">
+                    <label>省份:</label><select onchange="filterProjects('blocked', 'province', this.value)"><option value="">全部</option></select>
+                    <label>负责人:</label><select onchange="filterProjects('blocked', 'manager', this.value)"><option value="">全部</option></select>
                 </div>
                 <div class="project-list" id="blockedList"></div>
                 <div class="pagination" id="blockedPagination"></div>
@@ -1352,6 +1418,27 @@
         };
         
         const PROVINCES = Object.keys(PROVINCE_CODES);
+
+// Normalize province names (remove suffixes like 省/自治区/市, handle variants)
+function normalizeProvince(name) {
+    if (!name) return '';
+    name = name.replace(/省|自治区|市$|回族自治区|维吾尔自治区|壮族自治区/g, '').trim();
+    const map = {'内蒙': '内蒙古', '西藏': '西藏'};
+    return map[name] || name;
+}
+
+// Build reverse map from full names to short names
+const PROVINCE_FULL_NAMES = {};
+for (const key of Object.keys(PROVINCE_CODES)) {
+    PROVINCE_FULL_NAMES[key] = key;
+    PROVINCE_FULL_NAMES[key + '省'] = key;
+    PROVINCE_FULL_NAMES[key + '自治区'] = key;
+    PROVINCE_FULL_NAMES[key + '市'] = key;
+}
+// Special cases
+PROVINCE_FULL_NAMES['内蒙'] = '内蒙古';
+PROVINCE_FULL_NAMES['重庆市'] = '重庆';
+PROVINCE_FULL_NAMES['西藏自治区'] = '西藏';
         
         // Global State
         let allData = null;
@@ -1422,6 +1509,8 @@
             renderProvinceList();
             initMap();
             renderProjectLists();
+            // Populate filters
+            ['signed', 'started', 'approved', 'priority', 'blocked'].forEach(t => populateFilters(t));
             renderArchives();
         }
         
@@ -1604,7 +1693,8 @@
         }
         
         function loadProvinceMap(province) {
-            const code = PROVINCE_CODES[province];
+            const normalized = PROVINCE_FULL_NAMES[province] || normalizeProvince(province);
+            const code = PROVINCE_CODES[normalized];
             if (!code) {
                 showToast('该省份地图不可用', 'error');
                 return;
@@ -1643,10 +1733,10 @@
                 ...data.blocked_projects
             ];
             
-            // Aggregate by province
+            // Aggregate by province (normalized)
             const provinceData = {};
             allProjects.forEach(p => {
-                const province = p.province;
+                const province = PROVINCE_FULL_NAMES[p.province] || normalizeProvince(p.province);
                 if (!provinceData[province]) {
                     provinceData[province] = {
                         total: 0,
@@ -1737,7 +1827,10 @@
                 geo: {
                     map: 'china',
                     roam: true,
-                    zoom: 1.2,
+                    zoom: 1.1,
+                    center: [105, 36],
+                    layoutCenter: ['50%', '50%'],
+                    layoutSize: '80%',
                     label: {
                         show: false
                     },
@@ -1796,7 +1889,10 @@
                 ...data.approved_projects,
                 ...data.priority_projects,
                 ...data.blocked_projects
-            ].filter(p => p.province === province);
+            ].filter(p => {
+                const pProv = PROVINCE_FULL_NAMES[p.province] || normalizeProvince(p.province);
+                return pProv === normalized;
+            });
             
             // Aggregate by district
             const districtData = {};
@@ -1951,6 +2047,54 @@
         }
         
         // Project Lists
+        // Filter state
+        const filters = {};
+
+        function filterProjects(type, field, value) {
+            if (!filters[type]) filters[type] = {};
+            filters[type][field] = value;
+            const allProjects = type === 'signed' ? allData.pure_signed_projects :
+                            type === 'started' ? allData.started_projects :
+                            type === 'approved' ? allData.approved_projects :
+                            type === 'priority' ? allData.priority_projects :
+                            allData.blocked_projects;
+            let filtered = allProjects;
+            if (filters[type].province) {
+                filtered = filtered.filter(p => {
+                    const pProv = PROVINCE_FULL_NAMES[p.province] || normalizeProvince(p.province);
+                    return pProv === filters[type].province;
+                });
+            }
+            if (filters[type].manager) {
+                filtered = filtered.filter(p => (p.manager || p.project_manager || '').includes(filters[type].manager));
+            }
+            renderList(type, filtered);
+        }
+
+        function populateFilters(type) {
+            const allProjects = type === 'signed' ? allData.pure_signed_projects :
+                            type === 'started' ? allData.started_projects :
+                            type === 'approved' ? allData.approved_projects :
+                            type === 'priority' ? allData.priority_projects :
+                            allData.blocked_projects;
+            const filterBar = document.getElementById(type + 'Filter');
+            if (!filterBar) return;
+            const provinceSelect = filterBar.querySelector('select');
+            const managerSelect = filterBar.querySelectorAll('select')[1];
+            const provinces = new Set();
+            const managers = new Set();
+            allProjects.forEach(p => {
+                const pProv = PROVINCE_FULL_NAMES[p.province] || normalizeProvince(p.province);
+                if (pProv) provinces.add(pProv);
+                if (p.manager) managers.add(p.manager);
+                if (p.project_manager) managers.add(p.project_manager);
+            });
+            provinceSelect.innerHTML = '<option value="">全部</option>' + 
+                [...provinces].sort().map(p => '<option value="' + p + '">' + p + '</option>').join('');
+            managerSelect.innerHTML = '<option value="">全部</option>' + 
+                [...managers].sort().map(m => '<option value="' + m + '">' + m + '</option>').join('');
+        }
+
         function renderProjectLists() {
             const data = allData;
             
@@ -1977,11 +2121,22 @@
             const end = start + pageSize;
             const pageProjects = projects.slice(start, end);
             
-            listEl.innerHTML = pageProjects.map(project => `
+            listEl.innerHTML = pageProjects.map(project => {
+                const archive = allData.archives && allData.archives[project.name];
+                const progressCount = archive && archive.progress ? archive.progress.length : 0;
+                const completedCount = archive && archive.progress ? archive.progress.filter(n => n['完成情况'] === '已完成').length : 0;
+                return `
                 <div class="project-item">
                     <div class="project-name">${project.name || '未命名项目'}</div>
-                    <div class="project-info">${project.province || ''} ${project.city || ''}</div>
+                    <div class="project-info">${project.province || ''} ${project.city || ''} ${project.district || ''}</div>
                     <div class="project-scale">${project.scale || project.scale_mw + 'MW'}</div>
+                    <div class="project-meta">
+                        <span>📋 ${project.project_company || '-'}</span>
+                        <span> 签约: ${project.signed_by || '-'}</span>
+                        <span>👤 负责: ${project.project_manager || project.manager || '-'}</span>
+                        ${project.land_area ? `<span>🏗️ ${project.land_area}亩</span>` : ''}
+                        ${progressCount ? `<span>📊 ${completedCount}/${progressCount}节点</span>` : ''}
+                    </div>
                     <div class="project-info">${project.manager || '未指定'}</div>
                     ${type === 'priority' ? `
                         <select class="status-select" onchange="updateProjectStatus(${project.id}, this.value, '${type}')">
@@ -1990,9 +2145,10 @@
                             <option value="暂缓" ${project.status === '暂缓' ? 'selected' : ''}>暂缓</option>
                         </select>
                     ` : `<span class="status-badge status-${type}">${getStatusText(project.status || type)}</span>`}
+                    <button class="archive-btn" onclick="openArchiveDetail('${project.name}')" title="查看档案"></button>
                     <button class="delete-btn" onclick="confirmDelete(${project.id}, '${type}')">删除</button>
                 </div>
-            `).join('');
+            `}).join('');
             
             // Pagination
             if (totalPages > 1) {
@@ -2066,6 +2222,8 @@
             }
             
             renderProjectLists();
+            // Populate filters
+            ['signed', 'started', 'approved', 'priority', 'blocked'].forEach(t => populateFilters(t));
             updateStats();
             renderOverview();
             saveToLocalStorage();
@@ -2349,6 +2507,8 @@
             saveToLocalStorage();
             closeModal('projectModal');
             renderProjectLists();
+            // Populate filters
+            ['signed', 'started', 'approved', 'priority', 'blocked'].forEach(t => populateFilters(t));
             updateStats();
             renderOverview();
             renderProvinceList();
@@ -2385,6 +2545,8 @@
                         }
                     });
                     renderProjectLists();
+            // Populate filters
+            ['signed', 'started', 'approved', 'priority', 'blocked'].forEach(t => populateFilters(t));
                     updateStats();
                     renderOverview();
                     showToast('项目已删除', 'success');
