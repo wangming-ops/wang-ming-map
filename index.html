@@ -1943,6 +1943,33 @@ PROVINCE_FULL_NAMES['西藏自治区'] = '西藏';
         }
         
         function renderProvinceMap(geoJson, province, normalizedProvince) {
+            // 尝试加载区县级数据
+            const normalized = PROVINCE_FULL_NAMES[province] || normalizeProvince(province);
+            const code = PROVINCE_CODES[normalized];
+            
+            if (code) {
+                fetch('districts/' + code + '_districts.json?v=' + Date.now())
+                    .then(function(res) {
+                        if (!res.ok) throw new Error('HTTP ' + res.status);
+                        return res.json();
+                    })
+                    .then(function(districtGeoJson) {
+                        echarts.registerMap('province', districtGeoJson);
+                        renderDistrictMap(districtGeoJson, province, normalized);
+                    })
+                    .catch(function(err) {
+                        console.warn('区县级数据加载失败，回退到市级:', err);
+                        // 回退到市级地图
+                        echarts.registerMap('province', geoJson);
+                        renderDistrictMap(geoJson, province, normalized);
+                    });
+            } else {
+                echarts.registerMap('province', geoJson);
+                renderDistrictMap(geoJson, province, normalized);
+            }
+        }
+        
+        function renderDistrictMap(geoJson, province, normalizedProvince) {
             const data = allData;
             
             // Get all projects for this province (with category tags)
@@ -1957,12 +1984,12 @@ PROVINCE_FULL_NAMES['西藏自治区'] = '西藏';
                 return pProv === normalizedProvince;
             });
             
-            // Aggregate by city (地级市级别匹配)
-            const cityData = {};
+            // 按区县 district 字段聚合
+            const districtData = {};
             provinceProjects.forEach(p => {
-                const city = p.city || p.district || '其他';
-                if (!cityData[city]) {
-                    cityData[city] = {
+                const district = p.district || p.city || '其他';
+                if (!districtData[district]) {
+                    districtData[district] = {
                         total: 0,
                         started: 0,
                         priority: 0,
@@ -1971,37 +1998,54 @@ PROVINCE_FULL_NAMES['西藏自治区'] = '西藏';
                         projects: []
                     };
                 }
-                cityData[city].total++;
-                cityData[city].projects.push(p);
+                districtData[district].total++;
+                districtData[district].projects.push(p);
                 const status = getProjectStatusForMap(p);
-                cityData[city][status]++;
+                districtData[district][status]++;
             });
             
+            // 匹配 GeoJSON features 与项目数据
             const mapData = geoJson.features.map(feature => {
                 const name = feature.properties.name;
-                const cleanName = name.replace(/市|区|县|州|盟|地区|林区/g, '');
+                const cleanName = name.replace(/市|区|县|州|盟|地区|林区|土家族|苗族|藏族|彝族|回族|壮族|瑶族|布依族|侗族|水族|仡佬族|白族|哈尼族|傣族|佤族|拉祜族|纳西族|景颇族|布朗族|阿昌族|普米族|怒族|基诺族|德昂族|保安族|裕固族|京族|塔塔尔族|赫哲族|门巴族|珞巴族|黎族|蒙古|朝鲜|撒拉|锡伯|土|满|自治/g, '');
                 
-                // 匹配地级市：用city字段 vs feature name
+                // 匹配区县：用 district 字段 vs feature name
                 let matched = null;
-                for (const [city, cData] of Object.entries(cityData)) {
-                    const cleanCity = city.replace(/市|区|县|州|盟|地区/g, '');
-                    if (cleanName === cleanCity || cleanName.includes(cleanCity) || cleanCity.includes(cleanName) ||
-                        name === city || name.includes(city) || city.includes(name)) {
-                        matched = cData;
+                for (const [district, dData] of Object.entries(districtData)) {
+                    const cleanDistrict = district.replace(/市|区|县|州|盟|地区|林区|经济|开发/g, '');
+                    if (cleanName === cleanDistrict || 
+                        cleanName.includes(cleanDistrict) || cleanDistrict.includes(cleanName) ||
+                        name === district || name.includes(district) || district.includes(name) ||
+                        // 额外匹配：如"方城县"匹配"方城"
+                        name.replace(/[市区县]/g, '') === district.replace(/[市区县]/g, '')) {
+                        matched = dData;
                         break;
                     }
                 }
                 
                 if (matched) {
-                    let status = 'signed';
-                    if (matched.started > 0) status = 'started';
-                    else if (matched.priority > 0) status = 'priority';
-                    else if (matched.blocked > 0 && matched.signed === 0 && matched.priority === 0) status = 'blocked';
+                    // 确定状态：如果有多种状态，随机选一个（用户要求）
+                    let status;
+                    const statusList = [];
+                    if (matched.started > 0) statusList.push('started');
+                    if (matched.priority > 0) statusList.push('priority');
+                    if (matched.signed > 0) statusList.push('signed');
+                    if (matched.blocked > 0) statusList.push('blocked');
+                    
+                    if (statusList.length === 1) {
+                        status = statusList[0];
+                    } else if (statusList.length > 1) {
+                        // 多个状态时随机选一个
+                        status = statusList[Math.floor(Math.random() * statusList.length)];
+                    } else {
+                        status = 'signed';
+                    }
                     
                     return {
                         name: name,
                         value: matched.total,
                         status: status,
+                        allStatuses: statusList,
                         projects: matched.projects
                     };
                 }
@@ -2029,16 +2073,21 @@ PROVINCE_FULL_NAMES['西藏自治区'] = '西藏';
                     trigger: 'item',
                     formatter: function(params) {
                         if (params.data && params.data.value > 0) {
-                            let html = `<strong>${params.name}</strong><br/>`;
-                            html += `项目数: ${params.data.value}<br/>`;
-                            html += `状态: ${statusNames[params.data.status] || '未知'}<br/>`;
+                            let html = '<strong>' + params.name + '</strong><br/>';
+                            html += '项目数: ' + params.data.value + '<br/>';
+                            if (params.data.allStatuses && params.data.allStatuses.length > 1) {
+                                const names = params.data.allStatuses.map(s => statusNames[s]).join('、');
+                                html += '状态: ' + names + '<br/>';
+                            } else {
+                                html += '状态: ' + (statusNames[params.data.status] || '未知') + '<br/>';
+                            }
                             if (params.data.projects) {
                                 html += '<br/><strong>项目列表:</strong><br/>';
-                                params.data.projects.slice(0, 5).forEach(p => {
-                                    html += `- ${p.name} (${p.scale || p.scale_mw + 'MW'})<br/>`;
+                                params.data.projects.slice(0, 5).forEach(function(p) {
+                                    html += '- ' + p.name + ' (' + (p.scale || p.scale_mw + 'MW') + ')<br/>';
                                 });
                                 if (params.data.projects.length > 5) {
-                                    html += `... 还有${params.data.projects.length - 5}个项目`;
+                                    html += '... 还有' + (params.data.projects.length - 5) + '个项目';
                                 }
                             }
                             return html;
@@ -2052,25 +2101,28 @@ PROVINCE_FULL_NAMES['西藏自治区'] = '西藏';
                     roam: true,
                     label: {
                         show: true,
-                        fontSize: 10,
-                        color: '#c9d1d9'
+                        fontSize: 9,
+                        color: '#ffffff'
                     },
                     itemStyle: {
-                        borderColor: '#30363d',
-                        borderWidth: 1
+                        borderColor: '#3d4456',
+                        borderWidth: 0.8
                     },
                     emphasis: {
-                        label: { show: true, color: '#fff' },
-                        itemStyle: { areaColor: '#21262d' }
+                        label: { show: true, color: '#fff', fontSize: 11 },
+                        itemStyle: { areaColor: '#2d3447' }
                     },
                     select: { disabled: true },
-                    data: mapData.map(d => ({
-                        name: d.name,
-                        value: d.value,
-                        status: d.status,
-                        itemStyle: { color: statusColors[d.status] },
-                        projects: d.projects
-                    }))
+                    data: mapData.map(function(d) {
+                        return {
+                            name: d.name,
+                            value: d.value,
+                            status: d.status,
+                            allStatuses: d.allStatuses,
+                            itemStyle: { color: statusColors[d.status] },
+                            projects: d.projects
+                        };
+                    })
                 }]
             };
             
