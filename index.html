@@ -1276,7 +1276,7 @@
             <div class="map-fullscreen-header">
                 <h3>🗺️ 项目地图</h3>
                 <div style="display:flex;gap:16px;align-items:center;">
-                    <button id="backToChinaBtn" onclick="loadChinaMap()" style="display:none; background:#21262d; border:1px solid #30363d; color:#c9d1d9; padding:6px 14px; border-radius:8px; cursor:pointer; font-size:13px;">← 返回全国</button>
+                    <button id="backToChinaBtn" onclick="clearProvinceMap()" style="display:none; background:#21262d; border:1px solid #30363d; color:#c9d1d9; padding:6px 14px; border-radius:8px; cursor:pointer; font-size:13px;">← 返回省份列表</button>
                     <div class="map-legend" style="margin:0;">
                         <div class="legend-item"><div class="legend-color" style="background:#58a6ff;"></div><span>纯签约</span></div>
                         <div class="legend-item"><div class="legend-color" style="background:#3fb950;"></div><span>重点推进</span></div>
@@ -1754,8 +1754,12 @@ PROVINCE_FULL_NAMES['西藏自治区'] = '西藏';
                 } else {
                     chart.resize();
                 }
-                loadChinaMap();
                 renderProvinceList();
+                // 默认显示第一个有项目的省份
+                const firstProvince = Object.keys(provinceStats).find(p => provinceStats[p] && provinceStats[p].total > 0);
+                if (firstProvince) {
+                    selectProvince(firstProvince);
+                }
             }, 150);
         }
         function closeMapFullscreen() {
@@ -1794,6 +1798,7 @@ PROVINCE_FULL_NAMES['西藏自治区'] = '西藏';
                 .then(function(geoJson) {
                     echarts.registerMap('province', geoJson);
                     renderProvinceMap(geoJson, province, normalized);
+                    document.getElementById('backToChinaBtn').textContent = '← 返回省份列表';
                     document.getElementById('backToChinaBtn').style.display = 'block';
                 })
                 .catch(function(error) {
@@ -2062,6 +2067,7 @@ PROVINCE_FULL_NAMES['西藏自治区'] = '西藏';
                     data: mapData.map(d => ({
                         name: d.name,
                         value: d.value,
+                        status: d.status,
                         itemStyle: { color: statusColors[d.status] },
                         projects: d.projects
                     }))
@@ -2069,6 +2075,15 @@ PROVINCE_FULL_NAMES['西藏自治区'] = '西藏';
             };
             
             chart.setOption(option, true);
+        }
+        
+        
+        function clearProvinceMap() {
+            if (chart) {
+                chart.clear();
+            }
+            document.getElementById('backToChinaBtn').style.display = 'none';
+            showToast('请从右侧选择省份', 'info');
         }
         
         // Tab Functions
