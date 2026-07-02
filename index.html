@@ -1699,23 +1699,23 @@ PROVINCE_FULL_NAMES['西藏自治区'] = '西藏';
             const normalized = PROVINCE_FULL_NAMES[province] || normalizeProvince(province);
             const code = PROVINCE_CODES[normalized];
             if (!code) {
-                showToast('该省份地图数据缺失: ' + normalized, 'error');
+                showToast('该省份地图不可用', 'error');
                 return;
             }
-            // Load from pre-injected PROVINCE_GEO_DATA (no fetch needed)
-            if (typeof PROVINCE_GEO_DATA === 'undefined' || !PROVINCE_GEO_DATA[code]) {
-                showToast('省份地图数据未加载，请刷新页面', 'error');
-                return;
-            }
-            const geoJson = PROVINCE_GEO_DATA[code];
-            try {
-                echarts.registerMap('province', geoJson);
-                renderProvinceMap(geoJson, province, normalized);
-                document.getElementById('backToChinaBtn').style.display = 'block';
-            } catch(e) {
-                console.error('Province map render error:', e);
-                showToast('省份地图渲染失败: ' + e.message, 'error');
-            }
+            fetch('provinces/' + code + '.json')
+                .then(function(response) {
+                    if (!response.ok) throw new Error('HTTP ' + response.status);
+                    return response.json();
+                })
+                .then(function(geoJson) {
+                    echarts.registerMap('province', geoJson);
+                    renderProvinceMap(geoJson, province, normalized);
+                    document.getElementById('backToChinaBtn').style.display = 'block';
+                })
+                .catch(function(error) {
+                    console.error('Province map error:', error);
+                    showToast('省份地图加载失败', 'error');
+                });
         }
         
         function getProjectStatusForMap(project) {
@@ -2601,6 +2601,5 @@ PROVINCE_FULL_NAMES['西藏自治区'] = '西藏';
             }, 3000);
         }
     </script>
-    <script src="province_geo_data.js"></script>
 </body>
 </html>
