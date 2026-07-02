@@ -738,6 +738,36 @@
             background: #30363d;
             border-color: #8b949e;
         }
+        
+        .priority-extra-fields {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 8px 16px;
+            padding: 8px 24px 12px;
+            background: rgba(30, 35, 45, 0.6);
+            border-bottom: 1px solid var(--border-color);
+            margin-top: -1px;
+        }
+        .priority-field {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .priority-field .pf-label {
+            font-size: 11px;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+        .priority-field .pf-value {
+            font-size: 12px;
+            color: var(--text-primary);
+            line-height: 1.4;
+            white-space: pre-line;
+            background: rgba(0,0,0,0.2);
+            padding: 4px 8px;
+            border-radius: 4px;
+            min-height: 24px;
+        }
         .project-meta {
             display: flex;
             gap: 16px;
@@ -2835,6 +2865,24 @@ PROVINCE_FULL_NAMES['西藏自治区'] = '西藏';
                     }).join(' | ');
                 }
                 
+                const extraFields = type === 'priority' && (project['入库完成时间'] || project['电力接入批复完成时间'] || project['成本概况']) ? `
+                    <div class="priority-extra-fields">
+                        <div class="priority-field">
+                            <span class="pf-label">📅 入库完成时间</span>
+                            <span class="pf-value">${project['入库完成时间'] || '-'}</span>
+                        </div>
+                        <div class="priority-field">
+                            <span class="pf-label">⚡ 电力接入批复完成时间</span>
+                            <span class="pf-value">${project['电力接入批复完成时间'] || '-'}</span>
+                        </div>
+                        <div class="priority-field">
+                            <span class="pf-label">💰 成本概况</span>
+                            <span class="pf-value">${(project['成本概况'] || '-').replace(/\n/g, ' ')}</span>
+                        </div>
+                        ${project['成本明细'] ? `<div class="priority-field"><span class="pf-label">📊 成本明细</span><span class="pf-value">${project['成本明细'].replace(/\n/g, ' ')}</span></div>` : ''}
+                    </div>
+                ` : '';
+
                 return `
                 <div class="project-item">
                     <div class="project-name-wrapper">
@@ -2859,6 +2907,7 @@ PROVINCE_FULL_NAMES['西藏自治区'] = '西藏';
                         <button class="delete-btn" onclick="confirmDelete(${project.id}, '${type}')">删除</button>
                     </div>
                 </div>
+                ${extraFields}
             `}).join('');
             
             // Pagination
@@ -3045,13 +3094,23 @@ PROVINCE_FULL_NAMES['西藏自治区'] = '西藏';
         
         function openArchiveDetail(name) {
             const archive = allData.archives[name];
-            if (!archive) return;
+            // Also find project data for baseline fields
+            let projectData = {};
+            const allProjects = [...(allData.priority_projects||[]), ...(allData.started_projects||[]), ...(allData.approved_projects||[]), ...(allData.pure_signed_projects||[]), ...(allData.blocked_projects||[])];
+            const proj = allProjects.find(p => p.name === name);
+            if (proj) projectData = proj;
             
-            currentArchiveData = JSON.parse(JSON.stringify(archive));
+            if (!archive && !proj) return;
+            
+            currentArchiveData = JSON.parse(JSON.stringify(archive || {basic:{}, progress:[], payment_tracking:[]}));
             
             document.getElementById('archiveModalTitle').textContent = `项目档案: ${name}`;
             
-            const basic = archive.basic || {};
+            // Merge baseline fields from project data into basic
+            const basic = Object.assign({}, archive?.basic || {});
+            if (projectData['入库完成时间'] && !basic['入库完成时间']) basic['入库完成时间'] = projectData['入库完成时间'];
+            if (projectData['电力接入批复完成时间'] && !basic['电力接入批复完成时间']) basic['电力接入批复完成时间'] = projectData['电力接入批复完成时间'];
+            if (projectData['成本概况'] && !basic['成本结构和成本明细']) basic['成本结构和成本明细'] = projectData['成本概况'] + (projectData['成本明细'] ? '\n' + projectData['成本明细'] : '');
             
             let progressHtml = '';
             if (archive.progress && archive.progress.length > 0) {
