@@ -1,0 +1,1300 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>蝶变计划 - 项目管控看板</title>
+    <script src="echarts.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1a73e8;
+            --primary-dark: #1557b0;
+            --success: #34a853;
+            --warning: #fbbc04;
+            --danger: #ea4335;
+            --purple: #7c4dff;
+            --bg-dark: #0f172a;
+            --bg-card: #1e293b;
+            --bg-card-hover: #334155;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --border: #334155;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -2px rgba(0, 0, 0, 0.2);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, var(--bg-dark) 0%, #1e1e2e 100%);
+            color: var(--text-primary);
+            min-height: 100vh;
+        }
+
+        /* 顶部导航 */
+        .header {
+            background: rgba(30, 41, 59, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            padding: 0 24px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .logo {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary), var(--purple));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .title {
+            font-size: 20px;
+            font-weight: 600;
+            background: linear-gradient(90deg, #fff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--bg-card-hover);
+        }
+
+        /* 主内容区 */
+        .main-content {
+            padding: 24px;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        /* 统计卡片 */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 24px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 1px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+        }
+
+        .stat-card.signed::before { background: var(--primary); }
+        .stat-card.started::before { background: var(--warning); }
+        .stat-card.approved::before { background: var(--success); }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--border);
+            box-shadow: var(--shadow);
+        }
+
+        .stat-card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+
+        .stat-card-title {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .stat-card-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .stat-card.signed .stat-card-icon { background: rgba(26, 115, 232, 0.2); }
+        .stat-card.started .stat-card-icon { background: rgba(251, 188, 4, 0.2); }
+        .stat-card.approved .stat-card-icon { background: rgba(52, 168, 83, 0.2); }
+
+        .stat-card-value {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, #fff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-card-desc {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        /* 标签页 */
+        .tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 24px;
+            background: var(--bg-card);
+            padding: 8px;
+            border-radius: 12px;
+            width: fit-content;
+        }
+
+        .tab {
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s;
+            color: var(--text-secondary);
+            border: none;
+            background: transparent;
+        }
+
+        .tab:hover {
+            color: var(--text-primary);
+        }
+
+        .tab.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* 内容区 */
+        .content-section {
+            display: none;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        /* 重点推进模块 */
+        .priority-section {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 24px;
+        }
+
+        .priority-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .priority-title {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .filter-bar {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .filter-select {
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            font-size: 14px;
+            min-width: 140px;
+            cursor: pointer;
+        }
+
+        .filter-select:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        /* 表格 */
+        .table-container {
+            overflow-x: auto;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        .data-table th,
+        .data-table td {
+            padding: 12px 16px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .data-table th {
+            background: var(--bg-dark);
+            color: var(--text-secondary);
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .data-table tr:hover {
+            background: var(--bg-card-hover);
+        }
+
+        .data-table td {
+            color: var(--text-primary);
+        }
+
+        .editable-cell {
+            cursor: pointer;
+            padding: 4px 8px;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+
+        .editable-cell:hover {
+            background: rgba(26, 115, 232, 0.2);
+        }
+
+        .status-tag {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .status-tag.priority {
+            background: rgba(124, 77, 255, 0.2);
+            color: var(--purple);
+        }
+
+        .status-tag.reserve {
+            background: rgba(26, 115, 232, 0.2);
+            color: var(--primary);
+        }
+
+        /* 地图模块 */
+        .map-section {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 24px;
+        }
+
+        .map-container {
+            height: 600px;
+            background: var(--bg-dark);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .map-legend {
+            display: flex;
+            gap: 24px;
+            margin-top: 16px;
+            justify-content: center;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .legend-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .legend-dot.blue { background: var(--primary); }
+        .legend-dot.green { background: var(--success); }
+        .legend-dot.red { background: var(--danger); }
+        .legend-dot.yellow { background: var(--warning); }
+
+        /* 模态框 */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 20px;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal {
+            background: var(--bg-card);
+            border-radius: 16px;
+            width: 100%;
+            max-width: 900px;
+            max-height: 90vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-header {
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-title {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .modal-close {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            border: none;
+            background: var(--bg-dark);
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-close:hover {
+            background: var(--danger);
+            color: white;
+        }
+
+        .modal-body {
+            padding: 24px;
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        /* 项目详情 */
+        .project-detail-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .detail-item {
+            background: var(--bg-dark);
+            padding: 16px;
+            border-radius: 12px;
+        }
+
+        .detail-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .detail-value {
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .detail-full {
+            grid-column: 1 / -1;
+        }
+
+        .detail-textarea {
+            width: 100%;
+            min-height: 120px;
+            background: var(--bg-dark);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 12px;
+            color: var(--text-primary);
+            font-size: 14px;
+            resize: vertical;
+        }
+
+        .detail-textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        /* 进度时间线 */
+        .progress-timeline {
+            margin-top: 24px;
+        }
+
+        .timeline-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 16px;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .timeline-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--primary);
+            margin-top: 6px;
+            flex-shrink: 0;
+        }
+
+        .timeline-content {
+            flex: 1;
+        }
+
+        .timeline-stage {
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .timeline-node {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        /* 加载状态 */
+        .loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            color: var(--text-secondary);
+        }
+
+        .loading::after {
+            content: '';
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--border);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-left: 12px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* 响应式 */
+        @media (max-width: 1024px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .stat-card:last-child {
+                grid-column: 1 / -1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            .header {
+                padding: 0 16px;
+            }
+            .main-content {
+                padding: 16px;
+            }
+            .tabs {
+                width: 100%;
+                overflow-x: auto;
+            }
+            .project-detail-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* 飞书同步按钮 */
+        .feishu-sync {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: linear-gradient(135deg, #3370ff, #0867ff);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+
+        .feishu-sync:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(51, 112, 255, 0.4);
+        }
+
+        .feishu-sync.loading {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        /* 空状态 */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-secondary);
+        }
+
+        .empty-state-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+            opacity: 0.5;
+        }
+
+        /* 滚动条美化 */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-dark);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--border);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--text-secondary);
+        }
+    </style>
+</head>
+<body>
+    <!-- 顶部导航 -->
+    <header class="header">
+        <div class="header-left">
+            <div class="logo">🦋</div>
+            <h1 class="title">蝶变计划 · 项目管控看板</h1>
+        </div>
+        <div class="header-right">
+            <button class="btn btn-outline" onclick="showSyncStatus()">
+                <span>🔄</span> 数据同步
+            </button>
+        </div>
+    </header>
+
+    <!-- 主内容区 -->
+    <main class="main-content">
+        <!-- 模块一：项目概览 -->
+        <section id="overview-section" class="section">
+            <div class="section-header">
+                <h2>项目概览</h2>
+                <span class="section-desc">点击卡片查看详细清单</span>
+            </div>
+            <div class="cards-grid">
+                <div class="card card-signed" onclick="showProjectList('signed')">
+                    <div class="card-icon">📋</div>
+                    <div class="card-info">
+                        <div class="card-number" id="signed-count">--</div>
+                        <div class="card-label">已签约项目</div>
+                    </div>
+                    <div class="card-arrow">→</div>
+                </div>
+                <div class="card card-started" onclick="showProjectList('started')">
+                    <div class="card-icon">🏗️</div>
+                    <div class="card-info">
+                        <div class="card-number" id="started-count">--</div>
+                        <div class="card-label">已开工项目</div>
+                    </div>
+                    <div class="card-arrow">→</div>
+                </div>
+                <div class="card card-approved" onclick="showProjectList('approved')">
+                    <div class="card-icon">✅</div>
+                    <div class="card-info">
+                        <div class="card-number" id="approved-count">--</div>
+                        <div class="card-label">已批复未开工</div>
+                    </div>
+                    <div class="card-arrow">→</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 模块二：重点推进 -->
+        <section id="priority-section" class="section">
+            <div class="section-header">
+                <h2>重点推进项目</h2>
+                <div class="filter-tabs">
+                    <button class="tab active" data-filter="all">全部</button>
+                    <button class="tab" data-filter="priority">重点推进</button>
+                    <button class="tab" data-filter="reserve">优质储备</button>
+                </div>
+            </div>
+            <div class="priority-list" id="priority-list">
+                <!-- 动态生成 -->
+            </div>
+        </section>
+
+        <!-- 模块三：地图 -->
+        <section id="map-section" class="section">
+            <div class="section-header">
+                <h2>项目分布地图</h2>
+                <div class="map-legend">
+                    <span class="legend-item"><span class="legend-dot blue"></span>纯已签约</span>
+                    <span class="legend-item"><span class="legend-dot green"></span>重点推进</span>
+                    <span class="legend-item"><span class="legend-dot yellow"></span>已开工</span>
+                    <span class="legend-item"><span class="legend-dot red"></span>无法推进</span>
+                </div>
+            </div>
+            <div id="china-map" style="width: 100%; height: 500px;"></div>
+        </section>
+    </main>
+
+    <!-- 项目列表弹窗 -->
+    <div id="project-list-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">项目列表</h3>
+                <button class="close-btn" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <!-- 动态生成 -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 档案详情弹窗 -->
+    <div id="archive-modal" class="modal">
+        <div class="modal-content modal-large">
+            <div class="modal-header">
+                <h3 id="archive-title">项目档案</h3>
+                <button class="close-btn" onclick="closeArchiveModal()">&times;</button>
+            </div>
+            <div class="modal-body" id="archive-body">
+                <!-- 动态生成 -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 全局数据
+        let allData = {};
+        let priorityData = [];
+        let mapData = [];
+        let archiveData = {};
+        let currentListType = '';
+
+        // API基础路径
+        const API_BASE = '';
+
+        // 初始化
+        document.addEventListener('DOMContentLoaded', () => {
+            initTabs();
+            loadData();
+        });
+
+        // 标签页切换
+        function initTabs() {
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.addEventListener('click', () => {
+                    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                    document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+                    tab.classList.add('active');
+                    document.getElementById(`section-${tab.dataset.tab}`).classList.add('active');
+                    
+                    // 切换到地图时渲染
+                    if (tab.dataset.tab === 'map') {
+                        setTimeout(renderMap, 100);
+                    }
+                });
+            });
+        }
+
+        // 加载数据
+        async function loadData() {
+            try {
+                // 加载统计数据
+                const statsRes = await fetch('data.json');
+                const stats = await statsRes.json();
+                document.getElementById('stat-signed').textContent = stats.pure_signed_count || 0;
+                document.getElementById('stat-started').textContent = stats.started_count || 0;
+                document.getElementById('stat-approved').textContent = stats.approved_count || 0;
+
+                // 加载概览数据
+                await loadOverviewTable();
+
+                // 加载重点推进数据
+                await loadPriorityData();
+
+                // 加载地图数据
+                await loadMapData();
+
+            } catch (e) {
+                console.error('数据加载失败:', e);
+            }
+        }
+
+        // 加载概览表格
+        async function loadOverviewTable() {
+            try {
+                const [signed, started, approved, priority, blocked] = await Promise.all([
+                    fetch(`${API_BASE}/api/projects?type=signed`).then(r => r.json()),
+                    fetch(`${API_BASE}/api/projects?type=started`).then(r => r.json()),
+                    fetch(`${API_BASE}/api/projects?type=approved`).then(r => r.json()),
+                    fetch(`${API_BASE}/api/projects?type=priority`).then(r => r.json()),
+                    fetch(`${API_BASE}/api/projects?type=blocked`).then(r => r.json())
+                ]);
+
+                const provinces = new Set();
+                [...signed, ...started, ...approved, ...priority, ...blocked].forEach(p => {
+                    if (p.province) provinces.add(p.province);
+                });
+
+                const rows = [
+                    ['纯已签约', signed.length, calculateScale(signed), provinces.size],
+                    ['已开工', started.length, calculateScale(started), new Set(started.map(p => p.province)).size],
+                    ['已批复未开工', approved.length, calculateScale(approved), new Set(approved.map(p => p.province)).size],
+                    ['重点推进', priority.length, calculateScale(priority), new Set(priority.map(p => p.province)).size],
+                    ['无法推进', blocked.length, calculateScale(blocked), new Set(blocked.map(p => p.province)).size]
+                ];
+
+                document.getElementById('overview-table').innerHTML = rows.map(row => `
+                    <tr>
+                        <td>${row[0]}</td>
+                        <td>${row[1]}</td>
+                        <td>${row[2]}</td>
+                        <td>${row[3]}</td>
+                    </tr>
+                `).join('');
+            } catch (e) {
+                console.error('概览数据加载失败:', e);
+            }
+        }
+
+        // 计算总规模
+        function calculateScale(projects) {
+            if (!projects || projects.length === 0) return '-';
+            return projects.length + '个项目';
+        }
+
+        // 加载重点推进数据
+        async function loadPriorityData() {
+            try {
+                const res = await fetch(`${API_BASE}/api/projects?type=priority`);
+                priorityData = await res.json();
+                
+                // 填充筛选下拉
+                const provinces = [...new Set(priorityData.map(p => p.province).filter(Boolean))].sort();
+                const managers = [...new Set(priorityData.map(p => p.manager).filter(Boolean))].sort();
+                
+                document.getElementById('filter-province').innerHTML = 
+                    '<option value="">全部省份</option>' + 
+                    provinces.map(p => `<option value="${p}">${p}</option>`).join('');
+                    
+                document.getElementById('filter-manager').innerHTML = 
+                    '<option value="">全部责任人</option>' + 
+                    managers.map(m => `<option value="${m}">${m}</option>`).join('');
+
+                renderPriorityTable(priorityData);
+            } catch (e) {
+                console.error('重点推进数据加载失败:', e);
+            }
+        }
+
+        // 筛选重点推进
+        function filterPriority() {
+            const province = document.getElementById('filter-province').value;
+            const manager = document.getElementById('filter-manager').value;
+            const status = document.getElementById('filter-status').value;
+
+            let filtered = [...priorityData];
+            if (province) filtered = filtered.filter(p => p.province === province);
+            if (manager) filtered = filtered.filter(p => p.manager === manager);
+            if (status) filtered = filtered.filter(p => p.status === status);
+
+            renderPriorityTable(filtered);
+        }
+
+        // 渲染重点推进表格
+        function renderPriorityTable(projects) {
+            if (!projects || projects.length === 0) {
+                document.getElementById('priority-table').innerHTML = 
+                    '<tr><td colspan="9" class="empty-state"><div class="empty-state-icon">📭</div>暂无数据</td></tr>';
+                return;
+            }
+
+            document.getElementById('priority-table').innerHTML = projects.map((p, i) => `
+                <tr>
+                    <td>${i + 1}</td>
+                    <td class="editable-cell" onclick="openProjectDetail('${p.name}')">${p.name}</td>
+                    <td>${p.province || '-'}</td>
+                    <td>${p.scale || '-'}</td>
+                    <td class="editable-cell" data-field="manager" data-id="${p.id}">${p.manager || '-'}</td>
+                    <td class="editable-cell" data-field="entry_date" data-id="${p.id}">${p.entry_date || '-'}</td>
+                    <td class="editable-cell" data-field="power_access_date" data-id="${p.id}">${p.power_access_date || '-'}</td>
+                    <td class="editable-cell" data-field="cost" data-id="${p.id}">${p.cost || '-'}</td>
+                    <td><span class="status-tag ${p.status === '重点推进' ? 'priority' : 'reserve'}">${p.status || '重点推进'}</span></td>
+                </tr>
+            `).join('');
+
+            // 添加可编辑功能
+            document.querySelectorAll('.editable-cell[data-field]').forEach(cell => {
+                cell.addEventListener('click', handleCellEdit);
+            });
+        }
+
+        // 单元格编辑
+        function handleCellEdit(e) {
+            const cell = e.currentTarget;
+            const field = cell.dataset.field;
+            const id = cell.dataset.id;
+            const currentValue = cell.textContent.trim();
+
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.value = currentValue === '-' ? '' : currentValue;
+            input.style.cssText = 'width: 100%; padding: 4px; border: 1px solid var(--primary); border-radius: 4px; background: var(--bg-dark); color: var(--text-primary);';
+
+            cell.innerHTML = '';
+            cell.appendChild(input);
+            input.focus();
+
+            const save = () => {
+                const newValue = input.value.trim();
+                cell.textContent = newValue || '-';
+                
+                // 更新数据
+                const project = priorityData.find(p => p.id == id);
+                if (project) {
+                    project[field] = newValue;
+                }
+            };
+
+            input.addEventListener('blur', save);
+            input.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    input.blur();
+                } else if (e.key === 'Escape') {
+                    cell.textContent = currentValue;
+                }
+            });
+        }
+
+        // 保存重点推进修改
+        async function savePriorityChanges() {
+            try {
+                for (const project of priorityData) {
+                    await fetch(`${API_BASE}/api/priority`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(project)
+                    });
+                }
+                alert('保存成功！');
+            } catch (e) {
+                console.error('保存失败:', e);
+                alert('保存失败');
+            }
+        }
+
+        // 加载地图数据
+        async function loadMapData() {
+            try {
+                const res = await fetch('data.json');
+                mapData = await res.json();
+            } catch (e) {
+                console.error('地图数据加载失败:', e);
+            }
+        }
+
+        // 渲染地图
+        let mapChart = null;
+        function renderMap() {
+            if (mapChart) {
+                mapChart.dispose();
+            }
+
+            mapChart = echarts.init(document.getElementById('map-chart'));
+
+            // 加载中国地图JSON
+            fetch('vendor/china.json')
+                .then(res => res.json())
+                .then(chinaJson => {
+                    echarts.registerMap('china', chinaJson);
+
+                    // 转换数据为地图格式
+                    const mapConvertData = (type, color) => {
+                        return mapData
+                            .filter(d => d.type === type)
+                            .map(d => ({
+                                name: d.district || d.city || d.province,
+                                value: getGeoCoord(d),
+                                itemStyle: { color: color },
+                                project: d
+                            }));
+                    };
+
+                    const getGeoCoord = (d) => {
+                        // 简单的省份坐标近似值
+                        const provCoords = {
+                            '河南': [113.65, 34.76], '山东': [118.00, 36.67], '江苏': [119.78, 33.04],
+                            '安徽': [117.28, 31.86], '浙江': [120.15, 30.28], '江西': [115.97, 28.68],
+                            '福建': [118.30, 26.08], '广东': [113.28, 23.14], '广西': [108.33, 22.84],
+                            '海南': [110.35, 20.02], '湖北': [114.31, 30.52], '湖南': [112.98, 28.20],
+                            '山西': [112.55, 37.87], '河北': [114.52, 38.04], '北京': [116.46, 39.92],
+                            '天津': [117.20, 39.13], '内蒙古': [111.77, 40.82], '陕西': [108.95, 34.27],
+                            '宁夏': [106.27, 36.76], '甘肃': [103.83, 36.06], '青海': [101.78, 36.56],
+                            '新疆': [87.62, 43.79], '西藏': [89.14, 31.36], '四川': [104.07, 30.67],
+                            '重庆': [106.55, 29.56], '贵州': [106.71, 26.60], '云南': [101.49, 25.04],
+                            '吉林': [125.32, 43.82], '辽宁': [123.43, 41.80], '黑龙江': [128.03, 47.50],
+                            '上海': [121.47, 31.23]
+                        };
+                        const coord = provCoords[d.province] || [105, 35];
+                        const jitter = () => (Math.random() - 0.5) * 2;
+                        return [coord[0] + jitter(), coord[1] + jitter()];
+                    };
+
+                    const option = {
+                        backgroundColor: '#0f172a',
+                        tooltip: {
+                            trigger: 'item',
+                            formatter: function(params) {
+                                if (params.data && params.data.project) {
+                                    const p = params.data.project;
+                                    return `<strong>${p.name}</strong><br/>
+                                            类型: ${getTypeName(p.type)}<br/>
+                                            省份: ${p.province}<br/>
+                                            规模: ${p.scale || '-'}`;
+                                }
+                                return params.name;
+                            }
+                        },
+                        geo: {
+                            map: 'china',
+                            roam: true,
+                            zoom: 1.2,
+                            label: {
+                                show: false
+                            },
+                            itemStyle: {
+                                areaColor: '#1e293b',
+                                borderColor: '#334155',
+                                borderWidth: 1
+                            },
+                            emphasis: {
+                                label: {
+                                    show: true,
+                                    color: '#fff'
+                                },
+                                itemStyle: {
+                                    areaColor: '#334155'
+                                }
+                            },
+                            select: {
+                                disabled: true
+                            }
+                        },
+                        series: [
+                            {
+                                name: '已签约',
+                                type: 'scatter',
+                                coordinateSystem: 'geo',
+                                data: mapConvertData('pure_signed', '#1a73e8'),
+                                symbolSize: 10
+                            },
+                            {
+                                name: '已开工',
+                                type: 'scatter',
+                                coordinateSystem: 'geo',
+                                data: mapConvertData('started', '#fbbc04'),
+                                symbolSize: 14
+                            },
+                            {
+                                name: '重点推进',
+                                type: 'scatter',
+                                coordinateSystem: 'geo',
+                                data: mapConvertData('priority', '#34a853'),
+                                symbolSize: 12
+                            },
+                            {
+                                name: '无法推进',
+                                type: 'scatter',
+                                coordinateSystem: 'geo',
+                                data: mapConvertData('blocked', '#ea4335'),
+                                symbolSize: 8
+                            }
+                        ]
+                    };
+
+                    mapChart.setOption(option);
+                });
+
+            window.addEventListener('resize', () => {
+                if (mapChart) mapChart.resize();
+            });
+        }
+
+        function getTypeName(type) {
+            const names = {
+                'pure_signed': '已签约',
+                'started': '已开工',
+                'priority': '重点推进',
+                'blocked': '无法推进'
+            };
+            return names[type] || type;
+        }
+
+        // 打开项目列表
+        async function openProjectList(type) {
+            currentListType = type;
+            const titles = {
+                'signed': '已签约项目列表',
+                'started': '已开工项目列表',
+                'approved': '已批复未开工项目列表'
+            };
+            document.getElementById('modal-list-title').textContent = titles[type] || '项目列表';
+            document.getElementById('project-list-modal').classList.add('active');
+
+            try {
+                const res = await fetch('data.json');
+                const projects = await res.json();
+
+                if (!projects || projects.length === 0) {
+                    document.getElementById('project-list-table').innerHTML = 
+                        '<tr><td colspan="6" class="empty-state"><div class="empty-state-icon">📭</div>暂无数据</td></tr>';
+                    return;
+                }
+
+                document.getElementById('project-list-table').innerHTML = projects.map((p, i) => `
+                    <tr>
+                        <td>${i + 1}</td>
+                        <td>${p.name}</td>
+                        <td>${p.province || '-'}</td>
+                        <td>${p.city || '-'}</td>
+                        <td>${p.scale || '-'}</td>
+                        <td><button class="btn btn-outline" onclick="openProjectDetail('${p.name}')">查看详情</button></td>
+                    </tr>
+                `).join('');
+            } catch (e) {
+                console.error('项目列表加载失败:', e);
+            }
+        }
+
+        // 打开项目详情
+        async function openProjectDetail(name) {
+            document.getElementById('modal-detail-title').textContent = name;
+            document.getElementById('project-detail-modal').classList.add('active');
+            document.getElementById('project-detail-content').innerHTML = '<div class="loading">加载中...</div>';
+
+            try {
+                const res = await fetch('archives.json');
+                const archive = await res.json();
+
+                if (!archive || !archive.basic) {
+                    document.getElementById('project-detail-content').innerHTML = `
+                        <div class="empty-state">
+                            <div class="empty-state-icon">📋</div>
+                            <p>暂无详细档案</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                const basic = archive.basic;
+                const progress = archive.progress || [];
+
+                let html = `
+                    <div class="project-detail-grid">
+                        <div class="detail-item">
+                            <div class="detail-label">项目名称</div>
+                            <div class="detail-value">${archive.name}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">项目类型</div>
+                            <div class="detail-value">${getTypeName(archive.type)}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">规模</div>
+                            <div class="detail-value">${basic['规模'] || '-'}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">省份</div>
+                            <div class="detail-value">${basic['省份'] || '-'}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">地市</div>
+                            <div class="detail-value">${basic['地市'] || '-'}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">县区</div>
+                            <div class="detail-value">${basic['县区'] || '-'}</div>
+                        </div>
+                        <div class="detail-item detail-full">
+                            <div class="detail-label">项目情况</div>
+                            <textarea class="detail-textarea" id="project-remark">${basic['项目情况'] || ''}</textarea>
+                        </div>
+                    </div>
+                    
+                    ${progress.length > 0 ? `
+                    <div class="progress-timeline">
+                        <h4 class="timeline-title">📋 项目进度</h4>
+                        ${progress.map(item => `
+                            <div class="timeline-item">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-content">
+                                    <div class="timeline-stage">${item.stage}</div>
+                                    <div class="timeline-node">${item.node}</div>
+                                    ${item.partner ? `<div class="timeline-node">合作单位: ${item.partner}</div>` : ''}
+                                    ${item.plan_date ? `<div class="timeline-node">计划时间: ${item.plan_date}</div>` : ''}
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                    ` : ''}
+                `;
+
+                document.getElementById('project-detail-content').innerHTML = html;
+
+            } catch (e) {
+                console.error('项目详情加载失败:', e);
+                document.getElementById('project-detail-content').innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">❌</div>
+                        <p>加载失败</p>
+                    </div>
+                `;
+            }
+        }
+
+        // 关闭模态框
+        function closeModal(id) {
+            document.getElementById(id).classList.remove('active');
+        }
+
+        // 点击遮罩关闭
+        document.querySelectorAll('.modal-overlay').forEach(overlay => {
+            overlay.addEventListener('click', (e) => {
+                if (e.target === overlay) {
+                    overlay.classList.remove('active');
+                }
+            });
+        });
+
+        // 刷新数据
+        function refreshData() {
+            loadData();
+        }
+
+        // 飞书同步
+        async function syncWithFeishu() {
+            const btn = document.querySelector('.feishu-sync');
+            btn.classList.add('loading');
+            btn.innerHTML = '<span>🔄</span> 同步中...';
+
+            try {
+                // 调用飞书API获取数据
+                const res = await fetch(`${API_BASE}/feishu/bitable/v1/apps/${FEISHU_CONFIG.base_token}/tables`);
+                const data = await res.json();
+                
+                if (data.code === 0) {
+                    alert('飞书同步成功！');
+                } else {
+                    alert('飞书同步失败: ' + (data.msg || '未知错误'));
+                }
+            } catch (e) {
+                console.error('飞书同步失败:', e);
+                alert('飞书同步失败，请检查配置');
+            } finally {
+                btn.classList.remove('loading');
+                btn.innerHTML = '<span>📥</span> 飞书同步';
+            }
+        }
+
+        // 键盘快捷键
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.modal-overlay.active').forEach(m => m.classList.remove('active'));
+            }
+        });
+    </script>
+</body>
+</html>

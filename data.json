@@ -1,0 +1,4607 @@
+{
+  "stats": {
+    "signed_count": 125,
+    "started_count": 6,
+    "approved_count": 4,
+    "priority_count": 36,
+    "blocked_count": 99,
+    "pure_signed_count": 87
+  },
+  "pure_signed_projects": [
+    {
+      "id": 3,
+      "name": "盘北经开区",
+      "scale": "200MW/400MWh",
+      "province": "贵州",
+      "city": "六盘水市",
+      "district": "盘北经开",
+      "manager": "",
+      "status": "已签约"
+    },
+    {
+      "id": 16,
+      "name": "哈尔滨双城区",
+      "scale": "200MW/800MWh",
+      "province": "黑龙江",
+      "city": "哈尔滨市",
+      "district": "双城区",
+      "manager": "林加亮",
+      "status": "已签约"
+    },
+    {
+      "id": 17,
+      "name": "株洲清水塘集团",
+      "scale": "200MW/400MWh",
+      "province": "湖南",
+      "city": "株洲市",
+      "district": "清水塘集团",
+      "manager": "张磊",
+      "status": "已签约"
+    },
+    {
+      "id": 18,
+      "name": "衡阳祁东县",
+      "scale": "200MW/400MWh",
+      "province": "湖南",
+      "city": "衡阳市",
+      "district": "祁东县",
+      "manager": "郭心惠",
+      "status": "已签约"
+    },
+    {
+      "id": 21,
+      "name": "长春市双阳区齐家镇",
+      "scale": "200MW/400MWh",
+      "province": "吉林",
+      "city": "长春市",
+      "district": "双阳区",
+      "manager": "林加亮",
+      "status": "已签约"
+    },
+    {
+      "id": 22,
+      "name": "长春五棵树经开区",
+      "scale": "200MW/800MWh",
+      "province": "吉林",
+      "city": "长春市",
+      "district": "五棵树经开区",
+      "manager": "林加亮",
+      "status": "已签约"
+    },
+    {
+      "id": 23,
+      "name": "通化二道江区",
+      "scale": "200MW/400MWh",
+      "province": "吉林",
+      "city": "通化市",
+      "district": "二道江区",
+      "manager": "林加亮",
+      "status": "已签约"
+    },
+    {
+      "id": 25,
+      "name": "锦州经开区",
+      "scale": "200MW/400MWh",
+      "province": "辽宁",
+      "city": "锦州",
+      "district": "锦州经开区",
+      "manager": "李浩天",
+      "status": "已签约"
+    },
+    {
+      "id": 26,
+      "name": "腾鳌经开区",
+      "scale": "200MW/400MWh",
+      "province": "辽宁",
+      "city": "鞍山市",
+      "district": "腾鳌经开区",
+      "manager": "李浩天",
+      "status": "已签约"
+    },
+    {
+      "id": 29,
+      "name": "运城河津市",
+      "scale": "200MW/400MWh",
+      "province": "山西",
+      "city": "运城市",
+      "district": "河津市",
+      "manager": "张磊",
+      "status": "已签约"
+    },
+    {
+      "id": 30,
+      "name": "运城闻喜县",
+      "scale": "400MW/800MWh",
+      "province": "山西",
+      "city": "运城市",
+      "district": "闻喜县",
+      "manager": "张磊",
+      "status": "已签约"
+    },
+    {
+      "id": 31,
+      "name": "吕梁柳林县",
+      "scale": "300MW/600MWh",
+      "province": "山西",
+      "city": "吕梁市",
+      "district": "柳林县",
+      "manager": "李浩天",
+      "status": "已签约"
+    },
+    {
+      "id": 32,
+      "name": "北辰西堤头镇",
+      "scale": "200MW/400MWh",
+      "province": "天津",
+      "city": "北辰区",
+      "district": "西堤头镇",
+      "manager": "张瑞坤",
+      "status": "已签约"
+    },
+    {
+      "id": 35,
+      "name": "驻马店经开区",
+      "scale": "200MW/400MWh",
+      "province": "河南",
+      "city": "驻马店",
+      "district": "经开区",
+      "manager": "",
+      "status": "已签约"
+    },
+    {
+      "id": 36,
+      "name": "南阳方城县",
+      "scale": "200MW/400MWh",
+      "province": "河南",
+      "city": "南阳市",
+      "district": "方城县",
+      "manager": "",
+      "status": "已签约"
+    },
+    {
+      "id": 37,
+      "name": "孟州大定",
+      "scale": "200MW/400MWh",
+      "province": "河南",
+      "city": "焦作",
+      "district": "孟州大定",
+      "manager": "",
+      "status": "已签约"
+    },
+    {
+      "id": 39,
+      "name": "咸宁市咸安区",
+      "scale": "200MW/400MWh",
+      "province": "湖北",
+      "city": "咸宁市",
+      "district": "咸安区",
+      "manager": "",
+      "status": "已签约"
+    },
+    {
+      "id": 40,
+      "name": "安陆市经开区",
+      "scale": "400MW/800MWh",
+      "province": "湖北",
+      "city": "安陆市",
+      "district": "经开区",
+      "manager": "",
+      "status": "已签约"
+    },
+    {
+      "id": 41,
+      "name": "荆州市江陵县",
+      "scale": "220MW/401MWh",
+      "province": "湖北",
+      "city": "荆州市",
+      "district": "江陵县",
+      "manager": "",
+      "status": "已签约"
+    },
+    {
+      "id": 42,
+      "name": "钟祥市柴湖镇",
+      "scale": "200MW/400MWh",
+      "province": "湖北",
+      "city": "荆门市",
+      "district": "钟祥市",
+      "manager": "应俊",
+      "status": "已签约"
+    },
+    {
+      "id": 43,
+      "name": "黄冈高新区",
+      "scale": "200MW/400MWh",
+      "province": "湖北",
+      "city": "黄冈市",
+      "district": "高新区",
+      "manager": "",
+      "status": "已签约"
+    },
+    {
+      "id": 44,
+      "name": "仙桃市郭河镇",
+      "scale": "400MW/800MWh",
+      "province": "湖北",
+      "city": "仙桃市",
+      "district": "郭河镇",
+      "manager": "",
+      "status": "已签约"
+    },
+    {
+      "id": 45,
+      "name": "大柴湖经开区",
+      "scale": "100MW/200MWh",
+      "province": "湖北",
+      "city": "荆门市",
+      "district": "大柴湖",
+      "manager": "",
+      "status": "已签约"
+    },
+    {
+      "id": 46,
+      "name": "黄石新港工业园",
+      "scale": "200MW/400MWh",
+      "province": "湖北",
+      "city": "黄石市",
+      "district": "新港区",
+      "manager": "",
+      "status": "已签约"
+    },
+    {
+      "id": 48,
+      "name": "咸宁通城县",
+      "scale": "200MW/400MWh",
+      "province": "湖北",
+      "city": "咸宁市",
+      "district": "通城县",
+      "manager": "应俊",
+      "status": "已签约"
+    },
+    {
+      "id": 49,
+      "name": "武汉蔡甸区",
+      "scale": "220MW/401MWh",
+      "province": "湖北",
+      "city": "武汉",
+      "district": "蔡甸区",
+      "manager": "应俊",
+      "status": "已签约"
+    },
+    {
+      "id": 50,
+      "name": "荆州区纪南镇",
+      "scale": "200MW/400MWh",
+      "province": "湖北",
+      "city": "荆州市",
+      "district": "荆州区",
+      "manager": "",
+      "status": "已签约"
+    },
+    {
+      "id": 51,
+      "name": "荆州监利市",
+      "scale": "400MW/800MWh",
+      "province": "湖北",
+      "city": "荆州市",
+      "district": "监利市",
+      "manager": "",
+      "status": "已签约"
+    },
+    {
+      "id": 53,
+      "name": "宜昌枝江市",
+      "scale": "200MW/400MWh",
+      "province": "湖北",
+      "city": "宜昌市",
+      "district": "枝江市",
+      "manager": "",
+      "status": "已签约"
+    },
+    {
+      "id": 54,
+      "name": "襄阳枣阳市",
+      "scale": "220MW/401MWh",
+      "province": "湖北",
+      "city": "襄阳市",
+      "district": "枣阳市",
+      "manager": "",
+      "status": "已签约"
+    },
+    {
+      "id": 55,
+      "name": "咸宁嘉鱼县",
+      "scale": "200MW/400MWh",
+      "province": "湖北",
+      "city": "咸宁市",
+      "district": "嘉鱼县",
+      "manager": "",
+      "status": "已签约"
+    },
+    {
+      "id": 56,
+      "name": "恩施利川经开区",
+      "scale": "400MW/800MWh",
+      "province": "湖北",
+      "city": "恩施州",
+      "district": "利川市",
+      "manager": "",
+      "status": "已签约"
+    },
+    {
+      "id": 57,
+      "name": "天门蒋湖农场",
+      "scale": "220MW/401MWh",
+      "province": "湖北",
+      "city": "天门市",
+      "district": "蒋湖农场",
+      "manager": "应俊",
+      "status": "已签约"
+    },
+    {
+      "id": 58,
+      "name": "应城郎君镇",
+      "scale": "200MW/400MWh",
+      "province": "湖北",
+      "city": "孝感市",
+      "district": "郎君镇",
+      "manager": "应俊",
+      "status": "已签约"
+    },
+    {
+      "id": 59,
+      "name": "咸宁赤壁市",
+      "scale": "200MW/400MWh",
+      "province": "湖北",
+      "city": "咸宁市",
+      "district": "赤壁市",
+      "manager": "",
+      "status": "已签约"
+    },
+    {
+      "id": 62,
+      "name": " 罗田县三里潘畈镇",
+      "scale": "200MW/400MWh",
+      "province": "湖北",
+      "city": "黄冈市",
+      "district": " 罗田县",
+      "manager": "",
+      "status": "已签约"
+    },
+    {
+      "id": 63,
+      "name": "永州陆港枢纽集团",
+      "scale": "200MW/400MWh",
+      "province": "湖南",
+      "city": "永州市",
+      "district": "陆港枢纽投资发展集团",
+      "manager": "",
+      "status": "已签约"
+    },
+    {
+      "id": 64,
+      "name": "娄底双峰县",
+      "scale": "100MW/200MWh",
+      "province": "湖南",
+      "city": "娄底市",
+      "district": "双峰县",
+      "manager": "",
+      "status": "已签约"
+    },
+    {
+      "id": 65,
+      "name": "永州蓝山县",
+      "scale": "100MW/200MWh",
+      "province": "湖南",
+      "city": "永州市",
+      "district": "蓝山县",
+      "manager": "",
+      "status": "已签约"
+    },
+    {
+      "id": 66,
+      "name": "白沙绿岛高新区",
+      "scale": "100MW/200MWh",
+      "province": "湖南",
+      "city": "衡阳",
+      "district": "白沙绿岛高新区",
+      "manager": "",
+      "status": "已签约"
+    },
+    {
+      "id": 67,
+      "name": "益阳市沅江市",
+      "scale": "200MW/400MWh",
+      "province": "湖南",
+      "city": "益阳市",
+      "district": "沅江市",
+      "manager": "",
+      "status": "已签约"
+    },
+    {
+      "id": 68,
+      "name": "九江市都昌县",
+      "scale": "200MW/400MWh",
+      "province": "江西",
+      "city": "九江市",
+      "district": "都昌县",
+      "manager": "周翔宇",
+      "status": "已签约"
+    },
+    {
+      "id": 71,
+      "name": "临夏州和政县",
+      "scale": "200MW/400MWh",
+      "province": "甘肃",
+      "city": "临夏州",
+      "district": "和政县",
+      "manager": "刘毅",
+      "status": "已签约"
+    },
+    {
+      "id": 72,
+      "name": "临夏州东乡县",
+      "scale": "200MW/400MWh",
+      "province": "甘肃",
+      "city": "临夏州",
+      "district": "东乡县",
+      "manager": "刘毅",
+      "status": "已签约"
+    },
+    {
+      "id": 73,
+      "name": "庆阳市庆城县",
+      "scale": "200MW/400MWh",
+      "province": "甘肃",
+      "city": "庆阳市",
+      "district": "庆城县",
+      "manager": "刘毅",
+      "status": "已签约"
+    },
+    {
+      "id": 74,
+      "name": "天水市甘谷县",
+      "scale": "200MW/400MWh",
+      "province": "甘肃",
+      "city": "天水市",
+      "district": "甘谷县",
+      "manager": "刘毅",
+      "status": "已签约"
+    },
+    {
+      "id": 75,
+      "name": "陇南市成县",
+      "scale": "200MW/400MWh",
+      "province": "甘肃",
+      "city": "陇南市",
+      "district": "成县",
+      "manager": "刘毅",
+      "status": "已签约"
+    },
+    {
+      "id": 76,
+      "name": "天水张家川",
+      "scale": "100MW/200MWh",
+      "province": "甘肃",
+      "city": "天水市",
+      "district": "张家川县",
+      "manager": "刘毅",
+      "status": "已签约"
+    },
+    {
+      "id": 77,
+      "name": "吴忠市同心县",
+      "scale": "100MW/200MWh",
+      "province": "宁夏",
+      "city": "吴忠市",
+      "district": "同心县",
+      "manager": "",
+      "status": "已签约"
+    },
+    {
+      "id": 78,
+      "name": "海东市工业园",
+      "scale": "200MW/800MWh",
+      "province": "青海",
+      "city": "海东市",
+      "district": "工业园区",
+      "manager": "刘鹏",
+      "status": "已签约"
+    },
+    {
+      "id": 79,
+      "name": "铜川新材料园区",
+      "scale": "100MW/400MWh",
+      "province": "陕西",
+      "city": "铜川",
+      "district": "新材料园区",
+      "manager": "李海玉",
+      "status": "已签约"
+    },
+    {
+      "id": 80,
+      "name": "宝鸡眉县经开区",
+      "scale": "100MW/200MWh",
+      "province": "陕西",
+      "city": "宝鸡市",
+      "district": "眉县经开区",
+      "manager": "",
+      "status": "已签约"
+    },
+    {
+      "id": 81,
+      "name": "宝鸡陈仓区",
+      "scale": "200MW/400MWh",
+      "province": "陕西",
+      "city": "宝鸡市",
+      "district": "陈仓区",
+      "manager": "孙文晶",
+      "status": "已签约"
+    },
+    {
+      "id": 82,
+      "name": "宝鸡凤翔区",
+      "scale": "400MW/800MWh",
+      "province": "陕西",
+      "city": "宝鸡市",
+      "district": "凤翔区",
+      "manager": "李海玉",
+      "status": "已签约"
+    },
+    {
+      "id": 84,
+      "name": "阿拉尔高新区",
+      "scale": "300MW/1200MWh",
+      "province": "新疆",
+      "city": "阿克苏",
+      "district": "阿拉尔高新区",
+      "manager": "",
+      "status": "已签约"
+    },
+    {
+      "id": 85,
+      "name": "和田墨玉县",
+      "scale": "200MW/800MWh",
+      "province": "新疆",
+      "city": "和田",
+      "district": "墨玉县",
+      "manager": "",
+      "status": "已签约"
+    },
+    {
+      "id": 86,
+      "name": "库尔勒上库高新区",
+      "scale": "200MW/800MWh",
+      "province": "新疆",
+      "city": "巴音郭楞蒙古自治州",
+      "district": "库尔勒上库高新区",
+      "manager": "",
+      "status": "已签约"
+    },
+    {
+      "id": 90,
+      "name": "宜宾长宁经开区",
+      "scale": "200MW/400MWh",
+      "province": "四川",
+      "city": "宜宾市",
+      "district": "长宁经开区",
+      "manager": "黄鑫",
+      "status": "已签约"
+    },
+    {
+      "id": 91,
+      "name": "广元朝天区",
+      "scale": "400MW/800MWh",
+      "province": "四川",
+      "city": "广元市",
+      "district": "朝天区",
+      "manager": "黄鑫",
+      "status": "已签约"
+    },
+    {
+      "id": 92,
+      "name": "遂宁蓬溪县",
+      "scale": "200MW/400MWh",
+      "province": "四川",
+      "city": "遂宁市",
+      "district": "蓬溪县",
+      "manager": "黄鑫",
+      "status": "已签约"
+    },
+    {
+      "id": 93,
+      "name": "绵阳经开区",
+      "scale": "100MW/200MWh",
+      "province": "四川",
+      "city": "绵阳市",
+      "district": "经开区",
+      "manager": "应俊",
+      "status": "已签约"
+    },
+    {
+      "id": 94,
+      "name": "凉山会理市",
+      "scale": "200MW/400MWh",
+      "province": "四川",
+      "city": "凉山",
+      "district": "会理市",
+      "manager": "郭心惠",
+      "status": "已签约"
+    },
+    {
+      "id": 95,
+      "name": "眉山彭山区",
+      "scale": "100MW/200MWh",
+      "province": "四川",
+      "city": "眉山市",
+      "district": "彭山区",
+      "manager": "黄鑫",
+      "status": "已签约"
+    },
+    {
+      "id": 96,
+      "name": "凉山会理市",
+      "scale": "200MW/800MWh",
+      "province": "四川",
+      "city": "凉山",
+      "district": "会理市",
+      "manager": "郭心惠",
+      "status": "已签约"
+    },
+    {
+      "id": 97,
+      "name": "重庆双桥区",
+      "scale": "200MW/400MWh",
+      "province": "重庆市",
+      "city": "双桥区",
+      "district": "大足区",
+      "manager": "曹莹峰",
+      "status": "已签约"
+    },
+    {
+      "id": 98,
+      "name": "重庆巴南区",
+      "scale": "200MW/800MWh",
+      "province": "重庆市",
+      "city": "巴南区",
+      "district": "",
+      "manager": "黄鑫",
+      "status": "已签约"
+    },
+    {
+      "id": 99,
+      "name": "重庆市忠县",
+      "scale": "200MW/400MWh",
+      "province": "重庆市",
+      "city": "",
+      "district": "忠县",
+      "manager": "黄鑫",
+      "status": "已签约"
+    },
+    {
+      "id": 100,
+      "name": "重庆黔江区",
+      "scale": "200MW/400MWh",
+      "province": "重庆市",
+      "city": "黔江区",
+      "district": "",
+      "manager": "黄鑫",
+      "status": "已签约"
+    },
+    {
+      "id": 101,
+      "name": "长春二道经开区",
+      "scale": "200MW/800MWh",
+      "province": "吉林",
+      "city": "长春市",
+      "district": "二道经开区",
+      "manager": "林加亮",
+      "status": "已签约"
+    },
+    {
+      "id": 103,
+      "name": "延边龙井市",
+      "scale": "200MW/400MWh",
+      "province": "吉林",
+      "city": "延边",
+      "district": "龙井市",
+      "manager": "张瑞坤",
+      "status": "已签约"
+    },
+    {
+      "id": 105,
+      "name": "攀枝花西区",
+      "scale": "200MW/400MWh",
+      "province": "四川",
+      "city": "攀枝花",
+      "district": "西区",
+      "manager": "黄鑫",
+      "status": "已签约"
+    },
+    {
+      "id": 106,
+      "name": "拉萨堆龙德庆区",
+      "scale": "200MW/400MWh",
+      "province": "西藏自治区",
+      "city": "拉萨",
+      "district": "堆龙德庆区",
+      "manager": "",
+      "status": "已签约"
+    },
+    {
+      "id": 108,
+      "name": "兰州红古区",
+      "scale": "200MW/800MWh",
+      "province": "甘肃",
+      "city": "兰州市",
+      "district": "红古区",
+      "manager": "刘毅",
+      "status": "已签约"
+    },
+    {
+      "id": 110,
+      "name": "哈尔滨经开区",
+      "scale": "300MW/1200MWh",
+      "province": "黑龙江",
+      "city": "哈尔滨市",
+      "district": "经开区",
+      "manager": "林加亮",
+      "status": "已签约"
+    },
+    {
+      "id": 111,
+      "name": "辽源市东辽县",
+      "scale": "200MW/800MWh",
+      "province": "吉林",
+      "city": "辽源市",
+      "district": "东辽县",
+      "manager": "林加亮",
+      "status": "已签约"
+    },
+    {
+      "id": 112,
+      "name": "铁岭经开区",
+      "scale": "150MW/600MWh",
+      "province": "辽宁",
+      "city": "铁岭市",
+      "district": "经开区",
+      "manager": "张瑞坤",
+      "status": "已签约"
+    },
+    {
+      "id": 113,
+      "name": "沧州黄骅港",
+      "scale": "200MW/400MWh",
+      "province": "河北",
+      "city": "沧州市",
+      "district": "港城产业园",
+      "manager": "张磊",
+      "status": "已签约"
+    },
+    {
+      "id": 114,
+      "name": "甘肃嘉峪关",
+      "scale": "300MW/1200MWh",
+      "province": "甘肃",
+      "city": "嘉峪关市",
+      "district": "",
+      "manager": "张磊",
+      "status": "已签约"
+    },
+    {
+      "id": 115,
+      "name": "海东互助土族县",
+      "scale": "100MW/400MWh",
+      "province": "青海",
+      "city": "海东市",
+      "district": "互助土族县",
+      "manager": "刘鹏",
+      "status": "已签约"
+    },
+    {
+      "id": 116,
+      "name": "巴州轮台县",
+      "scale": "200MW/800MWh",
+      "province": "新疆",
+      "city": "巴州",
+      "district": "轮台县",
+      "manager": "刘鹏",
+      "status": "已签约"
+    },
+    {
+      "id": 117,
+      "name": "朝阳市朝阳县",
+      "scale": "200MW/800MWh",
+      "province": "辽宁",
+      "city": "朝阳市",
+      "district": "朝阳县",
+      "manager": "王婷婷",
+      "status": "已签约"
+    },
+    {
+      "id": 118,
+      "name": "辽源东丰县",
+      "scale": "100MW/400MWh",
+      "province": "吉林",
+      "city": "辽源市",
+      "district": "东丰县",
+      "manager": "林加亮",
+      "status": "已签约"
+    },
+    {
+      "id": 119,
+      "name": "宜宾市南溪区",
+      "scale": "200MW/400MWh",
+      "province": "四川",
+      "city": "宜宾市",
+      "district": "南溪区",
+      "manager": "",
+      "status": "已签约"
+    },
+    {
+      "id": 120,
+      "name": "岳阳市湘阴县洋沙湖镇",
+      "scale": "200MW/400MWh",
+      "province": "湖南",
+      "city": "岳阳市",
+      "district": "湘阴县洋沙湖镇",
+      "manager": "",
+      "status": "已签约"
+    },
+    {
+      "id": 121,
+      "name": "西藏自治区昌都市左贡县",
+      "scale": "200MW/800MWh",
+      "province": "西藏自治区",
+      "city": "昌都市",
+      "district": "左贡县",
+      "manager": "",
+      "status": "已签约"
+    },
+    {
+      "id": 122,
+      "name": "西藏自治区山南市乃东区",
+      "scale": "100MW/200MWh",
+      "province": "西藏自治区",
+      "city": "山南市",
+      "district": "乃东区",
+      "manager": "",
+      "status": "已签约"
+    },
+    {
+      "id": 123,
+      "name": "天津生态城",
+      "scale": "200MW/400MWh",
+      "province": "天津",
+      "city": "天津",
+      "district": "滨海新区",
+      "manager": "",
+      "status": "已签约"
+    }
+  ],
+  "started_projects": [
+    {
+      "id": 0,
+      "name": "驻马店泌阳县",
+      "scale": "200MW/400MWh",
+      "province": "河南",
+      "city": "驻马店",
+      "district": "泌阳县",
+      "manager": "陈志刚",
+      "status": "已开工"
+    },
+    {
+      "id": 1,
+      "name": "通辽市经开区",
+      "scale": "100MW/400MWh",
+      "province": "内蒙古",
+      "city": "通辽市",
+      "district": "经开区",
+      "manager": "张瑞坤",
+      "status": "已开工"
+    },
+    {
+      "id": 2,
+      "name": "喀什市莎车县",
+      "scale": "200MW/800MWh",
+      "province": "新疆",
+      "city": "喀什市",
+      "district": "莎车县",
+      "manager": "王富项目经理",
+      "status": "已开工"
+    },
+    {
+      "id": 3,
+      "name": "安阳市林州市",
+      "scale": "100MW/200MWh",
+      "province": "河南",
+      "city": "安阳市",
+      "district": "林州市",
+      "manager": "杨树峰项目经理     ",
+      "status": "已开工"
+    },
+    {
+      "id": 4,
+      "name": "安阳市北关区",
+      "scale": "200MW/400MWh",
+      "province": "河南",
+      "city": "安阳市",
+      "district": "北关区",
+      "manager": "贺志华项目经理",
+      "status": "已开工"
+    },
+    {
+      "id": 5,
+      "name": "东营市经开区",
+      "scale": "200MW/400MWh",
+      "province": "山东",
+      "city": "东营市",
+      "district": "经开区",
+      "manager": "尚东项目经理",
+      "status": "已开工"
+    }
+  ],
+  "approved_projects": [
+    {
+      "id": 0,
+      "name": "侗族锦屏县",
+      "scale": "200MW/400MWh",
+      "province": "贵州",
+      "city": "侗族自治州",
+      "district": "锦屏县",
+      "manager": "",
+      "status": "已批复未开工"
+    },
+    {
+      "id": 1,
+      "name": "鹤壁市山城区",
+      "scale": "200MW/400MWh",
+      "province": "河南",
+      "city": "鹤壁市",
+      "district": "山城区",
+      "manager": "",
+      "status": "已批复未开工"
+    },
+    {
+      "id": 2,
+      "name": "平顶山郏县",
+      "scale": "200MW/400MWh",
+      "province": "河南",
+      "city": "平顶山",
+      "district": "郏县",
+      "manager": "",
+      "status": "已批复未开工"
+    },
+    {
+      "id": 3,
+      "name": "玉林陆川县",
+      "scale": "200MW/400MWh",
+      "province": "广西",
+      "city": "玉林市",
+      "district": "陆川县",
+      "manager": "",
+      "status": "已批复未开工"
+    }
+  ],
+  "priority_projects": [
+    {
+      "id": 0,
+      "name": "商丘市睢阳区",
+      "scale": "100MW/200MWh",
+      "province": "河南",
+      "city": "商丘市",
+      "district": "睢阳区",
+      "manager": "李震",
+      "status": "重点推进",
+      "cost": "需写清入库+接入+其他总费用\n费用支付节点和时期",
+      "entry_date": "需录入已完成的时间",
+      "power_access_date": "7月\n需确定更为的精细时间"
+    },
+    {
+      "id": 1,
+      "name": "鹤壁鹤山区",
+      "scale": "200MW/400MWh",
+      "province": "河南",
+      "city": "鹤壁市",
+      "district": "鹤山区",
+      "manager": "李震",
+      "status": "重点推进",
+      "cost": "需写清入库+接入+其他总费用\n费用支付节点和时期",
+      "entry_date": "需录入已完成的时间",
+      "power_access_date": "7月初\n需确定更为的精细时间"
+    },
+    {
+      "id": 2,
+      "name": "平顶山湛河区",
+      "scale": "100MW/200MWh",
+      "province": "河南",
+      "city": "平顶山",
+      "district": "湛河区",
+      "manager": "李震",
+      "status": "重点推进",
+      "cost": "100万土地保证金\n需写清入库+接入+其他总费用\n费用支付节点和时期",
+      "entry_date": "需录入已完成的时间",
+      "power_access_date": "7月\n需确定更为的精细时间"
+    },
+    {
+      "id": 3,
+      "name": "黄石市下陆区",
+      "scale": "440MW/802MWh",
+      "province": "湖北",
+      "city": "黄石市",
+      "district": "下陆区",
+      "manager": "应俊",
+      "status": "重点推进",
+      "cost": "需写清入库+接入+其他总费用\n费用支付节点和时期",
+      "entry_date": "需录入已完成的时间",
+      "power_access_date": "8月\n需确定更为的精细时间"
+    },
+    {
+      "id": 4,
+      "name": "晋中开发区",
+      "scale": "200MW/400MWh",
+      "province": "山西",
+      "city": "晋中",
+      "district": "晋中开发区",
+      "manager": "张磊",
+      "status": "重点推进",
+      "cost": "需写清入库+接入+其他总费用\n费用支付节点和时期",
+      "entry_date": "需录入已完成的时间",
+      "power_access_date": "8月\n需确定更为的精细时间"
+    },
+    {
+      "id": 5,
+      "name": "遵义红花岗区",
+      "scale": "200MW/400MWh",
+      "province": "贵州",
+      "city": "遵义",
+      "district": "红花岗区",
+      "manager": "应俊",
+      "status": "重点推进",
+      "cost": "需写清入库+接入+其他总费用\n费用支付节点和时期",
+      "entry_date": "需录入已完成的时间",
+      "power_access_date": "7月\n需确定更为的精细时间"
+    },
+    {
+      "id": 6,
+      "name": "长春榆树市",
+      "scale": "200MW/400MWh",
+      "province": "吉林",
+      "city": "长春市",
+      "district": "榆树市",
+      "manager": "林加亮",
+      "status": "重点推进",
+      "cost": "需写清入库+接入+其他总费用\n费用支付节点和时期",
+      "entry_date": "需录入已完成的时间",
+      "power_access_date": "8月\n需确定更为的精细时间"
+    },
+    {
+      "id": 7,
+      "name": "四平铁西区",
+      "scale": "200MW/400MWh",
+      "province": "吉林",
+      "city": "四平市",
+      "district": "铁西区",
+      "manager": "林加亮",
+      "status": "重点推进",
+      "cost": "需写清入库+接入+其他总费用\n费用支付节点和时期",
+      "entry_date": "需录入已完成的时间",
+      "power_access_date": "8月\n需确定更为的精细时间"
+    },
+    {
+      "id": 8,
+      "name": "双阳经开区",
+      "scale": "200MW/800MWh",
+      "province": "吉林",
+      "city": "长春市",
+      "district": "双阳经开区",
+      "manager": "林加亮",
+      "status": "重点推进",
+      "cost": "需写清入库+接入+其他总费用\n费用支付节点和时期",
+      "entry_date": "需确定计划\n完成时间",
+      "power_access_date": "8月\n需确定更为的精细时间"
+    },
+    {
+      "id": 9,
+      "name": "德州庆云县",
+      "scale": "200MW/400MWh",
+      "province": "山东",
+      "city": "德州市",
+      "district": "庆云县",
+      "manager": "张磊",
+      "status": "重点推进",
+      "cost": "入库15万元\n需写清入库+接入+其他总费用\n费用支付节点和时期",
+      "entry_date": "需确定计划\n完成时间",
+      "power_access_date": "需确定计划\n完成时间"
+    },
+    {
+      "id": 10,
+      "name": "日照岚山区",
+      "scale": "200MW/800MWh",
+      "province": "山东",
+      "city": "日照市",
+      "district": "岚山区",
+      "manager": "张磊",
+      "status": "重点推进",
+      "cost": "需写清入库+接入+其他总费用\n费用支付节点和时期",
+      "entry_date": "需确定计划\n完成时间",
+      "power_access_date": "需确定计划\n完成时间"
+    },
+    {
+      "id": 11,
+      "name": "江东新区潭连地区",
+      "scale": "200MW/400MWh",
+      "province": "海南",
+      "city": "海口市",
+      "district": "江东新区",
+      "manager": "王晶晶",
+      "status": "重点推进",
+      "cost": "需写清入库+接入+其他总费用\n费用支付节点和时期",
+      "entry_date": "需确定计划\n完成时间",
+      "power_access_date": "需确定计划\n完成时间"
+    },
+    {
+      "id": 12,
+      "name": "黄冈市英山县",
+      "scale": "100MW/200MWh",
+      "province": "湖北",
+      "city": "黄冈市",
+      "district": "英山县",
+      "manager": "应俊",
+      "status": "重点推进",
+      "cost": "需写清入库+接入+其他总费用\n费用支付节点和时期",
+      "entry_date": "需确定计划\n完成时间",
+      "power_access_date": "8月\n需确定更为的精细时间"
+    },
+    {
+      "id": 13,
+      "name": "孝感市孝南区",
+      "scale": "220MW/401MWh",
+      "province": "湖北",
+      "city": "孝感市",
+      "district": "孝南区",
+      "manager": "应俊",
+      "status": "重点推进",
+      "cost": "需写清入库+接入+其他总费用\n费用支付节点和时期",
+      "entry_date": "需确定计划\n完成时间",
+      "power_access_date": "8月\n需确定更为的精细时间"
+    },
+    {
+      "id": 14,
+      "name": "十堰郧阳区",
+      "scale": "200MW/400MWh",
+      "province": "湖北",
+      "city": "十堰市",
+      "district": "郧阳区",
+      "manager": "应俊",
+      "status": "重点推进",
+      "cost": "需写清入库+接入+其他总费用\n费用支付节点和时期",
+      "entry_date": "需确定计划\n完成时间",
+      "power_access_date": "8月\n需确定更为的精细时间"
+    },
+    {
+      "id": 15,
+      "name": "黄冈浠水县",
+      "scale": "200MW/400MWh",
+      "province": "湖北",
+      "city": "黄冈市",
+      "district": "浠水县",
+      "manager": "应俊",
+      "status": "重点推进",
+      "cost": "需写清入库+接入+其他总费用\n费用支付节点和时期",
+      "entry_date": "需确定计划\n完成时间",
+      "power_access_date": "8月\n需确定更为的精细时间"
+    },
+    {
+      "id": 16,
+      "name": "孝感汉川经开区",
+      "scale": "200MW/400MWh",
+      "province": "湖北",
+      "city": "孝感市",
+      "district": "汉川经开",
+      "manager": "应俊",
+      "status": "重点推进",
+      "cost": "需写清入库+接入+其他总费用\n费用支付节点和时期",
+      "entry_date": "需确定计划\n完成时间",
+      "power_access_date": "8月\n需确定更为的精细时间"
+    },
+    {
+      "id": 17,
+      "name": "抚州宜黄县",
+      "scale": "400MW/800MWh",
+      "province": "江西",
+      "city": "抚州市",
+      "district": "宜黄县",
+      "manager": "应俊",
+      "status": "重点推进",
+      "cost": "需写清入库+接入+其他总费用\n费用支付节点和时期",
+      "entry_date": "需确定计划\n完成时间",
+      "power_access_date": "9月\n需确定更为的精细时间"
+    },
+    {
+      "id": 18,
+      "name": "吉安遂川县",
+      "scale": "200MW/400MWh",
+      "province": "江西",
+      "city": "吉安市",
+      "district": "遂川县",
+      "manager": "应俊",
+      "status": "重点推进",
+      "cost": "需写清入库+接入+其他总费用\n费用支付节点和时期",
+      "entry_date": "需确定计划\n完成时间",
+      "power_access_date": "9月\n需确定更为的精细时间"
+    },
+    {
+      "id": 19,
+      "name": "商洛洛南县",
+      "scale": "100MW/200MWh",
+      "province": "陕西",
+      "city": "商洛市",
+      "district": "洛南县",
+      "manager": "李海玉",
+      "status": "重点推进",
+      "cost": "45万元电力接入方案，15万元电能质量报告，3万元专家评审费\n需写清入库+接入+其他总费用\n费用支付节点和时期\n",
+      "entry_date": "需录入已完成的时间",
+      "power_access_date": "7月\n需确定更为的精细时间"
+    },
+    {
+      "id": 20,
+      "name": "思南经开区",
+      "scale": "200MW/400MWh",
+      "province": "贵州",
+      "city": "铜仁市",
+      "district": "思南经开区",
+      "manager": "曹莹峰",
+      "status": "重点推进",
+      "cost": "需写清入库+接入+其他总费用\n费用支付节点和时期",
+      "entry_date": "需录入已完成的时间",
+      "power_access_date": "8月\n需确定更为的精细时间"
+    },
+    {
+      "id": 21,
+      "name": "都匀经开区",
+      "scale": "200MW/800MWh",
+      "province": "贵州",
+      "city": "黔南州",
+      "district": "都匀经开区",
+      "manager": "曹莹峰",
+      "status": "重点推进",
+      "cost": "需写清入库+接入+其他总费用\n费用支付节点和时期",
+      "entry_date": "需录入已完成的时间",
+      "power_access_date": "7月\n需确定更为的精细时间"
+    },
+    {
+      "id": 22,
+      "name": "毕节七星关区",
+      "scale": "200MW/800MWh",
+      "province": "贵州",
+      "city": "毕节市",
+      "district": "七星关区",
+      "manager": "曹莹峰",
+      "status": "重点推进",
+      "cost": "需写清入库+接入+其他总费用\n费用支付节点和时期",
+      "entry_date": "需录入已完成的时间",
+      "power_access_date": "8月\n需确定更为的精细时间"
+    },
+    {
+      "id": 23,
+      "name": "运城新绛县",
+      "scale": "200MW/400MWh",
+      "province": "山西",
+      "city": "运城市",
+      "district": "新绛县",
+      "manager": "张磊",
+      "status": "重点推进",
+      "cost": "需写清入库+接入+其他总费用\n费用支付节点和时期",
+      "entry_date": "需确定计划\n完成时间",
+      "power_access_date": "需确定计划\n完成时间"
+    },
+    {
+      "id": 24,
+      "name": "黄冈市蕲春县",
+      "scale": "200MW/400MWh",
+      "province": "湖北",
+      "city": "黄冈市",
+      "district": "蕲春县",
+      "manager": "应俊",
+      "status": "重点推进",
+      "cost": "需写清入库+接入+其他总费用\n费用支付节点和时期",
+      "entry_date": "需确定计划\n完成时间",
+      "power_access_date": "8月\n需确定更为的精细时间"
+    },
+    {
+      "id": 25,
+      "name": "吉林市桦甸市",
+      "scale": "200MW/400MWh",
+      "province": "吉林",
+      "city": "吉林市",
+      "district": "桦甸市",
+      "manager": "林加亮",
+      "status": "重点推进",
+      "cost": "需写清入库+接入+其他总费用\n费用支付节点和时期",
+      "entry_date": "需确定计划\n完成时间",
+      "power_access_date": "8月\n需确定更为的精细时间"
+    },
+    {
+      "id": 26,
+      "name": "襄阳市黄庄",
+      "scale": "100MW/200MWh",
+      "province": "湖北",
+      "city": "襄阳市",
+      "district": "高新区",
+      "manager": "应俊",
+      "status": "重点推进",
+      "cost": "需写清入库+接入+其他总费用\n费用支付节点和时期",
+      "entry_date": "需确定计划\n完成时间",
+      "power_access_date": "8月\n需确定更为的精细时间"
+    },
+    {
+      "id": 27,
+      "name": "唐山/迁安/永顺街道",
+      "scale": "150MW/600MWh",
+      "province": "河北",
+      "city": "唐山",
+      "district": "迁安市",
+      "manager": "姜龙",
+      "status": "优质储备",
+      "cost": "预可研费用（指标下来支付-待定）\n10万以内",
+      "entry_date": "8月份中旬完成",
+      "power_access_date": "10月份左右完成"
+    },
+    {
+      "id": 28,
+      "name": "河北张家口桥西区",
+      "scale": "200MW/800MWh",
+      "province": "河北",
+      "city": "张家口",
+      "district": "经开区",
+      "manager": "王晶晶",
+      "status": "优质储备",
+      "cost": "需写清入库+接入+其他总费用\n费用支付节点和时期",
+      "entry_date": "需确定计划\n完成时间",
+      "power_access_date": "需确定计划\n完成时间"
+    },
+    {
+      "id": 29,
+      "name": "广西北海合浦",
+      "scale": "200MW/400MWh",
+      "province": "广西",
+      "city": "北海",
+      "district": "合浦",
+      "manager": "王晶晶",
+      "status": "优质储备",
+      "cost": "需写清入库+接入+其他总费用\n费用支付节点和时期",
+      "entry_date": "需确定计划\n完成时间",
+      "power_access_date": "需确定计划\n完成时间"
+    },
+    {
+      "id": 30,
+      "name": "海南东方智谷工业园",
+      "scale": "200MW/800MWh",
+      "province": "海南",
+      "city": "",
+      "district": "东方智谷\n工业园",
+      "manager": "王晶晶",
+      "status": "优质储备",
+      "cost": "需写清入库+接入+其他总费用\n费用支付节点和时期",
+      "entry_date": "需确定计划\n完成时间",
+      "power_access_date": "需确定计划\n完成时间"
+    },
+    {
+      "id": 31,
+      "name": "山南桑日县",
+      "scale": "100MW/400MWh",
+      "province": "西藏",
+      "city": "山南",
+      "district": "桑日县",
+      "manager": "黄鑫",
+      "status": "优质储备",
+      "cost": "需写清入库+接入+其他总费用\n费用支付节点和时期",
+      "entry_date": "需确定计划\n完成时间",
+      "power_access_date": "需确定计划\n完成时间"
+    },
+    {
+      "id": 32,
+      "name": "昌都左贡",
+      "scale": "200MW/800MWh",
+      "province": "西藏",
+      "city": "昌都",
+      "district": "左贡",
+      "manager": "黄鑫",
+      "status": "优质储备",
+      "cost": "需写清入库+接入+其他总费用\n费用支付节点和时期",
+      "entry_date": "需确定计划\n完成时间",
+      "power_access_date": "需确定计划\n完成时间"
+    },
+    {
+      "id": 33,
+      "name": "林芝",
+      "scale": "未定",
+      "province": "西藏",
+      "city": "林芝",
+      "district": "林芝",
+      "manager": "黄鑫",
+      "status": "优质储备",
+      "cost": "需写清入库+接入+其他总费用\n费用支付节点和时期",
+      "entry_date": "需确定计划\n完成时间",
+      "power_access_date": "需确定计划\n完成时间"
+    },
+    {
+      "id": 34,
+      "name": "山东省临沂市平邑县",
+      "scale": "200MW/400MWh",
+      "province": "山东",
+      "city": "/临沂市",
+      "district": "平邑县",
+      "manager": "姜龙",
+      "status": "优质储备",
+      "cost": "",
+      "entry_date": "需确定计划\n完成时间",
+      "power_access_date": "需确定计划\n完成时间"
+    },
+    {
+      "id": 35,
+      "name": "广东省清城区",
+      "scale": "200MW/400MWh",
+      "province": "——",
+      "city": "——",
+      "district": "清城区",
+      "manager": "姜龙",
+      "status": "优质储备",
+      "cost": "拿到指标和批复之后才拿地（拿地扣居间费）\n居间协议签的是拿地的\n300-400万左右\n",
+      "entry_date": "需确定计划\n完成时间",
+      "power_access_date": "需确定计划\n完成时间"
+    }
+  ],
+  "blocked_projects": [
+    {
+      "id": 0,
+      "name": "安阳市内黄县",
+      "scale": "200MW/400MWh",
+      "province": "河南",
+      "city": "安阳市",
+      "district": "内黄县",
+      "manager": "",
+      "status": "无法推进",
+      "remark": ""
+    },
+    {
+      "id": 1,
+      "name": "商丘市经开区",
+      "scale": "200MW/400MWh",
+      "province": "河南",
+      "city": "商丘市",
+      "district": "经开区",
+      "manager": "",
+      "status": "无法推进",
+      "remark": ""
+    },
+    {
+      "id": 2,
+      "name": "信阳市高新区",
+      "scale": "200MW/400MWh",
+      "province": "河南",
+      "city": "信阳市",
+      "district": "高新区",
+      "manager": "",
+      "status": "无法推进",
+      "remark": ""
+    },
+    {
+      "id": 3,
+      "name": "信阳市商城县",
+      "scale": "200MW/400MWh",
+      "province": "河南",
+      "city": "信阳市",
+      "district": "商城县",
+      "manager": "",
+      "status": "无法推进",
+      "remark": ""
+    },
+    {
+      "id": 4,
+      "name": "南阳市内乡县",
+      "scale": "200MW/400MWh",
+      "province": "河南",
+      "city": "南阳市",
+      "district": "内乡县",
+      "manager": "",
+      "status": "无法推进",
+      "remark": "不具备接入条件"
+    },
+    {
+      "id": 5,
+      "name": "南阳市镇平县",
+      "scale": "200MW/400MWh",
+      "province": "河南",
+      "city": "南阳市",
+      "district": "镇平县",
+      "manager": "",
+      "status": "无法推进",
+      "remark": "等地址、法人"
+    },
+    {
+      "id": 6,
+      "name": "南阳市西峡县",
+      "scale": "200MW/400MWh",
+      "province": "河南",
+      "city": "南阳市",
+      "district": "西峡县",
+      "manager": "",
+      "status": "无法推进",
+      "remark": "市发改委说县里不具备条件建设"
+    },
+    {
+      "id": 7,
+      "name": "镶黄旗",
+      "scale": "200MW/400MWh",
+      "province": "内蒙古",
+      "city": "锡林郭勒",
+      "district": "镶黄旗",
+      "manager": "",
+      "status": "无法推进",
+      "remark": "无指标，废除"
+    },
+    {
+      "id": 8,
+      "name": "邢台市清河县",
+      "scale": "200MW/400MWh",
+      "province": "河北",
+      "city": "邢台市",
+      "district": "清河县",
+      "manager": "",
+      "status": "无法推进",
+      "remark": ""
+    },
+    {
+      "id": 9,
+      "name": "邢台市南宫市",
+      "scale": "200MW/400MWh",
+      "province": "河北",
+      "city": "邢台市",
+      "district": "南宫市",
+      "manager": "",
+      "status": "无法推进",
+      "remark": ""
+    },
+    {
+      "id": 10,
+      "name": "沧州市经开区",
+      "scale": "200MW/400MWh",
+      "province": "河北",
+      "city": "沧州市",
+      "district": "经开区",
+      "manager": "",
+      "status": "无法推进",
+      "remark": ""
+    },
+    {
+      "id": 11,
+      "name": "长治市潞城区",
+      "scale": "200MW/400MWh",
+      "province": "山西",
+      "city": "长治市",
+      "district": "潞城区",
+      "manager": "",
+      "status": "无法推进",
+      "remark": ""
+    },
+    {
+      "id": 12,
+      "name": "长治市高新区",
+      "scale": "200MW/400MWh",
+      "province": "山西",
+      "city": "长治市",
+      "district": "高新区",
+      "manager": "",
+      "status": "无法推进",
+      "remark": "未入库"
+    },
+    {
+      "id": 13,
+      "name": "许昌市经开区",
+      "scale": "200MW/400MWh",
+      "province": "河南",
+      "city": "许昌市",
+      "district": "经开区",
+      "manager": "",
+      "status": "无法推进",
+      "remark": ""
+    },
+    {
+      "id": 14,
+      "name": "许昌市襄城县",
+      "scale": "150MW/300MWh",
+      "province": "河南",
+      "city": "许昌市",
+      "district": "襄城县",
+      "manager": "",
+      "status": "无法推进",
+      "remark": ""
+    },
+    {
+      "id": 15,
+      "name": "三门峡灵宝市",
+      "scale": "200MW/400MWh",
+      "province": "河南",
+      "city": "三门峡",
+      "district": "灵宝市",
+      "manager": "",
+      "status": "无法推进",
+      "remark": ""
+    },
+    {
+      "id": 16,
+      "name": "三门峡陕州区",
+      "scale": "200MW/400MWh",
+      "province": "河南",
+      "city": "三门峡",
+      "district": "陕州区",
+      "manager": "",
+      "status": "无法推进",
+      "remark": ""
+    },
+    {
+      "id": 17,
+      "name": "三门峡义马市",
+      "scale": "200MW/400MWh",
+      "province": "河南",
+      "city": "三门峡",
+      "district": "义马市",
+      "manager": "",
+      "status": "无法推进",
+      "remark": ""
+    },
+    {
+      "id": 18,
+      "name": "三门峡湖滨区",
+      "scale": "200MW/400MWh",
+      "province": "河南",
+      "city": "三门峡",
+      "district": "湖滨区",
+      "manager": "",
+      "status": "无法推进",
+      "remark": "政府重新申报"
+    },
+    {
+      "id": 19,
+      "name": "周口市淮阳区",
+      "scale": "200MW/400MWh",
+      "province": "河南",
+      "city": "周口市",
+      "district": "淮阳区",
+      "manager": "",
+      "status": "无法推进",
+      "remark": ""
+    },
+    {
+      "id": 20,
+      "name": "许昌市禹州市",
+      "scale": "100MW/200MWh",
+      "province": "河南",
+      "city": "许昌市",
+      "district": "禹州市",
+      "manager": "",
+      "status": "无法推进",
+      "remark": ""
+    },
+    {
+      "id": 21,
+      "name": "孝感市大悟县",
+      "scale": "200MW/400MWh",
+      "province": "湖北",
+      "city": "孝感市",
+      "district": "大悟县",
+      "manager": "",
+      "status": "无法推进",
+      "remark": ""
+    },
+    {
+      "id": 22,
+      "name": "宿州市灵璧县",
+      "scale": "200MW/400MWh",
+      "province": "安徽",
+      "city": "宿州市",
+      "district": "灵璧县",
+      "manager": "",
+      "status": "无法推进",
+      "remark": ""
+    },
+    {
+      "id": 23,
+      "name": "天水市武山县",
+      "scale": "200MW/400MWh",
+      "province": "甘肃",
+      "city": "天水市",
+      "district": "武山县",
+      "manager": "",
+      "status": "无法推进",
+      "remark": ""
+    },
+    {
+      "id": 24,
+      "name": "钟祥市旧口镇",
+      "scale": "100MW/200MWh",
+      "province": "湖北",
+      "city": "钟祥市",
+      "district": "旧口镇",
+      "manager": "",
+      "status": "无法推进",
+      "remark": "先不动"
+    },
+    {
+      "id": 25,
+      "name": "随州市随县",
+      "scale": "100MW/200MWh",
+      "province": "湖北",
+      "city": "随州市",
+      "district": "随县",
+      "manager": "",
+      "status": "无法推进",
+      "remark": "没有地"
+    },
+    {
+      "id": 26,
+      "name": "宜昌市秭归县",
+      "scale": "200MW/400MWh",
+      "province": "湖北",
+      "city": "宜昌市",
+      "district": "秭归县",
+      "manager": "",
+      "status": "无法推进",
+      "remark": ""
+    },
+    {
+      "id": 27,
+      "name": "赤峰市元宝山区",
+      "scale": "300MW/1200MWh",
+      "province": "内蒙古",
+      "city": "赤峰市",
+      "district": "元宝山区",
+      "manager": "",
+      "status": "无法推进",
+      "remark": "政府要40%股份"
+    },
+    {
+      "id": 28,
+      "name": "酒泉玉门市",
+      "scale": "200MW/400MWh",
+      "province": "甘肃",
+      "city": "酒泉市",
+      "district": "玉门市",
+      "manager": "",
+      "status": "无法推进",
+      "remark": "建议改4h"
+    },
+    {
+      "id": 29,
+      "name": "朔州经开区",
+      "scale": "200MW/400MWh",
+      "province": "山西",
+      "city": "朔州市",
+      "district": "经开区",
+      "manager": "",
+      "status": "无法推进",
+      "remark": "土地费用"
+    },
+    {
+      "id": 30,
+      "name": "黄冈市麻城县",
+      "scale": "200MW/400MWh",
+      "province": "湖北",
+      "city": "黄冈市",
+      "district": "麻城县",
+      "manager": "",
+      "status": "无法推进",
+      "remark": ""
+    },
+    {
+      "id": 31,
+      "name": "新乡平原示范区",
+      "scale": "200MW/400MWh",
+      "province": "河南",
+      "city": "新乡市",
+      "district": "示范区",
+      "manager": "",
+      "status": "无法推进",
+      "remark": ""
+    },
+    {
+      "id": 32,
+      "name": "宁夏祥核云储",
+      "scale": "200MW/400MWh",
+      "province": "宁夏",
+      "city": "银川市",
+      "district": "高新区",
+      "manager": "",
+      "status": "无法推进",
+      "remark": ""
+    },
+    {
+      "id": 33,
+      "name": "朔州山阴经开区",
+      "scale": "200MW/400MWh",
+      "province": "山西",
+      "city": "朔州市",
+      "district": "山阴",
+      "manager": "",
+      "status": "无法推进",
+      "remark": "土地收储完成"
+    },
+    {
+      "id": 34,
+      "name": "天门经开区",
+      "scale": "220MW/401MWh",
+      "province": "湖北",
+      "city": "天门市",
+      "district": "经开区",
+      "manager": "",
+      "status": "无法推进",
+      "remark": ""
+    },
+    {
+      "id": 35,
+      "name": "重庆云阳县",
+      "scale": "400MW/800MWh",
+      "province": "重庆市",
+      "city": "",
+      "district": "云阳县",
+      "manager": "",
+      "status": "无法推进",
+      "remark": "需重新选址"
+    },
+    {
+      "id": 36,
+      "name": "文山高新区",
+      "scale": "300MW/600MWh",
+      "province": "云南",
+      "city": "文山市",
+      "district": "高新区",
+      "manager": "",
+      "status": "无法推进",
+      "remark": ""
+    },
+    {
+      "id": 37,
+      "name": "赤峰宁城",
+      "scale": "200MW/800MWh",
+      "province": "内蒙古",
+      "city": "赤峰市",
+      "district": "宁城县",
+      "manager": "",
+      "status": "无法推进",
+      "remark": "目前没指标"
+    },
+    {
+      "id": 38,
+      "name": "来宾象州县",
+      "scale": "300MW/600MWh",
+      "province": "广西",
+      "city": "来宾市",
+      "district": "象州县",
+      "manager": "",
+      "status": "无法推进",
+      "remark": ""
+    },
+    {
+      "id": 39,
+      "name": "商丘梁园区",
+      "scale": "200MW/400MWh",
+      "province": "河南",
+      "city": "商丘市",
+      "district": "梁园区",
+      "manager": "",
+      "status": "无法推进",
+      "remark": ""
+    },
+    {
+      "id": 40,
+      "name": "北海经开区",
+      "scale": "200MW/400MWh",
+      "province": "辽宁",
+      "city": "营口市",
+      "district": "北海经开区",
+      "manager": "",
+      "status": "无法推进",
+      "remark": ""
+    },
+    {
+      "id": 41,
+      "name": "赣州经开区",
+      "scale": "160MW/320MWh",
+      "province": "江西",
+      "city": "赣州市",
+      "district": "经开区",
+      "manager": "",
+      "status": "无法推进",
+      "remark": ""
+    },
+    {
+      "id": 42,
+      "name": "防城港市",
+      "scale": "200MW/400MWh",
+      "province": "广西",
+      "city": "防城港市",
+      "district": "",
+      "manager": "",
+      "status": "无法推进",
+      "remark": ""
+    },
+    {
+      "id": 43,
+      "name": "长春农安县",
+      "scale": "200MW/400MWh",
+      "province": "吉林",
+      "city": "长春市",
+      "district": "农安县",
+      "manager": "",
+      "status": "无法推进",
+      "remark": ""
+    },
+    {
+      "id": 44,
+      "name": "运城经开区",
+      "scale": "200MW/400MWh",
+      "province": "山西",
+      "city": "运城市",
+      "district": "运城经开区",
+      "manager": "",
+      "status": "无法推进",
+      "remark": ""
+    },
+    {
+      "id": 45,
+      "name": "珙县经开区",
+      "scale": "200MW/400MWh",
+      "province": "四川",
+      "city": "宜宾市",
+      "district": "珙县经开区",
+      "manager": "",
+      "status": "无法推进",
+      "remark": ""
+    },
+    {
+      "id": 46,
+      "name": "招远玲珑镇",
+      "scale": "200MW/400MWh",
+      "province": "山东",
+      "city": "烟台",
+      "district": "招远市",
+      "manager": "",
+      "status": "无法推进",
+      "remark": ""
+    },
+    {
+      "id": 47,
+      "name": "招远齐山镇",
+      "scale": "200MW/400MWh",
+      "province": "山东",
+      "city": "烟台",
+      "district": "招远市",
+      "manager": "",
+      "status": "无法推进",
+      "remark": ""
+    },
+    {
+      "id": 48,
+      "name": "利津县陈庄镇",
+      "scale": "200MW/400MWh",
+      "province": "山东",
+      "city": "东营市",
+      "district": "利津县",
+      "manager": "",
+      "status": "无法推进",
+      "remark": ""
+    },
+    {
+      "id": 49,
+      "name": "葫芦岛连山区",
+      "scale": "200MW/400MWh",
+      "province": "辽宁",
+      "city": "葫芦岛市",
+      "district": "连山区",
+      "manager": "",
+      "status": "无法推进",
+      "remark": "可研后备案"
+    },
+    {
+      "id": 50,
+      "name": "烟台莱州市",
+      "scale": "200MW/400MWh",
+      "province": "山东",
+      "city": "烟台市",
+      "district": "莱州市",
+      "manager": "",
+      "status": "无法推进",
+      "remark": ""
+    },
+    {
+      "id": 51,
+      "name": "京南固安高新区",
+      "scale": "200MW/400MWh",
+      "province": "河北",
+      "city": "廊坊市",
+      "district": "固安经开区",
+      "manager": "",
+      "status": "无法推进",
+      "remark": ""
+    },
+    {
+      "id": 52,
+      "name": "兴安盟突泉县",
+      "scale": "400MW/800MWh",
+      "province": "内蒙古",
+      "city": "兴安盟",
+      "district": "突泉县",
+      "manager": "",
+      "status": "无法推进",
+      "remark": ""
+    },
+    {
+      "id": 53,
+      "name": "和龙县",
+      "scale": "200MW/400MWh",
+      "province": "吉林",
+      "city": "延边",
+      "district": "和龙县",
+      "manager": "",
+      "status": "无法推进",
+      "remark": ""
+    },
+    {
+      "id": 54,
+      "name": "辉南经开区",
+      "scale": "200MW/400MWh",
+      "province": "吉林",
+      "city": "吉林市",
+      "district": "辉南经开区",
+      "manager": "",
+      "status": "无法推进",
+      "remark": ""
+    },
+    {
+      "id": 55,
+      "name": "安康汉阴县",
+      "scale": "100MW/200MWh",
+      "province": "陕西",
+      "city": "安康市",
+      "district": "汉阴县",
+      "manager": "",
+      "status": "无法推进",
+      "remark": ""
+    },
+    {
+      "id": 56,
+      "name": "安康石泉经开区",
+      "scale": "100MW/200MWh",
+      "province": "陕西",
+      "city": "安康市",
+      "district": "石泉经开区",
+      "manager": "",
+      "status": "无法推进",
+      "remark": ""
+    },
+    {
+      "id": 57,
+      "name": "富阎产业合作园",
+      "scale": "200MW/400MWh",
+      "province": "陕西",
+      "city": "渭南市",
+      "district": "富阎产业园",
+      "manager": "",
+      "status": "无法推进",
+      "remark": ""
+    },
+    {
+      "id": 58,
+      "name": "安康镇坪县",
+      "scale": "100MW/200MWh",
+      "province": "陕西",
+      "city": "安康市",
+      "district": "镇坪县",
+      "manager": "",
+      "status": "无法推进",
+      "remark": ""
+    },
+    {
+      "id": 59,
+      "name": "汉中宁强县",
+      "scale": "100MW/200MWh",
+      "province": "陕西",
+      "city": "汉中市",
+      "district": "宁强县",
+      "manager": "",
+      "status": "无法推进",
+      "remark": ""
+    },
+    {
+      "id": 60,
+      "name": "安康市宁陕县",
+      "scale": "100MW/200MWh",
+      "province": "陕西",
+      "city": "安康市",
+      "district": "宁陕县",
+      "manager": "",
+      "status": "无法推进",
+      "remark": ""
+    },
+    {
+      "id": 61,
+      "name": "安康白河县",
+      "scale": "100MW/200MWh",
+      "province": "陕西",
+      "city": "安康市",
+      "district": "白河县",
+      "manager": "",
+      "status": "无法推进",
+      "remark": ""
+    },
+    {
+      "id": 62,
+      "name": "安康市高新区",
+      "scale": "100MW/200MWh",
+      "province": "陕西",
+      "city": "安康市",
+      "district": "高新区",
+      "manager": "",
+      "status": "无法推进",
+      "remark": ""
+    },
+    {
+      "id": 63,
+      "name": "沈北新区辉山经开区",
+      "scale": "200MW/400MWh",
+      "province": "辽宁",
+      "city": "沈阳",
+      "district": "沈北新区",
+      "manager": "",
+      "status": "无法推进",
+      "remark": ""
+    },
+    {
+      "id": 64,
+      "name": "科右前旗",
+      "scale": "200MW/400MWh",
+      "province": "内蒙古",
+      "city": "兴安盟",
+      "district": "科右前旗",
+      "manager": "",
+      "status": "无法推进",
+      "remark": ""
+    },
+    {
+      "id": 65,
+      "name": "烟台招远市",
+      "scale": "200MW/400MWh",
+      "province": "山东",
+      "city": "烟台市",
+      "district": "招远市",
+      "manager": "",
+      "status": "无法推进",
+      "remark": ""
+    },
+    {
+      "id": 66,
+      "name": "新乡市辉县市",
+      "scale": "200MW/400MWh",
+      "province": "河南",
+      "city": "新乡市",
+      "district": "辉县市",
+      "manager": "",
+      "status": "无法推进",
+      "remark": "已开通"
+    },
+    {
+      "id": 67,
+      "name": "南阳市唐河县",
+      "scale": "200MW/400MWh",
+      "province": "河南",
+      "city": "南阳市",
+      "district": "唐河县",
+      "manager": "",
+      "status": "无法推进",
+      "remark": ""
+    },
+    {
+      "id": 68,
+      "name": "长垣市樊相镇",
+      "scale": "200MW/400MWh",
+      "province": "河南",
+      "city": "新乡市",
+      "district": "长垣市",
+      "manager": "",
+      "status": "无法推进",
+      "remark": ""
+    },
+    {
+      "id": 69,
+      "name": "南阳官庄工区",
+      "scale": "200MW/400MWh",
+      "province": "河南",
+      "city": "南阳市",
+      "district": "官庄工区",
+      "manager": "",
+      "status": "无法推进",
+      "remark": ""
+    },
+    {
+      "id": 70,
+      "name": "濮阳南乐县",
+      "scale": "300MW/600MWh",
+      "province": "河南",
+      "city": "濮阳市",
+      "district": "南乐县",
+      "manager": "",
+      "status": "无法推进",
+      "remark": ""
+    },
+    {
+      "id": 71,
+      "name": "永新工业园区管委会",
+      "scale": "200MW/400MWh",
+      "province": "江西",
+      "city": "吉安市",
+      "district": "永新工业园",
+      "manager": "",
+      "status": "无法推进",
+      "remark": ""
+    },
+    {
+      "id": 72,
+      "name": "铁南经开区",
+      "scale": "200MW/400MWh",
+      "province": "辽宁",
+      "city": "铁岭市",
+      "district": "铁南经开区",
+      "manager": "",
+      "status": "无法推进",
+      "remark": ""
+    },
+    {
+      "id": 73,
+      "name": "抚顺望花区",
+      "scale": "200MW/400MWh",
+      "province": "辽宁",
+      "city": "抚顺",
+      "district": "望花区",
+      "manager": "",
+      "status": "无法推进",
+      "remark": ""
+    },
+    {
+      "id": 74,
+      "name": "沈阳法库县",
+      "scale": "200MW/400MWh",
+      "province": "辽宁",
+      "city": "沈阳市",
+      "district": "法库县",
+      "manager": "",
+      "status": "无法推进",
+      "remark": ""
+    },
+    {
+      "id": 75,
+      "name": "东营市垦利区",
+      "scale": "200MW/400MWh",
+      "province": "山东",
+      "city": "东营市",
+      "district": "垦利区",
+      "manager": "",
+      "status": "无法推进",
+      "remark": "已开通"
+    },
+    {
+      "id": 76,
+      "name": "垣曲经开区",
+      "scale": "200MW/400MWh",
+      "province": "山西",
+      "city": "运城市",
+      "district": "垣曲县",
+      "manager": "",
+      "status": "无法推进",
+      "remark": ""
+    },
+    {
+      "id": 77,
+      "name": "博州精河县",
+      "scale": "200MW/800MWh",
+      "province": "新疆",
+      "city": "博州市",
+      "district": "精河县",
+      "manager": "",
+      "status": "无法推进",
+      "remark": "已开通"
+    },
+    {
+      "id": 78,
+      "name": "攀枝花钒钛高新区",
+      "scale": "200MW/400MWh",
+      "province": "四川",
+      "city": "攀枝花",
+      "district": "钒钛高新区",
+      "manager": "",
+      "status": "无法推进",
+      "remark": ""
+    },
+    {
+      "id": 79,
+      "name": "商洛柞水县",
+      "scale": "200MW/400MWh",
+      "province": "陕西",
+      "city": "商洛市",
+      "district": "柞水县",
+      "manager": "",
+      "status": "无法推进",
+      "remark": ""
+    },
+    {
+      "id": 80,
+      "name": "平凉市崆峒区",
+      "scale": "200MW/400MWh",
+      "province": "甘肃",
+      "city": "平凉市",
+      "district": "崆峒区",
+      "manager": "",
+      "status": "无法推进",
+      "remark": ""
+    },
+    {
+      "id": 81,
+      "name": "长治襄垣县",
+      "scale": "400MW/800MWh",
+      "province": "山西",
+      "city": "长治市",
+      "district": "襄垣县",
+      "manager": "",
+      "status": "无法推进",
+      "remark": "已完成"
+    },
+    {
+      "id": 82,
+      "name": "忻州经开区",
+      "scale": "200MW/205MWh",
+      "province": "山西",
+      "city": "忻州市",
+      "district": "经开区",
+      "manager": "",
+      "status": "无法推进",
+      "remark": "已开通"
+    },
+    {
+      "id": 83,
+      "name": "鞍山海城市",
+      "scale": "200MW/400MWh",
+      "province": "辽宁",
+      "city": "鞍山市",
+      "district": "海城市",
+      "manager": "",
+      "status": "无法推进",
+      "remark": ""
+    },
+    {
+      "id": 84,
+      "name": "哈尔滨阿城区",
+      "scale": "200MW/400MWh",
+      "province": "黑龙江",
+      "city": "哈尔滨市",
+      "district": "阿城区",
+      "manager": "",
+      "status": "无法推进",
+      "remark": ""
+    },
+    {
+      "id": 85,
+      "name": "吉林经开区",
+      "scale": "200MW/400MWh",
+      "province": "吉林",
+      "city": "吉林市",
+      "district": "吉林经开区",
+      "manager": "",
+      "status": "无法推进",
+      "remark": ""
+    },
+    {
+      "id": 86,
+      "name": "阜新市细河区",
+      "scale": "200MW/400MWh",
+      "province": "辽宁",
+      "city": "阜新市",
+      "district": "细河区",
+      "manager": "",
+      "status": "无法推进",
+      "remark": ""
+    },
+    {
+      "id": 87,
+      "name": "晋城阳城县",
+      "scale": "200MW/400MWh",
+      "province": "山西",
+      "city": "晋城",
+      "district": "阳城县",
+      "manager": "",
+      "status": "无法推进",
+      "remark": ""
+    },
+    {
+      "id": 88,
+      "name": "东莞东城街道",
+      "scale": "200MW/400MWh",
+      "province": "广东",
+      "city": "东莞市",
+      "district": "东城街道",
+      "manager": "",
+      "status": "无法推进",
+      "remark": ""
+    },
+    {
+      "id": 89,
+      "name": "来宾象州县",
+      "scale": "300MW/600MWh",
+      "province": "广西",
+      "city": "来宾市",
+      "district": "象州县",
+      "manager": "",
+      "status": "无法推进",
+      "remark": "已开通"
+    },
+    {
+      "id": 90,
+      "name": "淮南市寿县",
+      "scale": "200MW/400MWh",
+      "province": "安徽",
+      "city": "淮南市",
+      "district": "寿县",
+      "manager": "",
+      "status": "无法推进",
+      "remark": "已开通"
+    },
+    {
+      "id": 91,
+      "name": "沈阳辽中区",
+      "scale": "200MW/800MWh",
+      "province": "辽宁",
+      "city": "沈阳市",
+      "district": "辽中区",
+      "manager": "",
+      "status": "无法推进",
+      "remark": ""
+    },
+    {
+      "id": 92,
+      "name": "新乡市经开区",
+      "scale": "400MW/800MWh",
+      "province": "河南",
+      "city": "新乡市",
+      "district": "经开区",
+      "manager": "",
+      "status": "无法推进",
+      "remark": "已开通"
+    },
+    {
+      "id": 93,
+      "name": "南阳市卧龙保税区",
+      "scale": "200MW/400MWh",
+      "province": "河南",
+      "city": "南阳市",
+      "district": "卧龙保税区",
+      "manager": "",
+      "status": "无法推进",
+      "remark": ""
+    },
+    {
+      "id": 94,
+      "name": "南通如东县",
+      "scale": "200MW/400MWh",
+      "province": "江苏",
+      "city": "南通市",
+      "district": "如东县",
+      "manager": "",
+      "status": "无法推进",
+      "remark": ""
+    },
+    {
+      "id": 95,
+      "name": "高安市建山镇",
+      "scale": "100MW/200MWh",
+      "province": "江西",
+      "city": "高安市",
+      "district": "建山镇",
+      "manager": "",
+      "status": "无法推进",
+      "remark": ""
+    },
+    {
+      "id": 96,
+      "name": "上饶茶亭经开区",
+      "scale": "200MW/400MWh",
+      "province": "江西",
+      "city": "上饶市",
+      "district": "茶亭经开区",
+      "manager": "",
+      "status": "无法推进",
+      "remark": ""
+    },
+    {
+      "id": 97,
+      "name": "吉安泰和县",
+      "scale": "200MW/400MWh",
+      "province": "江西",
+      "city": "吉安市",
+      "district": "泰和县",
+      "manager": "",
+      "status": "无法推进",
+      "remark": ""
+    },
+    {
+      "id": 98,
+      "name": "金昌市金川区",
+      "scale": "200MW/800MWh",
+      "province": "甘肃",
+      "city": "金昌市",
+      "district": "金川区",
+      "manager": "",
+      "status": "无法推进",
+      "remark": "已开通"
+    }
+  ],
+  "map_data": [
+    {
+      "name": "盘北经开区",
+      "province": "贵州",
+      "city": "六盘水市",
+      "district": "盘北经开",
+      "type": "pure_signed",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "哈尔滨双城区",
+      "province": "黑龙江",
+      "city": "哈尔滨市",
+      "district": "双城区",
+      "type": "pure_signed",
+      "scale": "200MW/800MWh"
+    },
+    {
+      "name": "株洲清水塘集团",
+      "province": "湖南",
+      "city": "株洲市",
+      "district": "清水塘集团",
+      "type": "pure_signed",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "衡阳祁东县",
+      "province": "湖南",
+      "city": "衡阳市",
+      "district": "祁东县",
+      "type": "pure_signed",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "长春市双阳区齐家镇",
+      "province": "吉林",
+      "city": "长春市",
+      "district": "双阳区",
+      "type": "pure_signed",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "长春五棵树经开区",
+      "province": "吉林",
+      "city": "长春市",
+      "district": "五棵树经开区",
+      "type": "pure_signed",
+      "scale": "200MW/800MWh"
+    },
+    {
+      "name": "通化二道江区",
+      "province": "吉林",
+      "city": "通化市",
+      "district": "二道江区",
+      "type": "pure_signed",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "锦州经开区",
+      "province": "辽宁",
+      "city": "锦州",
+      "district": "锦州经开区",
+      "type": "pure_signed",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "腾鳌经开区",
+      "province": "辽宁",
+      "city": "鞍山市",
+      "district": "腾鳌经开区",
+      "type": "pure_signed",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "运城河津市",
+      "province": "山西",
+      "city": "运城市",
+      "district": "河津市",
+      "type": "pure_signed",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "运城闻喜县",
+      "province": "山西",
+      "city": "运城市",
+      "district": "闻喜县",
+      "type": "pure_signed",
+      "scale": "400MW/800MWh"
+    },
+    {
+      "name": "吕梁柳林县",
+      "province": "山西",
+      "city": "吕梁市",
+      "district": "柳林县",
+      "type": "pure_signed",
+      "scale": "300MW/600MWh"
+    },
+    {
+      "name": "北辰西堤头镇",
+      "province": "天津",
+      "city": "北辰区",
+      "district": "西堤头镇",
+      "type": "pure_signed",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "驻马店经开区",
+      "province": "河南",
+      "city": "驻马店",
+      "district": "经开区",
+      "type": "pure_signed",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "南阳方城县",
+      "province": "河南",
+      "city": "南阳市",
+      "district": "方城县",
+      "type": "pure_signed",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "孟州大定",
+      "province": "河南",
+      "city": "焦作",
+      "district": "孟州大定",
+      "type": "pure_signed",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "咸宁市咸安区",
+      "province": "湖北",
+      "city": "咸宁市",
+      "district": "咸安区",
+      "type": "pure_signed",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "安陆市经开区",
+      "province": "湖北",
+      "city": "安陆市",
+      "district": "经开区",
+      "type": "pure_signed",
+      "scale": "400MW/800MWh"
+    },
+    {
+      "name": "荆州市江陵县",
+      "province": "湖北",
+      "city": "荆州市",
+      "district": "江陵县",
+      "type": "pure_signed",
+      "scale": "220MW/401MWh"
+    },
+    {
+      "name": "钟祥市柴湖镇",
+      "province": "湖北",
+      "city": "荆门市",
+      "district": "钟祥市",
+      "type": "pure_signed",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "黄冈高新区",
+      "province": "湖北",
+      "city": "黄冈市",
+      "district": "高新区",
+      "type": "pure_signed",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "仙桃市郭河镇",
+      "province": "湖北",
+      "city": "仙桃市",
+      "district": "郭河镇",
+      "type": "pure_signed",
+      "scale": "400MW/800MWh"
+    },
+    {
+      "name": "大柴湖经开区",
+      "province": "湖北",
+      "city": "荆门市",
+      "district": "大柴湖",
+      "type": "pure_signed",
+      "scale": "100MW/200MWh"
+    },
+    {
+      "name": "黄石新港工业园",
+      "province": "湖北",
+      "city": "黄石市",
+      "district": "新港区",
+      "type": "pure_signed",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "咸宁通城县",
+      "province": "湖北",
+      "city": "咸宁市",
+      "district": "通城县",
+      "type": "pure_signed",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "武汉蔡甸区",
+      "province": "湖北",
+      "city": "武汉",
+      "district": "蔡甸区",
+      "type": "pure_signed",
+      "scale": "220MW/401MWh"
+    },
+    {
+      "name": "荆州区纪南镇",
+      "province": "湖北",
+      "city": "荆州市",
+      "district": "荆州区",
+      "type": "pure_signed",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "荆州监利市",
+      "province": "湖北",
+      "city": "荆州市",
+      "district": "监利市",
+      "type": "pure_signed",
+      "scale": "400MW/800MWh"
+    },
+    {
+      "name": "宜昌枝江市",
+      "province": "湖北",
+      "city": "宜昌市",
+      "district": "枝江市",
+      "type": "pure_signed",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "襄阳枣阳市",
+      "province": "湖北",
+      "city": "襄阳市",
+      "district": "枣阳市",
+      "type": "pure_signed",
+      "scale": "220MW/401MWh"
+    },
+    {
+      "name": "咸宁嘉鱼县",
+      "province": "湖北",
+      "city": "咸宁市",
+      "district": "嘉鱼县",
+      "type": "pure_signed",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "恩施利川经开区",
+      "province": "湖北",
+      "city": "恩施州",
+      "district": "利川市",
+      "type": "pure_signed",
+      "scale": "400MW/800MWh"
+    },
+    {
+      "name": "天门蒋湖农场",
+      "province": "湖北",
+      "city": "天门市",
+      "district": "蒋湖农场",
+      "type": "pure_signed",
+      "scale": "220MW/401MWh"
+    },
+    {
+      "name": "应城郎君镇",
+      "province": "湖北",
+      "city": "孝感市",
+      "district": "郎君镇",
+      "type": "pure_signed",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "咸宁赤壁市",
+      "province": "湖北",
+      "city": "咸宁市",
+      "district": "赤壁市",
+      "type": "pure_signed",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": " 罗田县三里潘畈镇",
+      "province": "湖北",
+      "city": "黄冈市",
+      "district": " 罗田县",
+      "type": "pure_signed",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "永州陆港枢纽集团",
+      "province": "湖南",
+      "city": "永州市",
+      "district": "陆港枢纽投资发展集团",
+      "type": "pure_signed",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "娄底双峰县",
+      "province": "湖南",
+      "city": "娄底市",
+      "district": "双峰县",
+      "type": "pure_signed",
+      "scale": "100MW/200MWh"
+    },
+    {
+      "name": "永州蓝山县",
+      "province": "湖南",
+      "city": "永州市",
+      "district": "蓝山县",
+      "type": "pure_signed",
+      "scale": "100MW/200MWh"
+    },
+    {
+      "name": "白沙绿岛高新区",
+      "province": "湖南",
+      "city": "衡阳",
+      "district": "白沙绿岛高新区",
+      "type": "pure_signed",
+      "scale": "100MW/200MWh"
+    },
+    {
+      "name": "益阳市沅江市",
+      "province": "湖南",
+      "city": "益阳市",
+      "district": "沅江市",
+      "type": "pure_signed",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "九江市都昌县",
+      "province": "江西",
+      "city": "九江市",
+      "district": "都昌县",
+      "type": "pure_signed",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "临夏州和政县",
+      "province": "甘肃",
+      "city": "临夏州",
+      "district": "和政县",
+      "type": "pure_signed",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "临夏州东乡县",
+      "province": "甘肃",
+      "city": "临夏州",
+      "district": "东乡县",
+      "type": "pure_signed",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "庆阳市庆城县",
+      "province": "甘肃",
+      "city": "庆阳市",
+      "district": "庆城县",
+      "type": "pure_signed",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "天水市甘谷县",
+      "province": "甘肃",
+      "city": "天水市",
+      "district": "甘谷县",
+      "type": "pure_signed",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "陇南市成县",
+      "province": "甘肃",
+      "city": "陇南市",
+      "district": "成县",
+      "type": "pure_signed",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "天水张家川",
+      "province": "甘肃",
+      "city": "天水市",
+      "district": "张家川县",
+      "type": "pure_signed",
+      "scale": "100MW/200MWh"
+    },
+    {
+      "name": "吴忠市同心县",
+      "province": "宁夏",
+      "city": "吴忠市",
+      "district": "同心县",
+      "type": "pure_signed",
+      "scale": "100MW/200MWh"
+    },
+    {
+      "name": "海东市工业园",
+      "province": "青海",
+      "city": "海东市",
+      "district": "工业园区",
+      "type": "pure_signed",
+      "scale": "200MW/800MWh"
+    },
+    {
+      "name": "铜川新材料园区",
+      "province": "陕西",
+      "city": "铜川",
+      "district": "新材料园区",
+      "type": "pure_signed",
+      "scale": "100MW/400MWh"
+    },
+    {
+      "name": "宝鸡眉县经开区",
+      "province": "陕西",
+      "city": "宝鸡市",
+      "district": "眉县经开区",
+      "type": "pure_signed",
+      "scale": "100MW/200MWh"
+    },
+    {
+      "name": "宝鸡陈仓区",
+      "province": "陕西",
+      "city": "宝鸡市",
+      "district": "陈仓区",
+      "type": "pure_signed",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "宝鸡凤翔区",
+      "province": "陕西",
+      "city": "宝鸡市",
+      "district": "凤翔区",
+      "type": "pure_signed",
+      "scale": "400MW/800MWh"
+    },
+    {
+      "name": "阿拉尔高新区",
+      "province": "新疆",
+      "city": "阿克苏",
+      "district": "阿拉尔高新区",
+      "type": "pure_signed",
+      "scale": "300MW/1200MWh"
+    },
+    {
+      "name": "和田墨玉县",
+      "province": "新疆",
+      "city": "和田",
+      "district": "墨玉县",
+      "type": "pure_signed",
+      "scale": "200MW/800MWh"
+    },
+    {
+      "name": "库尔勒上库高新区",
+      "province": "新疆",
+      "city": "巴音郭楞蒙古自治州",
+      "district": "库尔勒上库高新区",
+      "type": "pure_signed",
+      "scale": "200MW/800MWh"
+    },
+    {
+      "name": "宜宾长宁经开区",
+      "province": "四川",
+      "city": "宜宾市",
+      "district": "长宁经开区",
+      "type": "pure_signed",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "广元朝天区",
+      "province": "四川",
+      "city": "广元市",
+      "district": "朝天区",
+      "type": "pure_signed",
+      "scale": "400MW/800MWh"
+    },
+    {
+      "name": "遂宁蓬溪县",
+      "province": "四川",
+      "city": "遂宁市",
+      "district": "蓬溪县",
+      "type": "pure_signed",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "绵阳经开区",
+      "province": "四川",
+      "city": "绵阳市",
+      "district": "经开区",
+      "type": "pure_signed",
+      "scale": "100MW/200MWh"
+    },
+    {
+      "name": "凉山会理市",
+      "province": "四川",
+      "city": "凉山",
+      "district": "会理市",
+      "type": "pure_signed",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "眉山彭山区",
+      "province": "四川",
+      "city": "眉山市",
+      "district": "彭山区",
+      "type": "pure_signed",
+      "scale": "100MW/200MWh"
+    },
+    {
+      "name": "凉山会理市",
+      "province": "四川",
+      "city": "凉山",
+      "district": "会理市",
+      "type": "pure_signed",
+      "scale": "200MW/800MWh"
+    },
+    {
+      "name": "重庆双桥区",
+      "province": "重庆市",
+      "city": "双桥区",
+      "district": "大足区",
+      "type": "pure_signed",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "重庆市忠县",
+      "province": "重庆市",
+      "city": "",
+      "district": "忠县",
+      "type": "pure_signed",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "长春二道经开区",
+      "province": "吉林",
+      "city": "长春市",
+      "district": "二道经开区",
+      "type": "pure_signed",
+      "scale": "200MW/800MWh"
+    },
+    {
+      "name": "延边龙井市",
+      "province": "吉林",
+      "city": "延边",
+      "district": "龙井市",
+      "type": "pure_signed",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "攀枝花西区",
+      "province": "四川",
+      "city": "攀枝花",
+      "district": "西区",
+      "type": "pure_signed",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "拉萨堆龙德庆区",
+      "province": "西藏自治区",
+      "city": "拉萨",
+      "district": "堆龙德庆区",
+      "type": "pure_signed",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "兰州红古区",
+      "province": "甘肃",
+      "city": "兰州市",
+      "district": "红古区",
+      "type": "pure_signed",
+      "scale": "200MW/800MWh"
+    },
+    {
+      "name": "哈尔滨经开区",
+      "province": "黑龙江",
+      "city": "哈尔滨市",
+      "district": "经开区",
+      "type": "pure_signed",
+      "scale": "300MW/1200MWh"
+    },
+    {
+      "name": "辽源市东辽县",
+      "province": "吉林",
+      "city": "辽源市",
+      "district": "东辽县",
+      "type": "pure_signed",
+      "scale": "200MW/800MWh"
+    },
+    {
+      "name": "铁岭经开区",
+      "province": "辽宁",
+      "city": "铁岭市",
+      "district": "经开区",
+      "type": "pure_signed",
+      "scale": "150MW/600MWh"
+    },
+    {
+      "name": "沧州黄骅港",
+      "province": "河北",
+      "city": "沧州市",
+      "district": "港城产业园",
+      "type": "pure_signed",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "海东互助土族县",
+      "province": "青海",
+      "city": "海东市",
+      "district": "互助土族县",
+      "type": "pure_signed",
+      "scale": "100MW/400MWh"
+    },
+    {
+      "name": "巴州轮台县",
+      "province": "新疆",
+      "city": "巴州",
+      "district": "轮台县",
+      "type": "pure_signed",
+      "scale": "200MW/800MWh"
+    },
+    {
+      "name": "朝阳市朝阳县",
+      "province": "辽宁",
+      "city": "朝阳市",
+      "district": "朝阳县",
+      "type": "pure_signed",
+      "scale": "200MW/800MWh"
+    },
+    {
+      "name": "辽源东丰县",
+      "province": "吉林",
+      "city": "辽源市",
+      "district": "东丰县",
+      "type": "pure_signed",
+      "scale": "100MW/400MWh"
+    },
+    {
+      "name": "宜宾市南溪区",
+      "province": "四川",
+      "city": "宜宾市",
+      "district": "南溪区",
+      "type": "pure_signed",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "岳阳市湘阴县洋沙湖镇",
+      "province": "湖南",
+      "city": "岳阳市",
+      "district": "湘阴县洋沙湖镇",
+      "type": "pure_signed",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "西藏自治区昌都市左贡县",
+      "province": "西藏自治区",
+      "city": "昌都市",
+      "district": "左贡县",
+      "type": "pure_signed",
+      "scale": "200MW/800MWh"
+    },
+    {
+      "name": "西藏自治区山南市乃东区",
+      "province": "西藏自治区",
+      "city": "山南市",
+      "district": "乃东区",
+      "type": "pure_signed",
+      "scale": "100MW/200MWh"
+    },
+    {
+      "name": "天津生态城",
+      "province": "天津",
+      "city": "天津",
+      "district": "滨海新区",
+      "type": "pure_signed",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "驻马店泌阳县",
+      "province": "河南",
+      "city": "驻马店",
+      "district": "泌阳县",
+      "type": "started",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "通辽市经开区",
+      "province": "内蒙古",
+      "city": "通辽市",
+      "district": "经开区",
+      "type": "started",
+      "scale": "100MW/400MWh"
+    },
+    {
+      "name": "喀什市莎车县",
+      "province": "新疆",
+      "city": "喀什市",
+      "district": "莎车县",
+      "type": "started",
+      "scale": "200MW/800MWh"
+    },
+    {
+      "name": "安阳市林州市",
+      "province": "河南",
+      "city": "安阳市",
+      "district": "林州市",
+      "type": "started",
+      "scale": "100MW/200MWh"
+    },
+    {
+      "name": "安阳市北关区",
+      "province": "河南",
+      "city": "安阳市",
+      "district": "北关区",
+      "type": "started",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "东营市经开区",
+      "province": "山东",
+      "city": "东营市",
+      "district": "经开区",
+      "type": "started",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "侗族锦屏县",
+      "province": "贵州",
+      "city": "侗族自治州",
+      "district": "锦屏县",
+      "type": "approved",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "鹤壁市山城区",
+      "province": "河南",
+      "city": "鹤壁市",
+      "district": "山城区",
+      "type": "approved",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "平顶山郏县",
+      "province": "河南",
+      "city": "平顶山",
+      "district": "郏县",
+      "type": "approved",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "玉林陆川县",
+      "province": "广西",
+      "city": "玉林市",
+      "district": "陆川县",
+      "type": "approved",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "商丘市睢阳区",
+      "province": "河南",
+      "city": "商丘市",
+      "district": "睢阳区",
+      "type": "priority",
+      "scale": "100MW/200MWh"
+    },
+    {
+      "name": "鹤壁鹤山区",
+      "province": "河南",
+      "city": "鹤壁市",
+      "district": "鹤山区",
+      "type": "priority",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "平顶山湛河区",
+      "province": "河南",
+      "city": "平顶山",
+      "district": "湛河区",
+      "type": "priority",
+      "scale": "100MW/200MWh"
+    },
+    {
+      "name": "黄石市下陆区",
+      "province": "湖北",
+      "city": "黄石市",
+      "district": "下陆区",
+      "type": "priority",
+      "scale": "440MW/802MWh"
+    },
+    {
+      "name": "晋中开发区",
+      "province": "山西",
+      "city": "晋中",
+      "district": "晋中开发区",
+      "type": "priority",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "遵义红花岗区",
+      "province": "贵州",
+      "city": "遵义",
+      "district": "红花岗区",
+      "type": "priority",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "长春榆树市",
+      "province": "吉林",
+      "city": "长春市",
+      "district": "榆树市",
+      "type": "priority",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "四平铁西区",
+      "province": "吉林",
+      "city": "四平市",
+      "district": "铁西区",
+      "type": "priority",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "双阳经开区",
+      "province": "吉林",
+      "city": "长春市",
+      "district": "双阳经开区",
+      "type": "priority",
+      "scale": "200MW/800MWh"
+    },
+    {
+      "name": "德州庆云县",
+      "province": "山东",
+      "city": "德州市",
+      "district": "庆云县",
+      "type": "priority",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "日照岚山区",
+      "province": "山东",
+      "city": "日照市",
+      "district": "岚山区",
+      "type": "priority",
+      "scale": "200MW/800MWh"
+    },
+    {
+      "name": "江东新区潭连地区",
+      "province": "海南",
+      "city": "海口市",
+      "district": "江东新区",
+      "type": "priority",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "黄冈市英山县",
+      "province": "湖北",
+      "city": "黄冈市",
+      "district": "英山县",
+      "type": "priority",
+      "scale": "100MW/200MWh"
+    },
+    {
+      "name": "孝感市孝南区",
+      "province": "湖北",
+      "city": "孝感市",
+      "district": "孝南区",
+      "type": "priority",
+      "scale": "220MW/401MWh"
+    },
+    {
+      "name": "十堰郧阳区",
+      "province": "湖北",
+      "city": "十堰市",
+      "district": "郧阳区",
+      "type": "priority",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "黄冈浠水县",
+      "province": "湖北",
+      "city": "黄冈市",
+      "district": "浠水县",
+      "type": "priority",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "孝感汉川经开区",
+      "province": "湖北",
+      "city": "孝感市",
+      "district": "汉川经开",
+      "type": "priority",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "抚州宜黄县",
+      "province": "江西",
+      "city": "抚州市",
+      "district": "宜黄县",
+      "type": "priority",
+      "scale": "400MW/800MWh"
+    },
+    {
+      "name": "吉安遂川县",
+      "province": "江西",
+      "city": "吉安市",
+      "district": "遂川县",
+      "type": "priority",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "商洛洛南县",
+      "province": "陕西",
+      "city": "商洛市",
+      "district": "洛南县",
+      "type": "priority",
+      "scale": "100MW/200MWh"
+    },
+    {
+      "name": "思南经开区",
+      "province": "贵州",
+      "city": "铜仁市",
+      "district": "思南经开区",
+      "type": "priority",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "都匀经开区",
+      "province": "贵州",
+      "city": "黔南州",
+      "district": "都匀经开区",
+      "type": "priority",
+      "scale": "200MW/800MWh"
+    },
+    {
+      "name": "毕节七星关区",
+      "province": "贵州",
+      "city": "毕节市",
+      "district": "七星关区",
+      "type": "priority",
+      "scale": "200MW/800MWh"
+    },
+    {
+      "name": "运城新绛县",
+      "province": "山西",
+      "city": "运城市",
+      "district": "新绛县",
+      "type": "priority",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "黄冈市蕲春县",
+      "province": "湖北",
+      "city": "黄冈市",
+      "district": "蕲春县",
+      "type": "priority",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "吉林市桦甸市",
+      "province": "吉林",
+      "city": "吉林市",
+      "district": "桦甸市",
+      "type": "priority",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "襄阳市黄庄",
+      "province": "湖北",
+      "city": "襄阳市",
+      "district": "高新区",
+      "type": "priority",
+      "scale": "100MW/200MWh"
+    },
+    {
+      "name": "唐山/迁安/永顺街道",
+      "province": "河北",
+      "city": "唐山",
+      "district": "迁安市",
+      "type": "priority",
+      "scale": "150MW/600MWh"
+    },
+    {
+      "name": "河北张家口桥西区",
+      "province": "河北",
+      "city": "张家口",
+      "district": "经开区",
+      "type": "priority",
+      "scale": "200MW/800MWh"
+    },
+    {
+      "name": "广西北海合浦",
+      "province": "广西",
+      "city": "北海",
+      "district": "合浦",
+      "type": "priority",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "海南东方智谷工业园",
+      "province": "海南",
+      "city": "",
+      "district": "东方智谷\n工业园",
+      "type": "priority",
+      "scale": "200MW/800MWh"
+    },
+    {
+      "name": "山南桑日县",
+      "province": "西藏",
+      "city": "山南",
+      "district": "桑日县",
+      "type": "priority",
+      "scale": "100MW/400MWh"
+    },
+    {
+      "name": "昌都左贡",
+      "province": "西藏",
+      "city": "昌都",
+      "district": "左贡",
+      "type": "priority",
+      "scale": "200MW/800MWh"
+    },
+    {
+      "name": "林芝",
+      "province": "西藏",
+      "city": "林芝",
+      "district": "林芝",
+      "type": "priority",
+      "scale": "未定"
+    },
+    {
+      "name": "山东省临沂市平邑县",
+      "province": "山东",
+      "city": "/临沂市",
+      "district": "平邑县",
+      "type": "priority",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "广东省清城区",
+      "province": "——",
+      "city": "——",
+      "district": "清城区",
+      "type": "priority",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "安阳市内黄县",
+      "province": "河南",
+      "city": "安阳市",
+      "district": "内黄县",
+      "type": "blocked",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "商丘市经开区",
+      "province": "河南",
+      "city": "商丘市",
+      "district": "经开区",
+      "type": "blocked",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "信阳市高新区",
+      "province": "河南",
+      "city": "信阳市",
+      "district": "高新区",
+      "type": "blocked",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "信阳市商城县",
+      "province": "河南",
+      "city": "信阳市",
+      "district": "商城县",
+      "type": "blocked",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "南阳市内乡县",
+      "province": "河南",
+      "city": "南阳市",
+      "district": "内乡县",
+      "type": "blocked",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "南阳市镇平县",
+      "province": "河南",
+      "city": "南阳市",
+      "district": "镇平县",
+      "type": "blocked",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "南阳市西峡县",
+      "province": "河南",
+      "city": "南阳市",
+      "district": "西峡县",
+      "type": "blocked",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "镶黄旗",
+      "province": "内蒙古",
+      "city": "锡林郭勒",
+      "district": "镶黄旗",
+      "type": "blocked",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "邢台市清河县",
+      "province": "河北",
+      "city": "邢台市",
+      "district": "清河县",
+      "type": "blocked",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "邢台市南宫市",
+      "province": "河北",
+      "city": "邢台市",
+      "district": "南宫市",
+      "type": "blocked",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "沧州市经开区",
+      "province": "河北",
+      "city": "沧州市",
+      "district": "经开区",
+      "type": "blocked",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "长治市潞城区",
+      "province": "山西",
+      "city": "长治市",
+      "district": "潞城区",
+      "type": "blocked",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "长治市高新区",
+      "province": "山西",
+      "city": "长治市",
+      "district": "高新区",
+      "type": "blocked",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "许昌市经开区",
+      "province": "河南",
+      "city": "许昌市",
+      "district": "经开区",
+      "type": "blocked",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "许昌市襄城县",
+      "province": "河南",
+      "city": "许昌市",
+      "district": "襄城县",
+      "type": "blocked",
+      "scale": "150MW/300MWh"
+    },
+    {
+      "name": "三门峡灵宝市",
+      "province": "河南",
+      "city": "三门峡",
+      "district": "灵宝市",
+      "type": "blocked",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "三门峡陕州区",
+      "province": "河南",
+      "city": "三门峡",
+      "district": "陕州区",
+      "type": "blocked",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "三门峡义马市",
+      "province": "河南",
+      "city": "三门峡",
+      "district": "义马市",
+      "type": "blocked",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "三门峡湖滨区",
+      "province": "河南",
+      "city": "三门峡",
+      "district": "湖滨区",
+      "type": "blocked",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "周口市淮阳区",
+      "province": "河南",
+      "city": "周口市",
+      "district": "淮阳区",
+      "type": "blocked",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "许昌市禹州市",
+      "province": "河南",
+      "city": "许昌市",
+      "district": "禹州市",
+      "type": "blocked",
+      "scale": "100MW/200MWh"
+    },
+    {
+      "name": "孝感市大悟县",
+      "province": "湖北",
+      "city": "孝感市",
+      "district": "大悟县",
+      "type": "blocked",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "宿州市灵璧县",
+      "province": "安徽",
+      "city": "宿州市",
+      "district": "灵璧县",
+      "type": "blocked",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "天水市武山县",
+      "province": "甘肃",
+      "city": "天水市",
+      "district": "武山县",
+      "type": "blocked",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "钟祥市旧口镇",
+      "province": "湖北",
+      "city": "钟祥市",
+      "district": "旧口镇",
+      "type": "blocked",
+      "scale": "100MW/200MWh"
+    },
+    {
+      "name": "随州市随县",
+      "province": "湖北",
+      "city": "随州市",
+      "district": "随县",
+      "type": "blocked",
+      "scale": "100MW/200MWh"
+    },
+    {
+      "name": "宜昌市秭归县",
+      "province": "湖北",
+      "city": "宜昌市",
+      "district": "秭归县",
+      "type": "blocked",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "赤峰市元宝山区",
+      "province": "内蒙古",
+      "city": "赤峰市",
+      "district": "元宝山区",
+      "type": "blocked",
+      "scale": "300MW/1200MWh"
+    },
+    {
+      "name": "酒泉玉门市",
+      "province": "甘肃",
+      "city": "酒泉市",
+      "district": "玉门市",
+      "type": "blocked",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "朔州经开区",
+      "province": "山西",
+      "city": "朔州市",
+      "district": "经开区",
+      "type": "blocked",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "黄冈市麻城县",
+      "province": "湖北",
+      "city": "黄冈市",
+      "district": "麻城县",
+      "type": "blocked",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "新乡平原示范区",
+      "province": "河南",
+      "city": "新乡市",
+      "district": "示范区",
+      "type": "blocked",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "宁夏祥核云储",
+      "province": "宁夏",
+      "city": "银川市",
+      "district": "高新区",
+      "type": "blocked",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "朔州山阴经开区",
+      "province": "山西",
+      "city": "朔州市",
+      "district": "山阴",
+      "type": "blocked",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "天门经开区",
+      "province": "湖北",
+      "city": "天门市",
+      "district": "经开区",
+      "type": "blocked",
+      "scale": "220MW/401MWh"
+    },
+    {
+      "name": "重庆云阳县",
+      "province": "重庆市",
+      "city": "",
+      "district": "云阳县",
+      "type": "blocked",
+      "scale": "400MW/800MWh"
+    },
+    {
+      "name": "文山高新区",
+      "province": "云南",
+      "city": "文山市",
+      "district": "高新区",
+      "type": "blocked",
+      "scale": "300MW/600MWh"
+    },
+    {
+      "name": "赤峰宁城",
+      "province": "内蒙古",
+      "city": "赤峰市",
+      "district": "宁城县",
+      "type": "blocked",
+      "scale": "200MW/800MWh"
+    },
+    {
+      "name": "来宾象州县",
+      "province": "广西",
+      "city": "来宾市",
+      "district": "象州县",
+      "type": "blocked",
+      "scale": "300MW/600MWh"
+    },
+    {
+      "name": "商丘梁园区",
+      "province": "河南",
+      "city": "商丘市",
+      "district": "梁园区",
+      "type": "blocked",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "北海经开区",
+      "province": "辽宁",
+      "city": "营口市",
+      "district": "北海经开区",
+      "type": "blocked",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "赣州经开区",
+      "province": "江西",
+      "city": "赣州市",
+      "district": "经开区",
+      "type": "blocked",
+      "scale": "160MW/320MWh"
+    },
+    {
+      "name": "长春农安县",
+      "province": "吉林",
+      "city": "长春市",
+      "district": "农安县",
+      "type": "blocked",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "运城经开区",
+      "province": "山西",
+      "city": "运城市",
+      "district": "运城经开区",
+      "type": "blocked",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "珙县经开区",
+      "province": "四川",
+      "city": "宜宾市",
+      "district": "珙县经开区",
+      "type": "blocked",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "招远玲珑镇",
+      "province": "山东",
+      "city": "烟台",
+      "district": "招远市",
+      "type": "blocked",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "招远齐山镇",
+      "province": "山东",
+      "city": "烟台",
+      "district": "招远市",
+      "type": "blocked",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "利津县陈庄镇",
+      "province": "山东",
+      "city": "东营市",
+      "district": "利津县",
+      "type": "blocked",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "葫芦岛连山区",
+      "province": "辽宁",
+      "city": "葫芦岛市",
+      "district": "连山区",
+      "type": "blocked",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "烟台莱州市",
+      "province": "山东",
+      "city": "烟台市",
+      "district": "莱州市",
+      "type": "blocked",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "京南固安高新区",
+      "province": "河北",
+      "city": "廊坊市",
+      "district": "固安经开区",
+      "type": "blocked",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "兴安盟突泉县",
+      "province": "内蒙古",
+      "city": "兴安盟",
+      "district": "突泉县",
+      "type": "blocked",
+      "scale": "400MW/800MWh"
+    },
+    {
+      "name": "和龙县",
+      "province": "吉林",
+      "city": "延边",
+      "district": "和龙县",
+      "type": "blocked",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "辉南经开区",
+      "province": "吉林",
+      "city": "吉林市",
+      "district": "辉南经开区",
+      "type": "blocked",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "安康汉阴县",
+      "province": "陕西",
+      "city": "安康市",
+      "district": "汉阴县",
+      "type": "blocked",
+      "scale": "100MW/200MWh"
+    },
+    {
+      "name": "安康石泉经开区",
+      "province": "陕西",
+      "city": "安康市",
+      "district": "石泉经开区",
+      "type": "blocked",
+      "scale": "100MW/200MWh"
+    },
+    {
+      "name": "富阎产业合作园",
+      "province": "陕西",
+      "city": "渭南市",
+      "district": "富阎产业园",
+      "type": "blocked",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "安康镇坪县",
+      "province": "陕西",
+      "city": "安康市",
+      "district": "镇坪县",
+      "type": "blocked",
+      "scale": "100MW/200MWh"
+    },
+    {
+      "name": "汉中宁强县",
+      "province": "陕西",
+      "city": "汉中市",
+      "district": "宁强县",
+      "type": "blocked",
+      "scale": "100MW/200MWh"
+    },
+    {
+      "name": "安康市宁陕县",
+      "province": "陕西",
+      "city": "安康市",
+      "district": "宁陕县",
+      "type": "blocked",
+      "scale": "100MW/200MWh"
+    },
+    {
+      "name": "安康白河县",
+      "province": "陕西",
+      "city": "安康市",
+      "district": "白河县",
+      "type": "blocked",
+      "scale": "100MW/200MWh"
+    },
+    {
+      "name": "安康市高新区",
+      "province": "陕西",
+      "city": "安康市",
+      "district": "高新区",
+      "type": "blocked",
+      "scale": "100MW/200MWh"
+    },
+    {
+      "name": "沈北新区辉山经开区",
+      "province": "辽宁",
+      "city": "沈阳",
+      "district": "沈北新区",
+      "type": "blocked",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "科右前旗",
+      "province": "内蒙古",
+      "city": "兴安盟",
+      "district": "科右前旗",
+      "type": "blocked",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "烟台招远市",
+      "province": "山东",
+      "city": "烟台市",
+      "district": "招远市",
+      "type": "blocked",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "新乡市辉县市",
+      "province": "河南",
+      "city": "新乡市",
+      "district": "辉县市",
+      "type": "blocked",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "南阳市唐河县",
+      "province": "河南",
+      "city": "南阳市",
+      "district": "唐河县",
+      "type": "blocked",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "长垣市樊相镇",
+      "province": "河南",
+      "city": "新乡市",
+      "district": "长垣市",
+      "type": "blocked",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "南阳官庄工区",
+      "province": "河南",
+      "city": "南阳市",
+      "district": "官庄工区",
+      "type": "blocked",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "濮阳南乐县",
+      "province": "河南",
+      "city": "濮阳市",
+      "district": "南乐县",
+      "type": "blocked",
+      "scale": "300MW/600MWh"
+    },
+    {
+      "name": "永新工业园区管委会",
+      "province": "江西",
+      "city": "吉安市",
+      "district": "永新工业园",
+      "type": "blocked",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "铁南经开区",
+      "province": "辽宁",
+      "city": "铁岭市",
+      "district": "铁南经开区",
+      "type": "blocked",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "抚顺望花区",
+      "province": "辽宁",
+      "city": "抚顺",
+      "district": "望花区",
+      "type": "blocked",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "沈阳法库县",
+      "province": "辽宁",
+      "city": "沈阳市",
+      "district": "法库县",
+      "type": "blocked",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "东营市垦利区",
+      "province": "山东",
+      "city": "东营市",
+      "district": "垦利区",
+      "type": "blocked",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "垣曲经开区",
+      "province": "山西",
+      "city": "运城市",
+      "district": "垣曲县",
+      "type": "blocked",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "博州精河县",
+      "province": "新疆",
+      "city": "博州市",
+      "district": "精河县",
+      "type": "blocked",
+      "scale": "200MW/800MWh"
+    },
+    {
+      "name": "攀枝花钒钛高新区",
+      "province": "四川",
+      "city": "攀枝花",
+      "district": "钒钛高新区",
+      "type": "blocked",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "商洛柞水县",
+      "province": "陕西",
+      "city": "商洛市",
+      "district": "柞水县",
+      "type": "blocked",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "平凉市崆峒区",
+      "province": "甘肃",
+      "city": "平凉市",
+      "district": "崆峒区",
+      "type": "blocked",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "长治襄垣县",
+      "province": "山西",
+      "city": "长治市",
+      "district": "襄垣县",
+      "type": "blocked",
+      "scale": "400MW/800MWh"
+    },
+    {
+      "name": "忻州经开区",
+      "province": "山西",
+      "city": "忻州市",
+      "district": "经开区",
+      "type": "blocked",
+      "scale": "200MW/205MWh"
+    },
+    {
+      "name": "鞍山海城市",
+      "province": "辽宁",
+      "city": "鞍山市",
+      "district": "海城市",
+      "type": "blocked",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "哈尔滨阿城区",
+      "province": "黑龙江",
+      "city": "哈尔滨市",
+      "district": "阿城区",
+      "type": "blocked",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "吉林经开区",
+      "province": "吉林",
+      "city": "吉林市",
+      "district": "吉林经开区",
+      "type": "blocked",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "阜新市细河区",
+      "province": "辽宁",
+      "city": "阜新市",
+      "district": "细河区",
+      "type": "blocked",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "晋城阳城县",
+      "province": "山西",
+      "city": "晋城",
+      "district": "阳城县",
+      "type": "blocked",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "东莞东城街道",
+      "province": "广东",
+      "city": "东莞市",
+      "district": "东城街道",
+      "type": "blocked",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "来宾象州县",
+      "province": "广西",
+      "city": "来宾市",
+      "district": "象州县",
+      "type": "blocked",
+      "scale": "300MW/600MWh"
+    },
+    {
+      "name": "淮南市寿县",
+      "province": "安徽",
+      "city": "淮南市",
+      "district": "寿县",
+      "type": "blocked",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "沈阳辽中区",
+      "province": "辽宁",
+      "city": "沈阳市",
+      "district": "辽中区",
+      "type": "blocked",
+      "scale": "200MW/800MWh"
+    },
+    {
+      "name": "新乡市经开区",
+      "province": "河南",
+      "city": "新乡市",
+      "district": "经开区",
+      "type": "blocked",
+      "scale": "400MW/800MWh"
+    },
+    {
+      "name": "南阳市卧龙保税区",
+      "province": "河南",
+      "city": "南阳市",
+      "district": "卧龙保税区",
+      "type": "blocked",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "南通如东县",
+      "province": "江苏",
+      "city": "南通市",
+      "district": "如东县",
+      "type": "blocked",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "高安市建山镇",
+      "province": "江西",
+      "city": "高安市",
+      "district": "建山镇",
+      "type": "blocked",
+      "scale": "100MW/200MWh"
+    },
+    {
+      "name": "上饶茶亭经开区",
+      "province": "江西",
+      "city": "上饶市",
+      "district": "茶亭经开区",
+      "type": "blocked",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "吉安泰和县",
+      "province": "江西",
+      "city": "吉安市",
+      "district": "泰和县",
+      "type": "blocked",
+      "scale": "200MW/400MWh"
+    },
+    {
+      "name": "金昌市金川区",
+      "province": "甘肃",
+      "city": "金昌市",
+      "district": "金川区",
+      "type": "blocked",
+      "scale": "200MW/800MWh"
+    }
+  ],
+  "province_stats": {
+    "贵州": {
+      "total": 6,
+      "pure_signed": 1,
+      "started": 0,
+      "approved": 1,
+      "priority": 4,
+      "blocked": 0
+    },
+    "黑龙江": {
+      "total": 3,
+      "pure_signed": 2,
+      "started": 0,
+      "approved": 0,
+      "priority": 0,
+      "blocked": 1
+    },
+    "湖南": {
+      "total": 8,
+      "pure_signed": 8,
+      "started": 0,
+      "approved": 0,
+      "priority": 0,
+      "blocked": 0
+    },
+    "吉林": {
+      "total": 15,
+      "pure_signed": 7,
+      "started": 0,
+      "approved": 0,
+      "priority": 4,
+      "blocked": 4
+    },
+    "辽宁": {
+      "total": 13,
+      "pure_signed": 4,
+      "started": 0,
+      "approved": 0,
+      "priority": 0,
+      "blocked": 9
+    },
+    "山西": {
+      "total": 14,
+      "pure_signed": 3,
+      "started": 0,
+      "approved": 0,
+      "priority": 2,
+      "blocked": 9
+    },
+    "天津": {
+      "total": 2,
+      "pure_signed": 2,
+      "started": 0,
+      "approved": 0,
+      "priority": 0,
+      "blocked": 0
+    },
+    "河南": {
+      "total": 35,
+      "pure_signed": 3,
+      "started": 3,
+      "approved": 2,
+      "priority": 3,
+      "blocked": 24
+    },
+    "湖北": {
+      "total": 34,
+      "pure_signed": 20,
+      "started": 0,
+      "approved": 0,
+      "priority": 8,
+      "blocked": 6
+    },
+    "江西": {
+      "total": 8,
+      "pure_signed": 1,
+      "started": 0,
+      "approved": 0,
+      "priority": 2,
+      "blocked": 5
+    },
+    "甘肃": {
+      "total": 11,
+      "pure_signed": 7,
+      "started": 0,
+      "approved": 0,
+      "priority": 0,
+      "blocked": 4
+    },
+    "宁夏": {
+      "total": 2,
+      "pure_signed": 1,
+      "started": 0,
+      "approved": 0,
+      "priority": 0,
+      "blocked": 1
+    },
+    "青海": {
+      "total": 2,
+      "pure_signed": 2,
+      "started": 0,
+      "approved": 0,
+      "priority": 0,
+      "blocked": 0
+    },
+    "陕西": {
+      "total": 14,
+      "pure_signed": 4,
+      "started": 0,
+      "approved": 0,
+      "priority": 1,
+      "blocked": 9
+    },
+    "新疆": {
+      "total": 6,
+      "pure_signed": 4,
+      "started": 1,
+      "approved": 0,
+      "priority": 0,
+      "blocked": 1
+    },
+    "四川": {
+      "total": 11,
+      "pure_signed": 9,
+      "started": 0,
+      "approved": 0,
+      "priority": 0,
+      "blocked": 2
+    },
+    "重庆市": {
+      "total": 3,
+      "pure_signed": 2,
+      "started": 0,
+      "approved": 0,
+      "priority": 0,
+      "blocked": 1
+    },
+    "西藏自治区": {
+      "total": 3,
+      "pure_signed": 3,
+      "started": 0,
+      "approved": 0,
+      "priority": 0,
+      "blocked": 0
+    },
+    "河北": {
+      "total": 7,
+      "pure_signed": 1,
+      "started": 0,
+      "approved": 0,
+      "priority": 2,
+      "blocked": 4
+    },
+    "内蒙古": {
+      "total": 6,
+      "pure_signed": 0,
+      "started": 1,
+      "approved": 0,
+      "priority": 0,
+      "blocked": 5
+    },
+    "山东": {
+      "total": 10,
+      "pure_signed": 0,
+      "started": 1,
+      "approved": 0,
+      "priority": 3,
+      "blocked": 6
+    },
+    "广西": {
+      "total": 4,
+      "pure_signed": 0,
+      "started": 0,
+      "approved": 1,
+      "priority": 1,
+      "blocked": 2
+    },
+    "海南": {
+      "total": 2,
+      "pure_signed": 0,
+      "started": 0,
+      "approved": 0,
+      "priority": 2,
+      "blocked": 0
+    },
+    "西藏": {
+      "total": 3,
+      "pure_signed": 0,
+      "started": 0,
+      "approved": 0,
+      "priority": 3,
+      "blocked": 0
+    },
+    "——": {
+      "total": 1,
+      "pure_signed": 0,
+      "started": 0,
+      "approved": 0,
+      "priority": 1,
+      "blocked": 0
+    },
+    "安徽": {
+      "total": 2,
+      "pure_signed": 0,
+      "started": 0,
+      "approved": 0,
+      "priority": 0,
+      "blocked": 2
+    },
+    "云南": {
+      "total": 1,
+      "pure_signed": 0,
+      "started": 0,
+      "approved": 0,
+      "priority": 0,
+      "blocked": 1
+    },
+    "广东": {
+      "total": 1,
+      "pure_signed": 0,
+      "started": 0,
+      "approved": 0,
+      "priority": 0,
+      "blocked": 1
+    },
+    "江苏": {
+      "total": 1,
+      "pure_signed": 0,
+      "started": 0,
+      "approved": 0,
+      "priority": 0,
+      "blocked": 1
+    }
+  }
+}

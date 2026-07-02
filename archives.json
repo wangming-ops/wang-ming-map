@@ -1,0 +1,2805 @@
+{
+  "河南驻马店泌阳县": {
+    "name": "河南驻马店泌阳县",
+    "type": "started",
+    "basic": {
+      "200MW/400MWh（一期建设100MW/200MWh）": "河南",
+      "签约": "项目立项流程审批OA",
+      "备案": "《项目公司章程》",
+      "入库": "《项目设计委托合同》",
+      "电力接入": "《电力接入合同》",
+      "土地获取": "土地挂牌摘牌",
+      "施工前期手续": "《环境影响评价报告》合同",
+      "施工建设": "项目情况",
+      "其他合同": "采购合同—鹏辉力赫（天津）能源科技有限公司"
+    },
+    "progress": [
+      {
+        "stage": "200MW/400MWh（一期建设100MW/200MWh）",
+        "node": "河南",
+        "partner": "驻马店",
+        "plan_date": "泌阳",
+        "actual_date": "李震",
+        "status": "李震"
+      },
+      {
+        "stage": "签约",
+        "node": "项目立项流程审批OA",
+        "partner": "无",
+        "plan_date": "",
+        "actual_date": "未完成"
+      },
+      {
+        "stage": "备案",
+        "node": "《项目公司章程》",
+        "partner": "河南省市场监督管理局",
+        "plan_date": "",
+        "actual_date": "已完成"
+      },
+      {
+        "stage": "入库",
+        "node": "《项目设计委托合同》",
+        "partner": "中国铁建大桥工程局集团有限公司/中铁现代勘察设计院有限公司",
+        "plan_date": "",
+        "actual_date": "已完成"
+      },
+      {
+        "stage": "电力接入",
+        "node": "《电力接入合同》",
+        "partner": "",
+        "plan_date": "",
+        "actual_date": "已完成"
+      },
+      {
+        "stage": "土地获取",
+        "node": "土地挂牌摘牌",
+        "partner": "泌阳县人民政府",
+        "plan_date": "",
+        "actual_date": "已完成"
+      },
+      {
+        "stage": "施工前期手续",
+        "node": "《环境影响评价报告》合同",
+        "partner": "",
+        "plan_date": "",
+        "actual_date": "已完成"
+      },
+      {
+        "stage": "施工建设",
+        "node": "项目情况",
+        "partner": "",
+        "plan_date": "",
+        "actual_date": "外线基础完成，外线线路月底前完成。\n站内土建施工完成；设备已全部进场，开始安装，计划8月中旬安装调试完成。\n项目经理反馈计划8月底-9月初并网。"
+      },
+      {
+        "stage": "其他合同",
+        "node": "采购合同—鹏辉力赫（天津）能源科技有限公司",
+        "partner": "鹏辉力赫（天津）能源科技有限公司",
+        "plan_date": "",
+        "actual_date": "已完成"
+      }
+    ]
+  },
+  "内蒙古通辽市经开区": {
+    "name": "内蒙古通辽市经开区",
+    "type": "started",
+    "basic": {
+      "100MW/400MWh": "内蒙",
+      "签约": "项目立项流程审批OA",
+      "备案": "《项目公司章程》",
+      "入库": "《项目设计委托合同》",
+      "电力接入": "《电力接入合同》",
+      "土地获取": "土地挂牌摘牌",
+      "施工前期手续": "《环境影响评价报告》合同",
+      "施工建设": "项目情况",
+      "其他合同": "征占地补偿协议"
+    },
+    "progress": [
+      {
+        "stage": "100MW/400MWh",
+        "node": "内蒙",
+        "partner": "通辽",
+        "plan_date": "经开区",
+        "actual_date": "张瑞坤",
+        "status": "张瑞坤"
+      },
+      {
+        "stage": "签约",
+        "node": "项目立项流程审批OA",
+        "partner": "无",
+        "plan_date": "",
+        "actual_date": "未完成"
+      },
+      {
+        "stage": "备案",
+        "node": "《项目公司章程》",
+        "partner": "",
+        "plan_date": "",
+        "actual_date": "已完成"
+      },
+      {
+        "stage": "入库",
+        "node": "《项目设计委托合同》",
+        "partner": "",
+        "plan_date": "",
+        "actual_date": "已完成"
+      },
+      {
+        "stage": "电力接入",
+        "node": "《电力接入合同》",
+        "partner": "杭州交联电力设计股份有限公司",
+        "plan_date": "",
+        "actual_date": "已完成"
+      },
+      {
+        "stage": "土地获取",
+        "node": "土地挂牌摘牌",
+        "partner": "",
+        "plan_date": "",
+        "actual_date": "已完成"
+      },
+      {
+        "stage": "施工前期手续",
+        "node": "《环境影响评价报告》合同",
+        "partner": "",
+        "plan_date": "",
+        "actual_date": "已完成"
+      },
+      {
+        "stage": "施工建设",
+        "node": "项目情况",
+        "partner": "",
+        "plan_date": "",
+        "actual_date": "外线核准、环评、安评、稳评、文物、水保、地勘已完成（原件在总包），图纸已出。缺少：土地证、建设用地规划许可证，建设工程规划许可证，开工许可证。"
+      },
+      {
+        "stage": "其他合同",
+        "node": "征占地补偿协议",
+        "partner": "",
+        "plan_date": "",
+        "actual_date": "已完成"
+      }
+    ]
+  },
+  "河南安阳林州市": {
+    "name": "河南安阳林州市",
+    "type": "started",
+    "basic": {
+      "100MW/200MWh": "河南",
+      "签约": "项目立项流程审批OA",
+      "备案": "《项目公司章程》",
+      "入库": "《项目设计委托合同》",
+      "电力接入": "《电力接入合同》",
+      "土地获取": "土地挂牌摘牌",
+      "施工前期手续": "《环境影响评价报告》合同",
+      "施工建设": "项目情况"
+    },
+    "progress": [
+      {
+        "stage": "100MW/200MWh",
+        "node": "河南",
+        "partner": "安阳",
+        "plan_date": "林州市",
+        "actual_date": "李震"
+      },
+      {
+        "stage": "签约",
+        "node": "项目立项流程审批OA",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "备案",
+        "node": "《项目公司章程》",
+        "partner": "",
+        "plan_date": "",
+        "actual_date": "已完成"
+      },
+      {
+        "stage": "入库",
+        "node": "《项目设计委托合同》",
+        "partner": "河南中豫勘测规划技术有限公司",
+        "plan_date": "",
+        "actual_date": "已完成"
+      },
+      {
+        "stage": "电力接入",
+        "node": "《电力接入合同》",
+        "partner": "北京华瑞博远电力工程设计有限公司",
+        "plan_date": "",
+        "actual_date": "已完成"
+      },
+      {
+        "stage": "土地获取",
+        "node": "土地挂牌摘牌",
+        "partner": "",
+        "plan_date": "",
+        "actual_date": "未完成"
+      },
+      {
+        "stage": "施工前期手续",
+        "node": "《环境影响评价报告》合同",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "施工建设",
+        "node": "项目情况",
+        "partner": "",
+        "plan_date": "",
+        "actual_date": "葛洲坝融资代建， 待办事项：确定总包合同，环评水保等未签合同，商谈中，未开工"
+      }
+    ]
+  },
+  "河南安阳北关": {
+    "name": "河南安阳北关",
+    "type": "started",
+    "basic": {
+      "200MW/400MWh": "河南",
+      "签约": "项目立项流程审批OA",
+      "备案": "《项目公司章程》",
+      "入库": "《项目设计委托合同》",
+      "电力接入": "《电力接入合同》",
+      "土地获取": "土地挂牌摘牌",
+      "施工前期手续": "《环境影响评价报告》合同",
+      "施工建设": "项目情况",
+      "其他合同": "天津市建设工程监理合同"
+    },
+    "progress": [
+      {
+        "stage": "200MW/400MWh",
+        "node": "河南",
+        "partner": "安阳市",
+        "plan_date": "北关区",
+        "actual_date": "李震"
+      },
+      {
+        "stage": "签约",
+        "node": "项目立项流程审批OA",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "备案",
+        "node": "《项目公司章程》",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "入库",
+        "node": "《项目设计委托合同》",
+        "partner": "",
+        "plan_date": "",
+        "actual_date": "已完成"
+      },
+      {
+        "stage": "电力接入",
+        "node": "《电力接入合同》",
+        "partner": "",
+        "plan_date": "",
+        "actual_date": "已完成"
+      },
+      {
+        "stage": "土地获取",
+        "node": "土地挂牌摘牌",
+        "partner": "",
+        "plan_date": "",
+        "actual_date": "未完成"
+      },
+      {
+        "stage": "施工前期手续",
+        "node": "《环境影响评价报告》合同",
+        "partner": "河南岩臻科技有限公司",
+        "plan_date": "",
+        "actual_date": "未完成"
+      },
+      {
+        "stage": "施工建设",
+        "node": "项目情况",
+        "partner": "",
+        "plan_date": "",
+        "actual_date": "项目租地，土地流转没有完成，储能区基础完成，未回填"
+      },
+      {
+        "stage": "其他合同",
+        "node": "天津市建设工程监理合同",
+        "partner": "天津建工工程管理有限公司",
+        "plan_date": "",
+        "actual_date": "已完成"
+      }
+    ]
+  },
+  "东营市经开区": {
+    "name": "东营市经开区",
+    "type": "started",
+    "basic": {
+      "200MW/400MWh": "山东",
+      "签约": "项目立项流程审批OA",
+      "备案": "《项目公司章程》",
+      "入库": "《项目设计委托合同》",
+      "电力接入": "《电力接入合同》",
+      "土地获取": "土地挂牌摘牌",
+      "施工前期手续": "《环境影响评价报告》合同",
+      "施工建设": "项目情况",
+      "其他合同": "电能质量预评估报告合同"
+    },
+    "progress": [
+      {
+        "stage": "200MW/400MWh",
+        "node": "山东",
+        "partner": "东营市",
+        "plan_date": "经开区",
+        "actual_date": "朴吉成",
+        "status": "朱海明"
+      },
+      {
+        "stage": "签约",
+        "node": "项目立项流程审批OA",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "备案",
+        "node": "《项目公司章程》",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "入库",
+        "node": "《项目设计委托合同》",
+        "partner": "",
+        "plan_date": "",
+        "actual_date": "已完成"
+      },
+      {
+        "stage": "电力接入",
+        "node": "《电力接入合同》",
+        "partner": "",
+        "plan_date": "",
+        "actual_date": "已完成"
+      },
+      {
+        "stage": "土地获取",
+        "node": "土地挂牌摘牌",
+        "partner": "东营市自然资源和规划局",
+        "plan_date": "",
+        "actual_date": "已完成"
+      },
+      {
+        "stage": "施工前期手续",
+        "node": "《环境影响评价报告》合同",
+        "partner": "山东博瑞达环保科技有限公司",
+        "plan_date": "",
+        "actual_date": "已完成"
+      },
+      {
+        "stage": "施工建设",
+        "node": "项目情况",
+        "partner": "",
+        "plan_date": "",
+        "actual_date": "山东电工做兜底运营，宁德时代的设备（电池仓）合同未签，一次二次设备已定，设计院（方大）技术在对接，环评、安评、水保、防洪合同已签，编制中"
+      },
+      {
+        "stage": "其他合同",
+        "node": "电能质量预评估报告合同",
+        "partner": "济南睿能电力设计咨询有限公司",
+        "plan_date": "",
+        "actual_date": "已完成"
+      }
+    ]
+  },
+  "陕西商洛洛南县": {
+    "name": "陕西商洛洛南县",
+    "type": "priority",
+    "basic": {
+      "100MW/200MWh": "陕西",
+      "签约": "项目立项流程审批OA",
+      "备案": "《项目公司章程》",
+      "入库": "项目设计委托合同",
+      "电力接入": "《电力接入合同》",
+      "土地获取": "土地挂牌摘牌",
+      "施工前期手续": "《环境影响评价报告》合同",
+      "施工建设": "项目情况"
+    },
+    "progress": [
+      {
+        "stage": "100MW/200MWh",
+        "node": "陕西",
+        "partner": "商洛市",
+        "plan_date": "洛南县",
+        "actual_date": "李海玉"
+      },
+      {
+        "stage": "签约",
+        "node": "项目立项流程审批OA",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "备案",
+        "node": "《项目公司章程》",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "入库",
+        "node": "项目设计委托合同",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "电力接入",
+        "node": "《电力接入合同》",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "土地获取",
+        "node": "土地挂牌摘牌",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "施工前期手续",
+        "node": "《环境影响评价报告》合同",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "施工建设",
+        "node": "项目情况",
+        "partner": "",
+        "plan_date": ""
+      }
+    ]
+  },
+  "新疆喀什市莎车县": {
+    "name": "新疆喀什市莎车县",
+    "type": "started",
+    "basic": {
+      "200MW/800MWh": "新疆",
+      "签约": "项目立项流程审批OA",
+      "备案": "《项目公司章程》",
+      "入库": "《项目设计委托合同》",
+      "电力接入": "《电力接入合同》",
+      "土地获取": "土地挂牌摘牌",
+      "施工前期手续": "《环境影响评价报告》合同",
+      "施工建设": "项目情况"
+    },
+    "progress": [
+      {
+        "stage": "200MW/800MWh",
+        "node": "新疆",
+        "partner": "喀什市",
+        "plan_date": "莎车县",
+        "actual_date": "朱海明",
+        "status": "朱海明"
+      },
+      {
+        "stage": "签约",
+        "node": "项目立项流程审批OA",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "备案",
+        "node": "《项目公司章程》",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "入库",
+        "node": "《项目设计委托合同》",
+        "partner": "",
+        "plan_date": "",
+        "actual_date": "已完成"
+      },
+      {
+        "stage": "电力接入",
+        "node": "《电力接入合同》",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "土地获取",
+        "node": "土地挂牌摘牌",
+        "partner": "",
+        "plan_date": "",
+        "actual_date": "已完成"
+      },
+      {
+        "stage": "施工前期手续",
+        "node": "《环境影响评价报告》合同",
+        "partner": "山东博瑞达环保科技有限公司",
+        "plan_date": "",
+        "actual_date": "未完成"
+      },
+      {
+        "stage": "施工建设",
+        "node": "项目情况",
+        "partner": "",
+        "plan_date": "",
+        "actual_date": "山东电工做兜底运营，宁德时代的设备（电池仓）合同未签，一次二次设备已定，设计院（方大）技术在对接，环评、安评、水保、防洪合同已签，编制中"
+      }
+    ]
+  },
+  "贵州侗族锦屏县": {
+    "name": "贵州侗族锦屏县",
+    "type": "approved",
+    "basic": {
+      "200MW/400MWh": "贵州",
+      "签约": "项目立项流程审批OA",
+      "备案": "《项目公司章程》",
+      "入库": "《项目设计委托合同》",
+      "电力接入": "《电力接入合同》",
+      "土地获取": "土地挂牌摘牌",
+      "施工前期手续": "《环境影响评价报告》合同"
+    },
+    "progress": [
+      {
+        "stage": "200MW/400MWh",
+        "node": "贵州",
+        "partner": "侗族自治州",
+        "plan_date": "朱海明",
+        "actual_date": "曹莹峰",
+        "status": "无"
+      },
+      {
+        "stage": "签约",
+        "node": "项目立项流程审批OA",
+        "partner": "",
+        "plan_date": "无"
+      },
+      {
+        "stage": "备案",
+        "node": "《项目公司章程》",
+        "partner": "",
+        "plan_date": "无"
+      },
+      {
+        "stage": "入库",
+        "node": "《项目设计委托合同》",
+        "partner": "",
+        "plan_date": "无"
+      },
+      {
+        "stage": "电力接入",
+        "node": "《电力接入合同》",
+        "partner": "",
+        "plan_date": "已完成",
+        "actual_date": "200mw/400mwh"
+      },
+      {
+        "stage": "土地获取",
+        "node": "土地挂牌摘牌",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "施工前期手续",
+        "node": "《环境影响评价报告》合同",
+        "partner": "",
+        "plan_date": ""
+      }
+    ]
+  },
+  "河南鹤壁市山城区": {
+    "name": "河南鹤壁市山城区",
+    "type": "approved",
+    "basic": {
+      "200MW/400MWh": "河南",
+      "签约": "项目立项流程审批OA",
+      "备案": "《项目公司章程》",
+      "入库": "《项目设计委托合同》",
+      "电力接入": "《电力接入合同》",
+      "土地获取": "土地挂牌摘牌",
+      "施工前期手续": "《环境影响评价报告》合同"
+    },
+    "progress": [
+      {
+        "stage": "200MW/400MWh",
+        "node": "河南",
+        "partner": "鹤壁",
+        "plan_date": "山城区",
+        "actual_date": "李震",
+        "status": "李震"
+      },
+      {
+        "stage": "签约",
+        "node": "项目立项流程审批OA",
+        "partner": "",
+        "plan_date": "",
+        "actual_date": "无"
+      },
+      {
+        "stage": "备案",
+        "node": "《项目公司章程》",
+        "partner": "",
+        "plan_date": "",
+        "actual_date": "/"
+      },
+      {
+        "stage": "入库",
+        "node": "《项目设计委托合同》",
+        "partner": "",
+        "plan_date": "",
+        "actual_date": "无"
+      },
+      {
+        "stage": "电力接入",
+        "node": "《电力接入合同》",
+        "partner": "",
+        "plan_date": "",
+        "actual_date": "已完成"
+      },
+      {
+        "stage": "土地获取",
+        "node": "土地挂牌摘牌",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "施工前期手续",
+        "node": "《环境影响评价报告》合同",
+        "partner": "",
+        "plan_date": ""
+      }
+    ]
+  },
+  "河南平顶山郏县": {
+    "name": "河南平顶山郏县",
+    "type": "approved",
+    "basic": {
+      "200MW/400MWh": "河南",
+      "签约": "项目立项流程审批OA",
+      "备案": "《项目公司章程》",
+      "入库": "《项目设计委托合同》",
+      "电力接入": "《电力接入合同》",
+      "土地获取": "土地挂牌摘牌",
+      "施工前期手续": "《环境影响评价报告》合同"
+    },
+    "progress": [
+      {
+        "stage": "200MW/400MWh",
+        "node": "河南",
+        "partner": "平顶山",
+        "plan_date": "郏县",
+        "actual_date": "侯天阳"
+      },
+      {
+        "stage": "签约",
+        "node": "项目立项流程审批OA",
+        "partner": "",
+        "plan_date": "",
+        "actual_date": "无"
+      },
+      {
+        "stage": "备案",
+        "node": "《项目公司章程》",
+        "partner": "",
+        "plan_date": "",
+        "actual_date": "已完成"
+      },
+      {
+        "stage": "入库",
+        "node": "《项目设计委托合同》",
+        "partner": "",
+        "plan_date": "",
+        "actual_date": "已完成"
+      },
+      {
+        "stage": "电力接入",
+        "node": "《电力接入合同》",
+        "partner": "",
+        "plan_date": "",
+        "actual_date": "已完成"
+      },
+      {
+        "stage": "土地获取",
+        "node": "土地挂牌摘牌",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "施工前期手续",
+        "node": "《环境影响评价报告》合同",
+        "partner": "",
+        "plan_date": ""
+      }
+    ]
+  },
+  "广西玉林陆川县": {
+    "name": "广西玉林陆川县",
+    "type": "approved",
+    "basic": {
+      "200MW/400MWh": "广西",
+      "签约": "项目立项流程审批OA",
+      "备案": "《项目公司章程》",
+      "入库": "《项目设计委托合同》",
+      "电力接入": "《电力接入合同》",
+      "土地获取": "土地挂牌摘牌",
+      "施工前期手续": "《环境影响评价报告》合同",
+      "施工建设": "项目情况"
+    },
+    "progress": [
+      {
+        "stage": "200MW/400MWh",
+        "node": "广西",
+        "partner": "玉林市",
+        "plan_date": "陆川县",
+        "actual_date": "王晶晶"
+      },
+      {
+        "stage": "签约",
+        "node": "项目立项流程审批OA",
+        "partner": "",
+        "plan_date": "",
+        "actual_date": "无"
+      },
+      {
+        "stage": "备案",
+        "node": "《项目公司章程》",
+        "partner": "",
+        "plan_date": "",
+        "actual_date": "已完成"
+      },
+      {
+        "stage": "入库",
+        "node": "《项目设计委托合同》",
+        "partner": "",
+        "plan_date": "",
+        "actual_date": "无"
+      },
+      {
+        "stage": "电力接入",
+        "node": "《电力接入合同》",
+        "partner": "",
+        "plan_date": "",
+        "actual_date": "已完成"
+      },
+      {
+        "stage": "土地获取",
+        "node": "土地挂牌摘牌",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "施工前期手续",
+        "node": "《环境影响评价报告》合同",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "施工建设",
+        "node": "项目情况",
+        "partner": "",
+        "plan_date": ""
+      }
+    ]
+  },
+  "贵州盘北经开区": {
+    "name": "贵州盘北经开区",
+    "type": "approved",
+    "basic": {
+      "200MW/400MWh": "贵州",
+      "签约": "项目立项流程审批OA",
+      "备案": "《项目公司章程》",
+      "入库": "《项目设计委托合同》",
+      "电力接入": "《电力接入合同》",
+      "土地获取": "土地挂牌摘牌",
+      "施工前期手续": "《环境影响评价报告》合同",
+      "施工建设": "项目情况"
+    },
+    "progress": [
+      {
+        "stage": "200MW/400MWh",
+        "node": "贵州",
+        "partner": "六盘水市",
+        "plan_date": "盘北经开",
+        "actual_date": "郑爽",
+        "status": "曹莹峰"
+      },
+      {
+        "stage": "签约",
+        "node": "项目立项流程审批OA",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "备案",
+        "node": "《项目公司章程》",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "入库",
+        "node": "《项目设计委托合同》",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "电力接入",
+        "node": "《电力接入合同》",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "土地获取",
+        "node": "土地挂牌摘牌",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "施工前期手续",
+        "node": "《环境影响评价报告》合同",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "施工建设",
+        "node": "项目情况",
+        "partner": "",
+        "plan_date": ""
+      }
+    ]
+  },
+  "吉林长春榆树市": {
+    "name": "吉林长春榆树市",
+    "type": "priority",
+    "basic": {
+      "200MW/400MWh": "吉林省",
+      "签约": "项目立项流程审批OA",
+      "备案": "《项目公司章程》",
+      "入库": "《项目设计委托合同》",
+      "电力接入": "《电力接入合同》",
+      "土地获取": "土地挂牌摘牌",
+      "施工前期手续": "《环境影响评价报告》合同",
+      "施工建设": "项目情况"
+    },
+    "progress": [
+      {
+        "stage": "200MW/400MWh",
+        "node": "吉林省",
+        "partner": "长春",
+        "plan_date": "榆树市",
+        "actual_date": "林加亮"
+      },
+      {
+        "stage": "签约",
+        "node": "项目立项流程审批OA",
+        "partner": "",
+        "plan_date": "",
+        "status": "项目负责人（营销）"
+      },
+      {
+        "stage": "备案",
+        "node": "《项目公司章程》",
+        "partner": "",
+        "plan_date": "",
+        "actual_date": "已完成",
+        "status": "项目管理部（资料）"
+      },
+      {
+        "stage": "入库",
+        "node": "《项目设计委托合同》",
+        "partner": "",
+        "plan_date": "",
+        "status": "项目负责人（营销）"
+      },
+      {
+        "stage": "电力接入",
+        "node": "《电力接入合同》",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "土地获取",
+        "node": "土地挂牌摘牌",
+        "partner": "",
+        "plan_date": "",
+        "status": "项目负责人（营销）"
+      },
+      {
+        "stage": "施工前期手续",
+        "node": "《环境影响评价报告》合同",
+        "partner": "",
+        "plan_date": "",
+        "status": "项目负责人（营销）"
+      },
+      {
+        "stage": "施工建设",
+        "node": "项目情况",
+        "partner": "",
+        "plan_date": ""
+      }
+    ]
+  },
+  "吉林四平铁西区": {
+    "name": "吉林四平铁西区",
+    "type": "priority",
+    "basic": {
+      "200MW/400MWh": "吉林省",
+      "签约": "项目立项流程审批OA",
+      "备案": "《项目公司章程》",
+      "入库": "项目设计委托合同",
+      "电力接入": "《电力接入合同》",
+      "土地获取": "土地挂牌摘牌",
+      "施工前期手续": "《环境影响评价报告》合同",
+      "施工建设": "项目情况"
+    },
+    "progress": [
+      {
+        "stage": "200MW/400MWh",
+        "node": "吉林省",
+        "partner": "四平",
+        "plan_date": "铁西区",
+        "actual_date": "林加亮"
+      },
+      {
+        "stage": "签约",
+        "node": "项目立项流程审批OA",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "备案",
+        "node": "《项目公司章程》",
+        "partner": "",
+        "plan_date": "",
+        "actual_date": "已完成"
+      },
+      {
+        "stage": "入库",
+        "node": "项目设计委托合同",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "电力接入",
+        "node": "《电力接入合同》",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "土地获取",
+        "node": "土地挂牌摘牌",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "施工前期手续",
+        "node": "《环境影响评价报告》合同",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "施工建设",
+        "node": "项目情况",
+        "partner": "",
+        "plan_date": ""
+      }
+    ]
+  },
+  "吉林长春双阳经开区": {
+    "name": "吉林长春双阳经开区",
+    "type": "priority",
+    "basic": {
+      "200MW/800MWh": "吉林省",
+      "签约": "项目立项流程审批OA",
+      "备案": "《项目公司章程》",
+      "入库": "项目设计委托合同",
+      "电力接入": "《电力接入合同》",
+      "土地获取": "土地挂牌摘牌",
+      "施工前期手续": "《环境影响评价报告》合同",
+      "施工建设": "项目情况"
+    },
+    "progress": [
+      {
+        "stage": "200MW/800MWh",
+        "node": "吉林省",
+        "partner": "长春",
+        "plan_date": "双阳经开区",
+        "actual_date": "林加亮"
+      },
+      {
+        "stage": "签约",
+        "node": "项目立项流程审批OA",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "备案",
+        "node": "《项目公司章程》",
+        "partner": "",
+        "plan_date": "",
+        "actual_date": "已完成"
+      },
+      {
+        "stage": "入库",
+        "node": "项目设计委托合同",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "电力接入",
+        "node": "《电力接入合同》",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "土地获取",
+        "node": "土地挂牌摘牌",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "施工前期手续",
+        "node": "《环境影响评价报告》合同",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "施工建设",
+        "node": "项目情况",
+        "partner": "",
+        "plan_date": ""
+      }
+    ]
+  },
+  "吉林市桦甸市": {
+    "name": "吉林市桦甸市",
+    "type": "priority",
+    "basic": {
+      "200MW/400MWh": "吉林省",
+      "签约": "项目立项流程审批OA",
+      "备案": "《项目公司章程》",
+      "入库": "项目设计委托合同",
+      "电力接入": "《电力接入合同》",
+      "土地获取": "土地挂牌摘牌",
+      "施工前期手续": "《环境影响评价报告》合同",
+      "施工建设": "项目情况"
+    },
+    "progress": [
+      {
+        "stage": "200MW/400MWh",
+        "node": "吉林省",
+        "partner": "吉林市",
+        "plan_date": "桦甸市",
+        "actual_date": "林加亮"
+      },
+      {
+        "stage": "签约",
+        "node": "项目立项流程审批OA",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "备案",
+        "node": "《项目公司章程》",
+        "partner": "",
+        "plan_date": "",
+        "actual_date": "已完成"
+      },
+      {
+        "stage": "入库",
+        "node": "项目设计委托合同",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "电力接入",
+        "node": "《电力接入合同》",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "土地获取",
+        "node": "土地挂牌摘牌",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "施工前期手续",
+        "node": "《环境影响评价报告》合同",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "施工建设",
+        "node": "项目情况",
+        "partner": "",
+        "plan_date": ""
+      }
+    ]
+  },
+  "贵州遵义红花岗区": {
+    "name": "贵州遵义红花岗区",
+    "type": "priority",
+    "basic": {
+      "200MW/400MWh": "贵州",
+      "签约": "项目立项流程审批OA",
+      "备案": "《项目公司章程》",
+      "入库": "项目设计委托合同",
+      "电力接入": "《电力接入合同》",
+      "土地获取": "土地挂牌摘牌",
+      "施工前期手续": "《环境影响评价报告》合同",
+      "施工建设": "项目情况"
+    },
+    "progress": [
+      {
+        "stage": "200MW/400MWh",
+        "node": "贵州",
+        "partner": "遵义",
+        "plan_date": "红花岗",
+        "actual_date": "应俊"
+      },
+      {
+        "stage": "签约",
+        "node": "项目立项流程审批OA",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "备案",
+        "node": "《项目公司章程》",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "入库",
+        "node": "项目设计委托合同",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "电力接入",
+        "node": "《电力接入合同》",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "土地获取",
+        "node": "土地挂牌摘牌",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "施工前期手续",
+        "node": "《环境影响评价报告》合同",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "施工建设",
+        "node": "项目情况",
+        "partner": "",
+        "plan_date": ""
+      }
+    ]
+  },
+  "贵州黔南州都匀经开区": {
+    "name": "贵州黔南州都匀经开区",
+    "type": "priority",
+    "basic": {
+      "200MW/800MWh": "贵州",
+      "签约": "项目立项流程审批OA",
+      "备案": "《项目公司章程》",
+      "入库": "项目设计委托合同",
+      "电力接入": "《电力接入合同》",
+      "土地获取": "土地挂牌摘牌",
+      "施工前期手续": "《环境影响评价报告》合同",
+      "施工建设": "项目情况"
+    },
+    "progress": [
+      {
+        "stage": "200MW/800MWh",
+        "node": "贵州",
+        "partner": "黔南州",
+        "plan_date": "都匀经开区",
+        "actual_date": "曹莹峰"
+      },
+      {
+        "stage": "签约",
+        "node": "项目立项流程审批OA",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "备案",
+        "node": "《项目公司章程》",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "入库",
+        "node": "项目设计委托合同",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "电力接入",
+        "node": "《电力接入合同》",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "土地获取",
+        "node": "土地挂牌摘牌",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "施工前期手续",
+        "node": "《环境影响评价报告》合同",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "施工建设",
+        "node": "项目情况",
+        "partner": "",
+        "plan_date": ""
+      }
+    ]
+  },
+  "贵州毕节七星关区": {
+    "name": "贵州毕节七星关区",
+    "type": "priority",
+    "basic": {
+      "200MW/800MWh": "贵州",
+      "签约": "项目立项流程审批OA",
+      "备案": "《项目公司章程》",
+      "入库": "项目设计委托合同",
+      "电力接入": "《电力接入合同》",
+      "土地获取": "土地挂牌摘牌",
+      "施工前期手续": "《环境影响评价报告》合同",
+      "施工建设": "项目情况"
+    },
+    "progress": [
+      {
+        "stage": "200MW/800MWh",
+        "node": "贵州",
+        "partner": "黔南州",
+        "plan_date": "都匀经开区",
+        "actual_date": "曹莹峰"
+      },
+      {
+        "stage": "签约",
+        "node": "项目立项流程审批OA",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "备案",
+        "node": "《项目公司章程》",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "入库",
+        "node": "项目设计委托合同",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "电力接入",
+        "node": "《电力接入合同》",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "土地获取",
+        "node": "土地挂牌摘牌",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "施工前期手续",
+        "node": "《环境影响评价报告》合同",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "施工建设",
+        "node": "项目情况",
+        "partner": "",
+        "plan_date": ""
+      }
+    ]
+  },
+  "河南省商丘市睢阳区": {
+    "name": "河南省商丘市睢阳区",
+    "type": "priority",
+    "basic": {
+      "100MW/200MWh": "河南",
+      "签约": "项目立项流程审批OA",
+      "备案": "《项目公司章程》",
+      "入库": "项目设计委托合同",
+      "电力接入": "《电力接入合同》",
+      "土地获取": "土地挂牌摘牌",
+      "施工前期手续": "《环境影响评价报告》合同",
+      "施工建设": "项目情况"
+    },
+    "progress": [
+      {
+        "stage": "100MW/200MWh",
+        "node": "河南",
+        "partner": "商丘",
+        "plan_date": "睢阳区",
+        "actual_date": "李震"
+      },
+      {
+        "stage": "签约",
+        "node": "项目立项流程审批OA",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "备案",
+        "node": "《项目公司章程》",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "入库",
+        "node": "项目设计委托合同",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "电力接入",
+        "node": "《电力接入合同》",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "土地获取",
+        "node": "土地挂牌摘牌",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "施工前期手续",
+        "node": "《环境影响评价报告》合同",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "施工建设",
+        "node": "项目情况",
+        "partner": "",
+        "plan_date": ""
+      }
+    ]
+  },
+  "河南省鹤壁鹤山区": {
+    "name": "河南省鹤壁鹤山区",
+    "type": "priority",
+    "basic": {
+      "200MW/400MWh": "河南",
+      "签约": "项目立项流程审批OA",
+      "备案": "《项目公司章程》",
+      "入库": "项目设计委托合同",
+      "电力接入": "《电力接入合同》",
+      "土地获取": "土地挂牌摘牌",
+      "施工前期手续": "《环境影响评价报告》合同",
+      "施工建设": "项目情况"
+    },
+    "progress": [
+      {
+        "stage": "200MW/400MWh",
+        "node": "河南",
+        "partner": "鹤壁市",
+        "plan_date": "鹤山区",
+        "actual_date": "李震"
+      },
+      {
+        "stage": "签约",
+        "node": "项目立项流程审批OA",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "备案",
+        "node": "《项目公司章程》",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "入库",
+        "node": "项目设计委托合同",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "电力接入",
+        "node": "《电力接入合同》",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "土地获取",
+        "node": "土地挂牌摘牌",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "施工前期手续",
+        "node": "《环境影响评价报告》合同",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "施工建设",
+        "node": "项目情况",
+        "partner": "",
+        "plan_date": ""
+      }
+    ]
+  },
+  "河南平顶山湛河区": {
+    "name": "河南平顶山湛河区",
+    "type": "priority",
+    "basic": {
+      "100MW/200MWh": "河南",
+      "签约": "项目立项流程审批OA",
+      "备案": "《项目公司章程》",
+      "入库": "项目设计委托合同",
+      "电力接入": "《电力接入合同》",
+      "土地获取": "土地挂牌摘牌",
+      "施工前期手续": "《环境影响评价报告》合同",
+      "施工建设": "项目情况"
+    },
+    "progress": [
+      {
+        "stage": "100MW/200MWh",
+        "node": "河南",
+        "partner": "平顶山",
+        "plan_date": "湛河区",
+        "actual_date": "李震"
+      },
+      {
+        "stage": "签约",
+        "node": "项目立项流程审批OA",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "备案",
+        "node": "《项目公司章程》",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "入库",
+        "node": "项目设计委托合同",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "电力接入",
+        "node": "《电力接入合同》",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "土地获取",
+        "node": "土地挂牌摘牌",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "施工前期手续",
+        "node": "《环境影响评价报告》合同",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "施工建设",
+        "node": "项目情况",
+        "partner": "",
+        "plan_date": ""
+      }
+    ]
+  },
+  "湖北黄石市下陆区": {
+    "name": "湖北黄石市下陆区",
+    "type": "priority",
+    "basic": {
+      "440MW/802MWh分两期建设，一期200MW/400MWh磷酸铁锂电池+20MW/1MWh飞轮储能": "河南",
+      "签约": "项目立项流程审批OA",
+      "备案": "《项目公司章程》",
+      "入库": "项目设计委托合同",
+      "电力接入": "《电力接入合同》",
+      "土地获取": "土地挂牌摘牌",
+      "施工前期手续": "《环境影响评价报告》合同",
+      "施工建设": "项目情况"
+    },
+    "progress": [
+      {
+        "stage": "440MW/802MWh分两期建设，一期200MW/400MWh磷酸铁锂电池+20MW/1MWh飞轮储能",
+        "node": "河南",
+        "partner": "平顶山",
+        "plan_date": "湛河区",
+        "actual_date": "李震"
+      },
+      {
+        "stage": "签约",
+        "node": "项目立项流程审批OA",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "备案",
+        "node": "《项目公司章程》",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "入库",
+        "node": "项目设计委托合同",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "电力接入",
+        "node": "《电力接入合同》",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "土地获取",
+        "node": "土地挂牌摘牌",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "施工前期手续",
+        "node": "《环境影响评价报告》合同",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "施工建设",
+        "node": "项目情况",
+        "partner": "",
+        "plan_date": ""
+      }
+    ]
+  },
+  "山西晋中开发区": {
+    "name": "山西晋中开发区",
+    "type": "priority",
+    "basic": {
+      "200MW/400MWh": "山西",
+      "签约": "项目立项流程审批OA",
+      "备案": "《项目公司章程》",
+      "入库": "项目设计委托合同",
+      "电力接入": "《电力接入合同》",
+      "土地获取": "土地挂牌摘牌",
+      "施工前期手续": "《环境影响评价报告》合同",
+      "施工建设": "项目情况"
+    },
+    "progress": [
+      {
+        "stage": "200MW/400MWh",
+        "node": "山西",
+        "partner": "晋中",
+        "plan_date": "晋中开发区",
+        "actual_date": "张磊"
+      },
+      {
+        "stage": "签约",
+        "node": "项目立项流程审批OA",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "备案",
+        "node": "《项目公司章程》",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "入库",
+        "node": "项目设计委托合同",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "电力接入",
+        "node": "《电力接入合同》",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "土地获取",
+        "node": "土地挂牌摘牌",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "施工前期手续",
+        "node": "《环境影响评价报告》合同",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "施工建设",
+        "node": "项目情况",
+        "partner": "",
+        "plan_date": ""
+      }
+    ]
+  },
+  "山东德州庆云县": {
+    "name": "山东德州庆云县",
+    "type": "priority",
+    "basic": {
+      "200MW/400MWh": "山东",
+      "签约": "项目立项流程审批OA",
+      "备案": "《项目公司章程》",
+      "入库": "项目设计委托合同",
+      "电力接入": "《电力接入合同》",
+      "土地获取": "土地挂牌摘牌",
+      "施工前期手续": "《环境影响评价报告》合同",
+      "施工建设": "项目情况"
+    },
+    "progress": [
+      {
+        "stage": "200MW/400MWh",
+        "node": "山东",
+        "partner": "德州",
+        "plan_date": "庆云",
+        "actual_date": "张磊"
+      },
+      {
+        "stage": "签约",
+        "node": "项目立项流程审批OA",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "备案",
+        "node": "《项目公司章程》",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "入库",
+        "node": "项目设计委托合同",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "电力接入",
+        "node": "《电力接入合同》",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "土地获取",
+        "node": "土地挂牌摘牌",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "施工前期手续",
+        "node": "《环境影响评价报告》合同",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "施工建设",
+        "node": "项目情况",
+        "partner": "",
+        "plan_date": ""
+      }
+    ]
+  },
+  "山东日照岚山区": {
+    "name": "山东日照岚山区",
+    "type": "priority",
+    "basic": {
+      "200MW/800MWh": "山东",
+      "签约": "项目立项流程审批OA",
+      "备案": "《项目公司章程》",
+      "入库": "项目设计委托合同",
+      "电力接入": "《电力接入合同》",
+      "土地获取": "土地挂牌摘牌",
+      "施工前期手续": "《环境影响评价报告》合同",
+      "施工建设": "项目情况"
+    },
+    "progress": [
+      {
+        "stage": "200MW/800MWh",
+        "node": "山东",
+        "partner": "日照",
+        "plan_date": "岚山区",
+        "actual_date": "张磊"
+      },
+      {
+        "stage": "签约",
+        "node": "项目立项流程审批OA",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "备案",
+        "node": "《项目公司章程》",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "入库",
+        "node": "项目设计委托合同",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "电力接入",
+        "node": "《电力接入合同》",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "土地获取",
+        "node": "土地挂牌摘牌",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "施工前期手续",
+        "node": "《环境影响评价报告》合同",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "施工建设",
+        "node": "项目情况",
+        "partner": "",
+        "plan_date": ""
+      }
+    ]
+  },
+  "海南海口江东新区": {
+    "name": "海南海口江东新区",
+    "type": "priority",
+    "basic": {
+      "200MW/400MWh": "海南",
+      "签约": "项目立项流程审批OA",
+      "备案": "《项目公司章程》",
+      "入库": "项目设计委托合同",
+      "电力接入": "《电力接入合同》",
+      "土地获取": "土地挂牌摘牌",
+      "施工前期手续": "《环境影响评价报告》合同",
+      "施工建设": "项目情况"
+    },
+    "progress": [
+      {
+        "stage": "200MW/400MWh",
+        "node": "海南",
+        "partner": "海口",
+        "plan_date": "江东新区",
+        "actual_date": "王晶晶"
+      },
+      {
+        "stage": "签约",
+        "node": "项目立项流程审批OA",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "备案",
+        "node": "《项目公司章程》",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "入库",
+        "node": "项目设计委托合同",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "电力接入",
+        "node": "《电力接入合同》",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "土地获取",
+        "node": "土地挂牌摘牌",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "施工前期手续",
+        "node": "《环境影响评价报告》合同",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "施工建设",
+        "node": "项目情况",
+        "partner": "",
+        "plan_date": ""
+      }
+    ]
+  },
+  "贵州铜仁市思南经开区": {
+    "name": "贵州铜仁市思南经开区",
+    "type": "priority",
+    "basic": {
+      "200MW/400MWh": "贵州",
+      "签约": "项目立项流程审批OA",
+      "备案": "《项目公司章程》",
+      "入库": "项目设计委托合同",
+      "电力接入": "《电力接入合同》",
+      "土地获取": "土地挂牌摘牌",
+      "施工前期手续": "《环境影响评价报告》合同",
+      "施工建设": "项目情况"
+    },
+    "progress": [
+      {
+        "stage": "200MW/400MWh",
+        "node": "贵州",
+        "partner": "铜仁市",
+        "plan_date": "思南经开区",
+        "actual_date": "曹莹峰"
+      },
+      {
+        "stage": "签约",
+        "node": "项目立项流程审批OA",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "备案",
+        "node": "《项目公司章程》",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "入库",
+        "node": "项目设计委托合同",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "电力接入",
+        "node": "《电力接入合同》",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "土地获取",
+        "node": "土地挂牌摘牌",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "施工前期手续",
+        "node": "《环境影响评价报告》合同",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "施工建设",
+        "node": "项目情况",
+        "partner": "",
+        "plan_date": ""
+      }
+    ]
+  },
+  "山西运城市新绛县": {
+    "name": "山西运城市新绛县",
+    "type": "priority",
+    "basic": {
+      "200MW/400MWh": "山西",
+      "签约": "项目立项流程审批OA",
+      "备案": "《项目公司章程》",
+      "入库": "项目设计委托合同",
+      "电力接入": "《电力接入合同》",
+      "土地获取": "土地挂牌摘牌",
+      "施工前期手续": "《环境影响评价报告》合同",
+      "施工建设": "项目情况"
+    },
+    "progress": [
+      {
+        "stage": "200MW/400MWh",
+        "node": "山西",
+        "partner": "运城",
+        "plan_date": "新绛县",
+        "actual_date": "曹莹峰"
+      },
+      {
+        "stage": "签约",
+        "node": "项目立项流程审批OA",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "备案",
+        "node": "《项目公司章程》",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "入库",
+        "node": "项目设计委托合同",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "电力接入",
+        "node": "《电力接入合同》",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "土地获取",
+        "node": "土地挂牌摘牌",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "施工前期手续",
+        "node": "《环境影响评价报告》合同",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "施工建设",
+        "node": "项目情况",
+        "partner": "",
+        "plan_date": ""
+      }
+    ]
+  },
+  "江西抚州市宜黄县": {
+    "name": "江西抚州市宜黄县",
+    "type": "priority",
+    "basic": {
+      "400MW/800MWh": "江西",
+      "签约": "项目立项流程审批OA",
+      "备案": "《项目公司章程》",
+      "入库": "项目设计委托合同",
+      "电力接入": "《电力接入合同》",
+      "土地获取": "土地挂牌摘牌",
+      "施工前期手续": "《环境影响评价报告》合同",
+      "施工建设": "项目情况"
+    },
+    "progress": [
+      {
+        "stage": "400MW/800MWh",
+        "node": "江西",
+        "partner": "抚州",
+        "plan_date": "宜黄县",
+        "actual_date": "应俊"
+      },
+      {
+        "stage": "签约",
+        "node": "项目立项流程审批OA",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "备案",
+        "node": "《项目公司章程》",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "入库",
+        "node": "项目设计委托合同",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "电力接入",
+        "node": "《电力接入合同》",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "土地获取",
+        "node": "土地挂牌摘牌",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "施工前期手续",
+        "node": "《环境影响评价报告》合同",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "施工建设",
+        "node": "项目情况",
+        "partner": "",
+        "plan_date": ""
+      }
+    ]
+  },
+  "江西吉安遂川县": {
+    "name": "江西吉安遂川县",
+    "type": "priority",
+    "basic": {
+      "200MW/400MWh": "江西",
+      "签约": "项目立项流程审批OA",
+      "备案": "《项目公司章程》",
+      "入库": "项目设计委托合同",
+      "电力接入": "《电力接入合同》",
+      "土地获取": "土地挂牌摘牌",
+      "施工前期手续": "《环境影响评价报告》合同",
+      "施工建设": "项目情况"
+    },
+    "progress": [
+      {
+        "stage": "200MW/400MWh",
+        "node": "江西",
+        "partner": "吉安市",
+        "plan_date": "遂川县",
+        "actual_date": "应俊"
+      },
+      {
+        "stage": "签约",
+        "node": "项目立项流程审批OA",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "备案",
+        "node": "《项目公司章程》",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "入库",
+        "node": "项目设计委托合同",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "电力接入",
+        "node": "《电力接入合同》",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "土地获取",
+        "node": "土地挂牌摘牌",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "施工前期手续",
+        "node": "《环境影响评价报告》合同",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "施工建设",
+        "node": "项目情况",
+        "partner": "",
+        "plan_date": ""
+      }
+    ]
+  },
+  "湖北黄冈市英山县": {
+    "name": "湖北黄冈市英山县",
+    "type": "priority",
+    "basic": {
+      "100MW/200MWh": "湖北",
+      "签约": "项目立项流程审批OA",
+      "备案": "《项目公司章程》",
+      "入库": "项目设计委托合同",
+      "电力接入": "《电力接入合同》",
+      "土地获取": "土地挂牌摘牌",
+      "施工前期手续": "《环境影响评价报告》合同",
+      "施工建设": "项目情况"
+    },
+    "progress": [
+      {
+        "stage": "100MW/200MWh",
+        "node": "湖北",
+        "partner": "黄冈市",
+        "plan_date": "英山县",
+        "actual_date": "应俊"
+      },
+      {
+        "stage": "签约",
+        "node": "项目立项流程审批OA",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "备案",
+        "node": "《项目公司章程》",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "入库",
+        "node": "项目设计委托合同",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "电力接入",
+        "node": "《电力接入合同》",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "土地获取",
+        "node": "土地挂牌摘牌",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "施工前期手续",
+        "node": "《环境影响评价报告》合同",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "施工建设",
+        "node": "项目情况",
+        "partner": "",
+        "plan_date": ""
+      }
+    ]
+  },
+  "湖北孝感市孝南区": {
+    "name": "湖北孝感市孝南区",
+    "type": "priority",
+    "basic": {
+      "220MW/401MWh": "湖北",
+      "签约": "项目立项流程审批OA",
+      "备案": "《项目公司章程》",
+      "入库": "项目设计委托合同",
+      "电力接入": "《电力接入合同》",
+      "土地获取": "土地挂牌摘牌",
+      "施工前期手续": "《环境影响评价报告》合同",
+      "施工建设": "项目情况"
+    },
+    "progress": [
+      {
+        "stage": "220MW/401MWh",
+        "node": "湖北",
+        "partner": "孝感市",
+        "plan_date": "孝南区",
+        "actual_date": "应俊"
+      },
+      {
+        "stage": "签约",
+        "node": "项目立项流程审批OA",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "备案",
+        "node": "《项目公司章程》",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "入库",
+        "node": "项目设计委托合同",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "电力接入",
+        "node": "《电力接入合同》",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "土地获取",
+        "node": "土地挂牌摘牌",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "施工前期手续",
+        "node": "《环境影响评价报告》合同",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "施工建设",
+        "node": "项目情况",
+        "partner": "",
+        "plan_date": ""
+      }
+    ]
+  },
+  "湖北十堰郧阳区": {
+    "name": "湖北十堰郧阳区",
+    "type": "priority",
+    "basic": {
+      "200MW/400MWh": "湖北",
+      "签约": "项目立项流程审批OA",
+      "备案": "《项目公司章程》",
+      "入库": "项目设计委托合同",
+      "电力接入": "《电力接入合同》",
+      "土地获取": "土地挂牌摘牌",
+      "施工前期手续": "《环境影响评价报告》合同",
+      "施工建设": "项目情况"
+    },
+    "progress": [
+      {
+        "stage": "200MW/400MWh",
+        "node": "湖北",
+        "partner": "十堰市",
+        "plan_date": "郧阳区",
+        "actual_date": "应俊"
+      },
+      {
+        "stage": "签约",
+        "node": "项目立项流程审批OA",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "备案",
+        "node": "《项目公司章程》",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "入库",
+        "node": "项目设计委托合同",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "电力接入",
+        "node": "《电力接入合同》",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "土地获取",
+        "node": "土地挂牌摘牌",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "施工前期手续",
+        "node": "《环境影响评价报告》合同",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "施工建设",
+        "node": "项目情况",
+        "partner": "",
+        "plan_date": ""
+      }
+    ]
+  },
+  "黄冈浠水县": {
+    "name": "黄冈浠水县",
+    "type": "priority",
+    "basic": {
+      "200MW/400MWh": "湖北",
+      "签约": "项目立项流程审批OA",
+      "备案": "《项目公司章程》",
+      "入库": "项目设计委托合同",
+      "电力接入": "《电力接入合同》",
+      "土地获取": "土地挂牌摘牌",
+      "施工前期手续": "《环境影响评价报告》合同",
+      "施工建设": "项目情况"
+    },
+    "progress": [
+      {
+        "stage": "200MW/400MWh",
+        "node": "湖北",
+        "partner": "黄冈",
+        "plan_date": "浠水县",
+        "actual_date": "应俊"
+      },
+      {
+        "stage": "签约",
+        "node": "项目立项流程审批OA",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "备案",
+        "node": "《项目公司章程》",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "入库",
+        "node": "项目设计委托合同",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "电力接入",
+        "node": "《电力接入合同》",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "土地获取",
+        "node": "土地挂牌摘牌",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "施工前期手续",
+        "node": "《环境影响评价报告》合同",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "施工建设",
+        "node": "项目情况",
+        "partner": "",
+        "plan_date": ""
+      }
+    ]
+  },
+  "湖北孝感汉川经开区": {
+    "name": "湖北孝感汉川经开区",
+    "type": "priority",
+    "basic": {
+      "200MW/400MWh": "湖北",
+      "签约": "项目立项流程审批OA",
+      "备案": "《项目公司章程》",
+      "入库": "项目设计委托合同",
+      "电力接入": "《电力接入合同》",
+      "土地获取": "土地挂牌摘牌",
+      "施工前期手续": "《环境影响评价报告》合同",
+      "施工建设": "项目情况"
+    },
+    "progress": [
+      {
+        "stage": "200MW/400MWh",
+        "node": "湖北",
+        "partner": "孝感",
+        "plan_date": "汉川经开",
+        "actual_date": "应俊"
+      },
+      {
+        "stage": "签约",
+        "node": "项目立项流程审批OA",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "备案",
+        "node": "《项目公司章程》",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "入库",
+        "node": "项目设计委托合同",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "电力接入",
+        "node": "《电力接入合同》",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "土地获取",
+        "node": "土地挂牌摘牌",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "施工前期手续",
+        "node": "《环境影响评价报告》合同",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "施工建设",
+        "node": "项目情况",
+        "partner": "",
+        "plan_date": ""
+      }
+    ]
+  },
+  "湖北黄冈市蕲春县": {
+    "name": "湖北黄冈市蕲春县",
+    "type": "priority",
+    "basic": {
+      "200MW/400MWh": "湖北",
+      "签约": "项目立项流程审批OA",
+      "备案": "《项目公司章程》",
+      "入库": "项目设计委托合同",
+      "电力接入": "《电力接入合同》",
+      "土地获取": "土地挂牌摘牌",
+      "施工前期手续": "《环境影响评价报告》合同",
+      "施工建设": "项目情况"
+    },
+    "progress": [
+      {
+        "stage": "200MW/400MWh",
+        "node": "湖北",
+        "partner": "孝感",
+        "plan_date": "蕲春县",
+        "actual_date": "应俊"
+      },
+      {
+        "stage": "签约",
+        "node": "项目立项流程审批OA",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "备案",
+        "node": "《项目公司章程》",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "入库",
+        "node": "项目设计委托合同",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "电力接入",
+        "node": "《电力接入合同》",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "土地获取",
+        "node": "土地挂牌摘牌",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "施工前期手续",
+        "node": "《环境影响评价报告》合同",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "施工建设",
+        "node": "项目情况",
+        "partner": "",
+        "plan_date": ""
+      }
+    ]
+  },
+  "湖北襄阳市黄庄": {
+    "name": "湖北襄阳市黄庄",
+    "type": "priority",
+    "basic": {
+      "100MW/200MWh": "湖北",
+      "签约": "项目立项流程审批OA",
+      "备案": "《项目公司章程》",
+      "入库": "项目设计委托合同",
+      "电力接入": "《电力接入合同》",
+      "土地获取": "土地挂牌摘牌",
+      "施工前期手续": "《环境影响评价报告》合同",
+      "施工建设": "项目情况"
+    },
+    "progress": [
+      {
+        "stage": "100MW/200MWh",
+        "node": "湖北",
+        "partner": "襄阳市",
+        "plan_date": "高新技术开发区",
+        "actual_date": "应俊"
+      },
+      {
+        "stage": "签约",
+        "node": "项目立项流程审批OA",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "备案",
+        "node": "《项目公司章程》",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "入库",
+        "node": "项目设计委托合同",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "电力接入",
+        "node": "《电力接入合同》",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "土地获取",
+        "node": "土地挂牌摘牌",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "施工前期手续",
+        "node": "《环境影响评价报告》合同",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "施工建设",
+        "node": "项目情况",
+        "partner": "",
+        "plan_date": ""
+      }
+    ]
+  },
+  "河北唐山迁安": {
+    "name": "河北唐山迁安",
+    "type": "priority",
+    "basic": {
+      "150MW/600MWh": "河北",
+      "签约": "项目立项流程审批OA",
+      "备案": "《项目公司章程》",
+      "入库": "项目设计委托合同",
+      "电力接入": "《电力接入合同》",
+      "土地获取": "土地挂牌摘牌",
+      "施工前期手续": "《环境影响评价报告》合同",
+      "施工建设": "项目情况"
+    },
+    "progress": [
+      {
+        "stage": "150MW/600MWh",
+        "node": "河北",
+        "partner": "唐山",
+        "plan_date": "迁安永顺街道",
+        "actual_date": "暂未签约"
+      },
+      {
+        "stage": "签约",
+        "node": "项目立项流程审批OA",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "备案",
+        "node": "《项目公司章程》",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "入库",
+        "node": "项目设计委托合同",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "电力接入",
+        "node": "《电力接入合同》",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "土地获取",
+        "node": "土地挂牌摘牌",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "施工前期手续",
+        "node": "《环境影响评价报告》合同",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "施工建设",
+        "node": "项目情况",
+        "partner": "",
+        "plan_date": ""
+      }
+    ]
+  },
+  "河北张家口桥西区": {
+    "name": "河北张家口桥西区",
+    "type": "priority",
+    "basic": {
+      "200MW/800MWh": "河北",
+      "签约": "项目立项流程审批OA",
+      "备案": "《项目公司章程》",
+      "入库": "项目设计委托合同",
+      "电力接入": "《电力接入合同》",
+      "土地获取": "土地挂牌摘牌",
+      "施工前期手续": "《环境影响评价报告》合同",
+      "施工建设": "项目情况"
+    },
+    "progress": [
+      {
+        "stage": "200MW/800MWh",
+        "node": "河北",
+        "partner": "张家口",
+        "plan_date": "桥西区",
+        "actual_date": "暂未签约"
+      },
+      {
+        "stage": "签约",
+        "node": "项目立项流程审批OA",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "备案",
+        "node": "《项目公司章程》",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "入库",
+        "node": "项目设计委托合同",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "电力接入",
+        "node": "《电力接入合同》",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "土地获取",
+        "node": "土地挂牌摘牌",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "施工前期手续",
+        "node": "《环境影响评价报告》合同",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "施工建设",
+        "node": "项目情况",
+        "partner": "",
+        "plan_date": ""
+      }
+    ]
+  },
+  "广西北海合浦": {
+    "name": "广西北海合浦",
+    "type": "priority",
+    "basic": {
+      "200MW/400MWh": "广西",
+      "签约": "项目立项流程审批OA",
+      "备案": "《项目公司章程》",
+      "入库": "项目设计委托合同",
+      "电力接入": "《电力接入合同》",
+      "土地获取": "土地挂牌摘牌",
+      "施工前期手续": "《环境影响评价报告》合同",
+      "施工建设": "项目情况"
+    },
+    "progress": [
+      {
+        "stage": "200MW/400MWh",
+        "node": "广西",
+        "partner": "北海",
+        "plan_date": "合浦",
+        "actual_date": "暂未签约"
+      },
+      {
+        "stage": "签约",
+        "node": "项目立项流程审批OA",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "备案",
+        "node": "《项目公司章程》",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "入库",
+        "node": "项目设计委托合同",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "电力接入",
+        "node": "《电力接入合同》",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "土地获取",
+        "node": "土地挂牌摘牌",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "施工前期手续",
+        "node": "《环境影响评价报告》合同",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "施工建设",
+        "node": "项目情况",
+        "partner": "",
+        "plan_date": ""
+      }
+    ]
+  },
+  "海南东方智谷工业园": {
+    "name": "海南东方智谷工业园",
+    "type": "priority",
+    "basic": {
+      "200MW/800MWh": "海南",
+      "签约": "项目立项流程审批OA",
+      "备案": "《项目公司章程》",
+      "入库": "项目设计委托合同",
+      "电力接入": "《电力接入合同》",
+      "土地获取": "土地挂牌摘牌",
+      "施工前期手续": "《环境影响评价报告》合同",
+      "施工建设": "项目情况"
+    },
+    "progress": [
+      {
+        "stage": "200MW/800MWh",
+        "node": "海南",
+        "partner": "",
+        "plan_date": "东方智谷工业园",
+        "actual_date": "暂未签约"
+      },
+      {
+        "stage": "签约",
+        "node": "项目立项流程审批OA",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "备案",
+        "node": "《项目公司章程》",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "入库",
+        "node": "项目设计委托合同",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "电力接入",
+        "node": "《电力接入合同》",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "土地获取",
+        "node": "土地挂牌摘牌",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "施工前期手续",
+        "node": "《环境影响评价报告》合同",
+        "partner": "",
+        "plan_date": ""
+      },
+      {
+        "stage": "施工建设",
+        "node": "项目情况",
+        "partner": "",
+        "plan_date": ""
+      }
+    ]
+  }
+}
