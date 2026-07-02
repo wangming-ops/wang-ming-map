@@ -376,7 +376,7 @@
         
         #mapChart {
             width: 100%;
-            height: 500px;
+            height: 600px;
         }
         
         .map-legend {
@@ -1626,8 +1626,9 @@ PROVINCE_FULL_NAMES['西藏自治区'] = '西藏';
             
             const provinceCount = {};
             allProjects.forEach(p => {
-                if (p.province) {
-                    provinceCount[p.province] = (provinceCount[p.province] || 0) + 1;
+                const prov = PROVINCE_FULL_NAMES[p.province] || normalizeProvince(p.province);
+                if (prov) {
+                    provinceCount[prov] = (provinceCount[prov] || 0) + 1;
                 }
             });
             
@@ -1673,6 +1674,7 @@ PROVINCE_FULL_NAMES['西藏自治区'] = '西藏';
         function initMap() {
             chart = echarts.init(document.getElementById('mapChart'));
             loadChinaMap();
+            setTimeout(() => chart.resize(), 100);
             
             window.addEventListener('resize', () => {
                 chart.resize();
@@ -1700,9 +1702,14 @@ PROVINCE_FULL_NAMES['西藏自治区'] = '西藏';
                 return;
             }
             
+            console.log('Loading province map for:', province, 'normalized:', normalized, 'code:', code);
             fetch(`https://geo.datav.aliyun.com/areas_v3/bound/${code}_full.json`)
-                .then(response => response.json())
+                .then(response => {
+                    console.log('Province map response status:', response.status);
+                    return response.json();
+                })
                 .then(geoJson => {
+                    console.log('Province GeoJSON loaded, features:', geoJson.features ? geoJson.features.length : 0);
                     echarts.registerMap('province', geoJson);
                     renderProvinceMap(geoJson, province);
                 })
@@ -1827,10 +1834,6 @@ PROVINCE_FULL_NAMES['西藏自治区'] = '西藏';
                 geo: {
                     map: 'china',
                     roam: true,
-                    zoom: 1.1,
-                    center: [105, 36],
-                    layoutCenter: ['50%', '50%'],
-                    layoutSize: '80%',
                     label: {
                         show: false
                     },
@@ -1984,7 +1987,6 @@ PROVINCE_FULL_NAMES['西藏自治区'] = '西藏';
                 geo: {
                     map: 'province',
                     roam: true,
-                    zoom: 1.5,
                     label: {
                         show: true,
                         formatter: '{b}',
