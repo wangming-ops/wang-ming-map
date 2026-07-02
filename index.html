@@ -1791,11 +1791,11 @@ PROVINCE_FULL_NAMES['西藏自治区'] = '西藏';
             
             // Prepare data for province coloring
             const allProjects = [
-                ...data.pure_signed_projects,
-                ...data.started_projects,
-                ...data.approved_projects,
-                ...data.priority_projects,
-                ...data.blocked_projects
+                ...data.pure_signed_projects.map(p => ({...p, category: 'pure_signed'})),
+                ...data.started_projects.map(p => ({...p, category: 'started'})),
+                ...data.approved_projects.map(p => ({...p, category: 'approved'})),
+                ...data.priority_projects.map(p => ({...p, category: 'priority'})),
+                ...data.blocked_projects.map(p => ({...p, category: 'blocked'}))
             ];
             
             // Aggregate by province (normalized)
@@ -1916,13 +1916,13 @@ PROVINCE_FULL_NAMES['西藏自治区'] = '西藏';
         function renderProvinceMap(geoJson, province, normalizedProvince) {
             const data = allData;
             
-            // Get all projects for this province
+            // Get all projects for this province (with category tags)
             const provinceProjects = [
-                ...data.pure_signed_projects,
-                ...data.started_projects,
-                ...data.approved_projects,
-                ...data.priority_projects,
-                ...data.blocked_projects
+                ...data.pure_signed_projects.map(p => ({...p, category: 'pure_signed'})),
+                ...data.started_projects.map(p => ({...p, category: 'started'})),
+                ...data.approved_projects.map(p => ({...p, category: 'approved'})),
+                ...data.priority_projects.map(p => ({...p, category: 'priority'})),
+                ...data.blocked_projects.map(p => ({...p, category: 'blocked'}))
             ].filter(p => {
                 const pProv = PROVINCE_FULL_NAMES[p.province] || normalizeProvince(p.province);
                 return pProv === normalizedProvince;
