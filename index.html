@@ -1922,7 +1922,7 @@ PROVINCE_FULL_NAMES['西藏自治区'] = '西藏';
                         return {
                             name: d.name,
                             value: d.value,
-                            itemStyle: { color: statusColors[d.status] }
+                            itemStyle: { areaColor: statusColors[d.status] }
                         };
                     })
                 }]
@@ -2119,7 +2119,7 @@ PROVINCE_FULL_NAMES['西藏自治区'] = '西藏';
                             value: d.value,
                             status: d.status,
                             allStatuses: d.allStatuses,
-                            itemStyle: { color: statusColors[d.status] },
+                            itemStyle: { areaColor: statusColors[d.status] },
                             projects: d.projects
                         };
                     })
