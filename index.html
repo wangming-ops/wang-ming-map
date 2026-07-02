@@ -365,18 +365,73 @@
             gap: 24px;
         }
         
-        .map-container {
-            flex: 1;
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 20px;
-            min-height: 500px;
+        /* Map Section - Full Screen */
+        .map-fullscreen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: var(--bg-dark);
+            z-index: 8000;
+            display: none;
+            flex-direction: column;
         }
-        
-        #mapChart {
-            width: 100%;
-            height: 600px;
+        .map-fullscreen.active {
+            display: flex;
+        }
+        .map-fullscreen-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 24px;
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--border-color);
+        }
+        .map-fullscreen-header h3 {
+            font-size: 18px;
+            color: var(--text-primary);
+        }
+        .map-fullscreen-body {
+            flex: 1;
+            display: flex;
+            overflow: hidden;
+        }
+        .map-main {
+            flex: 1;
+            position: relative;
+        }
+        .map-sidebar {
+            width: 260px;
+            background: var(--bg-card);
+            border-left: 1px solid var(--border-color);
+            overflow-y: auto;
+            padding: 16px;
+        }
+        .map-sidebar h4 {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+        }
+        .map-sidebar .province-item {
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            margin-bottom: 4px;
+        }
+        .map-sidebar .province-item:hover {
+            background: var(--bg-card-hover);
+        }
+        .map-sidebar .province-item .count {
+            background: rgba(88,166,255,0.2);
+            color: var(--accent-blue);
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 12px;
         }
         
         .map-legend {
@@ -1149,13 +1204,7 @@
             </div>
         </div>
         
-        <!-- Province Filter -->
-        <div class="province-filter">
-            <select class="province-select" id="provinceSelect" onchange="onProvinceChange(this.value)">
-                <option value="">全国地图</option>
-            </select>
-        </div>
-        
+
         <!-- Tabs -->
         <div class="tabs">
             <button class="tab-btn active" data-tab="overview" onclick="switchTab('overview')">📋 总览</button>
@@ -1188,41 +1237,42 @@
             </div>
         </section>
         
-        <!-- Map Section -->
+        <!-- Map Section - Full Screen Independent Page -->
         <section class="section" id="mapSection">
-            <div class="map-section">
-                <div class="map-container">
-                    <div id="mapChart"></div>
-                    <button id="backToChinaBtn" onclick="loadChinaMap()" style="display:none; position:absolute; top:12px; right:12px; background:#21262d; border:1px solid #30363d; color:#c9d1d9; padding:8px 16px; border-radius:8px; cursor:pointer; font-size:13px; z-index:10;">← 返回全国</button>
-                    <div class="map-legend">
-                        <div class="legend-item">
-                            <div class="legend-color" style="background: #58a6ff;"></div>
-                            <span>纯签约</span>
-                        </div>
-                        <div class="legend-item">
-                            <div class="legend-color" style="background: #3fb950;"></div>
-                            <span>重点推进</span>
-                        </div>
-                        <div class="legend-item">
-                            <div class="legend-color" style="background: #d29922;"></div>
-                            <span>已开工</span>
-                        </div>
-                        <div class="legend-item">
-                            <div class="legend-color" style="background: #f85149;"></div>
-                            <span>无法推进</span>
-                        </div>
-                        <div class="legend-item">
-                            <div class="legend-color" style="background: #6e7681;"></div>
-                            <span>无项目</span>
-                        </div>
+            <div style="text-align:center; padding: 40px 20px;">
+                <button onclick="openMapFullscreen()" style="background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple)); color: #fff; border: none; padding: 16px 48px; border-radius: 12px; font-size: 18px; cursor: pointer; box-shadow: 0 4px 20px rgba(88,166,255,0.3);">
+                    🗺️ 打开项目地图
+                </button>
+                <p style="color: var(--text-secondary); margin-top: 12px; font-size: 14px;">点击打开全屏地图，查看全国项目分布与省份详情</p>
+            </div>
+        </section>
+        
+        <!-- Map Fullscreen Overlay -->
+        <div class="map-fullscreen" id="mapFullscreen">
+            <div class="map-fullscreen-header">
+                <h3>🗺️ 项目地图</h3>
+                <div style="display:flex;gap:16px;align-items:center;">
+                    <button id="backToChinaBtn" onclick="loadChinaMap()" style="display:none; background:#21262d; border:1px solid #30363d; color:#c9d1d9; padding:6px 14px; border-radius:8px; cursor:pointer; font-size:13px;">← 返回全国</button>
+                    <div class="map-legend" style="margin:0;">
+                        <div class="legend-item"><div class="legend-color" style="background:#58a6ff;"></div><span>纯签约</span></div>
+                        <div class="legend-item"><div class="legend-color" style="background:#3fb950;"></div><span>重点推进</span></div>
+                        <div class="legend-item"><div class="legend-color" style="background:#d29922;"></div><span>已开工</span></div>
+                        <div class="legend-item"><div class="legend-color" style="background:#f85149;"></div><span>无法推进</span></div>
+                        <div class="legend-item"><div class="legend-color" style="background:#6e7681;"></div><span>无项目</span></div>
                     </div>
+                    <button onclick="closeMapFullscreen()" style="background:#21262d; border:1px solid #30363d; color:#c9d1d9; padding:6px 14px; border-radius:8px; cursor:pointer; font-size:13px;">✕ 关闭</button>
                 </div>
-                <div class="province-sidebar">
-                    <h3>📍 省份分布</h3>
+            </div>
+            <div class="map-fullscreen-body">
+                <div class="map-main">
+                    <div id="mapChart" style="width:100%;height:100%;"></div>
+                </div>
+                <div class="map-sidebar">
+                    <h4>📍 省份分布</h4>
                     <div id="provinceList"></div>
                 </div>
             </div>
-        </section>
+        </div>
         
         <!-- Project List Sections -->
         <section class="section" id="signedSection">
@@ -1646,13 +1696,12 @@ PROVINCE_FULL_NAMES['西藏自治区'] = '西藏';
         }
         
         function selectProvince(province) {
-            document.getElementById('provinceSelect').value = province;
             onProvinceChange(province);
             
             // Update active state
             document.querySelectorAll('.province-item').forEach(item => {
                 item.classList.remove('active');
-                if (item.querySelector('.province-name').textContent === province) {
+                if (item.querySelector('.province-name') && item.querySelector('.province-name').textContent === province) {
                     item.classList.add('active');
                 }
             });
@@ -1672,14 +1721,25 @@ PROVINCE_FULL_NAMES['西藏自治区'] = '西藏';
         }
         
         // Map Functions
+        function openMapFullscreen() {
+            document.getElementById('mapFullscreen').classList.add('active');
+            setTimeout(function() {
+                if (!chart) {
+                    chart = echarts.init(document.getElementById('mapChart'));
+                    window.addEventListener('resize', function() { chart && chart.resize(); });
+                } else {
+                    chart.resize();
+                }
+                loadChinaMap();
+                renderProvinceList();
+            }, 150);
+        }
+        function closeMapFullscreen() {
+            document.getElementById('mapFullscreen').classList.remove('active');
+        }
+        
         function initMap() {
-            chart = echarts.init(document.getElementById('mapChart'));
-            loadChinaMap();
-            setTimeout(() => chart.resize(), 100);
-            
-            window.addEventListener('resize', () => {
-                chart.resize();
-            });
+            // 地图改为全屏模式，不在此初始化
         }
         
         function loadChinaMap() {
@@ -1868,12 +1928,12 @@ PROVINCE_FULL_NAMES['西藏自治区'] = '西藏';
                 return pProv === normalizedProvince;
             });
             
-            // Aggregate by district
-            const districtData = {};
+            // Aggregate by city (地级市级别匹配)
+            const cityData = {};
             provinceProjects.forEach(p => {
-                const district = p.district || '其他';
-                if (!districtData[district]) {
-                    districtData[district] = {
+                const city = p.city || p.district || '其他';
+                if (!cityData[city]) {
+                    cityData[city] = {
                         total: 0,
                         started: 0,
                         priority: 0,
@@ -1882,21 +1942,23 @@ PROVINCE_FULL_NAMES['西藏自治区'] = '西藏';
                         projects: []
                     };
                 }
-                districtData[district].total++;
-                districtData[district].projects.push(p);
+                cityData[city].total++;
+                cityData[city].projects.push(p);
                 const status = getProjectStatusForMap(p);
-                districtData[district][status]++;
+                cityData[city][status]++;
             });
             
             const mapData = geoJson.features.map(feature => {
                 const name = feature.properties.name;
-                const cleanName = name.replace(/市|区|县|旗|自治县|林区/g, '');
+                const cleanName = name.replace(/市|区|县|州|盟|地区|林区/g, '');
                 
-                // Find matching district
+                // 匹配地级市：用city字段 vs feature name
                 let matched = null;
-                for (const [district, dData] of Object.entries(districtData)) {
-                    if (district.includes(cleanName) || cleanName.includes(district) || district.includes(name) || name.includes(district)) {
-                        matched = dData;
+                for (const [city, cData] of Object.entries(cityData)) {
+                    const cleanCity = city.replace(/市|区|县|州|盟|地区/g, '');
+                    if (cleanName === cleanCity || cleanName.includes(cleanCity) || cleanCity.includes(cleanName) ||
+                        name === city || name.includes(city) || city.includes(name)) {
+                        matched = cData;
                         break;
                     }
                 }
@@ -2084,6 +2146,43 @@ PROVINCE_FULL_NAMES['西藏自治区'] = '西藏';
                 const archive = allData.archives && allData.archives[project.name];
                 const progressCount = archive && archive.progress ? archive.progress.length : 0;
                 const completedCount = archive && archive.progress ? archive.progress.filter(n => n['完成情况'] === '已完成').length : 0;
+                
+                // 重点推进项目额外显示资金跟踪
+                let fundHtml = '';
+                if (type === 'priority' && project.payment_tracking && project.payment_tracking.length > 0) {
+                    const keyItems = project.payment_tracking.filter(t => t.status || t.note);
+                    if (keyItems.length > 0) {
+                        fundHtml = '<div class="project-fund" style="margin-top:6px;padding:8px 12px;background:rgba(210,153,34,0.08);border:1px solid rgba(210,153,34,0.2);border-radius:8px;font-size:12px;">';
+                        fundHtml += '<div style="color:#d29922;font-weight:600;margin-bottom:4px;">💰 资金/合同跟踪</div>';
+                        keyItems.slice(0, 4).forEach(item => {
+                            fundHtml += '<div style="color:var(--text-secondary);display:flex;gap:8px;margin-top:2px;">';
+                            fundHtml += '<span style="color:var(--text-primary);min-width:80px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">' + (item.node || '') + '</span>';
+                            if (item.status) fundHtml += '<span style="color:#58a6ff;">' + item.status + '</span>';
+                            if (item.responsible) fundHtml += '<span>' + item.responsible + '</span>';
+                            if (item.note && item.note.length < 60) fundHtml += '<span style="color:#f0f6fc;">' + item.note + '</span>';
+                            fundHtml += '</div>';
+                        });
+                        if (keyItems.length > 4) fundHtml += '<div style="color:var(--text-secondary);margin-top:2px;">... 共' + keyItems.length + '条</div>';
+                        fundHtml += '</div>';
+                    }
+                }
+                
+                // 进度节点摘要（带阶段）
+                let progressSummary = '';
+                if (archive && archive.progress) {
+                    const stages = {};
+                    archive.progress.forEach(n => {
+                        const stage = n['阶段'] || '未分类';
+                        if (!stages[stage]) stages[stage] = {total: 0, done: 0};
+                        stages[stage].total++;
+                        if (n['完成情况'] === '已完成') stages[stage].done++;
+                    });
+                    progressSummary = Object.entries(stages).map(([s, d]) => {
+                        const pct = d.total > 0 ? Math.round(d.done/d.total*100) : 0;
+                        return s + ' ' + pct + '%';
+                    }).join(' | ');
+                }
+                
                 return `
                 <div class="project-item">
                     <div class="project-name">${project.name || '未命名项目'}</div>
@@ -2091,21 +2190,24 @@ PROVINCE_FULL_NAMES['西藏自治区'] = '西藏';
                     <div class="project-scale">${project.scale || project.scale_mw + 'MW'}</div>
                     <div class="project-meta">
                         <span>📋 ${project.project_company || '-'}</span>
-                        <span> 签约: ${project.signed_by || '-'}</span>
-                        <span>👤 负责: ${project.project_manager || project.manager || '-'}</span>
+                        <span>签约: ${project.signed_by || '-'}</span>
+                        <span>👤 ${project.project_manager || project.manager || '-'}</span>
                         ${project.land_area ? `<span>🏗️ ${project.land_area}亩</span>` : ''}
                         ${progressCount ? `<span>📊 ${completedCount}/${progressCount}节点</span>` : ''}
                     </div>
-                    <div class="project-info">${project.manager || '未指定'}</div>
-                    ${type === 'priority' ? `
-                        <select class="status-select" onchange="updateProjectStatus(${project.id}, this.value, '${type}')">
-                            <option value="重点推进" ${project.status === '重点推进' ? 'selected' : ''}>重点推进</option>
-                            <option value="优质储备" ${project.status === '优质储备' ? 'selected' : ''}>优质储备</option>
-                            <option value="暂缓" ${project.status === '暂缓' ? 'selected' : ''}>暂缓</option>
-                        </select>
-                    ` : `<span class="status-badge status-${type}">${getStatusText(project.status || type)}</span>`}
-                    <button class="archive-btn" onclick="openArchiveDetail('${project.name}')" title="查看档案"></button>
-                    <button class="delete-btn" onclick="confirmDelete(${project.id}, '${type}')">删除</button>
+                    ${progressSummary ? `<div style="font-size:11px;color:var(--text-secondary);margin-top:4px;padding:4px 0;border-top:1px dashed var(--border-color);">阶段进度: ${progressSummary}</div>` : ''}
+                    ${fundHtml}
+                    <div style="display:flex;align-items:center;gap:8px;margin-top:6px;">
+                        ${type === 'priority' ? `
+                            <select class="status-select" onchange="updateProjectStatus(${project.id}, this.value, '${type}')">
+                                <option value="重点推进" ${project.status === '重点推进' ? 'selected' : ''}>重点推进</option>
+                                <option value="优质储备" ${project.status === '优质储备' ? 'selected' : ''}>优质储备</option>
+                                <option value="暂缓" ${project.status === '暂缓' ? 'selected' : ''}>暂缓</option>
+                            </select>
+                        ` : `<span class="status-badge status-${type}">${getStatusText(project.status || type)}</span>`}
+                        <button class="archive-btn" onclick="openArchiveDetail('${project.name}')" title="查看档案"></button>
+                        <button class="delete-btn" onclick="confirmDelete(${project.id}, '${type}')">删除</button>
+                    </div>
                 </div>
             `}).join('');
             
@@ -2215,15 +2317,32 @@ PROVINCE_FULL_NAMES['西藏自治区'] = '西藏';
                 const archive = archives[name];
                 const projectCount = archive.progress ? archive.progress.filter(n => n['阶段']).length : 0;
                 const completedCount = archive.progress ? archive.progress.filter(n => n['完成情况'] === '已完成').length : 0;
+                const progressStages = {};
+                if (archive.progress) {
+                    archive.progress.forEach(n => {
+                        const stage = n['阶段'] || '未分类';
+                        if (!progressStages[stage]) progressStages[stage] = {total: 0, done: 0};
+                        progressStages[stage].total++;
+                        if (n['完成情况'] === '已完成') progressStages[stage].done++;
+                    });
+                }
+                const stageSummary = Object.entries(progressStages).map(([s, d]) => {
+                    const pct = d.total > 0 ? Math.round(d.done/d.total*100) : 0;
+                    return `<span style="margin-right:6px;">${s} ${pct}%</span>`;
+                }).join('');
                 
                 return `
-                    <div class="project-item" onclick="openArchiveDetail('${name}')" style="cursor: pointer;">
-                        <div class="project-name">${name}</div>
-                        <div class="project-info">${archive.basic ? (archive.basic['省份'] || '') + ' ' + (archive.basic['地市'] || '') : ''}</div>
-                        <div class="project-info">${archive.basic ? archive.basic['规模'] || '' : ''}</div>
-                        <div class="project-info">${completedCount}/${projectCount} 节点</div>
-                        <span class="status-badge status-${getArchiveTypeStatus(archive.type)}">${getArchiveTypeText(archive.type)}</span>
-                        <button class="delete-btn" onclick="event.stopPropagation(); confirmDeleteArchive('${name}')">删除</button>
+                    <div class="project-item" onclick="openArchiveDetail('${name}')" style="cursor:pointer;padding:8px 24px;grid-template-columns:2fr 1fr 1fr auto;">
+                        <div>
+                            <div class="project-name" style="font-size:13px;">${name}</div>
+                            <div style="font-size:11px;color:var(--text-secondary);margin-top:2px;">${archive.basic ? (archive.basic['省份'] || '') + ' ' + (archive.basic['地市'] || '') : ''} · ${archive.basic ? archive.basic['规模'] || '' : ''}</div>
+                        </div>
+                        <div style="font-size:12px;color:var(--text-secondary);">${completedCount}/${projectCount} 节点</div>
+                        <div style="font-size:11px;color:var(--text-secondary);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${stageSummary}</div>
+                        <div style="display:flex;align-items:center;gap:6px;">
+                            <span class="status-badge status-${getArchiveTypeStatus(archive.type)}" style="font-size:11px;padding:2px 8px;">${getArchiveTypeText(archive.type)}</span>
+                            <button class="delete-btn" onclick="event.stopPropagation(); confirmDeleteArchive('${name}')" style="font-size:11px;padding:2px 6px;">删除</button>
+                        </div>
                     </div>
                 `;
             }).join('');
