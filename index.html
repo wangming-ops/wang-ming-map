@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>蝶变计划 - 项目管控看板</title>
     <!-- 本地ECharts -->
-    <script src="vendor/echarts.min.js"></script>
+    <script src="echarts.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -1088,7 +1088,7 @@ function getArchiveByName(name) {
             mapChart = echarts.init(document.getElementById('map-chart'));
 
             // 加载中国地图JSON
-            fetch('vendor/china.json')
+            fetch('china.json')
                 .then(res => res.json())
                 .then(chinaJson => {
                     echarts.registerMap('china', chinaJson);
