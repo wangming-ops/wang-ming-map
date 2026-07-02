@@ -657,11 +657,11 @@ const EMBEDDED_ARCHIVES = {"河南驻马店泌阳县": {"name": "河南驻马店
 
 // 数据过滤函数
 function getProjectsByType(type) {
-    if (type === 'signed') return EMBEDDED_DATA.pure_signed || [];
-    if (type === 'started') return EMBEDDED_DATA.started || [];
-    if (type === 'approved') return EMBEDDED_DATA.approved_not_started || [];
+    if (type === 'signed') return EMBEDDED_DATA.pure_signed_projects || [];
+    if (type === 'started') return EMBEDDED_DATA.started_projects || [];
+    if (type === 'approved') return EMBEDDED_DATA.approved_projects || [];
     if (type === 'priority') return EMBEDDED_DATA.priority_projects || [];
-    if (type === 'blocked') return EMBEDDED_DATA.blocked || [];
+    if (type === 'blocked') return EMBEDDED_DATA.blocked_projects || [];
     return [];
 }
 
@@ -870,7 +870,7 @@ function getArchiveByName(name) {
         let currentListType = '';
 
         // API基础路径
-        const API_BASE = '';
+        // API_BASE 已移除（静态版本）
 
         // 初始化
         document.addEventListener('DOMContentLoaded', () => {
@@ -899,10 +899,10 @@ function getArchiveByName(name) {
         async function loadData() {
             try {
                 // 加载统计数据
-                const stats = EMBEDDED_DATA;
-                document.getElementById('stat-signed').textContent = stats.pure_signed_count || 0;
-                document.getElementById('stat-started').textContent = stats.started_count || 0;
-                document.getElementById('stat-approved').textContent = stats.approved_count || 0;
+                const stats = EMBEDDED_DATA.stats || {};
+                document.getElementById('stat-signed').textContent = stats.pure_signed_count || (EMBEDDED_DATA.pure_signed_projects || []).length;
+                document.getElementById('stat-started').textContent = stats.started_count || (EMBEDDED_DATA.started_projects || []).length;
+                document.getElementById('stat-approved').textContent = stats.approved_count || (EMBEDDED_DATA.approved_projects || []).length;
 
                 // 加载概览数据
                 await loadOverviewTable();
@@ -922,11 +922,11 @@ function getArchiveByName(name) {
         async function loadOverviewTable() {
             try {
                 const [signed, started, approved, priority, blocked] = await Promise.all([
-                    fetch(`${API_BASE}/api/projects?type=signed`).then(r => r.json()),
-                    fetch(`${API_BASE}/api/projects?type=started`).then(r => r.json()),
-                    fetch(`${API_BASE}/api/projects?type=approved`).then(r => r.json()),
-                    fetch(`${API_BASE}/api/projects?type=priority`).then(r => r.json()),
-                    fetch(`${API_BASE}/api/projects?type=blocked`).then(r => r.json())
+                    Promise.resolve(getProjectsByType('signed')),
+                    Promise.resolve(getProjectsByType('started')),
+                    Promise.resolve(getProjectsByType('approved')),
+                    Promise.resolve(getProjectsByType('priority')),
+                    Promise.resolve(getProjectsByType('blocked'))
                 ]);
 
                 const provinces = new Set();
@@ -964,8 +964,7 @@ function getArchiveByName(name) {
         // 加载重点推进数据
         async function loadPriorityData() {
             try {
-                const res = await fetch(`${API_BASE}/api/projects?type=priority`);
-                priorityData = await res.json();
+                priorityData = getProjectsByType('priority');
                 
                 // 填充筛选下拉
                 const provinces = [...new Set(priorityData.map(p => p.province).filter(Boolean))].sort();
