@@ -1193,6 +1193,7 @@
             <div class="map-section">
                 <div class="map-container">
                     <div id="mapChart"></div>
+                    <button id="backToChinaBtn" onclick="loadChinaMap()" style="display:none; position:absolute; top:12px; right:12px; background:#21262d; border:1px solid #30363d; color:#c9d1d9; padding:8px 16px; border-radius:8px; cursor:pointer; font-size:13px; z-index:10;">← 返回全国</button>
                     <div class="map-legend">
                         <div class="legend-item">
                             <div class="legend-color" style="background: #58a6ff;"></div>
@@ -1702,23 +1703,19 @@ PROVINCE_FULL_NAMES['西藏自治区'] = '西藏';
                 return;
             }
             
-            console.log('Loading province map for:', province, 'normalized:', normalized, 'code:', code);
-            const controller = new AbortController();
-            const timeoutId = setTimeout(() => controller.abort(), 15000);
-            fetch(`https://geo.datav.aliyun.com/areas_v3/bound/${code}_full.json`, { signal: controller.signal })
-                .then(response => {
-                    clearTimeout(timeoutId);
-                    console.log('Province map response status:', response.status);
+            console.log('Loading province map for:', province, 'code:', code);
+            fetch('provinces/' + code + '.json')
+                .then(function(response) {
                     if (!response.ok) throw new Error('HTTP ' + response.status);
                     return response.json();
                 })
-                .then(geoJson => {
+                .then(function(geoJson) {
                     console.log('Province GeoJSON loaded, features:', geoJson.features ? geoJson.features.length : 0);
                     echarts.registerMap('province', geoJson);
                     renderProvinceMap(geoJson, province, normalized);
+                    document.getElementById('backToChinaBtn').style.display = 'block';
                 })
-                .catch(error => {
-                    clearTimeout(timeoutId);
+                .catch(function(error) {
                     console.error('Failed to load province map:', error);
                     showToast('省份地图加载失败', 'error');
                     loadChinaMap();
@@ -1817,65 +1814,38 @@ PROVINCE_FULL_NAMES['西藏自治区'] = '西藏';
                                 'blocked': '无法推进',
                                 'none': '无项目'
                             };
-                            return `${params.name}<br/>项目数: ${params.data.value}<br/>状态: ${statusNames[params.data.status] || '未知'}`;
+                            return params.name + '<br/>项目数: ' + params.data.value + '<br/>状态: ' + (statusNames[params.data.status] || '未知');
                         }
                         return params.name;
                     }
                 },
-                visualMap: {
-                    min: 0,
-                    max: 30,
-                    left: 'left',
-                    top: 'bottom',
-                    text: ['高', '低'],
-                    calculable: true,
-                    inRange: {
-                        color: ['#1a3a5c', '#2d5a87', '#4a7eb8', '#6ea4d9']
-                    },
-                    textStyle: {
-                        color: '#8b949e'
-                    }
-                },
-                geo: {
+                series: [{
+                    type: 'map',
                     map: 'china',
                     roam: true,
-                    label: {
-                        show: false
-                    },
+                    label: { show: false },
                     itemStyle: {
                         borderColor: '#30363d',
                         borderWidth: 1
                     },
                     emphasis: {
-                        label: {
-                            show: true,
-                            color: '#fff'
-                        },
-                        itemStyle: {
-                            areaColor: '#21262d'
-                        }
+                        label: { show: true, color: '#fff' },
+                        itemStyle: { areaColor: '#21262d' }
                     },
-                    select: {
-                        disabled: true
-                    }
-                },
-                series: [
-                    {
-                        name: '项目分布',
-                        type: 'map',
-                        geoIndex: 0,
-                        data: mapData.map(d => ({
+                    select: { disabled: true },
+                    data: mapData.map(function(d) {
+                        return {
                             name: d.name,
                             value: d.value,
-                            itemStyle: {
-                                color: statusColors[d.status]
-                            }
-                        }))
-                    }
-                ]
+                            itemStyle: { color: statusColors[d.status] }
+                        };
+                    })
+                }]
             };
             
             chart.setOption(option, true);
+            var backBtn = document.getElementById('backToChinaBtn');
+            if (backBtn) backBtn.style.display = 'none';
             
             chart.on('click', function(params) {
                 if (params.name) {
