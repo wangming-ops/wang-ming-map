@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>SYSTEM TERMINAL v3.7.1</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: #0a0a0a;
+  color: #00ff41;
+  font-family: 'Courier New', 'Consolas', monospace;
+  font-size: 13px;
+  line-height: 1.6;
+  overflow: hidden;
+  height: 100vh;
+}
+
+/* 扫描线效果 */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0,0,0,0.15) 0px,
+    rgba(0,0,0,0.15) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* 闪烁光标 */
+@keyframes blink { 0%,50% { opacity: 1; } 51%,100% { opacity: 0; } }
+.cursor { display: inline-block; width: 8px; height: 14px; background: #00ff41; animation: blink 1s infinite; vertical-align: middle; margin-left: 2px; }
+
+/* 顶部状态栏 */
+.topbar {
+  background: #111;
+  border-bottom: 1px solid #00ff4133;
+  padding: 6px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  color: #00ff41aa;
+}
+.topbar .title { color: #00ff41; font-weight: bold; font-size: 13px; }
+.topbar .status-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #00ff41; margin-right: 6px; animation: blink 2s infinite; }
+
+/* 主布局 */
+.main {
+  display: flex;
+  height: calc(100vh - 32px);
+}
+
+/* 左侧代码区 */
+.code-panel {
+  flex: 1;
+  padding: 16px;
+  overflow: hidden;
+  border-right: 1px solid #00ff4122;
+  display: flex;
+  flex-direction: column;
+}
+.code-header {
+  color: #00ff4188;
+  font-size: 11px;
+  margin-bottom: 8px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #00ff4115;
+  display: flex;
+  justify-content: space-between;
+}
+.code-content {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}
+.code-line {
+  white-space: pre;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.code-line.visible { opacity: 1; }
+.line-num { color: #00ff4144; margin-right: 16px; user-select: none; }
+.keyword { color: #ff6ac1; }
+.string { color: #f3e779; }
+.func { color: #69b4ff; }
+.comment { color: #555; font-style: italic; }
+.number { color: #ff9b43; }
+.type { color: #9aedfe; }
+.operator { color: #ff6ac1; }
+
+/* 右侧面板 */
+.right-panel {
+  width: 340px;
+  display: flex;
+  flex-direction: column;
+  background: #0d0d0d;
+}
+
+/* 系统监控 */
+.monitor {
+  padding: 12px;
+  border-bottom: 1px solid #00ff4122;
+}
+.monitor-title {
+  font-size: 10px;
+  color: #00ff4188;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+}
+.metric {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+  font-size: 12px;
+}
+.metric-label { color: #888; }
+.metric-value { color: #00ff41; font-weight: bold; }
+.metric-value.warn { color: #f3e779; }
+.metric-value.critical { color: #ff5555; }
+
+/* 进度条 */
+.progress-bar {
+  height: 4px;
+  background: #1a1a1a;
+  border-radius: 2px;
+  margin: 8px 0;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #00ff41, #00ccff);
+  border-radius: 2px;
+  transition: width 0.5s ease;
+  width: 0%;
+}
+.progress-fill.warn { background: linear-gradient(90deg, #f3e779, #ff9b43); }
+
+/* 日志流 */
+.log-panel {
+  flex: 1;
+  padding: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.log-content {
+  flex: 1;
+  overflow: hidden;
+  font-size: 11px;
+}
+.log-line {
+  margin-bottom: 2px;
+  opacity: 0;
+  transition: opacity 0.2s;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.log-line.visible { opacity: 1; }
+.log-time { color: #555; }
+.log-ok { color: #00ff41; }
+.log-warn { color: #f3e779; }
+.log-err { color: #ff5555; }
+.log-info { color: #69b4ff; }
+
+/* 底部矩阵动画 */
+.matrix-bar {
+  height: 60px;
+  border-top: 1px solid #00ff4122;
+  padding: 4px 12px;
+  overflow: hidden;
+  display: flex;
+  gap: 4px;
+  align-items: flex-end;
+}
+.matrix-col {
+  width: 3px;
+  background: #00ff41;
+  opacity: 0.15;
+  transition: height 0.3s;
+}
+
+/* 打字光标闪烁 */
+@keyframes pulse { 0%,100% { box-shadow: 0 0 5px #00ff41; } 50% { box-shadow: 0 0 20px #00ff41, 0 0 40px #00ff4155; } }
+.glow { animation: pulse 2s infinite; }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div><span class="status-dot"></span><span class="title">PENGHUI-OPS TERMINAL v3.7.1</span> &nbsp;│&nbsp; SESSION: 0xA7F2 &nbsp;│&nbsp; PID: 48291</div>
+  <div id="clock">--:--:--</div>
+</div>
+
+<div class="main">
+  <!-- 左侧：代码面板 -->
+  <div class="code-panel">
+    <div class="code-header">
+      <span>▶ energy_storage_optimizer.py — running</span>
+      <span id="codeProgress">0%</span>
+    </div>
+    <div class="code-content" id="codeContent"></div>
+  </div>
+
+  <!-- 右侧 -->
+  <div class="right-panel">
+    <!-- 系统监控 -->
+    <div class="monitor">
+      <div class="monitor-title">System Monitor</div>
+      <div class="metric"><span class="metric-label">CPU Usage</span><span class="metric-value" id="cpuVal">0%</span></div>
+      <div class="progress-bar"><div class="progress-fill" id="cpuBar"></div></div>
+      <div class="metric"><span class="metric-label">Memory</span><span class="metric-value" id="memVal">0 MB</span></div>
+      <div class="progress-bar"><div class="progress-fill" id="memBar"></div></div>
+      <div class="metric"><span class="metric-label">GPU Compute</span><span class="metric-value" id="gpuVal">0 TFLOPS</span></div>
+      <div class="progress-bar"><div class="progress-fill" id="gpuBar"></div></div>
+      <div class="metric"><span class="metric-label">Network I/O</span><span class="metric-value" id="netVal">0 MB/s</span></div>
+      <div class="progress-bar"><div class="progress-fill warn" id="netBar"></div></div>
+      <div class="metric"><span class="metric-label">Iterations</span><span class="metric-value" id="iterVal">0 / 10,000</span></div>
+    </div>
+
+    <!-- 日志流 -->
+    <div class="log-panel">
+      <div class="monitor-title">Event Log</div>
+      <div class="log-content" id="logContent"></div>
+    </div>
+
+    <!-- 底部矩阵 -->
+    <div class="matrix-bar" id="matrixBar"></div>
+  </div>
+</div>
+
+<script>
+// === 时钟 ===
+function updateClock() {
+  const now = new Date();
+  document.getElementById('clock').textContent = now.toTimeString().split(' ')[0] + ' CST';
+}
+setInterval(updateClock, 1000);
+updateClock();
+
+// === 模拟代码 ===
+const codeLines = [
+  ['<span class="comment">#!/usr/bin/env python3</span>'],
+  ['<span class="comment"># Energy Storage Project Optimization Engine v3.7</span>'],
+  ['<span class="comment"># Penghui Lihex Operations Center</span>'],
+  [''],
+  ['<span class="keyword">import</span> numpy <span class="keyword">as</span> np'],
+  ['<span class="keyword">from</span> scipy.optimize <span class="keyword">import</span> minimize, differential_evolution'],
+  ['<span class="keyword">from</span> dataclasses <span class="keyword">import</span> dataclass, field'],
+  ['<span class="keyword">from</span> typing <span class="keyword">import</span> List, Dict, Optional, Tuple'],
+  ['<span class="keyword">import</span> pandas <span class="keyword">as</span> pd'],
+  ['<span class="keyword">import</span> torch'],
+  ['<span class="keyword">import</span> warnings'],
+  [''],
+  ['<span class="keyword">@dataclass</span>'],
+  ['<span class="keyword">class</span> <span class="type">StorageProject</span>:'],
+  ['    name: <span class="type">str</span>'],
+  ['    province: <span class="type">str</span>'],
+  ['    capacity_mw: <span class="type">float</span>'],
+  ['    duration_h: <span class="type">float</span>'],
+  ['    cell_type: <span class="type">str</span> = <span class="string">"314Ah LFP"</span>'],
+  ['    status: <span class="type">str</span> = <span class="string">"planning"</span>'],
+  ['    grid_connection: Optional[<span class="type">dict</span>] = <span class="keyword">None</span>'],
+  ['    cost_per_mwh: <span class="type">float</span> = <span class="number">0.0</span>'],
+  ['    progress_pct: <span class="type">float</span> = <span class="number">0.0</span>'],
+  [''],
+  ['<span class="keyword">@dataclass</span>'],
+  ['<span class="keyword">class</span> <span class="type">OptimizationConfig</span>:'],
+  ['    population_size: <span class="type">int</span> = <span class="number">500</span>'],
+  ['    max_iterations: <span class="type">int</span> = <span class="number">10000</span>'],
+  ['    mutation_rate: <span class="type">float</span> = <span class="number">0.8</span>'],
+  ['    crossover_rate: <span class="type">float</span> = <span class="number">0.7</span>'],
+  ['    tolerance: <span class="type">float</span> = <span class="number">1e-6</span>'],
+  ['    device: <span class="type">str</span> = <span class="string">"cuda"</span> <span class="keyword">if</span> torch.cuda.is_available() <span class="keyword">else</span> <span class="string">"cpu"</span>'],
+  [''],
+  ['<span class="keyword">class</span> <span class="type">EnergyOptimizer</span>:'],
+  ['    <span class="string">"""Multi-objective storage project optimizer"""</span>'],
+  [''],
+  ['    <span class="keyword">def</span> <span class="func">__init__</span>(self, config: <span class="type">OptimizationConfig</span>):'],
+  ['        self.config = config'],
+  ['        self.projects: List[<span class="type">StorageProject</span>] = []'],
+  ['        self.pareto_front: List[<span class="type">dict</span>] = []'],
+  ['        self._load_projects()'],
+  ['        self._init_neural_model()'],
+  [''],
+  ['    <span class="keyword">def</span> <span class="func">_load_projects</span>(self):'],
+  ['        <span class="string">"""Load all 127 projects across 15 provinces"""</span>'],
+  ['        df = pd.read_feather(<span class="string">"data/projects_v3.feather"</span>)'],
+  ['        <span class="keyword">for</span> _, row <span class="keyword">in</span> df.iterrows():'],
+  ['            proj = <span class="type">StorageProject</span>('],
+  ['                name=row[<span class="string">"project_name"</span>],'],
+  ['                province=row[<span class="string">"province"</span>],'],
+  ['                capacity_mw=row[<span class="string">"capacity_mw"</span>],'],
+  ['                duration_h=row[<span class="string">"duration_h"</span>],'],
+  ['                cell_type=row.get(<span class="string">"cell_type"</span>, <span class="string">"314Ah LFP"</span>),'],
+  ['                status=row.get(<span class="string">"status"</span>, <span class="string">"planning"</span>)'],
+  ['            )'],
+  ['            self.projects.append(proj)'],
+  ['        <span class="func">print</span>(f<span class="string">"Loaded {len(self.projects)} projects"</span>)'],
+  [''],
+  ['    <span class="keyword">def</span> <span class="func">_init_neural_model</span>(self):'],
+  ['        <span class="string">"""Initialize cost prediction neural network"""</span>'],
+  ['        self.model = torch.nn.Sequential('],
+  ['            torch.nn.Linear(<span class="number">12</span>, <span class="number">256</span>),'],
+  ['            torch.nn.GELU(),'],
+  ['            torch.nn.Dropout(<span class="number">0.1</span>),'],
+  ['            torch.nn.Linear(<span class="number">256</span>, <span class="number">128</span>),'],
+  ['            torch.nn.GELU(),'],
+  ['            torch.nn.Linear(<span class="number">128</span>, <span class="number">3</span>)  <span class="comment"># [cost, risk, roi]</span>'],
+  ['        ).to(self.config.device)'],
+  ['        self.optimizer_nn = torch.optim.AdamW(self.model.parameters(), lr=<span class="number">3e-4</span>)'],
+  [''],
+  ['    <span class="keyword">def</span> <span class="func">objective_fn</span>(self, x: np.ndarray) -> np.ndarray:'],
+  ['        <span class="string">"""Multi-objective: minimize cost, risk; maximize ROI"""</span>'],
+  ['        n = <span class="func">len</span>(self.projects)'],
+  ['        allocation = x[:n].reshape(-<span class="number">1</span>, <span class="number">1</span>)'],
+  ['        timing = x[n:<span class="number">2</span>*n].reshape(-<span class="number">1</span>, <span class="number">1</span>)'],
+  ['        tech = x[<span class="number">2</span>*n:].reshape(-<span class="number">1</span>, <span class="number">1</span>)'],
+  ['        '],
+  ['        features = np.concatenate([allocation, timing, tech], axis=<span class="number">1</span>)'],
+  ['        X = torch.tensor(features, dtype=torch.float32).to(self.config.device)'],
+  ['        <span class="keyword">with</span> torch.no_grad():'],
+  ['            pred = self.model(X).cpu().numpy()'],
+  ['        '],
+  ['        cost = np.sum(pred[:, <span class="number">0</span>] * allocation) / n'],
+  ['        risk = np.mean(pred[:, <span class="number">1</span>] * (<span class="number">1</span> + np.std(timing)))'],
+  ['        roi = -np.sum(pred[:, <span class="number">2</span>] * allocation * timing) / n'],
+  ['        '],
+  ['        <span class="keyword">return</span> np.array([cost, risk, roi])'],
+  [''],
+  ['    <span class="keyword">def</span> <span class="func">run_evolution</span>(self):'],
+  ['        <span class="string">"""Run differential evolution with NSGA-II selection"""</span>'],
+  ['        bounds = [(<span class="number">0</span>, <span class="number">1</span>)] * (<span class="number">3</span> * <span class="func">len</span>(self.projects))'],
+  ['        result = differential_evolution('],
+  ['            self.objective_fn,'],
+  ['            bounds,'],
+  ['            popsize=self.config.population_size,'],
+  ['            maxiter=self.config.max_iterations,'],
+  ['            mutation=(<span class="number">0.5</span>, <span class="number">1.5</span>),'],
+  ['            recombination=self.config.crossover_rate,'],
+  ['            tol=self.config.tolerance,'],
+  ['            callback=self._iteration_callback'],
+  ['        )'],
+  ['        <span class="keyword">return</span> result'],
+  [''],
+  ['    <span class="keyword">def</span> <span class="func">_iteration_callback</span>(self, xk, convergence=<span class="number">0</span>):'],
+  ['        <span class="keyword">global</span> current_iteration'],
+  ['        current_iteration += <span class="number">1</span>'],
+  ['        <span class="keyword">if</span> current_iteration % <span class="number">100</span> == <span class="number">0</span>:'],
+  ['            obj = self.objective_fn(xk)'],
+  ['            <span class="func">print</span>(f<span class="string">"  iter {current_iteration:>5d} | cost={obj[0]:.4f} risk={obj[1]:.4f} roi={obj[2]:.4f} | conv={convergence:.6f}"</span>)'],
+  [''],
+  ['<span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:'],
+  ['    config = <span class="type">OptimizationConfig</span>(population_size=<span class="number">500</span>, max_iterations=<span class="number">10000</span>)'],
+  ['    engine = <span class="type">EnergyOptimizer</span>(config)'],
+  ['    <span class="func">print</span>(<span class="string">"=" * 60</span>)'],
+  ['    <span class="func">print</span>(<span class="string">"  Energy Storage Project Optimization Engine v3.7"</span>)'],
+  ['    <span class="func">print</span>(<span class="string">"  Penghui Lihex Operations Center"</span>)'],
+  ['    <span class="func">print</span>(<span class="string">"=" * 60</span>)'],
+  ['    result = engine.run_evolution()'],
+  ['    <span class="func">print</span>(f<span class="string">"\\nOptimization complete. Best cost: {result.fun[0]:.4f}"</span>)'],
+];
+
+// === 日志内容 ===
+const logMessages = [
+  { type: 'ok', text: 'Initializing optimization engine...' },
+  { type: 'info', text: 'CUDA device detected: NVIDIA A100 80GB' },
+  { type: 'ok', text: 'Neural model initialized (12→256→128→3)' },
+  { type: 'info', text: 'Loading project database...' },
+  { type: 'ok', text: 'Loaded 127 projects across 15 provinces' },
+  { type: 'info', text: '华北 region: 18 projects loaded' },
+  { type: 'info', text: '西北 region: 24 projects loaded' },
+  { type: 'info', text: '西南 region: 15 projects loaded' },
+  { type: 'info', text: '华中 region: 31 projects loaded' },
+  { type: 'info', text: '华南 region: 39 projects loaded' },
+  { type: 'ok', text: 'Grid connection data validated ✓' },
+  { type: 'ok', text: 'Cost model calibrated (MAE=2.3%)' },
+  { type: 'warn', text: '314Ah cell supply constraint detected for Jun-Aug' },
+  { type: 'ok', text: 'Differential evolution started (pop=500)' },
+  { type: 'info', text: 'Iteration 100/10000 — cost=0.7234 risk=0.4128' },
+  { type: 'info', text: 'Iteration 200/10000 — cost=0.6891 risk=0.3856' },
+  { type: 'ok', text: 'Pareto front updated: 47 solutions' },
+  { type: 'info', text: 'Iteration 500/10000 — cost=0.6203 risk=0.3412' },
+  { type: 'warn', text: 'Mutating cell_type distribution for 林州 project' },
+  { type: 'info', text: 'Iteration 800/10000 — cost=0.5847 risk=0.3198' },
+  { type: 'ok', text: 'Convergence check: Δcost < 1e-4 ✓' },
+  { type: 'info', text: 'Running sensitivity analysis on 12 parameters...' },
+  { type: 'ok', text: 'Sensitivity complete. Top factor: cell_cost (0.34)' },
+  { type: 'info', text: 'Iteration 1200/10000 — cost=0.5521 risk=0.2987' },
+  { type: 'warn', text: '东营 project: grid connection deadline 2027-02-21' },
+  { type: 'ok', text: 'Constraint applied: 东营 priority=HIGH' },
+  { type: 'info', text: 'Iteration 1800/10000 — cost=0.5134 risk=0.2801' },
+  { type: 'info', text: 'Cross-validation fold 3/5 — RMSE=0.0234' },
+  { type: 'ok', text: 'Model accuracy within tolerance ✓' },
+  { type: 'info', text: 'Iteration 2500/10000 — cost=0.4892 risk=0.2654' },
+  { type: 'warn', text: '洛南 project: land acquisition pending, ETA Aug 2026' },
+  { type: 'ok', text: 'Schedule adjusted for 洛南 constraints' },
+  { type: 'info', text: 'Running Monte Carlo simulation (N=5000)...' },
+  { type: 'ok', text: 'Monte Carlo complete. VaR(95%) = 0.042' },
+  { type: 'info', text: 'Iteration 3200/10000 — cost=0.4678 risk=0.2501' },
+  { type: 'info', text: 'Generating resource allocation matrix...' },
+  { type: 'ok', text: 'Resource matrix optimized. Utilization: 87.3%' },
+  { type: 'warn', text: '河南郏县 project: newly signed, integration pending' },
+  { type: 'ok', text: '河南郏县 200MW/400MWh added to optimization pool' },
+  { type: 'info', text: 'Iteration 4100/10000 — cost=0.4456 risk=0.2367' },
+  { type: 'info', text: 'Computing shadow prices for 127 constraints...' },
+  { type: 'ok', text: 'Shadow prices computed. Bottleneck: 314Ah supply chain' },
+  { type: 'info', text: 'Iteration 5000/10000 — cost=0.4234 risk=0.2218' },
+  { type: 'ok', text: 'Half-way checkpoint. Solution quality: excellent' },
+  { type: 'info', text: 'Running policy impact analysis (41号令, 114号文)...' },
+  { type: 'ok', text: 'Policy impact: +12.3% revenue for 4 projects' },
+  { type: 'info', text: 'Iteration 6000/10000 — cost=0.4098 risk=0.2134' },
+  { type: 'info', text: 'Backtesting against 2025 Q4 actuals...' },
+  { type: 'ok', text: 'Backtest accuracy: 94.7% (within 5% threshold)' },
+  { type: 'warn', text: '泌阳 project: grid connection imminent, priority=CRITICAL' },
+  { type: 'ok', text: '泌阳 schedule moved to fast-track queue' },
+  { type: 'info', text: 'Iteration 7200/10000 — cost=0.3912 risk=0.2012' },
+  { type: 'info', text: 'Computing regional synergy matrix...' },
+  { type: 'ok', text: 'Synergy matrix: 华中-华南 corridor = 0.87 (high)' },
+  { type: 'info', text: 'Iteration 8500/10000 — cost=0.3756 risk=0.1898' },
+  { type: 'ok', text: 'Near convergence. Final refinement pass...' },
+  { type: 'info', text: 'Iteration 9200/10000 — cost=0.3689 risk=0.1823' },
+  { type: 'info', text: 'Iteration 9800/10000 — cost=0.3651 risk=0.1798' },
+  { type: 'ok', text: '═══════════════════════════════════════════' },
+  { type: 'ok', text: '  OPTIMIZATION COMPLETE' },
+  { type: 'ok', text: '  Final cost: 0.3642 | risk: 0.1789 | ROI: 0.9134' },
+  { type: 'ok', text: '  Pareto front: 83 non-dominated solutions' },
+  { type: 'ok', text: '  Recommended allocation saved to output/v3_final.json' },
+  { type: 'ok', text: '═══════════════════════════════════════════' },
+];
+
+// === 渲染代码 ===
+const codeEl = document.getElementById('codeContent');
+let codeIdx = 0;
+let codeInterval;
+
+function addCodeLine() {
+  if (codeIdx >= codeLines.length) {
+    // 代码显示完了，循环重来
+    setTimeout(() => {
+      codeEl.innerHTML = '';
+      codeIdx = 0;
+      logIdx = 0;
+      document.getElementById('logContent').innerHTML = '';
+      iteration = 0;
+      startAll();
+    }, 3000);
+    return;
+  }
+  const line = document.createElement('div');
+  line.className = 'code-line';
+  line.innerHTML = `<span class="line-num">${String(codeIdx + 1).padStart(3, ' ')}</span>${codeLines[codeIdx][0] || '&nbsp;'}`;
+  codeEl.appendChild(line);
+  requestAnimationFrame(() => line.classList.add('visible'));
+  
+  // 自动滚动
+  if (codeEl.children.length > 30) {
+    codeEl.children[0].remove();
+  }
+  codeEl.scrollTop = codeEl.scrollHeight;
+  
+  // 更新代码进度
+  document.getElementById('codeProgress').textContent = Math.round((codeIdx / codeLines.length) * 100) + '%';
+  codeIdx++;
+}
+
+// === 日志流 ===
+const logEl = document.getElementById('logContent');
+let logIdx = 0;
+
+function addLogLine() {
+  if (logIdx >= logMessages.length) return;
+  const msg = logMessages[logIdx];
+  const now = new Date();
+  const time = now.toTimeString().split(' ')[0] + '.' + String(now.getMilliseconds()).padStart(3,'0');
+  const line = document.createElement('div');
+  line.className = 'log-line';
+  const typeClass = { ok: 'log-ok', warn: 'log-warn', err: 'log-err', info: 'log-info' }[msg.type] || 'log-ok';
+  line.innerHTML = `<span class="log-time">${time}</span> <span class="${typeClass}">[${msg.type.toUpperCase()}]</span> ${msg.text}`;
+  logEl.appendChild(line);
+  requestAnimationFrame(() => line.classList.add('visible'));
+  
+  if (logEl.children.length > 25) logEl.children[0].remove();
+  logIdx++;
+}
+
+// === 系统监控 ===
+let iteration = 0;
+function updateMetrics() {
+  const progress = logIdx / logMessages.length;
+  
+  // CPU - 随机波动
+  const cpu = Math.min(98, 30 + Math.random() * 50 + progress * 20);
+  document.getElementById('cpuVal').textContent = cpu.toFixed(1) + '%';
+  document.getElementById('cpuVal').className = 'metric-value' + (cpu > 85 ? ' critical' : cpu > 60 ? ' warn' : '');
+  document.getElementById('cpuBar').style.width = cpu + '%';
+  
+  // Memory - 缓慢增长
+  const mem = 2048 + progress * 6000 + Math.random() * 500;
+  document.getElementById('memVal').textContent = mem.toFixed(0) + ' MB';
+  document.getElementById('memVal').className = 'metric-value' + (mem > 7000 ? ' warn' : '');
+  document.getElementById('memBar').style.width = (mem / 8192 * 100) + '%';
+  
+  // GPU
+  const gpu = 5 + Math.random() * 40 + progress * 80;
+  document.getElementById('gpuVal').textContent = gpu.toFixed(1) + ' TFLOPS';
+  document.getElementById('gpuBar').style.width = (gpu / 120 * 100) + '%';
+  
+  // Network
+  const net = Math.random() * 500 + 100;
+  document.getElementById('netVal').textContent = net.toFixed(0) + ' MB/s';
+  document.getElementById('netBar').style.width = Math.min(100, net / 8) + '%';
+  
+  // Iterations
+  iteration += Math.floor(Math.random() * 30 + 10);
+  if (iteration > 10000) iteration = 10000;
+  document.getElementById('iterVal').textContent = iteration.toLocaleString() + ' / 10,000';
+}
+
+// === 矩阵动画 ===
+const matrixBar = document.getElementById('matrixBar');
+const cols = 80;
+for (let i = 0; i < cols; i++) {
+  const col = document.createElement('div');
+  col.className = 'matrix-col';
+  matrixBar.appendChild(col);
+}
+
+function updateMatrix() {
+  const children = matrixBar.children;
+  for (let i = 0; i < children.length; i++) {
+    const h = Math.random() * 50 + 5;
+    children[i].style.height = h + 'px';
+    children[i].style.opacity = (0.1 + Math.random() * 0.4).toFixed(2);
+  }
+}
+
+// === 启动 ===
+function startAll() {
+  codeInterval = setInterval(addCodeLine, 180);
+  setInterval(addLogLine, 1200);
+  setInterval(updateMetrics, 400);
+  setInterval(updateMatrix, 200);
+}
+
+startAll();
+</script>
+</body>
+</html>
