@@ -7,19 +7,20 @@
     <script src="echarts.min.js"></script>
     <style>
         :root {
-            --bg-dark: #0d1117;
-            --bg-card: #161b22;
-            --bg-card-hover: #21262d;
-            --border-color: #30363d;
-            --text-primary: #f0f6fc;
-            --text-secondary: #8b949e;
-            --accent-blue: #58a6ff;
-            --accent-green: #3fb950;
-            --accent-yellow: #d29922;
-            --accent-red: #f85149;
-            --accent-purple: #a371f7;
-            --gradient-start: #1a1f2e;
-            --gradient-end: #0d1117;
+            --bg-dark: #1a1f2e;
+            --bg-card: #232836;
+            --bg-card-hover: #2d3447;
+            --border-color: #3d4456;
+            --text-primary: #ffffff;
+            --text-secondary: #a0aec0;
+            --accent-blue: #63b3ed;
+            --accent-green: #68d391;
+            --accent-yellow: #f6c556;
+            --accent-red: #fc8181;
+            --accent-purple: #b794f4;
+            --gradient-start: #1e2433;
+            --gradient-end: #1a1f2e;
+            --input-bg: #2d3447;
         }
         
         * {
@@ -43,7 +44,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, #0d1117 0%, #161b22 100%);
+            background: linear-gradient(135deg, #1a1f2e 0%, #232836 100%);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -97,7 +98,7 @@
         .login-input {
             width: 300px;
             padding: 14px 20px;
-            background: var(--bg-dark);
+            background: var(--input-bg);
             border: 2px solid var(--border-color);
             border-radius: 10px;
             color: var(--text-primary);
@@ -108,7 +109,7 @@
         .login-input:focus {
             outline: none;
             border-color: var(--accent-blue);
-            box-shadow: 0 0 0 4px rgba(88, 166, 255, 0.2);
+            box-shadow: 0 0 0 4px rgba(99, 179, 237, 0.2);
         }
         
         .login-btn {
@@ -300,18 +301,29 @@
         }
         
         .province-select {
-            padding: 12px 20px;
-            background: var(--bg-card);
+            padding: 12px 36px 12px 16px;
+            background: var(--input-bg);
             border: 1px solid var(--border-color);
             border-radius: 10px;
             color: var(--text-primary);
             font-size: 14px;
             min-width: 200px;
             cursor: pointer;
+            transition: all 0.2s ease;
+            appearance: none;
+            -webkit-appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23a0aec0' d='M6 8L2 4h8z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 14px center;
         }
         
         .province-select:focus {
             outline: none;
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 0 3px rgba(99, 179, 237, 0.15);
+        }
+        
+        .province-select:hover {
             border-color: var(--accent-blue);
         }
         
@@ -486,7 +498,7 @@
         }
         
         .overview-table th {
-            background: var(--bg-dark);
+            background: var(--input-bg);
             font-weight: 600;
             color: var(--text-secondary);
             font-size: 13px;
@@ -509,11 +521,11 @@
             font-weight: 500;
         }
         
-        .status-signed { background: rgba(88, 166, 255, 0.2); color: var(--accent-blue); }
-        .status-started { background: rgba(210, 153, 34, 0.2); color: var(--accent-yellow); }
-        .status-approved { background: rgba(63, 185, 80, 0.2); color: var(--accent-green); }
-        .status-priority { background: rgba(163, 113, 247, 0.2); color: var(--accent-purple); }
-        .status-blocked { background: rgba(248, 81, 73, 0.2); color: var(--accent-red); }
+        .status-signed { background: rgba(99, 179, 237, 0.2); color: var(--accent-blue); }
+        .status-started { background: rgba(246, 197, 86, 0.2); color: var(--accent-yellow); }
+        .status-approved { background: rgba(104, 211, 145, 0.2); color: var(--accent-green); }
+        .status-priority { background: rgba(183, 148, 244, 0.2); color: var(--accent-purple); }
+        .status-blocked { background: rgba(252, 129, 129, 0.2); color: var(--accent-red); }
         
         /* Project List */
         .list-container {
@@ -568,17 +580,27 @@
             color: var(--text-secondary);
         }
         .filter-bar select {
-            background: var(--bg-input);
+            background: var(--input-bg);
             border: 1px solid var(--border-color);
             color: var(--text-primary);
-            padding: 6px 12px;
+            padding: 8px 32px 8px 12px;
             border-radius: 8px;
             font-size: 13px;
             cursor: pointer;
+            transition: all 0.2s ease;
+            appearance: none;
+            -webkit-appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23a0aec0' d='M6 8L2 4h8z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
         }
         .filter-bar select:focus {
             outline: none;
-            border-color: var(--accent);
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 0 3px rgba(99, 179, 237, 0.15);
+        }
+        .filter-bar select:hover {
+            border-color: var(--accent-blue);
         }
         .project-list {
             max-height: 600px;
@@ -587,29 +609,28 @@
         
         .project-item {
             display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr 1fr auto;
-            gap: 16px;
-            padding: 16px 24px;
+            grid-template-columns: 1fr 1fr 1fr 1fr auto;
+            gap: 12px 16px;
+            padding: 14px 24px;
             border-bottom: 1px solid var(--border-color);
             align-items: center;
             transition: background 0.2s ease;
         }
         
-        .project-item:hover {
-            background: var(--bg-card-hover);
-        }
-        
-        .project-item:last-child {
-            border-bottom: none;
+        .project-name-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
         }
         
         .project-name {
             font-weight: 500;
             color: var(--text-primary);
+            font-size: 14px;
         }
         
         .project-info {
-            font-size: 13px;
+            font-size: 12px;
             color: var(--text-secondary);
         }
         
@@ -684,7 +705,7 @@
         
         .page-btn {
             padding: 8px 14px;
-            background: var(--bg-dark);
+            background: var(--input-bg);
             border: 1px solid var(--border-color);
             border-radius: 6px;
             color: var(--text-primary);
@@ -696,6 +717,7 @@
         .page-btn:hover:not(:disabled) {
             border-color: var(--accent-blue);
             color: var(--accent-blue);
+            background: rgba(99, 179, 237, 0.1);
         }
         
         .page-btn:disabled {
@@ -722,7 +744,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(26, 31, 46, 0.85);
             display: none;
             align-items: center;
             justify-content: center;
@@ -860,7 +882,7 @@
         .form-select,
         .form-textarea {
             padding: 12px 16px;
-            background: var(--bg-dark);
+            background: var(--input-bg);
             border: 1px solid var(--border-color);
             border-radius: 8px;
             color: var(--text-primary);
@@ -873,7 +895,7 @@
         .form-textarea:focus {
             outline: none;
             border-color: var(--accent-blue);
-            box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.1);
+            box-shadow: 0 0 0 3px rgba(99, 179, 237, 0.15);
         }
         
         .form-textarea {
@@ -903,16 +925,18 @@
         
         .archive-field .field-input {
             padding: 10px 14px;
-            background: var(--bg-dark);
+            background: var(--input-bg);
             border: 1px solid var(--border-color);
             border-radius: 6px;
             color: var(--text-primary);
             font-size: 14px;
+            transition: all 0.2s ease;
         }
         
         .archive-field .field-input:focus {
             outline: none;
             border-color: var(--accent-blue);
+            box-shadow: 0 0 0 3px rgba(99, 179, 237, 0.15);
         }
         
         .progress-section {
@@ -2152,8 +2176,8 @@ PROVINCE_FULL_NAMES['西藏自治区'] = '西藏';
                 if (type === 'priority' && project.payment_tracking && project.payment_tracking.length > 0) {
                     const keyItems = project.payment_tracking.filter(t => t.status || t.note);
                     if (keyItems.length > 0) {
-                        fundHtml = '<div class="project-fund" style="margin-top:6px;padding:8px 12px;background:rgba(210,153,34,0.08);border:1px solid rgba(210,153,34,0.2);border-radius:8px;font-size:12px;">';
-                        fundHtml += '<div style="color:#d29922;font-weight:600;margin-bottom:4px;">💰 资金/合同跟踪</div>';
+                        fundHtml = '<div class="project-fund" style="margin-top:6px;padding:8px 12px;background:rgba(246,197,86,0.1);border:1px solid rgba(246,197,86,0.25);border-radius:8px;font-size:12px;">';
+                        fundHtml += '<div style="color:#f6c556;font-weight:600;margin-bottom:4px;">💰 成本结构/成本明细</div>';
                         keyItems.slice(0, 4).forEach(item => {
                             fundHtml += '<div style="color:var(--text-secondary);display:flex;gap:8px;margin-top:2px;">';
                             fundHtml += '<span style="color:var(--text-primary);min-width:80px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">' + (item.node || '') + '</span>';
@@ -2185,8 +2209,10 @@ PROVINCE_FULL_NAMES['西藏自治区'] = '西藏';
                 
                 return `
                 <div class="project-item">
-                    <div class="project-name">${project.name || '未命名项目'}</div>
-                    <div class="project-info">${project.province || ''} ${project.city || ''} ${project.district || ''}</div>
+                    <div class="project-name-wrapper">
+                        <div class="project-name">${project.name || '未命名项目'}</div>
+                        <div class="project-info">${project.province || ''} ${project.city || ''} ${project.district || ''}</div>
+                    </div>
                     <div class="project-scale">${project.scale || project.scale_mw + 'MW'}</div>
                     <div class="project-meta">
                         <span>📋 ${project.project_company || '-'}</span>
