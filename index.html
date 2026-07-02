@@ -1354,13 +1354,17 @@ function getArchiveByName(name) {
             loadData();
         }
 
-        // 飞书同步
+        // 飞书同步（静态版本暂不可用）
         async function syncWithFeishu() {
-            const btn = document.querySelector('.feishu-sync');
-            btn.classList.add('loading');
-            btn.innerHTML = '<span>🔄</span> 同步中...';
+            alert('静态版本暂不支持飞书同步，请直接编辑飞书多维表格后刷新数据文件');
+        }
 
-            try {
-                // 调用飞书API获取数据
-            console.log('静态版本：飞书API已禁用');
-            return [];
+        // 键盘快捷键
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.modal-overlay.active').forEach(m => m.classList.remove('active'));
+            }
+        });
+    </script>
+</body>
+</html>
