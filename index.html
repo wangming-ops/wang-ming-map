@@ -1059,14 +1059,8 @@ function getArchiveByName(name) {
 
         // 保存重点推进修改
         async function savePriorityChanges() {
-            try {
-                for (const project of priorityData) {
-                console.log('静态版本：飞书同步已禁用');
-                alert('保存成功！');
-            } catch (e) {
-                console.error('保存失败:', e);
-                alert('保存失败');
-            }
+            console.log('静态版本：飞书同步已禁用');
+            alert('保存成功！（静态模式，数据未实际同步）');
         }
 
         // 加载地图数据
