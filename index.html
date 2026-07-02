@@ -1955,45 +1955,31 @@ PROVINCE_FULL_NAMES['西藏自治区'] = '西藏';
                         return params.name + '<br/>无项目';
                     }
                 },
-                geo: {
+                series: [{
+                    type: 'map',
                     map: 'province',
                     roam: true,
                     label: {
                         show: true,
-                        formatter: '{b}',
                         fontSize: 10,
-                        color: '#8b949e'
+                        color: '#c9d1d9'
                     },
                     itemStyle: {
                         borderColor: '#30363d',
-                        borderWidth: 1,
-                        areaColor: '#6e7681'
+                        borderWidth: 1
                     },
                     emphasis: {
-                        label: {
-                            show: true,
-                            color: '#fff'
-                        },
-                        itemStyle: {
-                            areaColor: '#21262d'
-                        }
-                    }
-                },
-                series: [
-                    {
-                        name: '项目分布',
-                        type: 'map',
-                        geoIndex: 0,
-                        data: mapData.map(d => ({
-                            name: d.name,
-                            value: d.value,
-                            itemStyle: {
-                                color: statusColors[d.status]
-                            },
-                            projects: d.projects
-                        }))
-                    }
-                ]
+                        label: { show: true, color: '#fff' },
+                        itemStyle: { areaColor: '#21262d' }
+                    },
+                    select: { disabled: true },
+                    data: mapData.map(d => ({
+                        name: d.name,
+                        value: d.value,
+                        itemStyle: { color: statusColors[d.status] },
+                        projects: d.projects
+                    }))
+                }]
             };
             
             chart.setOption(option, true);
