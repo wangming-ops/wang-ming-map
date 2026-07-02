@@ -762,6 +762,91 @@
             color: white;
         }
         
+        /* Travel Section */
+        .travel-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+        .travel-stat { --card-color: var(--accent-blue); }
+        .travel-stat.pending { --card-color: var(--accent-yellow); }
+        .travel-stat.completed { --card-color: var(--accent-green); }
+        
+        .travel-table-wrapper {
+            overflow-x: auto;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+        .travel-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+            min-width: 1200px;
+        }
+        .travel-table thead th {
+            background: var(--bg-dark);
+            color: var(--text-secondary);
+            font-weight: 500;
+            padding: 12px 10px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+            white-space: nowrap;
+            position: sticky;
+            top: 0;
+        }
+        .travel-table tbody td {
+            padding: 10px 10px;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-primary);
+            max-width: 180px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .travel-table tbody tr:hover {
+            background: var(--bg-card-hover);
+        }
+        .travel-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+        .action-btn {
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            cursor: pointer;
+            border: 1px solid;
+            margin-right: 4px;
+            transition: all 0.2s;
+        }
+        .action-btn.edit-btn {
+            background: rgba(88, 166, 255, 0.1);
+            border-color: rgba(88, 166, 255, 0.3);
+            color: var(--accent-blue);
+        }
+        .action-btn.edit-btn:hover {
+            background: var(--accent-blue);
+            color: white;
+        }
+        .action-btn.complete-btn {
+            background: rgba(63, 185, 80, 0.1);
+            border-color: rgba(63, 185, 80, 0.3);
+            color: var(--accent-green);
+        }
+        .action-btn.complete-btn:hover {
+            background: var(--accent-green);
+            color: white;
+        }
+        .action-btn.delete-btn {
+            background: rgba(248, 81, 73, 0.1);
+            border-color: rgba(248, 81, 73, 0.3);
+            color: var(--accent-red);
+        }
+        .action-btn.delete-btn:hover {
+            background: var(--accent-red);
+            color: white;
+        }
+        
         /* Pagination */
         .pagination {
             display: flex;
@@ -1307,7 +1392,6 @@
             <button class="tab-btn" data-tab="approved" onclick="switchTab('approved')">✅ 已批复</button>
             <button class="tab-btn" data-tab="priority" onclick="switchTab('priority')">⭐ 重点推进</button>
             <button class="tab-btn" data-tab="blocked" onclick="switchTab('blocked')">❌ 无法推进</button>
-            <button class="tab-btn" data-tab="archives" onclick="switchTab('archives')"> 项目档案</button>
             <button class="tab-btn" data-tab="travel" onclick="switchTab('travel')">✈️ 出差管理</button>
         </div>
         
@@ -1451,14 +1535,60 @@
             </div>
         </section>
         
-        <!-- Archives Section -->
-        <section class="section" id="archivesSection">
+        <!-- Travel Section -->
+        <section class="section" id="travelSection">
             <div class="list-container">
                 <div class="list-header">
-                    <h2 class="list-title">📁 项目详细档案</h2>
+                    <h2 class="list-title">✈️ 出差管理</h2>
+                    <button class="add-project-btn" onclick="openTravelModal()">+ 新增出差</button>
                 </div>
-                <div class="project-list" id="archivesList"></div>
-                <div class="pagination" id="archivesPagination"></div>
+                <div class="travel-stats">
+                    <div class="stat-card travel-stat">
+                        <div class="stat-header">
+                            <span class="stat-icon">📊</span>
+                        </div>
+                        <div class="stat-number" id="travelTotalCount">0</div>
+                        <div class="stat-label">总出差次数</div>
+                    </div>
+                    <div class="stat-card travel-stat pending">
+                        <div class="stat-header">
+                            <span class="stat-icon">⏳</span>
+                        </div>
+                        <div class="stat-number" id="travelPendingCount">0</div>
+                        <div class="stat-label">待回访</div>
+                    </div>
+                    <div class="stat-card travel-stat completed">
+                        <div class="stat-header">
+                            <span class="stat-icon">✅</span>
+                        </div>
+                        <div class="stat-number" id="travelCompletedCount">0</div>
+                        <div class="stat-label">已完成</div>
+                    </div>
+                </div>
+                <div class="travel-table-wrapper">
+                    <table class="travel-table">
+                        <thead>
+                            <tr>
+                                <th>序号</th>
+                                <th>出发日期</th>
+                                <th>申请人</th>
+                                <th>行程</th>
+                                <th>交通工具</th>
+                                <th>事由</th>
+                                <th>目标/目的</th>
+                                <th>返回日期</th>
+                                <th>目的达成情况</th>
+                                <th>信息入库</th>
+                                <th>特殊说明</th>
+                                <th>备注</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody id="travelTableBody">
+                            <tr><td colspan="13" style="text-align:center;color:var(--text-secondary);padding:40px;">加载中...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </section>
     </div>
@@ -1557,6 +1687,74 @@
         </div>
     </div>
     
+    <!-- Travel Modal -->
+    <div class="modal-overlay" id="travelModal">
+        <div class="modal" style="max-width: 700px;">
+            <div class="modal-header">
+                <h3 class="modal-title" id="travelModalTitle">新增出差记录</h3>
+                <button class="modal-close" onclick="closeTravelModal()">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="archive-basic">
+                    <div class="archive-field">
+                        <span class="field-label">出发日期 *</span>
+                        <input type="text" class="field-input" id="travelPreDate" placeholder="如 6.29">
+                    </div>
+                    <div class="archive-field">
+                        <span class="field-label">申请人 *</span>
+                        <input type="text" class="field-input" id="travelApplicant" placeholder="姓名">
+                    </div>
+                    <div class="archive-field">
+                        <span class="field-label">行程 *</span>
+                        <input type="text" class="field-input" id="travelRoute" placeholder="如 天津-西宁">
+                    </div>
+                    <div class="archive-field">
+                        <span class="field-label">交通工具</span>
+                        <select class="field-input" id="travelTransport">
+                            <option value="飞机">飞机</option>
+                            <option value="高铁">高铁</option>
+                            <option value="火车">火车</option>
+                            <option value="自驾">自驾</option>
+                            <option value="其他">其他</option>
+                        </select>
+                    </div>
+                    <div class="archive-field">
+                        <span class="field-label">事由</span>
+                        <input type="text" class="field-input" id="travelReason" placeholder="出差事由">
+                    </div>
+                    <div class="archive-field">
+                        <span class="field-label">目标/目的</span>
+                        <input type="text" class="field-input" id="travelGoal" placeholder="出差目标">
+                    </div>
+                    <div class="archive-field">
+                        <span class="field-label">返回日期</span>
+                        <input type="text" class="field-input" id="travelPostDate" placeholder="如 7.1">
+                    </div>
+                    <div class="archive-field">
+                        <span class="field-label">目的达成情况</span>
+                        <input type="text" class="field-input" id="travelAchievement" placeholder="达成情况">
+                    </div>
+                    <div class="archive-field">
+                        <span class="field-label">信息入库</span>
+                        <input type="text" class="field-input" id="travelInfoStored" placeholder="是/否">
+                    </div>
+                    <div class="archive-field">
+                        <span class="field-label">特殊说明</span>
+                        <input type="text" class="field-input" id="travelSpecialNote" placeholder="特殊说明">
+                    </div>
+                    <div class="archive-field">
+                        <span class="field-label">备注</span>
+                        <input type="text" class="field-input" id="travelRemark" placeholder="备注">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeTravelModal()">取消</button>
+                <button class="btn btn-primary" onclick="saveTravelRecord()">保存</button>
+            </div>
+        </div>
+    </div>
+    
     <script>
         // Province Code Mapping
         const PROVINCE_CODES = {
@@ -1605,10 +1803,21 @@ PROVINCE_FULL_NAMES['西藏自治区'] = '西藏';
         let editingTravelId = null;
         
         function loadTravelData() {
-            fetch('travel_data.json?v=' + Date.now())
+            // Try loading from localStorage first
+            const stored = localStorage.getItem('travelData');
+            if (stored) {
+                try {
+                    travelData = JSON.parse(stored);
+                    renderTravelTable();
+                    updateTravelStats();
+                    return;
+                } catch(e) { /* fall through to fetch */ }
+            }
+            fetch('travel_data.json')
                 .then(res => res.json())
                 .then(data => {
                     travelData = data;
+                    localStorage.setItem('travelData', JSON.stringify(travelData));
                     renderTravelTable();
                     updateTravelStats();
                 })
@@ -1734,21 +1943,8 @@ PROVINCE_FULL_NAMES['西藏自治区'] = '西藏';
                 travelData.records.push(record);
             }
             
-            // Save to server (using a simple POST)
-            fetch('/api/travel/save', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(travelData)
-            }).catch(() => {
-                // Fallback: download as file
-                const blob = new Blob([JSON.stringify(travelData, null, 2)], { type: 'application/json' });
-                const url = URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = 'travel_data.json';
-                a.click();
-                URL.revokeObjectURL(url);
-            });
+            // Save to localStorage
+            localStorage.setItem('travelData', JSON.stringify(travelData));
             
             renderTravelTable();
             updateTravelStats();
@@ -1759,6 +1955,7 @@ PROVINCE_FULL_NAMES['西藏自治区'] = '西藏';
         function deleteTravelRecord(id) {
             if (!confirm('确定要删除这条出差记录吗？')) return;
             travelData.records = travelData.records.filter(r => r.id !== id);
+            localStorage.setItem('travelData', JSON.stringify(travelData));
             renderTravelTable();
             updateTravelStats();
             showToast('已删除', 'success');
@@ -1770,6 +1967,7 @@ PROVINCE_FULL_NAMES['西藏自治区'] = '西藏';
             const postDate = prompt('请输入返回日期：');
             if (postDate) {
                 record.post_date = postDate.trim();
+                localStorage.setItem('travelData', JSON.stringify(travelData));
                 renderTravelTable();
                 updateTravelStats();
                 showToast('已标记完成', 'success');
@@ -1819,7 +2017,7 @@ PROVINCE_FULL_NAMES['西藏自治区'] = '西藏';
         
         // Data Loading
         function loadData() {
-            fetch('data_new.json?v=' + Date.now())
+            fetch('data_new.json')
                 .then(response => response.json())
                 .then(data => {
                     allData = data;
@@ -1839,7 +2037,7 @@ PROVINCE_FULL_NAMES['西藏自治区'] = '西藏';
             renderProjectLists();
             // Populate filters
             ['signed', 'started', 'approved', 'priority', 'blocked'].forEach(t => populateFilters(t));
-            renderArchives();
+            loadTravelData();
         }
         
         // Stats
@@ -2023,12 +2221,24 @@ PROVINCE_FULL_NAMES['西藏自治区'] = '西藏';
             // 地图改为全屏模式，不在此初始化
         }
         
+        let chinaGeoCache = null;
+        const provinceGeoCache = {};
+        let currentMapState = { level: 'china', province: null };
+        
         function loadChinaMap() {
-            fetch('china.json?v=' + Date.now())
+            if (chinaGeoCache) {
+                echarts.registerMap('china', chinaGeoCache);
+                renderChinaMap(chinaGeoCache);
+                currentMapState = { level: 'china', province: null };
+                return;
+            }
+            fetch('china.json')
                 .then(response => response.json())
                 .then(chinaGeoJson => {
+                    chinaGeoCache = chinaGeoJson;
                     echarts.registerMap('china', chinaGeoJson);
                     renderChinaMap(chinaGeoJson);
+                    currentMapState = { level: 'china', province: null };
                 })
                 .catch(error => {
                     console.error('Failed to load China map:', error);
@@ -2043,16 +2253,26 @@ PROVINCE_FULL_NAMES['西藏自治区'] = '西藏';
                 showToast('该省份地图不可用', 'error');
                 return;
             }
+            if (provinceGeoCache[code]) {
+                echarts.registerMap('province', provinceGeoCache[code]);
+                renderProvinceMap(provinceGeoCache[code], province, normalized);
+                document.getElementById('backToChinaBtn').textContent = '← 返回省份列表';
+                document.getElementById('backToChinaBtn').style.display = 'block';
+                currentMapState = { level: 'province', province: province };
+                return;
+            }
             fetch('provinces/' + code + '.json')
                 .then(function(response) {
                     if (!response.ok) throw new Error('HTTP ' + response.status);
                     return response.json();
                 })
                 .then(function(geoJson) {
+                    provinceGeoCache[code] = geoJson;
                     echarts.registerMap('province', geoJson);
                     renderProvinceMap(geoJson, province, normalized);
                     document.getElementById('backToChinaBtn').textContent = '← 返回省份列表';
                     document.getElementById('backToChinaBtn').style.display = 'block';
+                    currentMapState = { level: 'province', province: province };
                 })
                 .catch(function(error) {
                     console.error('Province map error:', error);
@@ -2466,6 +2686,23 @@ PROVINCE_FULL_NAMES['西藏自治区'] = '西藏';
             updateProjectPanel(normalizedProvince);
         }
         
+        function refreshCurrentMap() {
+            if (!chart) return;
+            if (currentMapState.level === 'china' && chinaGeoCache) {
+                renderChinaMap(chinaGeoCache);
+            } else if (currentMapState.level === 'province' && currentMapState.province) {
+                const province = currentMapState.province;
+                const normalized = PROVINCE_FULL_NAMES[province] || normalizeProvince(province);
+                const code = PROVINCE_CODES[normalized];
+                if (code && districtGeoCache[code]) {
+                    echarts.registerMap('province', districtGeoCache[code]);
+                    renderDistrictMap(districtGeoCache[code], province, normalized);
+                } else if (code && provinceGeoCache[code]) {
+                    echarts.registerMap('province', provinceGeoCache[code]);
+                    renderProvinceMap(provinceGeoCache[code], province, normalized);
+                }
+            }
+        }
         
         function clearProvinceMap() {
             if (chart) {
@@ -2601,16 +2838,15 @@ PROVINCE_FULL_NAMES['西藏自治区'] = '西藏';
                 return `
                 <div class="project-item">
                     <div class="project-name-wrapper">
-                        <div class="project-name">${project.name || '未命名项目'}</div>
+                        <div style="display:flex;align-items:center;gap:8px;">
+                            <div class="project-name">${project.name || '未命名项目'}</div>
+                            <button class="archive-btn" onclick="openArchiveDetail('${project.name}')" title="查看档案">📁</button>
+                        </div>
                         <div class="project-info">${project.province || ''} ${project.city || ''} ${project.district || ''}</div>
                     </div>
                     <div class="project-scale">${project.scale || project.scale_mw + 'MW'}</div>
                     <div class="project-meta">
-                        <span>📋 ${project.project_company || '-'}</span>
-                        <span>签约: ${project.signed_by || '-'}</span>
                         <span>👤 ${project.project_manager || project.manager || '-'}</span>
-                        ${project.land_area ? `<span>🏗️ ${project.land_area}亩</span>` : ''}
-                        ${progressCount ? `<span>📊 ${completedCount}/${progressCount}节点</span>` : ''}
                     </div>
                     <div style="display:flex;align-items:center;gap:8px;">
                         ${type === 'priority' ? `
@@ -2620,7 +2856,6 @@ PROVINCE_FULL_NAMES['西藏自治区'] = '西藏';
                                 <option value="暂缓" ${project.status === '暂缓' ? 'selected' : ''}>暂缓</option>
                             </select>
                         ` : `<span class="status-badge status-${type}">${getStatusText(project.status || type)}</span>`}
-                        <button class="archive-btn" onclick="openArchiveDetail('${project.name}')" title="查看档案"></button>
                         <button class="delete-btn" onclick="confirmDelete(${project.id}, '${type}')">删除</button>
                     </div>
                 </div>
@@ -2702,6 +2937,7 @@ PROVINCE_FULL_NAMES['西藏自治区'] = '西藏';
             ['signed', 'started', 'approved', 'priority', 'blocked'].forEach(t => populateFilters(t));
             updateStats();
             renderOverview();
+            refreshCurrentMap();
             saveToLocalStorage();
             showToast('状态已更新', 'success');
         }
@@ -2720,6 +2956,7 @@ PROVINCE_FULL_NAMES['西藏自治区'] = '西藏';
             const archives = allData.archives;
             const archivesList = document.getElementById('archivesList');
             const archivesPagination = document.getElementById('archivesPagination');
+            if (!archivesList || !archivesPagination) return; // archives tab removed, skip
             
             currentPage.archives = currentPage.archives || 1;
             const page = currentPage.archives;
@@ -2883,6 +3120,10 @@ PROVINCE_FULL_NAMES['西藏自治区'] = '西藏';
                         <span class="field-label">电力接入批复完成时间</span>
                         <input type="text" class="field-input" id="archivePowerApproval" value="${basic['电力接入批复完成时间'] || ''}" placeholder="如 2026-08-15">
                     </div>
+                    <div class="archive-field" style="grid-column: 1 / -1;">
+                        <span class="field-label">成本结构和成本明细</span>
+                        <textarea class="field-input" id="archiveCostStructure" rows="3" placeholder="成本结构和成本明细信息" style="resize:vertical;min-height:60px;">${basic['成本结构和成本明细'] || ''}</textarea>
+                    </div>
                     <div class="archive-field">
                         <span class="field-label">状态</span>
                         <select class="field-input" id="archiveType">
@@ -2914,6 +3155,7 @@ PROVINCE_FULL_NAMES['西藏自治区'] = '西藏';
             currentArchiveData.basic['项目公司'] = document.getElementById('archiveCompany').value;
             currentArchiveData.basic['入库完成时间'] = document.getElementById('archiveStorageComplete').value;
             currentArchiveData.basic['电力接入批复完成时间'] = document.getElementById('archivePowerApproval').value;
+            currentArchiveData.basic['成本结构和成本明细'] = document.getElementById('archiveCostStructure').value;
             currentArchiveData.type = document.getElementById('archiveType').value;
             
             // Update progress nodes
@@ -2939,6 +3181,7 @@ PROVINCE_FULL_NAMES['西藏自治区'] = '西藏';
             saveToLocalStorage();
             closeModal('archiveModal');
             renderArchives();
+            refreshCurrentMap();
             showToast('档案已保存', 'success');
         }
         
@@ -3015,6 +3258,7 @@ PROVINCE_FULL_NAMES['西藏自治区'] = '西藏';
             updateStats();
             renderOverview();
             renderProvinceList();
+            refreshCurrentMap();
             showToast('项目已添加', 'success');
         }
         
@@ -3052,6 +3296,7 @@ PROVINCE_FULL_NAMES['西藏自治区'] = '西藏';
             ['signed', 'started', 'approved', 'priority', 'blocked'].forEach(t => populateFilters(t));
                     updateStats();
                     renderOverview();
+                    refreshCurrentMap();
                     showToast('项目已删除', 'success');
                 }
                 pendingDelete = null;
