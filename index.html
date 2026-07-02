@@ -1790,7 +1790,7 @@ PROVINCE_FULL_NAMES['西藏自治区'] = '西藏';
                 showToast('该省份地图不可用', 'error');
                 return;
             }
-            fetch('provinces/' + code + '.json?v=' + Date.now())
+            fetch('provinces/' + code + '.json')
                 .then(function(response) {
                     if (!response.ok) throw new Error('HTTP ' + response.status);
                     return response.json();
@@ -1942,27 +1942,37 @@ PROVINCE_FULL_NAMES['西藏自治区'] = '西藏';
             });
         }
         
+
+        // 区县 GeoJSON 缓存
+        const districtGeoCache = {};
+        
         function renderProvinceMap(geoJson, province, normalizedProvince) {
             // 尝试加载区县级数据
             const normalized = PROVINCE_FULL_NAMES[province] || normalizeProvince(province);
             const code = PROVINCE_CODES[normalized];
             
             if (code) {
-                fetch('districts/' + code + '_districts.json?v=' + Date.now())
-                    .then(function(res) {
-                        if (!res.ok) throw new Error('HTTP ' + res.status);
-                        return res.json();
-                    })
-                    .then(function(districtGeoJson) {
-                        echarts.registerMap('province', districtGeoJson);
-                        renderDistrictMap(districtGeoJson, province, normalized);
-                    })
-                    .catch(function(err) {
-                        console.warn('区县级数据加载失败，回退到市级:', err);
-                        // 回退到市级地图
-                        echarts.registerMap('province', geoJson);
-                        renderDistrictMap(geoJson, province, normalized);
-                    });
+                // 使用缓存加速
+                if (districtGeoCache[code]) {
+                    echarts.registerMap('province', districtGeoCache[code]);
+                    renderDistrictMap(districtGeoCache[code], province, normalized);
+                } else {
+                    fetch('districts/' + code + '_districts.json')
+                        .then(function(res) {
+                            if (!res.ok) throw new Error('HTTP ' + res.status);
+                            return res.json();
+                        })
+                        .then(function(districtGeoJson) {
+                            districtGeoCache[code] = districtGeoJson;
+                            echarts.registerMap('province', districtGeoJson);
+                            renderDistrictMap(districtGeoJson, province, normalized);
+                        })
+                        .catch(function(err) {
+                            console.warn('区县级数据加载失败，回退到市级:', err);
+                            echarts.registerMap('province', geoJson);
+                            renderDistrictMap(geoJson, province, normalized);
+                        });
+                }
             } else {
                 echarts.registerMap('province', geoJson);
                 renderDistrictMap(geoJson, province, normalized);
