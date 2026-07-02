@@ -1696,50 +1696,26 @@ PROVINCE_FULL_NAMES['西藏自治区'] = '西藏';
         }
         
         function loadProvinceMap(province) {
-            console.log('[DEBUG] loadProvinceMap called with:', province);
             const normalized = PROVINCE_FULL_NAMES[province] || normalizeProvince(province);
-            console.log('[DEBUG] normalized:', normalized);
             const code = PROVINCE_CODES[normalized];
-            console.log('[DEBUG] code:', code);
             if (!code) {
                 showToast('该省份地图数据缺失: ' + normalized, 'error');
                 return;
             }
-            const url = 'provinces/' + code + '.json';
-            console.log('[DEBUG] fetching:', url);
-            fetch(url)
-                .then(function(response) {
-                    console.log('[DEBUG] fetch response status:', response.status);
-                    if (!response.ok) throw new Error('HTTP ' + response.status);
-                    return response.json();
-                })
-                .then(function(geoJson) {
-                    console.log('[DEBUG] JSON parsed, features:', geoJson.features ? geoJson.features.length : 0);
-                    try {
-                        echarts.registerMap('province', geoJson);
-                        console.log('[DEBUG] map registered');
-                        renderProvinceMap(geoJson, province, normalized);
-                        console.log('[DEBUG] renderProvinceMap done');
-                        document.getElementById('backToChinaBtn').style.display = 'block';
-                    } catch(e) {
-                        console.error('[DEBUG] render error:', e);
-                        showToast('省份地图渲染失败: ' + e.message, 'error');
-                    }
-                })
-                .catch(function(error) {
-                    console.error('[DEBUG] fetch/parse error:', error);
-                    // Show detailed error on page
-                    var diag = document.getElementById('mapDiag');
-                    if (!diag) {
-                        diag = document.createElement('div');
-                        diag.id = 'mapDiag';
-                        diag.style.cssText = 'position:fixed;bottom:80px;right:20px;background:#161b22;border:1px solid #f85149;border-radius:8px;padding:12px 16px;color:#f85149;font-size:12px;z-index:9999;max-width:400px;';
-                        document.body.appendChild(diag);
-                    }
-                    diag.innerHTML = '<strong>地图加载失败</strong><br>错误: ' + error.message + '<br>请F12看console日志';
-                    showToast('省份地图加载失败', 'error');
-                    loadChinaMap();
-                });
+            // Load from pre-injected PROVINCE_GEO_DATA (no fetch needed)
+            if (typeof PROVINCE_GEO_DATA === 'undefined' || !PROVINCE_GEO_DATA[code]) {
+                showToast('省份地图数据未加载，请刷新页面', 'error');
+                return;
+            }
+            const geoJson = PROVINCE_GEO_DATA[code];
+            try {
+                echarts.registerMap('province', geoJson);
+                renderProvinceMap(geoJson, province, normalized);
+                document.getElementById('backToChinaBtn').style.display = 'block';
+            } catch(e) {
+                console.error('Province map render error:', e);
+                showToast('省份地图渲染失败: ' + e.message, 'error');
+            }
         }
         
         function getProjectStatusForMap(project) {
@@ -2625,5 +2601,6 @@ PROVINCE_FULL_NAMES['西藏自治区'] = '西藏';
             }, 3000);
         }
     </script>
+    <script src="province_geo_data.js"></script>
 </body>
 </html>
