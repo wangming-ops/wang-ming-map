@@ -254,22 +254,27 @@
             trigger: 'item',
             formatter: function(params) { return params.name; }
         },
-        series: [
-            {
-                type: 'map',
-                map: 'guizhou',
-                roam: true,
-                zoom: 1.2,
-                center: [106.7, 26.8],
-                nameProperty: 'name',
-                label: { show: true, color: '#aaa', fontSize: 9 },
-                itemStyle: { areaColor: '#2a2a3e', borderColor: '#4a4a5e', borderWidth: 1 },
-                emphasis: {
-                    label: { show: true, color: '#fff', fontSize: 12 },
-                    itemStyle: { areaColor: '#3a3a5e' }
-                },
-                data: seriesData
+        geo: {
+            map: 'guizhou',
+            roam: true,
+            zoom: 1.2,
+            center: [106.7, 26.8],
+            nameProperty: 'name',
+            label: { show: true, color: '#aaa', fontSize: 9 },
+            itemStyle: { areaColor: '#2a2a3e', borderColor: '#4a4a5e', borderWidth: 1 },
+            emphasis: {
+                label: { show: true, color: '#fff', fontSize: 12 },
+                itemStyle: { areaColor: '#3a3a5e' }
             },
+            regions: seriesData.map(function(d) {
+                return {
+                    name: d.name,
+                    itemStyle: { areaColor: d.itemStyle.areaColor },
+                    label: d.label || { show: true, color: '#fff', fontSize: 10, fontWeight: 'bold' }
+                };
+            })
+        },
+        series: [
             {
                 type: 'scatter',
                 coordinateSystem: 'geo',
@@ -278,9 +283,7 @@
                 symbolSize: 18,
                 symbolRotate: 0,
                 itemStyle: { color: '#ff3333', borderColor: '#ffff00', borderWidth: 2, shadowBlur: 8, shadowColor: '#ff0000' },
-                label: {
-                    show: false
-                },
+                label: { show: false },
                 zlevel: 100,
                 tooltip: {
                     formatter: function(params) {
