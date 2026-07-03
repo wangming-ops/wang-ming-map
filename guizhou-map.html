@@ -271,19 +271,17 @@
                 data: seriesData
             },
             {
-                type: 'effectScatter',
+                type: 'scatter',
                 coordinateSystem: 'geo',
                 geoIndex: 0,
                 symbol: 'triangle',
-                symbolSize: 14,
+                symbolSize: 18,
                 symbolRotate: 0,
-                rippleEffect: {
-                    brushType: 'stroke',
-                    scale: 2.5,
-                    period: 4
+                itemStyle: { color: '#ff3333', borderColor: '#ffff00', borderWidth: 2, shadowBlur: 8, shadowColor: '#ff0000' },
+                label: {
+                    show: false
                 },
-                itemStyle: { color: '#ff3333', borderColor: '#fff', borderWidth: 1.5, shadowBlur: 6, shadowColor: '#ff3333' },
-                zlevel: 10,
+                zlevel: 100,
                 tooltip: {
                     formatter: function(params) {
                         return params.name + '（已建储能电站）';
