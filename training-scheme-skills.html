@@ -3,756 +3,839 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>部门主管方案制定能力培训 — 七步法实操</title>
+<title>部门主管方案制定能力培训</title>
 <style>
-/* ===== Reset & Base ===== */
+/* ========== RESET & BASE ========== */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+html { scroll-behavior: smooth; font-size: 16px; }
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
-  color: #2c3e50; background: #f0f2f5; line-height: 1.75; font-size: 15px;
+  background: #f0f2f5; color: #2c3e50; line-height: 1.75;
 }
-a { color: #1a5276; text-decoration: none; }
 
-/* ===== Header ===== */
-.header {
-  background: linear-gradient(135deg, #0d2137 0%, #1a5276 50%, #2471a3 100%);
-  color: #fff; padding: 48px 40px 40px; text-align: center;
-  position: relative; overflow: hidden;
+/* ========== HEADER ========== */
+.hero {
+  background: linear-gradient(135deg, #0f2027 0%, #203a43 40%, #2c5364 100%);
+  color: #fff; padding: 60px 40px 50px; text-align: center; position: relative; overflow: hidden;
 }
-.header::before {
-  content: ''; position: absolute; top: -60%; right: -10%; width: 500px; height: 500px;
-  background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 70%);
-  border-radius: 50%;
+.hero::before {
+  content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+  background: radial-gradient(circle at 30% 50%, rgba(255,255,255,0.04) 0%, transparent 60%);
 }
-.header::after {
-  content: ''; position: absolute; bottom: -40%; left: -5%; width: 400px; height: 400px;
-  background: radial-gradient(circle, rgba(255,255,255,0.04) 0%, transparent 70%);
-  border-radius: 50%;
+.hero h1 { font-size: 2.4rem; font-weight: 700; letter-spacing: 2px; margin-bottom: 12px; position: relative; }
+.hero .subtitle { font-size: 1.15rem; color: rgba(255,255,255,0.8); margin-bottom: 20px; position: relative; }
+.hero .tag {
+  display: inline-block; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3);
+  padding: 6px 20px; border-radius: 20px; font-size: 0.9rem; color: rgba(255,255,255,0.9); position: relative;
 }
-.header h1 { font-size: 2.2em; font-weight: 700; letter-spacing: 2px; margin-bottom: 12px; position: relative; z-index: 1; }
-.header .subtitle { font-size: 1.15em; opacity: 0.88; font-weight: 400; position: relative; z-index: 1; }
-.header .badge { display: inline-block; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.25);
-  padding: 4px 18px; border-radius: 20px; font-size: 0.85em; margin-top: 16px; position: relative; z-index: 1; }
 
-/* ===== Layout ===== */
-.layout { display: flex; max-width: 1400px; margin: 0 auto; position: relative; }
+/* ========== LAYOUT ========== */
+.main-wrap { display: flex; max-width: 1400px; margin: 0 auto; position: relative; }
 
-/* ===== Sidebar ===== */
+/* ========== SIDEBAR NAV ========== */
 .sidebar {
-  width: 280px; min-width: 280px; position: sticky; top: 0; height: 100vh;
-  background: #fff; border-right: 1px solid #e0e4e8; overflow-y: auto;
-  padding: 24px 0; z-index: 100; transition: transform 0.3s ease;
+  width: 260px; min-width: 260px; position: sticky; top: 0; height: 100vh;
+  background: #fff; border-right: 1px solid #e2e8f0; padding: 24px 0;
+  overflow-y: auto; z-index: 100; flex-shrink: 0;
+  box-shadow: 2px 0 8px rgba(0,0,0,0.04);
 }
-.sidebar-title { padding: 0 20px 16px; font-size: 13px; color: #7f8c8d;
-  text-transform: uppercase; letter-spacing: 2px; font-weight: 600; border-bottom: 1px solid #eef0f2; margin-bottom: 8px; }
-.sidebar ul { list-style: none; }
-.sidebar li { position: relative; }
-.sidebar li a {
-  display: block; padding: 10px 20px 10px 24px; font-size: 14px; color: #4a5568;
-  border-left: 3px solid transparent; transition: all 0.2s ease; line-height: 1.5;
+.sidebar-title {
+  font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px;
+  color: #94a3b8; padding: 0 20px; margin-bottom: 12px; font-weight: 600;
 }
-.sidebar li a:hover { background: #f7f9fb; color: #1a5276; }
-.sidebar li a.active { background: #eaf2f8; color: #1a5276; border-left-color: #2471a3; font-weight: 600; }
-.sidebar li a .nav-num { color: #2471a3; font-weight: 600; margin-right: 6px; font-size: 13px; }
-.sidebar-toggle { display: none; position: fixed; bottom: 24px; left: 24px; z-index: 200;
-  width: 48px; height: 48px; border-radius: 50%; background: #1a5276; color: #fff;
-  border: none; font-size: 20px; cursor: pointer; box-shadow: 0 4px 16px rgba(0,0,0,0.2);
-  transition: transform 0.2s; }
-.sidebar-toggle:hover { transform: scale(1.1); }
-.sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 99; }
-
-/* ===== Main Content ===== */
-.main { flex: 1; min-width: 0; padding: 32px 48px 60px; }
-.section { background: #fff; border-radius: 12px; padding: 36px 40px; margin-bottom: 28px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.06); border: 1px solid #e8ebef; }
-
-/* ===== Typography ===== */
-.section h2 { font-size: 1.55em; color: #0d2137; margin-bottom: 8px; padding-bottom: 12px;
-  border-bottom: 2px solid #2471a3; display: inline-block; }
-.section h3 { font-size: 1.2em; color: #1a5276; margin: 28px 0 12px; padding-left: 14px;
-  border-left: 4px solid #2471a3; }
-.section h4 { font-size: 1.05em; color: #2c3e50; margin: 20px 0 8px; font-weight: 600; }
-.section p { margin: 10px 0; color: #34495e; }
-.section ul, .section ol { margin: 10px 0 10px 24px; }
-.section li { margin: 6px 0; color: #34495e; }
-.section strong { color: #1a5276; }
-
-/* ===== Blockquote ===== */
-.section blockquote {
-  background: linear-gradient(135deg, #eaf2f8, #f0f7fc); border-left: 4px solid #2471a3;
-  padding: 16px 20px; margin: 16px 0; border-radius: 0 8px 8px 0; font-style: normal;
-  color: #1a5276; font-size: 0.97em; line-height: 1.8;
+.sidebar a {
+  display: block; padding: 10px 20px; font-size: 0.88rem; color: #475569;
+  text-decoration: none; border-left: 3px solid transparent; transition: all 0.2s;
 }
-.section blockquote p { margin: 0; color: inherit; }
+.sidebar a:hover { background: #f1f5f9; color: #1e40af; }
+.sidebar a.active { background: #eff6ff; color: #1e40af; border-left-color: #1e40af; font-weight: 600; }
+.sidebar a .nav-num { color: #94a3b8; margin-right: 8px; font-size: 0.8rem; }
 
-/* ===== Tables ===== */
-.table-wrap { overflow-x: auto; margin: 16px 0; border-radius: 8px; border: 1px solid #dde4ea; }
-table { width: 100%; border-collapse: collapse; font-size: 0.92em; }
-thead { background: linear-gradient(135deg, #1a5276, #2471a3); color: #fff; }
-thead th { padding: 12px 16px; text-align: left; font-weight: 600; white-space: nowrap; }
-tbody td { padding: 11px 16px; border-bottom: 1px solid #eef0f2; vertical-align: top; }
-tbody tr:nth-child(even) { background: #f7f9fb; }
-tbody tr:hover { background: #eaf2f8; transition: background 0.15s; }
-tbody tr:last-child td { border-bottom: none; }
-/* bold last row */
-tbody tr:last-child td { font-weight: 600; background: #eaf2f8; }
+/* ========== CONTENT ========== */
+.content { flex: 1; min-width: 0; padding: 40px 48px 80px; }
 
-/* ===== Code / Template Block ===== */
-.code-block {
-  background: #f6f8fa; border: 1px solid #dde4ea; border-radius: 8px;
-  padding: 20px 24px; margin: 16px 0; font-family: "SF Mono", "Fira Code", "Consolas", monospace;
-  font-size: 0.88em; line-height: 1.9; overflow-x: auto; white-space: pre-wrap;
-  color: #2c3e50; position: relative;
+/* ========== SECTIONS ========== */
+.section { margin-bottom: 56px; scroll-margin-top: 20px; }
+.section-title {
+  font-size: 1.55rem; font-weight: 700; color: #1e293b; margin-bottom: 24px;
+  padding-bottom: 12px; border-bottom: 3px solid #2563eb;
+  display: flex; align-items: center; gap: 10px;
 }
-.code-block::before {
-  content: 'TEMPLATE'; position: absolute; top: 0; right: 0;
-  background: #2471a3; color: #fff; padding: 2px 12px; font-size: 11px;
-  border-radius: 0 7px 0 8px; font-family: sans-serif; letter-spacing: 1px; font-weight: 600;
+.section-title .num {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 36px; height: 36px; background: #2563eb; color: #fff; border-radius: 8px;
+  font-size: 1rem; font-weight: 700; flex-shrink: 0;
 }
 
-/* ===== Callout Cards ===== */
-.callout { padding: 16px 20px; border-radius: 8px; margin: 16px 0; font-size: 0.95em; }
-.callout-blue { background: #eaf2f8; border: 1px solid #b3d4f0; }
-.callout-amber { background: #fef9e7; border: 1px solid #f9e79f; }
-.callout-red { background: #fdedec; border: 1px solid #f5b7b1; }
-.callout-green { background: #eafaf1; border: 1px solid #a9dfbf; }
+h3 { font-size: 1.15rem; font-weight: 600; color: #1e3a5f; margin: 28px 0 14px; }
+h4 { font-size: 1.02rem; font-weight: 600; color: #334155; margin: 20px 0 10px; }
+p { margin-bottom: 14px; color: #374151; }
+ul, ol { margin: 10px 0 16px 24px; }
+li { margin-bottom: 6px; color: #374151; }
+strong { color: #1e293b; }
 
-/* ===== Icons / Badges inline ===== */
-.badge-p { display: inline-block; padding: 2px 10px; border-radius: 4px; font-size: 0.82em; font-weight: 600; margin-right: 4px; }
-.badge-p0 { background: #e74c3c; color: #fff; }
-.badge-p1 { background: #e67e22; color: #fff; }
-.badge-p2 { background: #27ae60; color: #fff; }
-.badge-p3 { background: #95a5a6; color: #fff; }
+/* ========== TABLES ========== */
+.table-wrap { overflow-x: auto; margin: 16px 0 24px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+table thead th {
+  background: linear-gradient(135deg, #1e3a5f 0%, #2563eb 100%);
+  color: #fff; padding: 13px 16px; text-align: left; font-weight: 600;
+  white-space: nowrap; border: none;
+}
+table thead th:first-child { border-radius: 10px 0 0 0; }
+table thead th:last-child { border-radius: 0 10px 0 0; }
+table tbody td { padding: 11px 16px; border-bottom: 1px solid #e5e7eb; color: #374151; }
+table tbody tr:nth-child(even) { background: #f8fafc; }
+table tbody tr:hover { background: #eff6ff; }
+table tbody tr:last-child td { border-bottom: none; }
+table tbody tr:last-child td:first-child { border-radius: 0 0 0 10px; }
+table tbody tr:last-child td:last-child { border-radius: 0 0 10px 0; }
 
-/* ===== Divider ===== */
-.divider { border: none; border-top: 1px dashed #d5dbe1; margin: 32px 0; }
+/* ========== CALLOUT BOXES ========== */
+.callout { padding: 16px 20px; border-radius: 10px; margin: 16px 0 20px; font-size: 0.92rem; }
+.callout-bad {
+  background: #fef2f2; border-left: 4px solid #ef4444; color: #991b1b;
+}
+.callout-bad .callout-icon { color: #ef4444; }
+.callout-good {
+  background: #f0fdf4; border-left: 4px solid #22c55e; color: #166534;
+}
+.callout-good .callout-icon { color: #22c55e; }
+.callout-icon { font-size: 1.1rem; margin-right: 6px; }
+.callout-title { font-weight: 700; margin-bottom: 6px; }
 
-/* ===== Practice Section ===== */
-.practice-list { counter-reset: practice; }
-.practice-list li { counter-increment: practice; list-style: none; position: relative; padding-left: 36px; margin: 12px 0; }
-.practice-list li::before {
-  content: counter(practice); position: absolute; left: 0; top: 1px;
-  width: 24px; height: 24px; border-radius: 50%; background: #2471a3; color: #fff;
-  font-size: 13px; display: flex; align-items: center; justify-content: center; font-weight: 600;
+/* ========== PRIORITY BADGES ========== */
+.badge {
+  display: inline-block; padding: 3px 12px; border-radius: 12px;
+  font-size: 0.8rem; font-weight: 700; color: #fff; white-space: nowrap;
+}
+.badge-p0 { background: linear-gradient(135deg, #dc2626, #ef4444); }
+.badge-p1 { background: linear-gradient(135deg, #d97706, #f59e0b); }
+.badge-p2 { background: linear-gradient(135deg, #2563eb, #3b82f6); }
+.badge-p3 { background: linear-gradient(135deg, #6b7280, #9ca3af); }
+
+/* ========== TEMPLATE / CODE BLOCK ========== */
+.template-block {
+  background: #f8f9fa; border: 1px solid #e2e8f0; border-radius: 10px;
+  padding: 20px 24px; margin: 16px 0 24px; font-family: "SF Mono", "Fira Code", "Cascadia Code", Consolas, monospace;
+  font-size: 0.88rem; line-height: 1.9; color: #334155; white-space: pre-wrap; word-break: break-word;
 }
 
-/* ===== Footer ===== */
-.footer { text-align: center; padding: 32px 20px; color: #95a5a6; font-size: 13px; }
+/* ========== ADVICE CARDS ========== */
+.advice-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin: 24px 0; }
+.advice-card {
+  border-radius: 14px; padding: 28px 24px; color: #fff; position: relative; overflow: hidden;
+}
+.advice-card::before {
+  content: ''; position: absolute; top: -30px; right: -30px;
+  width: 100px; height: 100px; border-radius: 50%;
+  background: rgba(255,255,255,0.1);
+}
+.advice-card:nth-child(1) { background: linear-gradient(135deg, #1e3a5f, #2563eb); }
+.advice-card:nth-child(2) { background: linear-gradient(135deg, #7c3aed, #a78bfa); }
+.advice-card:nth-child(3) { background: linear-gradient(135deg, #065f46, #10b981); }
+.advice-card .card-num {
+  font-size: 2.5rem; font-weight: 800; opacity: 0.2; position: absolute; top: 10px; right: 20px;
+}
+.advice-card .card-title { font-size: 1rem; font-weight: 700; margin-bottom: 12px; position: relative; }
+.advice-card .card-body { font-size: 0.9rem; line-height: 1.7; opacity: 0.95; position: relative; }
 
-/* ===== Mobile ===== */
+/* ========== SUMMARY BOX ========== */
+.summary-box {
+  background: linear-gradient(135deg, #fef9c3, #fef08a);
+  border-left: 4px solid #ca8a04; padding: 16px 20px; border-radius: 8px;
+  margin: 16px 0; font-weight: 600; color: #854d0e; font-size: 0.95rem;
+}
+
+/* ========== SOP CHECKLIST ========== */
+.sop-list { counter-reset: sop; margin: 16px 0; }
+.sop-item {
+  display: flex; align-items: flex-start; gap: 14px; padding: 14px 18px;
+  background: #fff; border-radius: 10px; margin-bottom: 10px;
+  border: 1px solid #e2e8f0; transition: all 0.2s;
+}
+.sop-item:hover { border-color: #2563eb; box-shadow: 0 2px 8px rgba(37,99,235,0.1); }
+.sop-num {
+  counter-increment: sop; content: counter(sop);
+  display: flex; align-items: center; justify-content: center;
+  width: 30px; height: 30px; background: #2563eb; color: #fff;
+  border-radius: 50%; font-size: 0.85rem; font-weight: 700; flex-shrink: 0;
+}
+.sop-text { color: #374151; font-size: 0.92rem; line-height: 1.6; padding-top: 3px; }
+
+/* ========== HIGHLIGHT QUOTE ========== */
+.highlight-quote {
+  font-size: 1.05rem; font-weight: 600; color: #1e40af; padding: 16px 20px;
+  border-left: 4px solid #2563eb; background: #eff6ff; border-radius: 0 8px 8px 0;
+  margin: 18px 0;
+}
+
+/* ========== MOBILE RESPONSIVE ========== */
+.mobile-toggle {
+  display: none; position: fixed; bottom: 24px; left: 24px; z-index: 1001;
+  width: 50px; height: 50px; border-radius: 50%; background: #2563eb; color: #fff;
+  border: none; font-size: 1.4rem; cursor: pointer; box-shadow: 0 4px 14px rgba(37,99,235,0.4);
+  align-items: center; justify-content: center;
+}
+.overlay {
+  display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0,0,0,0.5); z-index: 999; opacity: 0; transition: opacity 0.3s;
+}
+.overlay.show { display: block; opacity: 1; }
+
 @media (max-width: 900px) {
-  .header { padding: 32px 20px 28px; }
-  .header h1 { font-size: 1.5em; }
-  .main { padding: 16px 12px 40px; }
-  .section { padding: 24px 18px; border-radius: 8px; }
-  .sidebar { position: fixed; left: 0; top: 0; transform: translateX(-100%); box-shadow: 4px 0 20px rgba(0,0,0,0.15); }
-  .sidebar.open { transform: translateX(0); }
-  .sidebar-toggle { display: flex; align-items: center; justify-content: center; }
-  .sidebar-overlay.show { display: block; }
-  thead th, tbody td { padding: 8px 10px; font-size: 0.85em; }
+  .sidebar {
+    position: fixed; left: -280px; top: 0; height: 100vh;
+    width: 270px; min-width: 270px; z-index: 1000;
+    transition: left 0.3s ease; box-shadow: 4px 0 20px rgba(0,0,0,0.15);
+  }
+  .sidebar.open { left: 0; }
+  .mobile-toggle { display: flex; }
+  .content { padding: 24px 16px 80px; }
+  .hero { padding: 40px 20px 36px; }
+  .hero h1 { font-size: 1.6rem; }
+  .hero .subtitle { font-size: 0.95rem; }
+  .section-title { font-size: 1.25rem; }
+  table { font-size: 0.8rem; }
+  table thead th, table tbody td { padding: 8px 10px; }
+  .advice-grid { grid-template-columns: 1fr; }
 }
-@media (max-width: 600px) {
-  .header h1 { font-size: 1.25em; }
-  .section h2 { font-size: 1.25em; }
-  .section { padding: 20px 14px; }
+
+/* ========== SCROLLBAR ========== */
+.sidebar::-webkit-scrollbar { width: 4px; }
+.sidebar::-webkit-scrollbar-track { background: transparent; }
+.sidebar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 2px; }
+
+/* ========== MISC ========== */
+.error-card {
+  background: #fff; border-radius: 12px; padding: 20px 24px; margin-bottom: 16px;
+  border: 1px solid #fecaca; position: relative; overflow: hidden;
 }
+.error-card::before {
+  content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: #ef4444;
+}
+.error-card .error-num {
+  display: inline-block; background: #fef2f2; color: #dc2626; padding: 2px 10px;
+  border-radius: 6px; font-size: 0.8rem; font-weight: 700; margin-bottom: 8px;
+}
+.error-card .error-title { font-weight: 700; color: #991b1b; margin-bottom: 6px; font-size: 1rem; }
+.error-card .error-fix { color: #166534; font-size: 0.9rem; margin-top: 8px; padding: 8px 12px; background: #f0fdf4; border-radius: 6px; }
 </style>
 </head>
 <body>
 
-<!-- ===== Header ===== -->
-<div class="header">
+<!-- ========== HERO ========== -->
+<header class="hero">
   <h1>部门主管方案制定能力培训</h1>
-  <div class="subtitle">从"信息罗列"到"可落地方案"的七步法</div>
-  <div class="badge">📋 实操版 · 内部培训材料</div>
-</div>
+  <p class="subtitle">从"信息罗列"到"可落地方案"的七步法</p>
+  <span class="tag">邢文君 培训材料</span>
+</header>
 
-<!-- ===== Layout ===== -->
-<div class="layout">
+<!-- ========== MOBILE TOGGLE ========== -->
+<button class="mobile-toggle" onclick="toggleSidebar()" aria-label="目录">☰</button>
+<div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
 
-  <!-- Sidebar -->
-  <nav class="sidebar" id="sidebar">
-    <div class="sidebar-title">📑 目录导航</div>
-    <ul id="nav-list">
-      <li><a href="#sec1"><span class="nav-num">一</span>真实案例分析</a></li>
-      <li><a href="#sec2"><span class="nav-num">二</span>七步法详解</a></li>
-      <li style="padding-left:16px"><a href="#step1"><span class="nav-num">①</span>定目标</a></li>
-      <li style="padding-left:16px"><a href="#step2"><span class="nav-num">②</span>找差距</a></li>
-      <li style="padding-left:16px"><a href="#step3"><span class="nav-num">③</span>排优先级</a></li>
-      <li style="padding-left:16px"><a href="#step4"><span class="nav-num">④</span>拆动作</a></li>
-      <li style="padding-left:16px"><a href="#step5"><span class="nav-num">⑤</span>排时间</a></li>
-      <li style="padding-left:16px"><a href="#step6"><span class="nav-num">⑥</span>算资源</a></li>
-      <li style="padding-left:16px"><a href="#step7"><span class="nav-num">⑦</span>控风险</a></li>
-      <li><a href="#sec3"><span class="nav-num">三</span>案例实操演示</a></li>
-      <li><a href="#sec4"><span class="nav-num">四</span>7个常见错误</a></li>
-      <li><a href="#sec5"><span class="nav-num">五</span>万能方案模板</a></li>
-      <li><a href="#sec6"><span class="nav-num">六</span>三句忠告</a></li>
-      <li><a href="#sec7"><span class="nav-num">附</span>练习作业</a></li>
-    </ul>
-  </nav>
-  <div class="sidebar-overlay" id="overlay"></div>
-  <button class="sidebar-toggle" id="toggleBtn" aria-label="目录">☰</button>
+<!-- ========== MAIN LAYOUT ========== -->
+<div class="main-wrap">
 
-  <!-- Main Content -->
-  <main class="main">
+<!-- ========== SIDEBAR ========== -->
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-title">目 录</div>
+  <a href="#sec1" class="nav-link"><span class="nav-num">01</span>先看一个真实案例</a>
+  <a href="#sec2" class="nav-link"><span class="nav-num">02</span>做方案的底层逻辑：七步法</a>
+  <a href="#sec3" class="nav-link"><span class="nav-num">03</span>用七步法改造资质评估</a>
+  <a href="#sec4" class="nav-link"><span class="nav-num">04</span>做方案常犯的7个错误</a>
+  <a href="#sec5" class="nav-link"><span class="nav-num">05</span>万能方案模板</a>
+  <a href="#sec6" class="nav-link"><span class="nav-num">06</span>给邢文君的3句忠告</a>
+  <a href="#sec7" class="nav-link"><span class="nav-num">附</span>方案SOP自检清单</a>
+</nav>
 
-    <!-- Section 1 -->
-    <div class="section" id="sec1">
-      <h2>一、先看一个真实案例：我们的方案缺什么？</h2>
-      <p>下面这份"资质情况评估"，是我们内部同事做的一份材料。我们先看看它有什么、缺什么。</p>
+<!-- ========== CONTENT ========== -->
+<main class="content">
 
-      <h3>它做到了什么（信息层）</h3>
+<!-- ============ SECTION 1 ============ -->
+<section class="section" id="sec1">
+  <div class="section-title"><span class="num">1</span>先看一个真实案例：我们的方案缺什么？</div>
+  <p>下面这份"资质情况评估"，是我们内部同事做的一份材料。我们先看看它有什么、缺什么。</p>
+
+  <h3>它做到了什么（信息层）</h3>
+  <ul>
+    <li>列了8项资质（科技型中小企业、创新型中小企业、专精特新、高新技术企业）</li>
+    <li>覆盖了2家主体公司（力赫集团、鹏辉力赫）</li>
+    <li>写清了每项资质的申报时间、当前状态、不通过的原因</li>
+    <li>部分项列了费用预估</li>
+  </ul>
+
+  <h3>它缺什么（方案层）</h3>
+
+  <h4>1. 没有目标——为什么要做这些资质？</h4>
+  <ul>
+    <li>是为了拿政府补贴？为了投标加分？为了税收优惠？还是为了企业形象？</li>
+    <li>不同的目标，优先级和投入完全不一样。</li>
+    <li>如果目标是"2026年拿到高新技术企业资质，享受15%所得税减免"，那所有动作都要围绕这个目标排。</li>
+  </ul>
+
+  <h4>2. 没有优先级——先做哪个、后做哪个？</h4>
+  <ul>
+    <li>8项资质平铺直叙，看不出轻重缓急。</li>
+    <li>哪些是今年必须拿的？哪些是明年布局的？哪些可以放弃？</li>
+    <li>高新技术企业和专精特新，哪个投入产出比更高？</li>
+  </ul>
+
+  <h4>3. 没有时间表——什么时候做完？</h4>
+  <ul>
+    <li>只写了申报窗口期，没写我们自己的动作节点。</li>
+    <li>比如高新企业7月31日第一批申报，那知识产权什么时候补？审计报告什么时候出？产学研什么时候签？</li>
+    <li>没有倒排工期，就等于没有计划。</li>
+  </ul>
+
+  <h4>4. 没有责任人——谁来干？</h4>
+  <ul>
+    <li>这么多事，谁牵头？谁配合？谁审批？</li>
+    <li>知识产权找谁申请？审计找谁做？产学研找谁谈？</li>
+    <li>没有责任人的任务，最后一定没人干。</li>
+  </ul>
+
+  <h4>5. 没有资源测算——要花多少钱、要多少人、要什么支持？</h4>
+  <ul>
+    <li>费用只有零星几笔，没有总预算。</li>
+    <li>需要公司哪些部门配合（财务、法务、技术）？需要占用多少时间？</li>
+    <li>老板最关心的是：这件事要花我多少钱、多少精力、值不值。</li>
+  </ul>
+
+  <h4>6. 没有风险预案——做不成怎么办？</h4>
+  <ul>
+    <li>高新企业"通过难度较高"，那Plan B是什么？</li>
+    <li>如果知识产权下不来怎么办？如果审计报告赶不上怎么办？</li>
+    <li>只说困难，不说应对，等于把难题甩给老板。</li>
+  </ul>
+
+  <h4>7. 没有验收标准——做成什么样算成了？</h4>
+  <ul>
+    <li>是"提交申报材料"就算完成，还是"拿到证书"才算完成？</li>
+    <li>如果没拿到证书，工作怎么衡量价值？</li>
+    <li>阶段性成果怎么验收？</li>
+  </ul>
+
+  <div class="summary-box">
+    <strong>一句话总结：</strong>这份材料叫"资质情况盘点表"，不叫"资质申报方案"。前者是告诉你"现在怎么样"，后者是告诉你"怎么从现在走到目标"。
+  </div>
+</section>
+
+<!-- ============ SECTION 2 ============ -->
+<section class="section" id="sec2">
+  <div class="section-title"><span class="num">2</span>做方案的底层逻辑：七步法</div>
+  <p>做任何方案，本质上都是回答七个问题。按这个顺序想，方案就不会缺东西。</p>
+
+  <!-- STEP 1 -->
+  <h3>第一步：定目标——我们要去哪里？</h3>
+  <p><strong>核心问题：做这件事最终要达成什么结果？</strong></p>
+  <p>不要写"做好资质申报工作"这种空话，要写具体的、可衡量的目标。</p>
+
+  <div class="callout callout-bad">
+    <div class="callout-title"><span class="callout-icon">❌</span>反面写法：</div>
+    推进公司资质申报工作
+  </div>
+
+  <div class="callout callout-good">
+    <div class="callout-title"><span class="callout-icon">✅</span>正面写法：</div>
+    2026年完成以下资质申报目标：<br>
+    • 必保：高新技术企业（鹏辉力赫）申报并通过，预计年节税XX万元<br>
+    • 力争：创新型中小企业（2家）全部通过<br>
+    • 布局：专精特新中小企业启动筹备，2027年申报
+  </div>
+
+  <p><strong>判断目标好不好的三个标准：</strong></p>
+  <ol>
+    <li><strong>可衡量</strong>——拿到证书/通过申报/补贴到账，不是"推进""加强"</li>
+    <li><strong>有价值</strong>——能说清对公司的好处（节税、补贴、投标、融资）</li>
+    <li><strong>有边界</strong>——明确做什么、不做什么，不是越大越好</li>
+  </ol>
+
+  <!-- STEP 2 -->
+  <h3>第二步：找差距——现在离目标差多远？</h3>
+  <p><strong>核心问题：要达到目标，我们缺什么？</strong></p>
+  <p>这一步就是员工现在做到的部分——盘点现状。但盘点不是目的，<strong>对比目标找差距</strong>才是目的。</p>
+
+  <p><strong>差距分析模板：</strong></p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>目标</th><th>现状</th><th>差距</th><th>差距性质</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>高新企业通过</td><td>知识产权不足、研发费未归集、无产学研</td><td>缺4-5件软著、缺研发辅助账、缺高校合作</td><td>可补齐/需投入</td></tr>
+        <tr><td>专精特新申报</td><td>营收不足1500万、无1类知识产权、细分市场不足3年</td><td>硬指标不达标</td><td>短期不可为/需长期布局</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p><strong>差距要分类：</strong></p>
+  <ul>
+    <li><strong>马上能补的</strong>（花钱就能解决的）：知识产权、审计报告</li>
+    <li><strong>需要时间的</strong>（得等的）：证书下证时间、营收积累</li>
+    <li><strong>根本不可能的</strong>（硬指标不达标）：专精特新要求的"细分市场3年"——这种直接放弃，别浪费精力</li>
+  </ul>
+
+  <!-- STEP 3 -->
+  <h3>第三步：排优先级——先做什么、后做什么、不做什么</h3>
+  <p><strong>核心问题：资源有限，先投哪里？</strong></p>
+  <p>用"价值×可行性"矩阵来排：</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th></th><th>高可行性</th><th>低可行性</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>高价值</strong></td><td>🔥 重点攻坚</td><td>⚠️ 谨慎投入（看有没有办法提升可行性）</td></tr>
+        <tr><td><strong>低价值</strong></td><td>✅ 顺手做了</td><td>❌ 直接放弃</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p><strong>套用到资质申报上：</strong></p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>资质</th><th>价值（对公司的好处）</th><th>可行性（今年能不能成）</th><th>优先级</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>高新企业（鹏辉力赫）</td><td>高（节税+品牌+补贴）</td><td>中（需补材料，有难度但可冲）</td><td><span class="badge badge-p0">P0 重点攻坚</span></td></tr>
+        <tr><td>高新企业（力赫集团）</td><td>高</td><td>中（同样需补材料）</td><td><span class="badge badge-p1">P1 同步推进</span></td></tr>
+        <tr><td>创新型中小企业</td><td>中（是专精特新的前置条件）</td><td>高（相对容易）</td><td><span class="badge badge-p1">P1 必过项</span></td></tr>
+        <tr><td>科技型中小企业</td><td>低（只是入库编号）</td><td>高</td><td><span class="badge badge-p2">P2 顺手做</span></td></tr>
+        <tr><td>专精特新</td><td>高（补贴+荣誉）</td><td>低（硬指标不达标）</td><td><span class="badge badge-p3">P3 明年再说</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="highlight-quote">
+    很多人做方案的通病：什么都想做，结果什么都做不好。好方案的第一个标志是——敢说"不做什么"。
+  </div>
+
+  <!-- STEP 4 -->
+  <h3>第四步：拆动作——具体要干什么事？</h3>
+  <p><strong>核心问题：把大目标拆成一件件具体的事。</strong></p>
+  <p>从目标倒推，把每个差距拆成"谁、在什么时间、做什么事、交付什么"。</p>
+
+  <div class="callout callout-bad">
+    <div class="callout-title"><span class="callout-icon">❌</span>反面写法：</div>
+    补充知识产权
+  </div>
+
+  <div class="callout callout-good">
+    <div class="callout-title"><span class="callout-icon">✅</span>正面写法：</div>
+    【知识产权补件】<br>
+    • 动作1：筛选4-5项可申报软著的技术成果（储能EMS系统、BMS管理平台等）<br>
+    • 动作2：对接知识产权代理机构，确认报价和周期<br>
+    • 动作3：6月20日前完成软著材料提交<br>
+    • 动作4：跟踪下证进度，确保8月前拿到受理通知书（申报可用）<br>
+    • 交付物：软著受理通知书×5<br>
+    • 责任人：XXX<br>
+    • 费用预算：约10000元
+  </div>
+
+  <p><strong>拆动作的原则：</strong></p>
+  <ol>
+    <li><strong>每个动作都要有交付物</strong>——不能是"跟进一下""沟通一下"，要有看得见的结果</li>
+    <li><strong>每个动作都要有责任人</strong>——一个人负责，多人配合</li>
+    <li><strong>每个动作都要有时间节点</strong>——精确到周，关键节点精确到天</li>
+    <li><strong>每个动作都要有成本</strong>——人力成本+费用成本</li>
+  </ol>
+
+  <!-- STEP 5 -->
+  <h3>第五步：排时间——什么时间做完？</h3>
+  <p><strong>核心问题：倒排工期，确保关键节点不踩空。</strong></p>
+  <p>用"最终截止日倒推法"：</p>
+  <p><strong>以高新企业7月31日第一批申报为例：</strong></p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>关键节点</th><th>截止日期</th><th>前置依赖</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>提交申报材料</td><td>7月31日</td><td>所有材料齐全</td></tr>
+        <tr><td>完成网上填报</td><td>7月25日</td><td>知识产权、审计、产学研全部到位</td></tr>
+        <tr><td>拿到审计报告</td><td>7月15日</td><td>财务数据确认、研发费归集完成</td></tr>
+        <tr><td>产学研签约</td><td>7月10日</td><td>高校对接完成、协议审核通过</td></tr>
+        <tr><td>软著受理通知书</td><td>6月30日</td><td>材料提交后约30个工作日</td></tr>
+        <tr><td>软著材料提交</td><td>6月15日</td><td>技术成果筛选完成、代理机构选定</td></tr>
+        <tr><td>代理机构选定</td><td>6月10日</td><td>比价完成、领导审批</td></tr>
+        <tr><td>启动会</td><td>6月5日</td><td>方案获批</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="highlight-quote">
+    时间线的本质是风险预警线。<br>每个节点都有缓冲期吗？如果某个环节delay了，后面哪个环节可以压缩？哪个环节delay了整个项目就挂了？
+  </div>
+
+  <!-- STEP 6 -->
+  <h3>第六步：算资源——要花多少钱、要多少人？</h3>
+  <p><strong>核心问题：老板批不批，关键看这一页。</strong></p>
+
+  <p><strong>预算表模板：</strong></p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>类别</th><th>明细</th><th>数量</th><th>单价</th><th>总价</th><th>备注</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>知识产权</td><td>软著申请</td><td>5件</td><td>2000元</td><td>10000元</td><td>含代理费</td></tr>
+        <tr><td>审计费用</td><td>近三年研发费专项审计</td><td>1份</td><td>XXX元</td><td>XXX元</td><td>需比价</td></tr>
+        <tr><td>产学研</td><td>高校合作协议</td><td>1份</td><td>XXX元</td><td>XXX元</td><td>技术合作费</td></tr>
+        <tr><td>人工成本</td><td>项目负责人</td><td>2个月×30%</td><td>-</td><td>XXX元</td><td>内部人工折算</td></tr>
+        <tr><td>财务配合</td><td>研发费归集</td><td>1个月×20%</td><td>-</td><td>XXX元</td><td>财务部支持</td></tr>
+        <tr><td><strong>合计</strong></td><td></td><td></td><td></td><td><strong>XXXXX元</strong></td><td></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p><strong>回报测算（这是老板最关心的）：</strong></p>
+  <ul>
+    <li>投入合计：约XX万元</li>
+    <li>预期收益：
       <ul>
-        <li>列了8项资质（科技型中小企业、创新型中小企业、专精特新、高新技术企业）</li>
-        <li>覆盖了2家主体公司（力赫集团、鹏辉力赫）</li>
-        <li>写清了每项资质的申报时间、当前状态、不通过的原因</li>
-        <li>部分项列了费用预估</li>
+        <li>高新企业所得税减免：年节税约XX万元（按营收XX万、利润率XX%测算）</li>
+        <li>研发费用加计扣除：约XX万元</li>
+        <li>政府补贴：各区高新认定补贴XX-XX万元</li>
+        <li>投资回收期：约X年</li>
       </ul>
+    </li>
+  </ul>
 
-      <h3>它缺什么（方案层）</h3>
+  <!-- STEP 7 -->
+  <h3>第七步：控风险——做不成怎么办？</h3>
+  <p><strong>核心问题：方案不是许愿，要想好最坏情况怎么应对。</strong></p>
 
-      <h4>1. 没有目标——为什么要做这些资质？</h4>
-      <ul>
-        <li>是为了拿政府补贴？为了投标加分？为了税收优惠？还是为了企业形象？</li>
-        <li>不同的目标，优先级和投入完全不一样。</li>
-        <li>如果目标是"2026年拿到高新技术企业资质，享受15%所得税减免"，那所有动作都要围绕这个目标排。</li>
-      </ul>
+  <p><strong>风险清单模板：</strong></p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>风险</th><th>发生概率</th><th>影响程度</th><th>应对措施</th><th>责任人</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>知识产权下证慢，赶不上申报</td><td>中</td><td>高</td><td>1. 选择加急通道（加钱）<br>2. 购买已下证软著转让<br>3. 实在赶不上就报9月第二批</td><td>XXX</td></tr>
+        <tr><td>研发费归集难度大，审计出不来</td><td>中</td><td>高</td><td>1. 提前找事务所预审<br>2. 财务专人配合<br>3. 准备调整账务的预案</td><td>XXX</td></tr>
+        <tr><td>第一批申报未通过</td><td>低</td><td>中</td><td>1. 根据反馈意见整改<br>2. 9月第二批重新申报<br>3. 当年不行就明年，不影响长期目标</td><td>XXX</td></tr>
+        <tr><td>预算超支</td><td>中</td><td>低</td><td>1. 各分项留10%缓冲<br>2. 超支需提前申请审批</td><td>XXX</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
 
-      <h4>2. 没有优先级——先做哪个、后做哪个？</h4>
-      <ul>
-        <li>8项资质平铺直叙，看不出轻重缓急。</li>
-        <li>哪些是今年必须拿的？哪些是明年布局的？哪些可以放弃？</li>
-        <li>高新技术企业和专精特新，哪个投入产出比更高？</li>
-      </ul>
+<!-- ============ SECTION 3 ============ -->
+<section class="section" id="sec3">
+  <div class="section-title"><span class="num">3</span>把七步法用回资质评估这个案例</div>
+  <p>我们来演示一下，用上面的方法，怎么把那份"资质情况评估"改成一份像样的方案。</p>
 
-      <h4>3. 没有时间线——什么时候做完？</h4>
-      <ul>
-        <li>只写了申报窗口期，没写我们自己的动作节点。</li>
-        <li>比如高新企业7月31日第一批申报，那知识产权什么时候补？审计报告什么时候出？产学研什么时候签？</li>
-        <li>没有倒排工期，就等于没有计划。</li>
-      </ul>
+  <h3>方案标题：《2026年度公司资质申报工作方案》</h3>
 
-      <h4>4. 没有责任人——谁来干？</h4>
-      <ul>
-        <li>这么多事，谁牵头？谁配合？谁审批？</li>
-        <li>知识产权找谁申请？审计找谁做？产学研找谁谈？</li>
-        <li>没有责任人的任务，最后一定没人干。</li>
-      </ul>
+  <h4>一、工作目标</h4>
+  <ol>
+    <li><strong>核心目标</strong>：2026年完成鹏辉力赫、力赫集团2家公司高新技术企业申报，力争至少1家通过</li>
+    <li><strong>基础目标</strong>：完成2家公司创新型中小企业认定（专精特新前置条件）</li>
+    <li><strong>布局目标</strong>：启动专精特新中小企业筹备，2027年具备申报条件</li>
+    <li><strong>预期价值</strong>：高新企业通过后，年节税预计XX万元，加计扣除XX万元，合计XX万元</li>
+  </ol>
 
-      <h4>5. 没有资源测算——要花多少钱、要多少人、要什么支持？</h4>
-      <ul>
-        <li>费用只有零星几笔，没有总预算。</li>
-        <li>需要公司哪些部门配合（财务、法务、技术）？需要占用多少时间？</li>
-        <li>老板最关心的是：这件事要花我多少钱、多少精力、值不值。</li>
-      </ul>
+  <h4>二、现状与差距分析</h4>
+  <p>（这里放员工原来做的评估表，但加上"差距分类"列）</p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>资质</th><th>主体</th><th>当前状态</th><th>主要差距</th><th>差距分类</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>高新技术企业</td><td>鹏辉力赫</td><td>可申报，需补充材料</td><td>知识产权不足、研发费未归集</td><td>可补齐</td></tr>
+        <tr><td>高新技术企业</td><td>力赫集团</td><td>可申报，需补充材料</td><td>知识产权不足、研发费未归集、缺产学研</td><td>可补齐</td></tr>
+        <tr><td>创新型中小企业</td><td>2家</td><td>需研发费用披露</td><td>审计报告需调整</td><td>可补齐</td></tr>
+        <tr><td>专精特新</td><td>2家</td><td>暂不能申报</td><td>营收不达标、细分市场年限不足</td><td>硬指标不达标（2027年再说）</td></tr>
+      </tbody>
+    </table>
+  </div>
 
-      <h4>6. 没有风险预案——做不成怎么办？</h4>
-      <ul>
-        <li>高新企业"通过难度较高"，那Plan B是什么？</li>
-        <li>如果知识产权下不来怎么办？如果审计报告赶不上怎么办？</li>
-        <li>只说困难，不说应对，等于把难题甩给老板。</li>
-      </ul>
+  <h4>三、优先级排序</h4>
+  <ul>
+    <li><span class="badge badge-p0">P0 必须完成</span>：高新企业申报（鹏辉力赫优先，力赫集团同步）</li>
+    <li><span class="badge badge-p1">P1 应该完成</span>：创新型中小企业认定（2家）</li>
+    <li><span class="badge badge-p2">P2 顺手推进</span>：科技型中小企业入库</li>
+    <li><span class="badge badge-p3">P3 今年不做</span>：专精特新（条件不具备，列入明年计划）</li>
+  </ul>
 
-      <h4>7. 没有验收标准——做成什么样算成了？</h4>
-      <ul>
-        <li>是"提交申报材料"就算完成，还是"拿到证书"才算完成？</li>
-        <li>如果没拿到证书，工作怎么衡量价值？</li>
-        <li>阶段性成果怎么验收？</li>
-      </ul>
+  <h4>四、重点项目实施计划（高新企业）</h4>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>序号</th><th>工作任务</th><th>交付物</th><th>责任人</th><th>完成时间</th><th>费用预算</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td>选定知识产权代理机构</td><td>代理合同</td><td>XXX</td><td>6月10日</td><td>-</td></tr>
+        <tr><td>2</td><td>筛选并提交5件软著申请</td><td>受理通知书</td><td>XXX</td><td>6月20日</td><td>10000元</td></tr>
+        <tr><td>3</td><td>选定会计师事务所</td><td>审计服务合同</td><td>XXX</td><td>6月15日</td><td>-</td></tr>
+        <tr><td>4</td><td>研发费用归集与辅助账建立</td><td>研发费辅助账</td><td>财务部</td><td>7月5日</td><td>-</td></tr>
+        <tr><td>5</td><td>近三年审计报告出具</td><td>审计报告</td><td>事务所</td><td>7月15日</td><td>XXX元</td></tr>
+        <tr><td>6</td><td>对接高校签订产学研协议</td><td>合作协议</td><td>XXX</td><td>7月10日</td><td>XXX元</td></tr>
+        <tr><td>7</td><td>高新技术企业材料填报</td><td>申报材料</td><td>XXX</td><td>7月25日</td><td>-</td></tr>
+        <tr><td>8</td><td>提交第一批申报</td><td>申报回执</td><td>XXX</td><td>7月31日</td><td>-</td></tr>
+      </tbody>
+    </table>
+  </div>
 
-      <blockquote>
-        <p><strong>一句话总结：</strong>这份材料叫"资质情况盘点表"，不叫"资质申报方案"。前者是告诉你"现在怎么样"，后者是告诉你"怎么从现在走到目标"。</p>
-      </blockquote>
-    </div>
+  <h4>五、总预算与收益测算</h4>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>项目</th><th>金额（万元）</th><th>备注</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>知识产权（软著）</td><td>约2万</td><td>2家公司×5件</td></tr>
+        <tr><td>审计费用</td><td>约X万</td><td>研发费专项审计</td></tr>
+        <tr><td>产学研合作</td><td>约X万</td><td>1-2所高校</td></tr>
+        <tr><td>其他（咨询/材料）</td><td>约X万</td><td></td></tr>
+        <tr><td><strong>合计投入</strong></td><td><strong>约XX万</strong></td><td></td></tr>
+        <tr><td><strong>预期年收益</strong></td><td><strong>约XX万</strong></td><td>所得税减免+加计扣除+补贴</td></tr>
+        <tr><td><strong>投资回收期</strong></td><td><strong>约X年</strong></td><td>当年见效</td></tr>
+      </tbody>
+    </table>
+  </div>
 
-    <!-- Section 2: 七步法 -->
-    <div class="section" id="sec2">
-      <h2>二、做方案的底层逻辑：七步法</h2>
-      <p>做任何方案，本质上都是回答七个问题。按这个顺序想，方案就不会缺东西。</p>
-    </div>
+  <h4>六、风险与应对</h4>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>风险</th><th>应对</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>第一批未通过</td><td>9月报第二批，根据反馈整改</td></tr>
+        <tr><td>知识产权赶不上</td><td>加急通道/转让已下证软著</td></tr>
+        <tr><td>研发费归集困难</td><td>提前预审+财务专人配合</td></tr>
+        <tr><td>预算超支</td><td>分项留10%缓冲，超支提前申请</td></tr>
+      </tbody>
+    </table>
+  </div>
 
-    <!-- Step 1 -->
-    <div class="section" id="step1">
-      <h3>第一步：定目标——我们要去哪里？</h3>
-      <p><strong>核心问题：做这件事最终要达成什么结果？</strong></p>
-      <p>不要写"做好资质申报工作"这种空话，要写具体的、可衡量的目标。</p>
+  <h4>七、需要公司支持的事项</h4>
+  <ol>
+    <li>财务部安排专人配合研发费归集（预计占用XX人天）</li>
+    <li>技术部配合知识产权材料撰写（预计占用XX人天）</li>
+    <li>审批上述预算XX万元</li>
+  </ol>
+</section>
 
-      <div class="callout callout-red" style="margin:16px 0">
-        <strong>❌ 反面写法：</strong><br>
-        <em>推进公司资质申报工作</em>
-      </div>
-      <div class="callout callout-green" style="margin:16px 0">
-        <strong>✅ 正面写法：</strong><br>
-        2026年完成以下资质申报目标：<br>
-        · 必保：高新技术企业（鹏辉力赫）申报并通过，预计年节税XX万元<br>
-        · 力争：创新型中小企业（2家）全部通过<br>
-        · 布局：专精特新中小企业启动筹备，2027年申报
-      </div>
+<!-- ============ SECTION 4 ============ -->
+<section class="section" id="sec4">
+  <div class="section-title"><span class="num">4</span>做方案常犯的7个错误</div>
+  <p>对照一下，你有没有犯过？</p>
 
-      <h4>判断目标好不好的三个标准：</h4>
-      <ol>
-        <li><strong>可衡量</strong>——拿到证书/通过申报/补贴到账，不是"推进""加强"</li>
-        <li><strong>有价值</strong>——能说清对公司的好处（节税、补贴、投标、融资）</li>
-        <li><strong>有边界</strong>——明确做什么、不做什么，不是越大越好</li>
-      </ol>
-    </div>
+  <div class="error-card">
+    <span class="error-num">错误 1</span>
+    <div class="error-title">把"信息罗列"当"方案"</div>
+    <p>只说"现在是什么样"，不说"怎么走到目标"</p>
+    <div class="error-fix">✅ 改正：先写目标，再写差距，最后写路径</div>
+  </div>
 
-    <!-- Step 2 -->
-    <div class="section" id="step2">
-      <h3>第二步：找差距——现在离目标差多远？</h3>
-      <p><strong>核心问题：要达到目标，我们缺什么？</strong></p>
-      <p>这一步就是员工现在做到的部分——盘点现状。但盘点不是目的，<strong>对比目标找差距</strong>才是目的。</p>
+  <div class="error-card">
+    <span class="error-num">错误 2</span>
+    <div class="error-title">目标太虚，没法衡量</div>
+    <p>"加强管理""提升效率""推进工作"——都是废话</p>
+    <div class="error-fix">✅ 改正：目标必须是具体的结果，比如"拿到证书""节省XX万""上线系统"</div>
+  </div>
 
-      <h4>差距分析模板：</h4>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>目标</th><th>现状</th><th>差距</th><th>差距性质</th></tr></thead>
-          <tbody>
-            <tr><td>高新企业通过</td><td>知识产权不足、研发费未归集、无产学研</td><td>缺4-5件软著、缺研发辅助账、缺高校合作</td><td>可补齐/需投入</td></tr>
-            <tr><td>专精特新申报</td><td>营收不足1500万、无1类知识产权、细分市场不足3年</td><td>硬指标不达标</td><td>短期不可为/需长期布局</td></tr>
-          </tbody>
-        </table>
-      </div>
+  <div class="error-card">
+    <span class="error-num">错误 3</span>
+    <div class="error-title">什么都想做，没有取舍</div>
+    <p>列了十几件事，看不出哪个最重要</p>
+    <div class="error-fix">✅ 改正：用优先级矩阵，P0不超过3件事，P3该砍就砍</div>
+  </div>
 
-      <h4>差距要分类：</h4>
-      <ul>
-        <li><strong>马上能补的</strong>（花钱就能解决的）：知识产权、审计报告</li>
-        <li><strong>需要时间的</strong>（得等的）：证书下证时间、营收积累</li>
-        <li><strong>根本不可能的</strong>（硬指标不达标）：专精特新要求的"细分市场3年"——这种直接放弃，别浪费精力</li>
-      </ul>
-    </div>
+  <div class="error-card">
+    <span class="error-num">错误 4</span>
+    <div class="error-title">只有方向，没有动作</div>
+    <p>"加强知识产权布局"——怎么加强？加几件？谁来加？加什么类型？</p>
+    <div class="error-fix">✅ 改正：拆到"谁、什么时间、做什么、交付什么"的颗粒度</div>
+  </div>
 
-    <!-- Step 3 -->
-    <div class="section" id="step3">
-      <h3>第三步：排优先级——先做什么、后做什么、不做什么</h3>
-      <p><strong>核心问题：资源有限，先投哪里？</strong></p>
-      <p>用"价值×可行性"矩阵来排：</p>
+  <div class="error-card">
+    <span class="error-num">错误 5</span>
+    <div class="error-title">不算账，不谈投入产出</div>
+    <p>只说"这件事很重要"，不说"要花多少钱、值不值"</p>
+    <div class="error-fix">✅ 改正：每一份方案都必须有预算和收益测算，让老板能做决策</div>
+  </div>
 
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th></th><th>高可行性</th><th>低可行性</th></tr></thead>
-          <tbody>
-            <tr><td><strong>高价值</strong></td><td>🔥 重点攻坚</td><td>⚠️ 谨慎投入（看有没有办法提升可行性）</td></tr>
-            <tr><td><strong>低价值</strong></td><td>✅ 顺手做了</td><td>❌ 直接放弃</td></tr>
-          </tbody>
-        </table>
-      </div>
+  <div class="error-card">
+    <span class="error-num">错误 6</span>
+    <div class="error-title">没有责任人，都是"相关部门"</div>
+    <p>"由相关部门配合推进"——等于没人负责</p>
+    <div class="error-fix">✅ 改正：每件事一个主责人，其他人是配合，写清楚名字</div>
+  </div>
 
-      <h4>套用到资质申报上：</h4>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>资质</th><th>价值（对公司的好处）</th><th>可行性（今年能不能成）</th><th>优先级</th></tr></thead>
-          <tbody>
-            <tr><td>高新企业（鹏辉力赫）</td><td>高（节税+品牌+补贴）</td><td>中（需补材料，有难度但可冲）</td><td><span class="badge-p badge-p0">P0</span> 重点攻坚</td></tr>
-            <tr><td>高新企业（力赫集团）</td><td>高</td><td>中（同样需补材料）</td><td><span class="badge-p badge-p1">P1</span> 同步推进</td></tr>
-            <tr><td>创新型中小企业</td><td>中（是专精特新的前置条件）</td><td>高（相对容易）</td><td><span class="badge-p badge-p1">P1</span> 必过项</td></tr>
-            <tr><td>科技型中小企业</td><td>低（只是入库编号）</td><td>高</td><td><span class="badge-p badge-p2">P2</span> 顺手做</td></tr>
-            <tr><td>专精特新</td><td>高（补贴+荣誉）</td><td>低（硬指标不达标）</td><td><span class="badge-p badge-p3">P3</span> 明年再说</td></tr>
-          </tbody>
-        </table>
-      </div>
+  <div class="error-card">
+    <span class="error-num">错误 7</span>
+    <div class="error-title">只说困难，不说办法</div>
+    <p>"通过难度较高""存在不确定性"——然后呢？</p>
+    <div class="error-fix">✅ 改正：困难+应对措施一起写，让老板看到你想过退路</div>
+  </div>
+</section>
 
-      <blockquote>
-        <p><strong>很多人做方案的通病：</strong>什么都想做，结果什么都做不好。好方案的第一个标志是——敢说"不做什么"。</p>
-      </blockquote>
-    </div>
+<!-- ============ SECTION 5 ============ -->
+<section class="section" id="sec5">
+  <div class="section-title"><span class="num">5</span>万能方案模板（直接套用）</div>
+  <p>以后做任何方案，都按这个框架填，不会错：</p>
 
-    <!-- Step 4 -->
-    <div class="section" id="step4">
-      <h3>第四步：拆动作——具体要干什么事？</h3>
-      <p><strong>核心问题：把大目标拆成一件件具体的事。</strong></p>
-      <p>从目标倒推，把每个差距拆成"谁、在什么时间、做什么事、交付什么"。</p>
-
-      <div class="callout callout-red" style="margin:16px 0">
-        <strong>❌ 反面写法：</strong><br>
-        <em>补充知识产权</em>
-      </div>
-      <div class="callout callout-green" style="margin:16px 0">
-        <strong>✅ 正面写法：</strong><br>
-        【知识产权补件】<br>
-        · 动作1：筛选4-5项可申报软著的技术成果（储能EMS系统、BMS管理平台等）<br>
-        · 动作2：对接知识产权代理机构，确认报价和周期<br>
-        · 动作3：6月20日前完成软著材料提交<br>
-        · 动作4：跟踪下证进度，确保8月前拿到受理通知书（申报可用）<br>
-        · 交付物：软著受理通知书×5<br>
-        · 责任人：XXX<br>
-        · 费用预算：约10000元
-      </div>
-
-      <h4>拆动作的原则：</h4>
-      <ol>
-        <li><strong>每个动作都要有交付物</strong>——不能是"跟进一下""沟通一下"，要有看得见的结果</li>
-        <li><strong>每个动作都要有责任人</strong>——一个人负责，多人配合</li>
-        <li><strong>每个动作都要有时间节点</strong>——精确到周，关键节点精确到天</li>
-        <li><strong>每个动作都要有成本</strong>——人力成本+费用成本</li>
-      </ol>
-    </div>
-
-    <!-- Step 5 -->
-    <div class="section" id="step5">
-      <h3>第五步：排时间——什么时间做完？</h3>
-      <p><strong>核心问题：倒排工期，确保关键节点不踩空。</strong></p>
-      <p>用"最终截止日倒推法"：</p>
-
-      <h4>以高新企业7月31日第一批申报为例：</h4>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>关键节点</th><th>截止日期</th><th>前置依赖</th></tr></thead>
-          <tbody>
-            <tr><td>提交申报材料</td><td>7月31日</td><td>所有材料齐全</td></tr>
-            <tr><td>完成网上填报</td><td>7月25日</td><td>知识产权、审计、产学研全部到位</td></tr>
-            <tr><td>拿到审计报告</td><td>7月15日</td><td>财务数据确认、研发费归集完成</td></tr>
-            <tr><td>产学研签约</td><td>7月10日</td><td>高校对接完成、协议审核通过</td></tr>
-            <tr><td>软著受理通知书</td><td>6月30日</td><td>材料提交后约30个工作日</td></tr>
-            <tr><td>软著材料提交</td><td>6月15日</td><td>技术成果筛选完成、代理机构选定</td></tr>
-            <tr><td>代理机构选定</td><td>6月10日</td><td>比价完成、领导审批</td></tr>
-            <tr><td>启动会</td><td>6月5日</td><td>方案获批</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <blockquote>
-        <p><strong>时间线的本质是风险预警线。</strong>每个节点都有缓冲期吗？如果某个环节delay了，后面哪个环节可以压缩？哪个环节delay了整个项目就挂了？</p>
-      </blockquote>
-    </div>
-
-    <!-- Step 6 -->
-    <div class="section" id="step6">
-      <h3>第六步：算资源——要花多少钱、要多少人？</h3>
-      <p><strong>核心问题：老板批不批，关键看这一页。</strong></p>
-
-      <h4>预算表模板：</h4>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>类别</th><th>明细</th><th>数量</th><th>单价</th><th>总价</th><th>备注</th></tr></thead>
-          <tbody>
-            <tr><td>知识产权</td><td>软著申请</td><td>5件</td><td>2000元</td><td>10000元</td><td>含代理费</td></tr>
-            <tr><td>审计费用</td><td>近三年研发费专项审计</td><td>1份</td><td>XXX元</td><td>XXX元</td><td>需比价</td></tr>
-            <tr><td>产学研</td><td>高校合作协议</td><td>1份</td><td>XXX元</td><td>XXX元</td><td>技术合作费</td></tr>
-            <tr><td>人工成本</td><td>项目负责人</td><td>2个月×30%</td><td>-</td><td>XXX元</td><td>内部人工折算</td></tr>
-            <tr><td>财务配合</td><td>研发费归集</td><td>1个月×20%</td><td>-</td><td>XXX元</td><td>财务部支持</td></tr>
-            <tr><td><strong>合计</strong></td><td></td><td></td><td></td><td><strong>XXXXX元</strong></td><td></td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="callout callout-blue" style="margin:16px 0">
-        <strong>回报测算（这是老板最关心的）：</strong><br><br>
-        投入合计：约XX万元<br>
-        预期收益：<br>
-        · 高新企业所得税减免：年节税约XX万元（按营收XX万、利润率XX%测算）<br>
-        · 研发费用加计扣除：约XX万元<br>
-        · 政府补贴：各区高新认定补贴XX-XX万元<br>
-        · 投资回收期：约X年
-      </div>
-    </div>
-
-    <!-- Step 7 -->
-    <div class="section" id="step7">
-      <h3>第七步：控风险——做不成怎么办？</h3>
-      <p><strong>核心问题：方案不是许愿，要想好最坏情况怎么应对。</strong></p>
-
-      <h4>风险清单模板：</h4>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>风险</th><th>发生概率</th><th>影响程度</th><th>应对措施</th><th>责任人</th></tr></thead>
-          <tbody>
-            <tr><td>知识产权下证慢，赶不上申报</td><td>中</td><td>高</td><td>1. 选择加急通道（加钱）<br>2. 购买已下证软著转让<br>3. 实在赶不上就报9月第二批</td><td>XXX</td></tr>
-            <tr><td>研发费归集难度大，审计出不来</td><td>中</td><td>高</td><td>1. 提前找事务所预审<br>2. 财务专人配合<br>3. 准备调整账务的预案</td><td>XXX</td></tr>
-            <tr><td>第一批申报未通过</td><td>低</td><td>中</td><td>1. 根据反馈意见整改<br>2. 9月第二批重新申报<br>3. 当年不行就明年，不影响长期目标</td><td>XXX</td></tr>
-            <tr><td>预算超支</td><td>中</td><td>低</td><td>1. 各分项留10%缓冲<br>2. 超支需提前申请审批</td><td>XXX</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <!-- Section 3: 案例实操 -->
-    <div class="section" id="sec3">
-      <h2>三、把七步法用回资质评估这个案例</h2>
-      <p>我们来演示一下，用上面的方法，怎么把那份"资质情况评估"改成一份像样的方案。</p>
-
-      <h3>方案标题：《2026年度公司资质申报工作方案》</h3>
-
-      <h4>一、工作目标</h4>
-      <ol>
-        <li><strong>核心目标</strong>：2026年完成鹏辉力赫、力赫集团2家公司高新技术企业申报，力争至少1家通过</li>
-        <li><strong>基础目标</strong>：完成2家公司创新型中小企业认定（专精特新前置条件）</li>
-        <li><strong>布局目标</strong>：启动专精特新中小企业筹备，2027年具备申报条件</li>
-        <li><strong>预期价值</strong>：高新企业通过后，年节税预计XX万元，加计扣除XX万元，合计XX万元</li>
-      </ol>
-
-      <h4>二、现状与差距分析</h4>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>资质</th><th>主体</th><th>当前状态</th><th>主要差距</th><th>差距分类</th></tr></thead>
-          <tbody>
-            <tr><td>高新技术企业</td><td>鹏辉力赫</td><td>可申报，需补充材料</td><td>知识产权不足、研发费未归集</td><td>可补齐</td></tr>
-            <tr><td>高新技术企业</td><td>力赫集团</td><td>可申报，需补充材料</td><td>知识产权不足、研发费未归集、缺产学研</td><td>可补齐</td></tr>
-            <tr><td>创新型中小企业</td><td>2家</td><td>需研发费用披露</td><td>审计报告需调整</td><td>可补齐</td></tr>
-            <tr><td>专精特新</td><td>2家</td><td>暂不能申报</td><td>营收不达标、细分市场年限不足</td><td>硬指标不达标（2027年再说）</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <h4>三、优先级排序</h4>
-      <ul>
-        <li><span class="badge-p badge-p0">P0</span> <strong>必须完成</strong>：高新企业申报（鹏辉力赫优先，力赫集团同步）</li>
-        <li><span class="badge-p badge-p1">P1</span> <strong>应该完成</strong>：创新型中小企业认定（2家）</li>
-        <li><span class="badge-p badge-p2">P2</span> <strong>顺手推进</strong>：科技型中小企业入库</li>
-        <li><span class="badge-p badge-p3">P3</span> <strong>今年不做</strong>：专精特新（条件不具备，列入明年计划）</li>
-      </ul>
-
-      <h4>四、重点项目实施计划（高新企业）</h4>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>序号</th><th>工作任务</th><th>交付物</th><th>责任人</th><th>完成时间</th><th>费用预算</th></tr></thead>
-          <tbody>
-            <tr><td>1</td><td>选定知识产权代理机构</td><td>代理合同</td><td>XXX</td><td>6月10日</td><td>-</td></tr>
-            <tr><td>2</td><td>筛选并提交5件软著申请</td><td>受理通知书</td><td>XXX</td><td>6月20日</td><td>10000元</td></tr>
-            <tr><td>3</td><td>选定会计师事务所</td><td>审计服务合同</td><td>XXX</td><td>6月15日</td><td>-</td></tr>
-            <tr><td>4</td><td>研发费用归集与辅助账建立</td><td>研发费辅助账</td><td>财务部</td><td>7月5日</td><td>-</td></tr>
-            <tr><td>5</td><td>近三年审计报告出具</td><td>审计报告</td><td>事务所</td><td>7月15日</td><td>XXX元</td></tr>
-            <tr><td>6</td><td>对接高校签订产学研协议</td><td>合作协议</td><td>XXX</td><td>7月10日</td><td>XXX元</td></tr>
-            <tr><td>7</td><td>高新技术企业材料填报</td><td>申报材料</td><td>XXX</td><td>7月25日</td><td>-</td></tr>
-            <tr><td>8</td><td>提交第一批申报</td><td>申报回执</td><td>XXX</td><td>7月31日</td><td>-</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <h4>五、总预算与收益测算</h4>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>项目</th><th>金额（万元）</th><th>备注</th></tr></thead>
-          <tbody>
-            <tr><td>知识产权（软著）</td><td>约2万</td><td>2家公司×5件</td></tr>
-            <tr><td>审计费用</td><td>约X万</td><td>研发费专项审计</td></tr>
-            <tr><td>产学研合作</td><td>约X万</td><td>1-2所高校</td></tr>
-            <tr><td>其他（咨询/材料）</td><td>约X万</td><td></td></tr>
-            <tr><td><strong>合计投入</strong></td><td><strong>约XX万</strong></td><td></td></tr>
-            <tr><td><strong>预期年收益</strong></td><td><strong>约XX万</strong></td><td>所得税减免+加计扣除+补贴</td></tr>
-            <tr><td><strong>投资回收期</strong></td><td><strong>约X年</strong></td><td>当年见效</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <h4>六、风险与应对</h4>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>风险</th><th>应对</th></tr></thead>
-          <tbody>
-            <tr><td>第一批未通过</td><td>9月报第二批，根据反馈整改</td></tr>
-            <tr><td>知识产权赶不上</td><td>加急通道/转让已下证软著</td></tr>
-            <tr><td>研发费归集困难</td><td>提前预审+财务专人配合</td></tr>
-            <tr><td>预算超支</td><td>分项留10%缓冲，超支提前申请</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <h4>七、需要公司支持的事项</h4>
-      <ol>
-        <li>财务部安排专人配合研发费归集（预计占用XX人天）</li>
-        <li>技术部配合知识产权材料撰写（预计占用XX人天）</li>
-        <li>审批上述预算XX万元</li>
-      </ol>
-    </div>
-
-    <!-- Section 4: 7个错误 -->
-    <div class="section" id="sec4">
-      <h2>四、做方案常犯的7个错误</h2>
-      <p>对照一下，你有没有犯过？</p>
-
-      <h4 style="color:#c0392b; margin-top:24px">错误1：把"信息罗列"当"方案"</h4>
-      <ul>
-        <li>只说"现在是什么样"，不说"怎么走到目标"</li>
-        <li><strong>改正：</strong>先写目标，再写差距，最后写路径</li>
-      </ul>
-
-      <h4 style="color:#c0392b">错误2：目标太虚，没法衡量</h4>
-      <ul>
-        <li>"加强管理""提升效率""推进工作"——都是废话</li>
-        <li><strong>改正：</strong>目标必须是具体的结果，比如"拿到证书""节省XX万""上线系统"</li>
-      </ul>
-
-      <h4 style="color:#c0392b">错误3：什么都想做，没有取舍</h4>
-      <ul>
-        <li>列了十几件事，看不出哪个最重要</li>
-        <li><strong>改正：</strong>用优先级矩阵，P0不超过3件事，P3该砍就砍</li>
-      </ul>
-
-      <h4 style="color:#c0392b">错误4：只有方向，没有动作</h4>
-      <ul>
-        <li>"加强知识产权布局"——怎么加强？加几件？谁来加？加什么类型？</li>
-        <li><strong>改正：</strong>拆到"谁、什么时间、做什么、交付什么"的颗粒度</li>
-      </ul>
-
-      <h4 style="color:#c0392b">错误5：不算账，不谈投入产出</h4>
-      <ul>
-        <li>只说"这件事很重要"，不说"要花多少钱、值不值"</li>
-        <li><strong>改正：</strong>每一份方案都必须有预算和收益测算，让老板能做决策</li>
-      </ul>
-
-      <h4 style="color:#c0392b">错误6：没有责任人，都是"相关部门"</h4>
-      <ul>
-        <li>"由相关部门配合推进"——等于没人负责</li>
-        <li><strong>改正：</strong>每件事一个主责人，其他人是配合，写清楚名字</li>
-      </ul>
-
-      <h4 style="color:#c0392b">错误7：只说困难，不说办法</h4>
-      <ul>
-        <li>"通过难度较高""存在不确定性"——然后呢？</li>
-        <li><strong>改正：</strong>困难+应对措施一起写，让老板看到你想过退路</li>
-      </ul>
-    </div>
-
-    <!-- Section 5: 万能模板 -->
-    <div class="section" id="sec5">
-      <h2>五、万能方案模板（直接套用）</h2>
-      <p>以后做任何方案，都按这个框架填，不会错：</p>
-      <div class="code-block">【方案名称】
+  <div class="template-block">【方案名称】
 一句话说清楚：做什么事、达到什么目标
 
 一、目标（为什么做？做成什么样？）
-   1. 核心目标（1条，可衡量）
-   2. 次要目标（2-3条）
-   3. 预期价值（对公司的好处，最好量化）
+1. 核心目标（1条，可衡量）
+2. 次要目标（2-3条）
+3. 预期价值（对公司的好处，最好量化）
 
 二、现状与差距（现在在哪？离目标差多远？）
-   1. 当前现状（数据+事实）
-   2. 关键差距（分点列，不要太长）
-   3. 差距分类（能补的/要等的/不可能的）
+1. 当前现状（数据+事实）
+2. 关键差距（分点列，不要太长）
+3. 差距分类（能补的/要等的/不可能的）
 
 三、优先级与范围（做什么/不做什么？先做什么/后做什么？）
-   1. P0 必做（≤3项）
-   2. P1 应做
-   3. P2 可做
-   4. P3 不做（明确说不做什么更重要）
+1. P0 必做（≤3项）
+2. P1 应做
+3. P2 可做
+4. P3 不做（明确说不做什么更重要）
 
 四、实施计划（具体怎么干？）
-   表格：任务 | 交付物 | 责任人 | 时间节点 | 预算
-   （按时间顺序排，关键路径要标红）
+表格：任务 | 交付物 | 责任人 | 时间节点 | 预算
+（按时间顺序排，关键路径要标红）
 
 五、资源需求（要什么支持？）
-   1. 预算（分项+总计）
-   2. 人力（哪些部门/多少人天）
-   3. 决策（需要老板拍板什么）
+1. 预算（分项+总计）
+2. 人力（哪些部门/多少人天）
+3. 决策（需要老板拍板什么）
 
 六、风险与应对（出问题怎么办？）
-   表格：风险 | 概率 | 影响 | 应对措施 | 责任人
-   （至少列3条，别写"暂无风险"这种蠢话）
+表格：风险 | 概率 | 影响 | 应对措施 | 责任人
+（至少列3条，别写"暂无风险"这种蠢话）
 
 七、验收标准（怎么算做成了？）
-   1. 最终验收标准（核心目标是否达成）
-   2. 阶段性验收节点</div>
+1. 最终验收标准（核心目标是否达成）
+2. 阶段性验收节点</div>
+</section>
+
+<!-- ============ SECTION 6 ============ -->
+<section class="section" id="sec6">
+  <div class="section-title"><span class="num">6</span>给邢文君的3句忠告</div>
+
+  <div class="advice-grid">
+    <div class="advice-card">
+      <span class="card-num">1</span>
+      <div class="card-title">方案是拿来决策的，不是拿来展示工作量的。</div>
+      <div class="card-body">老板看方案，不是看你做了多少调研、写了多少页，而是看——这件事值不值得做、怎么做、要我批什么。写得越厚越好是误区，越薄越清楚才是本事。</div>
     </div>
-
-    <!-- Section 6: 三句忠告 -->
-    <div class="section" id="sec6">
-      <h2>六、给部门主管的3句忠告</h2>
-
-      <div class="callout callout-blue" style="margin:20px 0; padding:20px 24px;">
-        <h4 style="margin:0 0 8px; color:#1a5276; font-size:1.05em;">💬 第一句</h4>
-        <p style="font-size:1.02em; margin:0;"><strong>方案是拿来决策的，不是拿来展示工作量的。</strong></p>
-        <p style="margin:8px 0 0; color:#555;">老板看方案，不是看你做了多少调研、写了多少页，而是看——这件事值不值得做、怎么做、要我批什么。写得越厚越好是误区，越薄越清楚才是本事。</p>
-      </div>
-
-      <div class="callout callout-green" style="margin:20px 0; padding:20px 24px;">
-        <h4 style="margin:0 0 8px; color:#1e8449; font-size:1.05em;">💬 第二句</h4>
-        <p style="font-size:1.02em; margin:0;"><strong>好方案的标志是——老板看完只需要说"同意"或"不同意"。</strong></p>
-        <p style="margin:8px 0 0; color:#555;">如果老板看完还要追问："那谁来干？""什么时候完？""要多少钱？""做不成怎么办？"——说明你的方案是半成品。把老板可能问的问题，提前在方案里回答了，你就成熟了。</p>
-      </div>
-
-      <div class="callout callout-amber" style="margin:20px 0; padding:20px 24px;">
-        <h4 style="margin:0 0 8px; color:#7d6608; font-size:1.05em;">💬 第三句</h4>
-        <p style="font-size:1.02em; margin:0;"><strong>方案不是写出来就完了，方案是要落地的。</strong></p>
-        <p style="margin:8px 0 0; color:#555;">很多人写方案是"为了写而写"，写完交差就不管了。真正的高手，写完方案只是开始——按计划推进、定期复盘、遇到问题调整、最终拿结果。方案写得再好，落不了地就是废纸。</p>
-      </div>
+    <div class="advice-card">
+      <span class="card-num">2</span>
+      <div class="card-title">好方案的标志是——老板看完只需要说"同意"或"不同意"。</div>
+      <div class="card-body">如果老板看完还要追问："那谁来干？""什么时候完？""要多少钱？""做不成怎么办？"——说明你的方案是半成品。把老板可能问的问题，提前在方案里回答了，你就成熟了。</div>
     </div>
-
-    <!-- Section 7: 练习作业 -->
-    <div class="section" id="sec7">
-      <h2>附：练习作业</h2>
-      <p>拿你最近做过的一份方案（或正在做的），用今天的七步法重新审视一遍：</p>
-
-      <ol class="practice-list" style="margin-top:20px">
-        <li><strong>目标清楚吗？</strong>能不能用一句话说清？</li>
-        <li><strong>有差距分析吗？</strong>还是只罗列了现状？</li>
-        <li><strong>有优先级吗？</strong>敢说"不做什么"吗？</li>
-        <li><strong>动作拆到可执行了吗？</strong>每件事有责任人、有时间、有交付物吗？</li>
-        <li><strong>算账了吗？</strong>投入多少、产出多少？</li>
-        <li><strong>风险想过吗？</strong>Plan B是什么？</li>
-        <li><strong>验收标准明确吗？</strong>做成什么样算成了？</li>
-      </ol>
-
-      <blockquote style="margin-top:24px">
-        <p><strong>对照以上7条，缺哪条补哪条。</strong>补完之后，再拿给老板看——效果会完全不一样。</p>
-      </blockquote>
+    <div class="advice-card">
+      <span class="card-num">3</span>
+      <div class="card-title">方案不是写出来就完了，方案是要落地的。</div>
+      <div class="card-body">很多人写方案是"为了写而写"，写完交差就不管了。真正的高手，写完方案只是开始——按计划推进、定期复盘、遇到问题调整、最终拿结果。方案写得再好，落不了地就是废纸。</div>
     </div>
+  </div>
+</section>
 
-  </main>
+<!-- ============ SECTION 7: SOP ============ -->
+<section class="section" id="sec7">
+  <div class="section-title"><span class="num" style="background:#0f766e;">附</span>方案SOP自检清单</div>
+  <p>拿你最近做过的一份方案（或正在做的），用今天的七步法重新审视一遍：</p>
+
+  <div class="sop-list">
+    <div class="sop-item">
+      <span class="sop-num">1</span>
+      <span class="sop-text"><strong>目标清楚吗？</strong>能不能用一句话说清？</span>
+    </div>
+    <div class="sop-item">
+      <span class="sop-num">2</span>
+      <span class="sop-text"><strong>有差距分析吗？</strong>还是只罗列了现状？</span>
+    </div>
+    <div class="sop-item">
+      <span class="sop-num">3</span>
+      <span class="sop-text"><strong>有优先级吗？</strong>敢说"不做什么"吗？</span>
+    </div>
+    <div class="sop-item">
+      <span class="sop-num">4</span>
+      <span class="sop-text"><strong>动作拆到可执行了吗？</strong>每件事有责任人、有时间、有交付物吗？</span>
+    </div>
+    <div class="sop-item">
+      <span class="sop-num">5</span>
+      <span class="sop-text"><strong>算账了吗？</strong>投入多少、产出多少？</span>
+    </div>
+    <div class="sop-item">
+      <span class="sop-num">6</span>
+      <span class="sop-text"><strong>风险想过吗？</strong>Plan B是什么？</span>
+    </div>
+    <div class="sop-item">
+      <span class="sop-num">7</span>
+      <span class="sop-text"><strong>验收标准明确吗？</strong>做成什么样算成了？</span>
+    </div>
+  </div>
+
+  <div class="highlight-quote" style="margin-top:24px;">
+    对照以上7条，缺哪条补哪条。补完之后，再拿给老板看——效果会完全不一样。
+  </div>
+</section>
+
+</main>
 </div>
 
-<div class="footer">部门主管方案制定能力培训 · 内部培训材料</div>
-
+<!-- ========== JAVASCRIPT ========== -->
 <script>
-(function(){
-  // Sidebar toggle
-  const sidebar = document.getElementById('sidebar');
-  const toggleBtn = document.getElementById('toggleBtn');
-  const overlay = document.getElementById('overlay');
-
-  toggleBtn.addEventListener('click', function(){
+(function() {
+  // Mobile sidebar toggle
+  window.toggleSidebar = function() {
+    var sidebar = document.getElementById('sidebar');
+    var overlay = document.getElementById('overlay');
     sidebar.classList.toggle('open');
     overlay.classList.toggle('show');
-  });
-  overlay.addEventListener('click', function(){
-    sidebar.classList.remove('open');
-    overlay.classList.remove('show');
-  });
+  };
 
-  // Close sidebar on link click (mobile)
-  const navLinks = document.querySelectorAll('#nav-list a');
-  navLinks.forEach(function(link){
-    link.addEventListener('click', function(){
-      if(window.innerWidth <= 900){
+  // Scroll spy
+  var sections = document.querySelectorAll('.section');
+  var navLinks = document.querySelectorAll('.nav-link');
+
+  function onScroll() {
+    var scrollPos = window.scrollY + 100;
+    var currentId = '';
+    for (var i = 0; i < sections.length; i++) {
+      if (sections[i].offsetTop <= scrollPos) {
+        currentId = sections[i].id;
+      }
+    }
+    for (var j = 0; j < navLinks.length; j++) {
+      navLinks[j].classList.remove('active');
+      if (navLinks[j].getAttribute('href') === '#' + currentId) {
+        navLinks[j].classList.add('active');
+      }
+    }
+  }
+
+  window.addEventListener('scroll', onScroll);
+  onScroll();
+
+  // Close sidebar on nav click (mobile)
+  for (var k = 0; k < navLinks.length; k++) {
+    navLinks[k].addEventListener('click', function() {
+      if (window.innerWidth <= 900) {
+        var sidebar = document.getElementById('sidebar');
+        var overlay = document.getElementById('overlay');
         sidebar.classList.remove('open');
         overlay.classList.remove('show');
       }
     });
-  });
-
-  // Scroll spy
-  const sections = document.querySelectorAll('.section[id], div[id]');
-  const sectionMap = [];
-  navLinks.forEach(function(link){
-    const href = link.getAttribute('href');
-    if(href && href.startsWith('#')){
-      const target = document.getElementById(href.substring(1));
-      if(target) sectionMap.push({ el: target, link: link });
-    }
-  });
-
-  function onScroll(){
-    const scrollY = window.scrollY + 80;
-    let current = sectionMap[0];
-    for(let i = 0; i < sectionMap.length; i++){
-      if(sectionMap[i].el.offsetTop <= scrollY){
-        current = sectionMap[i];
-      }
-    }
-    navLinks.forEach(function(l){ l.classList.remove('active'); });
-    if(current) current.link.classList.add('active');
   }
-
-  let ticking = false;
-  window.addEventListener('scroll', function(){
-    if(!ticking){
-      window.requestAnimationFrame(function(){ onScroll(); ticking = false; });
-      ticking = true;
-    }
-  });
-  onScroll();
 })();
 </script>
+
 </body>
 </html>
