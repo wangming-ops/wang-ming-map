@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>鹏辉力赫全量公司股权结构全景图</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif; background:#f0f2f5; color:#333; min-height:100vh; }
+.header { background:linear-gradient(135deg,#1a237e 0%,#0d47a1 50%,#01579b 100%); color:#fff; padding:32px 40px; text-align:center; }
+.header h1 { font-size:28px; font-weight:700; letter-spacing:2px; margin-bottom:8px; }
+.header p { font-size:14px; opacity:.8; }
+.container { max-width:1440px; margin:0 auto; padding:24px; }
+.cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:16px; margin-bottom:28px; }
+.card { background:#fff; border-radius:12px; padding:20px 16px; text-align:center; box-shadow:0 2px 12px rgba(0,0,0,.06); transition:transform .2s; }
+.card:hover { transform:translateY(-3px); box-shadow:0 6px 20px rgba(0,0,0,.1); }
+.card .num { font-size:32px; font-weight:700; color:#1a237e; line-height:1.2; }
+.card .label { font-size:13px; color:#666; margin-top:6px; }
+.card.accent .num { color:#e65100; }
+.card.green .num { color:#2e7d32; }
+.card.blue .num { color:#1565c0; }
+.section { background:#fff; border-radius:12px; padding:24px; margin-bottom:24px; box-shadow:0 2px 12px rgba(0,0,0,.06); }
+.section-title { font-size:18px; font-weight:600; color:#1a237e; margin-bottom:16px; padding-bottom:10px; border-bottom:2px solid #e8eaf6; display:flex; align-items:center; gap:8px; }
+.section-title::before { content:''; display:inline-block; width:4px; height:20px; background:#1a237e; border-radius:2px; }
+.filters { display:flex; flex-wrap:wrap; gap:12px; align-items:center; margin-bottom:16px; }
+.filters input, .filters select { padding:8px 14px; border:1px solid #ddd; border-radius:8px; font-size:14px; outline:none; transition:border .2s; }
+.filters input:focus, .filters select:focus { border-color:#1a237e; }
+.filters input { width:240px; }
+.filters select { min-width:140px; }
+table { width:100%; border-collapse:collapse; font-size:13px; }
+th { background:#e8eaf6; color:#1a237e; padding:12px 10px; text-align:left; font-weight:600; cursor:pointer; white-space:nowrap; user-select:none; position:sticky; top:0; }
+th:hover { background:#c5cae9; }
+td { padding:10px; border-bottom:1px solid #f0f0f0; }
+tr:hover { background:#f5f7ff; }
+tr.expanded { background:#e8eaf6; }
+.tag { display:inline-block; padding:2px 8px; border-radius:10px; font-size:11px; font-weight:600; color:#fff; }
+.tag-0 { background:#f9a825; }
+.tag-1 { background:#43a047; }
+.tag-2 { background:#1e88e5; }
+.tag-3 { background:#fb8c00; }
+.tag-4 { background:#e53935; }
+.tag-type { display:inline-block; padding:2px 8px; border-radius:10px; font-size:11px; font-weight:500; }
+.type-顶层母公司 { background:#fff3e0; color:#e65100; }
+.type-直接全资 { background:#e8f5e9; color:#2e7d32; }
+.type-直接控股 { background:#e3f2fd; color:#1565c0; }
+.type-直接参股 { background:#f3e5f5; color:#7b1fa2; }
+.type-间接全资 { background:#e0f7fa; color:#00695c; }
+.type-间接控股 { background:#fff8e1; color:#f57f17; }
+.type-间接参股 { background:#fce4ec; color:#c62828; }
+.type-待核实 { background:#efebe9; color:#4e342e; }
+.type-关联公司 { background:#f1f8e9; color:#33691e; }
+.type-非体系 { background:#fafafa; color:#9e9e9e; }
+.detail-row td { padding:0; }
+.detail-content { padding:16px 20px; background:#fafbff; border-left:3px solid #1a237e; margin:8px 0; border-radius:0 8px 8px 0; }
+.detail-content p { margin:4px 0; font-size:13px; line-height:1.6; }
+.detail-content strong { color:#1a237e; }
+.pagination { display:flex; justify-content:center; align-items:center; gap:8px; margin-top:16px; }
+.pagination button { padding:6px 14px; border:1px solid #ddd; background:#fff; border-radius:6px; cursor:pointer; font-size:13px; }
+.pagination button:hover { background:#e8eaf6; }
+.pagination button.active { background:#1a237e; color:#fff; border-color:#1a237e; }
+.pagination button:disabled { opacity:.4; cursor:not-allowed; }
+.pagination span { font-size:13px; color:#666; }
+.charts-row { display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-bottom:24px; }
+.chart-box { background:#fff; border-radius:12px; padding:20px; box-shadow:0 2px 12px rgba(0,0,0,.06); }
+.chart-box .chart-title { font-size:15px; font-weight:600; color:#1a237e; margin-bottom:12px; text-align:center; }
+.chart-container { width:100%; height:350px; }
+.tree-container { max-height:600px; overflow-y:auto; padding:12px; }
+.tree-node { padding:4px 0; }
+.tree-label { display:inline-flex; align-items:center; gap:6px; padding:5px 12px; border-radius:6px; cursor:pointer; font-size:13px; transition:background .15s; }
+.tree-label:hover { background:#e8eaf6; }
+.tree-label .toggle { display:inline-block; width:16px; text-align:center; font-size:11px; color:#999; }
+.tree-label .node-name { font-weight:500; }
+.tree-label .node-info { font-size:11px; color:#999; margin-left:4px; }
+.tree-children { padding-left:24px; border-left:1px dashed #ddd; margin-left:8px; }
+.tree-children.collapsed { display:none; }
+.tree-label.highlight { background:#fff3e0; outline:2px solid #fb8c00; }
+.bar-chart-container { width:100%; height:600px; }
+.sort-icon { font-size:10px; margin-left:4px; opacity:.5; }
+.footer { text-align:center; padding:24px; color:#999; font-size:12px; }
+@media(max-width:768px) {
+  .charts-row { grid-template-columns:1fr; }
+  .filters { flex-direction:column; }
+  .filters input { width:100%; }
+}
+</style>
+</head>
+<body>
+<div class="header">
+<h1>鹏辉力赫全量公司股权结构全景图</h1>
+<p>数据来源：公司注册情况汇总表（2026.7.3版） | 共 247 家公司 | 报告生成时间：2026年7月7日</p>
+</div>
+<div class="container">
+
+<!-- 数据总览卡片 -->
+<div class="cards" id="statsCards"></div>
+
+<!-- 筛选与搜索 -->
+<div class="section">
+<div class="section-title">多维筛选与搜索</div>
+<div class="filters">
+<input type="text" id="searchInput" placeholder="🔍 输入公司名称模糊搜索..." oninput="applyFilters()">
+<select id="depthFilter" onchange="applyFilters()">
+<option value="">全部股权深度</option>
+<option value="0">第0层（顶层）</option>
+<option value="1">第1层（直接子公司）</option>
+<option value="2">第2层（孙公司）</option>
+<option value="3">第3层（曾孙公司）</option>
+<option value="4">第4层（玄孙公司）</option>
+</select>
+<select id="typeFilter" onchange="applyFilters()">
+<option value="">全部控股方式</option>
+<option value="顶层母公司">顶层母公司</option>
+<option value="直接全资">直接全资</option>
+<option value="直接控股">直接控股</option>
+<option value="直接参股">直接参股</option>
+<option value="间接全资">间接全资</option>
+<option value="间接控股">间接控股</option>
+<option value="间接参股">间接参股</option>
+<option value="待核实">待核实</option>
+<option value="关联公司">关联公司</option>
+<option value="非体系">非体系</option>
+</select>
+<select id="levelFilter" onchange="applyFilters()">
+<option value="">全部行政层级</option>
+<option value="天津总部">天津总部</option>
+<option value="省级平台">省级平台</option>
+<option value="市级">市级</option>
+<option value="区县级">区县级</option>
+</select>
+<select id="provinceFilter" onchange="applyFilters()">
+<option value="">全部省份</option>
+</select>
+<select id="projectFilter" onchange="applyFilters()">
+<option value="">全部项目</option>
+<option value="__has__">有项目</option>
+<option value="__no__">无项目</option>
+<optgroup label="按项目名称筛选">
+<option value="AZ">AZ</option>
+<option value="东营市经开区">东营市经开区</option>
+<option value="临夏州东乡县">临夏州东乡县</option>
+<option value="临夏州和政县">临夏州和政县</option>
+<option value="临沂市罗庄区200MW800MWh共享储能项目">临沂市罗庄区200MW800MWh共享储能项目</option>
+<option value="九江市都昌县">九江市都昌县</option>
+<option value="仙桃市郭河镇">仙桃市郭河镇</option>
+<option value="侗族锦屏县">侗族锦屏县</option>
+<option value="兰州红古区">兰州红古区</option>
+<option value="凉山会理市">凉山会理市</option>
+<option value="北辰西堤头镇">北辰西堤头镇</option>
+<option value="十堰郧阳区">十堰郧阳区</option>
+<option value="南阳方城县">南阳方城县</option>
+<option value="双城区200MW/800MWh储能电站项目">双城区200MW/800MWh储能电站项目</option>
+<option value="双阳经开区">双阳经开区</option>
+<option value="吉安遂川县">吉安遂川县</option>
+<option value="吉林市桦甸市">吉林市桦甸市</option>
+<option value="吕梁柳林县">吕梁柳林县</option>
+<option value="吴忠市同心县">吴忠市同心县</option>
+<option value="和田墨玉县">和田墨玉县</option>
+<option value="咸宁市咸安区">咸宁市咸安区</option>
+<option value="咸宁赤壁市">咸宁赤壁市</option>
+<option value="咸宁通城县">咸宁通城县</option>
+<option value="哈尔滨双城区">哈尔滨双城区</option>
+<option value="哈尔滨经开区">哈尔滨经开区</option>
+<option value="商丘市睢阳区">商丘市睢阳区</option>
+<option value="商洛洛南县">商洛洛南县</option>
+<option value="喀什市莎车县">喀什市莎车县</option>
+<option value="四平铁西区">四平铁西区</option>
+<option value="天水市武山县">天水市武山县</option>
+<option value="天水市甘谷县">天水市甘谷县</option>
+<option value="天水张家川">天水张家川</option>
+<option value="天津生态城">天津生态城</option>
+<option value="天门蒋湖农场">天门蒋湖农场</option>
+<option value="娄底双峰县">娄底双峰县</option>
+<option value="孝感市孝南区">孝感市孝南区</option>
+<option value="孝感汉川经开区">孝感汉川经开区</option>
+<option value="孟州大定">孟州大定</option>
+<option value="安阳市北关区">安阳市北关区</option>
+<option value="安阳市林州市">安阳市林州市</option>
+<option value="安陆市经开区">安陆市经开区</option>
+<option value="宜宾市南溪区">宜宾市南溪区</option>
+<option value="宜宾长宁经开区">宜宾长宁经开区</option>
+<option value="宜昌枝江市">宜昌枝江市</option>
+<option value="宝鸡凤翔区">宝鸡凤翔区</option>
+<option value="宝鸡眉县经开区">宝鸡眉县经开区</option>
+<option value="宝鸡陈仓区">宝鸡陈仓区</option>
+<option value="平顶山湛河区">平顶山湛河区</option>
+<option value="平顶山郏县">平顶山郏县</option>
+<option value="广元朝天区">广元朝天区</option>
+<option value="庆阳市庆城县">庆阳市庆城县</option>
+<option value="库尔勒上库高新区">库尔勒上库高新区</option>
+<option value="应城郎君镇">应城郎君镇</option>
+<option value="延边龙井市">延边龙井市</option>
+<option value="德州庆云县">德州庆云县</option>
+<option value="思南经开区">思南经开区</option>
+<option value="恩施利川经开区">恩施利川经开区</option>
+<option value="抚州宜黄县">抚州宜黄县</option>
+<option value="拉萨堆龙德庆区">拉萨堆龙德庆区</option>
+<option value="攀枝花西区">攀枝花西区</option>
+<option value="晋中开发区">晋中开发区</option>
+<option value="株洲清水塘集团">株洲清水塘集团</option>
+<option value="武汉蔡甸区">武汉蔡甸区</option>
+<option value="毕节七星关区">毕节七星关区</option>
+<option value="永城市经开区200MW400MWh储能电站项目">永城市经开区200MW400MWh储能电站项目</option>
+<option value="永州蓝山县">永州蓝山县</option>
+<option value="海东互助土族县">海东互助土族县</option>
+<option value="玉林陆川县">玉林陆川县</option>
+<option value="盘北经开区">盘北经开区</option>
+<option value="绵阳经开区">绵阳经开区</option>
+<option value="罗田县三里潘畈镇">罗田县三里潘畈镇</option>
+<option value="腾鳌经开区">腾鳌经开区</option>
+<option value="荆州区纪南镇">荆州区纪南镇</option>
+<option value="荆州市江陵县">荆州市江陵县</option>
+<option value="荆州监利市">荆州监利市</option>
+<option value="襄阳市黄庄">襄阳市黄庄</option>
+<option value="襄阳枣阳市">襄阳枣阳市</option>
+<option value="辽源市东辽县">辽源市东辽县</option>
+<option value="运城新绛县">运城新绛县</option>
+<option value="运城河津市">运城河津市</option>
+<option value="运城闻喜县">运城闻喜县</option>
+<option value="通化二道江区">通化二道江区</option>
+<option value="通辽市经开区">通辽市经开区</option>
+<option value="遂宁蓬溪县">遂宁蓬溪县</option>
+<option value="遵义红花岗区">遵义红花岗区</option>
+<option value="都匀经开区">都匀经开区</option>
+<option value="重庆双桥区">重庆双桥区</option>
+<option value="重庆巴南区">重庆巴南区</option>
+<option value="重庆市忠县">重庆市忠县</option>
+<option value="重庆黔江区">重庆黔江区</option>
+<option value="钟祥市柴湖镇">钟祥市柴湖镇</option>
+<option value="锦州经开区">锦州经开区</option>
+<option value="长春二道经开区">长春二道经开区</option>
+<option value="长春五棵树经开区">长春五棵树经开区</option>
+<option value="长春市双阳区齐家镇">长春市双阳区齐家镇</option>
+<option value="长春榆树市">长春榆树市</option>
+<option value="长治市高新区200MW/400MWh储能电站项目">长治市高新区200MW/400MWh储能电站项目</option>
+<option value="陇南市成县">陇南市成县</option>
+<option value="驻马店泌阳县">驻马店泌阳县</option>
+<option value="驻马店经开区">驻马店经开区</option>
+<option value="鹏辉力赫德材冷轧板业15MW/30MWh储能项目">鹏辉力赫德材冷轧板业15MW/30MWh储能项目</option>
+<option value="鹤壁市山城区">鹤壁市山城区</option>
+<option value="鹤壁鹤山区">鹤壁鹤山区</option>
+<option value="黄冈市英山县">黄冈市英山县</option>
+<option value="黄冈市蕲春县">黄冈市蕲春县</option>
+<option value="黄冈浠水县">黄冈浠水县</option>
+<option value="黄冈高新区">黄冈高新区</option>
+<option value="黄石市下陆区">黄石市下陆区</option>
+<option value="黄石新港工业园">黄石新港工业园</option>
+</optgroup>
+</select>
+<select id="legalFilter" onchange="applyFilters()">
+<option value="">全部法人</option>
+<option value="俞川">俞川</option>
+<option value="周堃">周堃</option>
+<option value="周本云">周本云</option>
+<option value="姜龙">姜龙</option>
+<option value="尚伟峰">尚伟峰</option>
+<option value="应俊">应俊</option>
+<option value="张兆丰">张兆丰</option>
+<option value="张瑞坤">张瑞坤</option>
+<option value="张磊">张磊</option>
+<option value="张科">张科</option>
+<option value="曹莹峰">曹莹峰</option>
+<option value="李小荣">李小荣</option>
+<option value="李晨">李晨</option>
+<option value="李浩天">李浩天</option>
+<option value="李海玉">李海玉</option>
+<option value="李震">李震</option>
+<option value="杨子赫">杨子赫</option>
+<option value="林仙利">林仙利</option>
+<option value="潘菲">潘菲</option>
+<option value="潘龙">潘龙</option>
+<option value="焦阳">焦阳</option>
+<option value="熊浩">熊浩</option>
+<option value="王希梦">王希梦</option>
+<option value="石磊">石磊</option>
+<option value="胡声治">胡声治</option>
+<option value="蓝晨刚">蓝晨刚</option>
+<option value="褚江鹏">褚江鹏</option>
+<option value="詹天伟">詹天伟</option>
+<option value="陈雨欣">陈雨欣</option>
+<option value="黄金环">黄金环</option>
+</select>
+</div>
+<div style="font-size:13px;color:#666;margin-bottom:8px;">筛选结果：<strong id="resultCount">0</strong> 家公司</div>
+</div>
+
+<!-- 公司列表表格 -->
+<div class="section">
+<div class="section-title">公司列表</div>
+<div style="overflow-x:auto;">
+<table id="companyTable">
+<thead>
+<tr>
+<th onclick="sortTable(0)" style="width:50px">序号 <span class="sort-icon">⇅</span></th>
+<th onclick="sortTable(1)" style="min-width:240px">公司名称 <span class="sort-icon">⇅</span></th>
+<th onclick="sortTable(2)" style="width:70px">省份 <span class="sort-icon">⇅</span></th>
+<th onclick="sortTable(3)" style="width:80px">行政层级 <span class="sort-icon">⇅</span></th>
+<th onclick="sortTable(4)" style="width:80px">股权深度 <span class="sort-icon">⇅</span></th>
+<th onclick="sortTable(5)" style="width:90px">控股方式 <span class="sort-icon">⇅</span></th>
+<th onclick="sortTable(6)" style="width:70px">持股比例 <span class="sort-icon">⇅</span></th>
+<th style="width:90px">法定代表人</th>
+        <th style="min-width:200px">对应项目</th>
+<th style="width:60px">操作</th>
+</tr>
+</thead>
+<tbody id="tableBody"></tbody>
+</table>
+</div>
+<div class="pagination" id="pagination"></div>
+</div>
+
+<!-- 股权结构树状图 -->
+<div class="section">
+<div class="section-title">股权结构树状图</div>
+<div style="margin-bottom:12px;">
+<button onclick="expandAll()" style="padding:6px 14px;border:1px solid #ddd;background:#fff;border-radius:6px;cursor:pointer;margin-right:8px;font-size:13px;">全部展开</button>
+<button onclick="collapseAll()" style="padding:6px 14px;border:1px solid #ddd;background:#fff;border-radius:6px;cursor:pointer;font-size:13px;">全部折叠</button>
+</div>
+<div class="tree-container" id="treeContainer"></div>
+</div>
+
+<!-- 图表区 -->
+<div class="charts-row">
+<div class="chart-box">
+<div class="chart-title">控股方式分布</div>
+<div class="chart-container" id="chart1"></div>
+</div>
+<div class="chart-box">
+<div class="chart-title">行政层级分布</div>
+<div class="chart-container" id="chart2"></div>
+</div>
+</div>
+<div class="charts-row">
+<div class="chart-box">
+<div class="chart-title">各省份公司数量分布</div>
+<div class="bar-chart-container" id="chart3"></div>
+</div>
+<div class="chart-box">
+<div class="chart-title">各股权深度公司数量</div>
+<div class="chart-container" id="chart4"></div>
+</div>
+</div>
+
+</div>
+<div class="footer">鹏辉力赫全量公司股权结构全景图 | 数据来源：公司注册情况汇总表（2026.7.3版）| 自动生成</div>
+
+<script>
+const DATA = [{"name": "力赫（天津）新能源科技集团有限公司", "province": "天津", "level": "天津总部", "depth": 0, "type": "顶层母公司", "share": "70%", "project": "暂无", "hasProject": false, "parent": "", "path": "顶层母公司（周本云70%+董津秀30%）", "legal": "周本云", "capital": "3000万", "projects": []}, {"name": "鹏辉力赫（天津）能源科技有限公司", "province": "天津", "level": "天津总部", "depth": 0, "type": "顶层母公司", "share": "75%", "project": "暂无", "hasProject": false, "parent": "力赫（天津）新能源科技集团有限公司", "path": "鹏辉力赫天津 ← 力赫集团75%+广州鹏辉25%", "legal": "张瑞坤", "capital": "1000万", "projects": []}, {"name": "鹏辉力赫(云南)能源科技有限公司", "province": "云南", "level": "省级平台", "depth": 1, "type": "直接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（天津）能源科技有限公司", "path": "鹏辉力赫天津 → 100%", "legal": "姜龙", "capital": "1000万", "projects": []}, {"name": "鹏辉力赫(内蒙古)能源科技有限公司", "province": "内蒙古", "level": "省级平台", "depth": 1, "type": "直接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（天津）能源科技有限公司", "path": "鹏辉力赫天津 → 100%", "legal": "詹天伟", "capital": "500万", "projects": []}, {"name": "力赫智储（北京）能源科技有限公司", "province": "北京", "level": "省级平台", "depth": 1, "type": "直接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "力赫（天津）新能源科技集团有限公司", "path": "力赫集团 → 100%", "legal": "潘菲", "capital": "500万", "projects": []}, {"name": "鹏辉力赫（北京）能源科技有限公司", "province": "北京", "level": "省级平台", "depth": 1, "type": "直接全资", "share": "100%", "project": "AZ", "hasProject": true, "parent": "鹏辉力赫（天津）能源科技有限公司", "path": "鹏辉力赫天津 → 100%", "legal": "潘菲", "capital": "500万", "projects": ["AZ"]}, {"name": "鹏辉力赫（吉林）能源科技有限公司", "province": "吉林", "level": "省级平台", "depth": 1, "type": "直接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（天津）能源科技有限公司", "path": "鹏辉力赫天津 → 100%", "legal": "潘菲", "capital": "500万", "projects": []}, {"name": "力赫（天津）云科技有限公司", "province": "天津", "level": "天津总部", "depth": 1, "type": "直接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "力赫（天津）新能源科技集团有限公司", "path": "力赫集团 → 100%", "legal": "周本云", "capital": "500万", "projects": []}, {"name": "力赫（天津）储能科技有限公司", "province": "天津", "level": "天津总部", "depth": 1, "type": "直接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "力赫（天津）新能源科技集团有限公司", "path": "力赫集团 → 100%", "legal": "潘菲", "capital": "1000万", "projects": []}, {"name": "天津北辰聚能综合能源服务有限公司", "province": "天津", "level": "区县级", "depth": 1, "type": "直接全资", "share": "100%", "project": "北辰西堤头镇", "hasProject": false, "parent": "鹏辉力赫（天津）能源科技有限公司", "path": "鹏辉力赫天津 → 100%", "legal": "陈雨欣", "capital": "500万", "projects": ["北辰西堤头镇"]}, {"name": "天津市静海鹏辉力赫电力智慧能源有限公司", "province": "天津", "level": "区县级", "depth": 1, "type": "直接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（天津）能源科技有限公司", "path": "鹏辉力赫天津 → 100%", "legal": "蓝晨刚", "capital": "500万", "projects": []}, {"name": "聚能（天津）虚拟电厂科技有限公司", "province": "天津", "level": "天津总部", "depth": 1, "type": "直接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "力赫（天津）新能源科技集团有限公司", "path": "力赫集团 → 100%", "legal": "姜龙", "capital": "1000万", "projects": []}, {"name": "鹏赫（天津）储能科技有限公司", "province": "天津", "level": "天津总部", "depth": 1, "type": "直接全资", "share": "100%", "project": "鹏辉力赫德材冷轧板业15MW/30MWh储能项目", "hasProject": true, "parent": "力赫（天津）新能源科技集团有限公司", "path": "力赫集团 → 100%", "legal": "曹莹峰", "capital": "500万", "projects": ["鹏辉力赫德材冷轧板业15MW/30MWh储能项目"]}, {"name": "鹏赫（天津）能源科技有限公司", "province": "天津", "level": "天津总部", "depth": 1, "type": "直接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（天津）能源科技有限公司", "path": "鹏辉力赫天津 → 100%", "legal": "詹天伟", "capital": "500万", "projects": []}, {"name": "鹏辉（天津）储能科技有限公司", "province": "天津", "level": "天津总部", "depth": 1, "type": "直接全资", "share": "70%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（天津）能源科技有限公司", "path": "鹏辉力赫天津 → 70%", "legal": "张瑞坤", "capital": "1000万", "projects": []}, {"name": "鹏辉力赫（宁夏）能源科技有限公司", "province": "宁夏", "level": "省级平台", "depth": 1, "type": "直接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（天津）能源科技有限公司", "path": "鹏辉力赫天津 → 100%", "legal": "焦阳", "capital": "500万", "projects": []}, {"name": "安徽鹏辉力赫能源科技有限公司", "province": "安徽", "level": "市级", "depth": 1, "type": "直接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（天津）能源科技有限公司", "path": "鹏辉力赫天津 → 100%", "legal": "詹天伟", "capital": "1000万", "projects": []}, {"name": "鹏辉力赫（东营市）电力科技有限公司", "province": "山东", "level": "市级", "depth": 1, "type": "直接全资", "share": "100%", "project": "东营市经开区", "hasProject": true, "parent": "鹏辉力赫（天津）能源科技有限公司", "path": "鹏辉力赫天津 → 100%", "legal": "李浩天", "capital": "500万", "projects": ["东营市经开区"]}, {"name": "鹏辉力赫（临沂）能源科技有限公司", "province": "山东", "level": "区县级", "depth": 1, "type": "直接全资", "share": "100%", "project": "临沂市罗庄区200MW800MWh共享储能项目", "hasProject": true, "parent": "鹏辉力赫（天津）能源科技有限公司", "path": "鹏辉力赫天津 → 100%", "legal": "姜龙", "capital": "1000万", "projects": ["临沂市罗庄区200MW800MWh共享储能项目"]}, {"name": "鹏辉力赫（山东）新能源科技发展有限公司", "province": "山东", "level": "省级平台", "depth": 1, "type": "直接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（天津）能源科技有限公司", "path": "鹏辉力赫天津 → 100%", "legal": "蓝晨刚", "capital": "1000万", "projects": []}, {"name": "鹏辉力赫（山西）能源科技有限公司", "province": "山西", "level": "省级平台", "depth": 1, "type": "直接全资", "share": "100%", "project": "长治市高新区200MW/400MWh储能电站项目", "hasProject": true, "parent": "鹏辉力赫（天津）能源科技有限公司", "path": "鹏辉力赫天津 → 100%", "legal": "焦阳", "capital": "1000万", "projects": ["长治市高新区200MW/400MWh储能电站项目"]}, {"name": "鹏辉力赫（新疆）储能科技有限公司", "province": "新疆", "level": "省级平台", "depth": 1, "type": "直接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（天津）能源科技有限公司", "path": "鹏辉力赫天津 → 100%", "legal": "姜龙", "capital": "1000万", "projects": []}, {"name": "鹏辉力赫（江苏）能源科技有限公司", "province": "江苏", "level": "省级平台", "depth": 1, "type": "直接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（天津）能源科技有限公司", "path": "鹏辉力赫天津 → 100%", "legal": "蓝晨刚", "capital": "1000万", "projects": []}, {"name": "鹏辉力赫（永城市）能源科技有限公司", "province": "河南", "level": "区县级", "depth": 1, "type": "直接全资", "share": "100%", "project": "永城市经开区200MW400MWh储能电站项目", "hasProject": true, "parent": "鹏辉力赫（天津）能源科技有限公司", "path": "鹏辉力赫天津 → 100%", "legal": "尚伟峰", "capital": "500万", "projects": ["永城市经开区200MW400MWh储能电站项目"]}, {"name": "鹏辉力赫（河南）能源科技有限公司", "province": "河南", "level": "省级平台", "depth": 1, "type": "直接全资", "share": "51%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（天津）能源科技有限公司", "path": "鹏辉力赫天津 → 51%", "legal": "李震", "capital": "1000万", "projects": []}, {"name": "鹏辉力赫（泌阳）能源科技有限公司", "province": "河南", "level": "区县级", "depth": 1, "type": "直接全资", "share": "100%", "project": "驻马店泌阳县", "hasProject": true, "parent": "鹏辉力赫（天津）能源科技有限公司", "path": "鹏辉力赫天津 → 100%", "legal": "李震", "capital": "500万", "projects": ["驻马店泌阳县"]}, {"name": "鹏辉力赫（海南）能源有限公司", "province": "海南", "level": "省级平台", "depth": 1, "type": "直接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（天津）能源科技有限公司", "path": "鹏辉力赫天津 → 100%", "legal": "林仙利", "capital": "500万", "projects": []}, {"name": "鹏辉力赫(湖北省)能源科技有限公司", "province": "湖北", "level": "省级平台", "depth": 1, "type": "直接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（天津）能源科技有限公司", "path": "鹏辉力赫天津 → 100%", "legal": "应俊", "capital": "1000万", "projects": []}, {"name": "鹏辉力赫(湖南)能源科技有限公司", "province": "湖南", "level": "省级平台", "depth": 1, "type": "直接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（天津）能源科技有限公司", "path": "鹏辉力赫天津 → 100%", "legal": "姜龙", "capital": "1000万", "projects": []}, {"name": "鹏辉力赫（甘肃）能源技术有限公司", "province": "甘肃", "level": "省级平台", "depth": 1, "type": "直接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（天津）能源科技有限公司", "path": "鹏辉力赫天津 → 100%", "legal": "张磊", "capital": "1000万", "projects": []}, {"name": "西藏鹏赫能源科技有限公司", "province": "西藏", "level": "市级", "depth": 1, "type": "直接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "力赫（天津）新能源科技集团有限公司", "path": "力赫集团 → 100%", "legal": "姜龙", "capital": "1000万元", "projects": []}, {"name": "鹏辉力赫（贵州）电力能源有限公司", "province": "贵州", "level": "省级平台", "depth": 1, "type": "直接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（天津）能源科技有限公司", "path": "鹏辉力赫天津 → 100%", "legal": "蓝晨刚", "capital": "1000万", "projects": []}, {"name": "鹏辉力赫（贵州）能源科技有限公司", "province": "贵州", "level": "省级平台", "depth": 1, "type": "直接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（天津）能源科技有限公司", "path": "鹏辉力赫天津 → 100%", "legal": "王希梦", "capital": "1000万", "projects": []}, {"name": "鹏辉力赫（辽宁省）能源科技有限公司", "province": "辽宁", "level": "省级平台", "depth": 1, "type": "直接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（天津）能源科技有限公司", "path": "鹏辉力赫天津 → 100%", "legal": "姜龙", "capital": "1000万", "projects": []}, {"name": "鹏辉力赫（黑龙江）能源科技有限公司", "province": "黑龙江", "level": "省级平台", "depth": 1, "type": "直接全资", "share": "100%", "project": "双城区200MW/800MWh储能电站项目", "hasProject": true, "parent": "鹏辉力赫（天津）能源科技有限公司", "path": "鹏辉力赫天津 → 100%", "legal": "詹天伟", "capital": "1000万", "projects": ["双城区200MW/800MWh储能电站项目"]}, {"name": "鹏辉力赫华夏(天津)能源科技有限公司", "province": "天津", "level": "天津总部", "depth": 1, "type": "直接控股", "share": "84%", "project": "暂无", "hasProject": false, "parent": "力赫（天津）新能源科技集团有限公司", "path": "力赫集团 → 84%", "legal": "李浩天", "capital": "1000万", "projects": []}, {"name": "鹏辉力赫（宁夏）储能技术有限公司", "province": "宁夏", "level": "省级平台", "depth": 1, "type": "直接控股", "share": "55%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（天津）能源科技有限公司", "path": "鹏辉力赫天津 → 55%", "legal": "焦阳", "capital": "1000万", "projects": []}, {"name": "鹏辉力赫(汕头市)能源科技有限公司", "province": "广东", "level": "市级", "depth": 1, "type": "直接控股", "share": "51%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（天津）能源科技有限公司", "path": "鹏辉力赫天津 → 51%", "legal": "林仙利", "capital": "500万", "projects": []}, {"name": "鹏辉国重（天津）能源科技有限公司", "province": "天津", "level": "天津总部", "depth": 1, "type": "直接参股", "share": "44%", "project": "暂无", "hasProject": false, "parent": "力赫（天津）新能源科技集团有限公司", "path": "力赫集团 → 44%", "legal": "周堃", "capital": "1000万", "projects": []}, {"name": "曲靖麒麟区鹏辉力赫能源科技发展有限公司", "province": "云南", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫(云南)能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫(云南)能源科技有限公司 → 100%", "legal": "潘菲", "capital": "500万", "projects": []}, {"name": "鹏辉力赫(宣威)能源科技有限公司", "province": "云南", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫(云南)能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫(云南)能源科技有限公司 → 100%", "legal": "李晨", "capital": "500万", "projects": []}, {"name": "鹏辉力赫(曲靖)能源科技有限公司", "province": "云南", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫(云南)能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫(云南)能源科技有限公司 → 100%", "legal": "潘菲", "capital": "500万", "projects": []}, {"name": "鹏辉力赫（文山）能源科技有限公司", "province": "云南", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫(云南)能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫(云南)能源科技有限公司 → 100%", "legal": "王希梦", "capital": "500万", "projects": []}, {"name": "鹏辉力赫(宁城)能源科技有限公司", "province": "内蒙古", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫(内蒙古)能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫(内蒙古)能源科技有限公司 → 100%", "legal": "詹天伟", "capital": "500万", "projects": []}, {"name": "鹏辉力赫(苏尼特右旗)能源科技有限公司", "province": "内蒙古", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫(内蒙古)能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫(内蒙古)能源科技有限公司 → 100%", "legal": "詹天伟", "capital": "500万", "projects": []}, {"name": "鹏辉力赫(赤峰市)能源科技有限公司", "province": "内蒙古", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫(内蒙古)能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫(内蒙古)能源科技有限公司 → 100%", "legal": "詹天伟", "capital": "500万", "projects": []}, {"name": "鹏辉力赫(通辽市)储能科技有限公司", "province": "内蒙古", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫(内蒙古)能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫(内蒙古)能源科技有限公司 → 100%", "legal": "詹天伟", "capital": "500万", "projects": []}, {"name": "鹏辉力赫(通辽市)能源科技有限公司", "province": "内蒙古", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "通辽市经开区", "hasProject": false, "parent": "鹏辉力赫(内蒙古)能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫(内蒙古)能源科技有限公司 → 100%", "legal": "詹天伟", "capital": "500万", "projects": ["通辽市经开区"]}, {"name": "鹏辉力赫(镶黄旗)能源科技有限公司", "province": "内蒙古", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫(内蒙古)能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫(内蒙古)能源科技有限公司 → 100%", "legal": "詹天伟", "capital": "500万", "projects": []}, {"name": "鹏辉力赫（科右前旗）能源科技有限公司", "province": "内蒙古", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫(内蒙古)能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫(内蒙古)能源科技有限公司 → 100%", "legal": "詹天伟", "capital": "500万", "projects": []}, {"name": "力赫（吉林市）能源科技有限公司", "province": "吉林", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（吉林）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（吉林）能源科技有限公司 → 100%", "legal": "张磊", "capital": "500万", "projects": []}, {"name": "力赫（榆树）能源科技有限公司", "province": "吉林", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "长春五棵树经开区", "hasProject": false, "parent": "鹏辉力赫（吉林）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（吉林）能源科技有限公司 → 100%", "legal": "张磊", "capital": "500万", "projects": ["长春五棵树经开区"]}, {"name": "辉赫（东辽县）储能科技有限公司", "province": "吉林", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "辽源市东辽县", "hasProject": false, "parent": "鹏辉力赫（吉林）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（吉林）能源科技有限公司 → 100%", "legal": "蓝晨刚", "capital": "500万", "projects": ["辽源市东辽县"]}, {"name": "辉赫（长春市二道区）能源科技有限公司", "province": "吉林", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "长春二道经开区", "hasProject": false, "parent": "鹏辉力赫（吉林）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（吉林）能源科技有限公司 → 100%", "legal": "张磊", "capital": "500万", "projects": ["长春二道经开区"]}, {"name": "鹏赫（桦甸市）能源科技有限公司", "province": "吉林", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "吉林市桦甸市", "hasProject": false, "parent": "鹏辉力赫（吉林）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（吉林）能源科技有限公司 → 100%", "legal": "张磊", "capital": "500万", "projects": ["吉林市桦甸市"]}, {"name": "鹏赫（长春市双阳区）能源科技有限公司", "province": "吉林", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "双阳经开区", "hasProject": false, "parent": "鹏辉力赫（吉林）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（吉林）能源科技有限公司 → 100%", "legal": "张磊", "capital": "500万", "projects": ["双阳经开区"]}, {"name": "鹏辉力赫(四平)能源科技有限公司", "province": "吉林", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "四平铁西区", "hasProject": false, "parent": "鹏辉力赫（吉林）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（吉林）能源科技有限公司 → 100%", "legal": "张磊", "capital": "500万", "projects": ["四平铁西区"]}, {"name": "鹏辉力赫(龙井市)能源科技有限公司", "province": "吉林", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "延边龙井市、拉萨堆龙德庆区", "hasProject": false, "parent": "鹏辉力赫（吉林）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（吉林）能源科技有限公司 → 100%", "legal": "张磊", "capital": "500万", "projects": ["延边龙井市", "拉萨堆龙德庆区"]}, {"name": "鹏辉力赫（榆树）能源科技有限公司", "province": "吉林", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "长春榆树市", "hasProject": false, "parent": "鹏辉力赫（吉林）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（吉林）能源科技有限公司 → 100%", "legal": "张磊", "capital": "500万", "projects": ["长春榆树市"]}, {"name": "鹏辉力赫（通化市）能源科技有限公司", "province": "吉林", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "通化二道江区", "hasProject": false, "parent": "鹏辉力赫（吉林）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（吉林）能源科技有限公司 → 100%", "legal": "张磊", "capital": "500万", "projects": ["通化二道江区"]}, {"name": "鹏辉力赫（长春市双阳区）能源科技有限公司", "province": "吉林", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "长春市双阳区齐家镇", "hasProject": false, "parent": "鹏辉力赫（吉林）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（吉林）能源科技有限公司 → 100%", "legal": "张磊", "capital": "500万", "projects": ["长春市双阳区齐家镇"]}, {"name": "鹏辉（农安）能源科技有限公司", "province": "吉林", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（吉林）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（吉林）能源科技有限公司 → 100%", "legal": "张兆丰", "capital": "500万", "projects": []}, {"name": "力赫（长宁县）能源科技有限公司", "province": "四川", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "宜宾长宁经开区", "hasProject": false, "parent": "鹏辉力赫（四川）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（四川）能源科技有限公司 → 100%", "legal": "曹莹峰", "capital": "500万", "projects": ["宜宾长宁经开区"]}, {"name": "宜宾市南溪区辉赫能源科技有限公司", "province": "四川", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "宜宾市南溪区", "hasProject": false, "parent": "鹏辉力赫（四川）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（四川）能源科技有限公司 → 100%", "legal": "曹莹峰", "capital": "500万", "projects": ["宜宾市南溪区"]}, {"name": "攀枝花西区辉赫能源科技有限公司", "province": "四川", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "攀枝花西区", "hasProject": false, "parent": "鹏辉力赫（四川）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（四川）能源科技有限公司 → 100%", "legal": "曹莹峰", "capital": "500万", "projects": ["攀枝花西区"]}, {"name": "鹏赫（会理市）能源科技有限公司", "province": "四川", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "凉山会理市", "hasProject": false, "parent": "鹏辉力赫（四川）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（四川）能源科技有限公司 → 100%", "legal": "曹莹峰", "capital": "500万", "projects": ["凉山会理市"]}, {"name": "鹏辉力赫（会理市）储能技术有限公司", "province": "四川", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "凉山会理市", "hasProject": false, "parent": "鹏辉力赫（四川）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（四川）能源科技有限公司 → 100%", "legal": "曹莹峰", "capital": "500万", "projects": ["凉山会理市"]}, {"name": "鹏辉力赫（四川）能源科技有限公司", "province": "四川", "level": "省级平台", "depth": 1, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "力赫（天津）储能科技有限公司", "path": "力赫集团 → 力赫储能 → 鹏辉力赫四川", "legal": "林仙利", "capital": "1000万", "projects": []}, {"name": "鹏辉力赫（攀枝花）能源科技有限公司", "province": "四川", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（四川）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（四川）能源科技有限公司 → 100%", "legal": "曹莹峰", "capital": "500万", "projects": []}, {"name": "鹏辉力赫（珙县）能源科技有限公司", "province": "四川", "level": "区县级", "depth": 3, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（四川）能源科技有限公司", "path": "力赫集团 → 力赫储能 → 鹏辉力赫四川 → 鹏辉力赫珙县", "legal": "曹莹峰", "capital": "500万", "projects": []}, {"name": "鹏辉力赫（绵阳市）储能技术有限公司", "province": "四川", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "绵阳经开区", "hasProject": false, "parent": "鹏辉力赫（四川）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（四川）能源科技有限公司 → 100%", "legal": "曹莹峰", "capital": "500万", "projects": ["绵阳经开区"]}, {"name": "鹏辉力赫（蓬溪）能源科技有限公司", "province": "四川", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "遂宁蓬溪县", "hasProject": false, "parent": "鹏辉力赫（四川）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（四川）能源科技有限公司 → 100%", "legal": "曹莹峰", "capital": "500万", "projects": ["遂宁蓬溪县"]}, {"name": "天津中新生态城鹏力能源科技有限公司", "province": "天津", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "天津生态城", "hasProject": false, "parent": "鹏辉力赫（天津）能源科技有限公司", "path": "鹏辉力赫天津 → 100%", "legal": "张磊", "capital": "1000万", "projects": ["天津生态城"]}, {"name": "鹏辉力赫（吴忠市）能源技术有限公司", "province": "宁夏", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "吴忠市同心县", "hasProject": false, "parent": "鹏辉力赫（宁夏）储能技术有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（宁夏）储能 → 100%", "legal": "焦阳", "capital": "500万", "projects": ["吴忠市同心县"]}, {"name": "寿县鹏辉力赫储能科技有限公司", "province": "安徽", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "安徽鹏辉力赫能源科技有限公司", "path": "鹏辉力赫天津 → 安徽鹏辉力赫能源科技有限公司 → 100%", "legal": "蓝晨刚", "capital": "500万", "projects": []}, {"name": "灵璧县鹏辉力赫储能科技有限公司", "province": "安徽", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "安徽鹏辉力赫能源科技有限公司", "path": "鹏辉力赫天津 → 安徽鹏辉力赫能源科技有限公司 → 100%", "legal": "詹天伟", "capital": "500万", "projects": []}, {"name": "力赫（招远）能源科技有限公司", "province": "山东", "level": "区县级", "depth": 3, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（山东）新能源科技发展有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（山东）新能源科技发展有限公司 → 100%", "legal": "张兆丰", "capital": "500万", "projects": []}, {"name": "力赫（莱州）能源科技有限公司", "province": "山东", "level": "区县级", "depth": 3, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（山东）新能源科技发展有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（山东）新能源科技发展有限公司 → 100%", "legal": "张兆丰", "capital": "500万", "projects": []}, {"name": "鹏赫（日照市岚山区）能源科技有限公司", "province": "山东", "level": "区县级", "depth": 4, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（招远市）新能源技术有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫山东 → 鹏辉力赫招远市能源 → 鹏辉力赫招远市新能源技术 → 鹏赫日照岚山", "legal": "张磊", "capital": "500万", "projects": []}, {"name": "鹏辉力赫(东营市垦利区)能源科技有限公司", "province": "山东", "level": "区县级", "depth": 3, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（山东）新能源科技发展有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（山东）新能源科技发展有限公司 → 100%", "legal": "李浩天", "capital": "500万", "projects": []}, {"name": "鹏辉力赫（利津）能源科技有限公司", "province": "山东", "level": "区县级", "depth": 3, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（山东）新能源科技发展有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（山东）新能源科技发展有限公司 → 100%", "legal": "张兆丰", "capital": "500万", "projects": []}, {"name": "鹏辉力赫（庆云县）能源科技有限公司", "province": "山东", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "德州庆云县", "hasProject": false, "parent": "鹏辉力赫（山东）新能源科技发展有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（山东）新能源科技发展有限公司 → 100%", "legal": "张磊", "capital": "500万", "projects": ["德州庆云县"]}, {"name": "鹏辉力赫（招远市）新能源技术有限公司", "province": "山东", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（山东）新能源科技发展有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（山东）新能源科技发展有限公司 → 100%", "legal": "张磊", "capital": "500万", "projects": []}, {"name": "鹏辉力赫（招远市）能源科技有限公司", "province": "山东", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（山东）新能源科技发展有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（山东）新能源科技发展有限公司 → 100%", "legal": "张磊", "capital": "500万", "projects": []}, {"name": "力赫(运城市新绛经济技术开发区)能源科技有限公司", "province": "山西", "level": "区县级", "depth": 3, "type": "间接全资", "share": "100%", "project": "运城新绛县", "hasProject": false, "parent": "鹏辉力赫（山西）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（山西）能源科技有限公司 → 100%", "legal": "张磊", "capital": "500万", "projects": ["运城新绛县"]}, {"name": "鹏辉力赫(潞城经济技术开发区)能源科技有限公司", "province": "山西", "level": "区县级", "depth": 3, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（山西）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（山西）能源科技有限公司 → 100%", "legal": "焦阳", "capital": "500万", "projects": []}, {"name": "鹏辉力赫（吕梁）能源科技有限公司", "province": "山西", "level": "区县级", "depth": 3, "type": "间接全资", "share": "100%", "project": "吕梁柳林县", "hasProject": false, "parent": "鹏辉力赫（山西）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（山西）能源科技有限公司 → 100%", "legal": "曹莹峰", "capital": "500万", "projects": ["吕梁柳林县"]}, {"name": "鹏辉力赫（晋中）能源科技有限公司", "province": "山西", "level": "区县级", "depth": 3, "type": "间接全资", "share": "100%", "project": "晋中开发区", "hasProject": false, "parent": "鹏辉力赫（山西）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（山西）能源科技有限公司 → 100%", "legal": "张磊", "capital": "500万", "projects": ["晋中开发区"]}, {"name": "鹏辉力赫（朔州市山阴经济技术开发区）能源科技有限公司", "province": "山西", "level": "区县级", "depth": 3, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（山西）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（山西）能源科技有限公司 → 100%", "legal": "李浩天", "capital": "500万", "projects": []}, {"name": "鹏辉力赫（朔州市）能源科技有限公司", "province": "山西", "level": "区县级", "depth": 3, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（山西）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（山西）能源科技有限公司 → 100%", "legal": "李浩天", "capital": "500万", "projects": []}, {"name": "鹏辉力赫（河津）能源科技有限公司", "province": "山西", "level": "区县级", "depth": 3, "type": "间接全资", "share": "100%", "project": "运城河津市", "hasProject": false, "parent": "鹏辉力赫（山西）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（山西）能源科技有限公司 → 100%", "legal": "詹天伟", "capital": "500万", "projects": ["运城河津市"]}, {"name": "鹏辉力赫（运城市垣曲经济技术开发区）能源科技有限公司", "province": "山西", "level": "区县级", "depth": 3, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（山西）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（山西）能源科技有限公司 → 100%", "legal": "詹天伟", "capital": "500万", "projects": []}, {"name": "鹏辉力赫（运城经济技术开发区）能源科技有限公司", "province": "山西", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（山西）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（山西）能源科技有限公司 → 100%", "legal": "詹天伟", "capital": "500万", "projects": []}, {"name": "鹏辉力赫（闻喜）能源科技有限公司", "province": "山西", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "运城闻喜县", "hasProject": false, "parent": "鹏辉力赫（山西）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（山西）能源科技有限公司 → 100%", "legal": "詹天伟", "capital": "500万", "projects": ["运城闻喜县"]}, {"name": "鹏辉力赫（阳城）能源科技有限公司", "province": "山西", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（山西）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（山西）能源科技有限公司 → 100%", "legal": "张磊", "capital": "500万", "projects": []}, {"name": "鹏辉力赫（东莞）能源科技有限公司", "province": "广东", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫(汕头市)能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫(汕头) → 100%", "legal": "潘菲", "capital": "500万", "projects": []}, {"name": "鹏辉力赫（来宾象州县）能源科技有限责任公司", "province": "广西", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（天津）能源科技有限公司", "path": "鹏辉力赫天津 → 100%", "legal": "曹莹峰", "capital": "500万", "projects": []}, {"name": "鹏辉力赫（陆川县）能源科技有限公司", "province": "广西", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "玉林陆川县", "hasProject": false, "parent": "鹏辉力赫（天津）能源科技有限公司", "path": "鹏辉力赫天津 → 100%", "legal": "曹莹峰", "capital": "500万", "projects": ["玉林陆川县"]}, {"name": "鹏辉力赫（墨玉县）能源科技有限公司", "province": "新疆", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "和田墨玉县", "hasProject": false, "parent": "鹏辉力赫（新疆）储能科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（新疆）储能科技有限公司 → 100%", "legal": "曹莹峰", "capital": "500万", "projects": ["和田墨玉县"]}, {"name": "鹏辉力赫（库尔勒）能源科技有限公司", "province": "新疆", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "库尔勒上库高新区", "hasProject": false, "parent": "鹏辉力赫（新疆）储能科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（新疆）储能科技有限公司 → 100%", "legal": "曹莹峰", "capital": "500万", "projects": ["库尔勒上库高新区"]}, {"name": "鹏辉力赫（精河）能源科技有限责任公司", "province": "新疆", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（新疆）储能科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（新疆）储能科技有限公司 → 100%", "legal": "焦阳", "capital": "500万", "projects": []}, {"name": "鹏辉力赫（阿克苏市）储能科技有限公司", "province": "新疆", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（新疆）储能科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（新疆）储能科技有限公司 → 100%", "legal": "曹莹峰", "capital": "5000万", "projects": []}, {"name": "鹏辉力赫（如东）能源科技有限公司", "province": "江苏", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（江苏）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（江苏） → 100%", "legal": "蓝晨刚", "capital": "1000万", "projects": []}, {"name": "力赫（上饶）能源技术有限公司", "province": "江西", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（江西）储能技术有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（江西）储能技术有限公司 → 100%", "legal": "陈雨欣", "capital": "500万", "projects": []}, {"name": "永新县鹏辉力赫储能科技有限公司", "province": "江西", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（江西）储能技术有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（江西）储能技术有限公司 → 100%", "legal": "詹天伟", "capital": "500万", "projects": []}, {"name": "鹏辉力赫（宜黄县）电力能源有限公司", "province": "江西", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "抚州宜黄县", "hasProject": false, "parent": "鹏辉力赫（江西）储能技术有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（江西）储能技术有限公司 → 100%", "legal": "蓝晨刚", "capital": "500万", "projects": ["抚州宜黄县"]}, {"name": "鹏辉力赫（江西）储能技术有限公司", "province": "江西", "level": "省级平台", "depth": 1, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（天津）能源科技有限公司", "path": "鹏辉力赫天津 → 100%", "legal": "应俊", "capital": "500万", "projects": []}, {"name": "鹏辉力赫（泰和县）能源技术有限公司", "province": "江西", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（江西）储能技术有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（江西）储能技术有限公司 → 100%", "legal": "詹天伟", "capital": "500万", "projects": []}, {"name": "鹏辉力赫（赣州经开区）电力能源有限公司", "province": "江西", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（江西）储能技术有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（江西）储能技术有限公司 → 100%", "legal": "詹天伟", "capital": "500万", "projects": []}, {"name": "鹏辉力赫（遂川县）能源电力有限公司", "province": "江西", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "吉安遂川县", "hasProject": false, "parent": "鹏辉力赫（江西）储能技术有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（江西）储能技术有限公司 → 100%", "legal": "蓝晨刚", "capital": "500万", "projects": ["吉安遂川县"]}, {"name": "鹏辉力赫（都昌县）能源电力有限公司", "province": "江西", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "九江市都昌县", "hasProject": false, "parent": "鹏辉力赫（江西）储能技术有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（江西）储能技术有限公司 → 100%", "legal": "詹天伟", "capital": "500万", "projects": ["九江市都昌县"]}, {"name": "鹏辉力赫（高安市）能源电力有限公司", "province": "江西", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（江西）储能技术有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（江西）储能技术有限公司 → 100%", "legal": "陈雨欣", "capital": "500万", "projects": []}, {"name": "鹏辉力赫(卢龙县)新能源科技有限公司", "province": "河北", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（天津）能源科技有限公司", "path": "鹏辉力赫天津 → 100%", "legal": "詹天伟", "capital": "500万", "projects": []}, {"name": "三门峡市陕州区鹏辉力赫电力能源有限公司", "province": "河南", "level": "区县级", "depth": 3, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（河南）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（河南）能源科技有限公司 → 100%", "legal": "李小荣", "capital": "500万", "projects": []}, {"name": "力赫(商城县)能源科技有限公司", "province": "河南", "level": "区县级", "depth": 3, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（河南）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（河南）能源科技有限公司 → 100%", "legal": "李浩天", "capital": "500万", "projects": []}, {"name": "力赫（南阳卧龙综合保税区）储能有限公司", "province": "河南", "level": "区县级", "depth": 3, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（河南）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（河南）能源科技有限公司 → 100%", "legal": "詹天伟", "capital": "500万", "projects": []}, {"name": "力赫（商丘市梁园区）储能科技有限公司", "province": "河南", "level": "区县级", "depth": 3, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（河南）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（河南）能源科技有限公司 → 100%", "legal": "詹天伟", "capital": "500万", "projects": []}, {"name": "力赫（林州市）储能有限公司", "province": "河南", "level": "区县级", "depth": 3, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（河南）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（河南）能源科技有限公司 → 100%", "legal": "姜龙", "capital": "500万", "projects": []}, {"name": "力赫（驻马店）能源科技有限公司", "province": "河南", "level": "区县级", "depth": 3, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（河南）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（河南）能源科技有限公司 → 100%", "legal": "李浩天", "capital": "500万", "projects": []}, {"name": "国重(周口)新能源科技有限责任公司", "province": "河南", "level": "区县级", "depth": 3, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（河南）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（河南）能源科技有限公司 → 100%", "legal": "熊浩", "capital": "500万", "projects": []}, {"name": "鹏赫（孟州市）能源科技有限公司", "province": "河南", "level": "区县级", "depth": 3, "type": "间接全资", "share": "100%", "project": "孟州大定", "hasProject": false, "parent": "鹏辉力赫（河南）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（河南）能源科技有限公司 → 100%", "legal": "李震", "capital": "500万", "projects": ["孟州大定"]}, {"name": "鹏赫（鹤壁市）储能技术有限公司", "province": "河南", "level": "区县级", "depth": 3, "type": "间接全资", "share": "100%", "project": "鹤壁鹤山区", "hasProject": false, "parent": "鹏辉力赫（河南）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（河南）能源科技有限公司 → 100%", "legal": "詹天伟", "capital": "500万", "projects": ["鹤壁鹤山区"]}, {"name": "鹏辉力林(西峡县)储能技术有限公司", "province": "河南", "level": "区县级", "depth": 3, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（河南）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（河南）能源科技有限公司 → 100%", "legal": "应俊", "capital": "1000万", "projects": []}, {"name": "鹏辉力赫(三门峡)储能科技有限公司", "province": "河南", "level": "区县级", "depth": 3, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（河南）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（河南）能源科技有限公司 → 100%", "legal": "杨子赫", "capital": "500万", "projects": []}, {"name": "鹏辉力赫(三门峡)能源科技有限公司", "province": "河南", "level": "区县级", "depth": 3, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（河南）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（河南）能源科技有限公司 → 100%", "legal": "李浩天", "capital": "500万", "projects": []}, {"name": "鹏辉力赫(内乡县)电力储能技术有限公司", "province": "河南", "level": "区县级", "depth": 3, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（河南）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（河南）能源科技有限公司 → 100%", "legal": "蓝晨刚", "capital": "500万", "projects": []}, {"name": "鹏辉力赫(唐河县)储能科技有限公司", "province": "河南", "level": "区县级", "depth": 3, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（河南）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（河南）能源科技有限公司 → 100%", "legal": "应俊", "capital": "500万", "projects": []}, {"name": "鹏辉力赫(方城县)电力能源有限公司", "province": "河南", "level": "区县级", "depth": 3, "type": "间接全资", "share": "100%", "project": "南阳方城县", "hasProject": false, "parent": "鹏辉力赫（河南）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（河南）能源科技有限公司 → 100%", "legal": "陈雨欣", "capital": "500万", "projects": ["南阳方城县"]}, {"name": "鹏辉力赫(灵宝)电力储能技术有限公司", "province": "河南", "level": "区县级", "depth": 3, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（河南）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（河南）能源科技有限公司 → 100%", "legal": "李浩天", "capital": "500万", "projects": []}, {"name": "鹏辉力赫(辉县市)能源科技有限公司", "province": "河南", "level": "区县级", "depth": 3, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（河南）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（河南）能源科技有限公司 → 100%", "legal": "蓝晨刚", "capital": "50万", "projects": []}, {"name": "鹏辉力赫(通许县)储能技术有限公司", "province": "河南", "level": "区县级", "depth": 3, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（河南）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（河南）能源科技有限公司 → 100%", "legal": "蓝晨刚", "capital": "500万", "projects": []}, {"name": "鹏辉力赫(鹤壁市)储能技术有限公司", "province": "河南", "level": "区县级", "depth": 3, "type": "间接全资", "share": "100%", "project": "鹤壁市山城区", "hasProject": false, "parent": "鹏辉力赫（河南）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（河南）能源科技有限公司 → 100%", "legal": "李浩天", "capital": "500万", "projects": ["鹤壁市山城区"]}, {"name": "鹏辉力赫（义马）电力科技有限公司", "province": "河南", "level": "区县级", "depth": 3, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（河南）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（河南）能源科技有限公司 → 100%", "legal": "詹天伟", "capital": "500万", "projects": []}, {"name": "鹏辉力赫（信阳）能源科技有限公司", "province": "河南", "level": "区县级", "depth": 3, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（河南）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（河南）能源科技有限公司 → 100%", "legal": "应俊", "capital": "500万", "projects": []}, {"name": "鹏辉力赫（南乐县）储能技术有限公司", "province": "河南", "level": "区县级", "depth": 3, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（河南）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（河南）能源科技有限公司 → 100%", "legal": "张兆丰", "capital": "500万", "projects": []}, {"name": "鹏辉力赫（南阳）电力科技有限公司", "province": "河南", "level": "区县级", "depth": 3, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（河南）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（河南）能源科技有限公司 → 100%", "legal": "詹天伟", "capital": "500万", "projects": []}, {"name": "鹏辉力赫（商丘）电力有限公司", "province": "河南", "level": "区县级", "depth": 3, "type": "间接全资", "share": "100%", "project": "商丘市睢阳区", "hasProject": false, "parent": "鹏辉力赫（河南）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（河南）能源科技有限公司 → 100%", "legal": "李浩天", "capital": "500万", "projects": ["商丘市睢阳区"]}, {"name": "鹏辉力赫（安阳）储能科技有限公司", "province": "河南", "level": "区县级", "depth": 3, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（河南）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（河南）能源科技有限公司 → 100%", "legal": "李浩天", "capital": "500万", "projects": []}, {"name": "鹏辉力赫（平顶山）能源科技有限公司", "province": "河南", "level": "区县级", "depth": 3, "type": "间接全资", "share": "100%", "project": "平顶山湛河区", "hasProject": false, "parent": "鹏辉力赫（河南）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（河南）能源科技有限公司 → 100%", "legal": "李震", "capital": "500万", "projects": ["平顶山湛河区"]}, {"name": "鹏辉力赫（开封）能源科技有限公司", "province": "河南", "level": "区县级", "depth": 3, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（河南）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（河南）能源科技有限公司 → 100%", "legal": "詹天伟", "capital": "500万", "projects": []}, {"name": "鹏辉力赫（新乡平原示范区）电力有限公司", "province": "河南", "level": "区县级", "depth": 3, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（河南）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（河南）能源科技有限公司 → 100%", "legal": "詹天伟", "capital": "500万", "projects": []}, {"name": "鹏辉力赫（新乡）能源科技有限公司", "province": "河南", "level": "区县级", "depth": 3, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（河南）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（河南）能源科技有限公司 → 100%", "legal": "应俊", "capital": "500万", "projects": []}, {"name": "鹏辉力赫（林州）电力储能技术有限公司", "province": "河南", "level": "区县级", "depth": 3, "type": "间接全资", "share": "100%", "project": "安阳市林州市", "hasProject": false, "parent": "鹏辉力赫（河南）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（河南）能源科技有限公司 → 100%", "legal": "蓝晨刚", "capital": "500万", "projects": ["安阳市林州市"]}, {"name": "鹏辉力赫（襄城县）电力有限公司", "province": "河南", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（河南）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（河南）能源科技有限公司 → 100%", "legal": "蓝晨刚", "capital": "500万", "projects": []}, {"name": "鹏辉力赫（许昌）储能有限公司", "province": "河南", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（河南）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（河南）能源科技有限公司 → 100%", "legal": "蓝晨刚", "capital": "500万", "projects": []}, {"name": "鹏辉力赫（许昌）能源科技有限公司", "province": "河南", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（河南）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（河南）能源科技有限公司 → 100%", "legal": "蓝晨刚", "capital": "500万", "projects": []}, {"name": "鹏辉力赫（郏县）电力储能技术有限公司", "province": "河南", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "平顶山郏县", "hasProject": false, "parent": "鹏辉力赫（河南）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（河南）能源科技有限公司 → 100%", "legal": "陈雨欣", "capital": "500万", "projects": ["平顶山郏县"]}, {"name": "鹏辉力赫（驻马店）能源科技有限公司", "province": "河南", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "驻马店经开区", "hasProject": false, "parent": "鹏辉力赫（河南）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（河南）能源科技有限公司 → 100%", "legal": "应俊", "capital": "500万", "projects": ["驻马店经开区"]}, {"name": "鹏辉（南阳市官庄工区）能源技术有限公司", "province": "河南", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（河南）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（河南）能源科技有限公司 → 100%", "legal": "李浩天", "capital": "500万", "projects": []}, {"name": "鹏赫（海南东方市）电力科技有限公司", "province": "海南", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（海南）能源有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（海南） → 100%", "legal": "曹莹峰", "capital": "500万", "projects": []}, {"name": "力赫（枝江市）能源科技有限公司", "province": "湖北", "level": "区县级", "depth": 3, "type": "间接全资", "share": "100%", "project": "宜昌枝江市", "hasProject": false, "parent": "鹏辉力赫(湖北省)能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫(湖北省)能源科技有限公司 → 100%", "legal": "陈雨欣", "capital": "500万", "projects": ["宜昌枝江市"]}, {"name": "力赫（黄冈市蕲春县）储能技术有限公司", "province": "湖北", "level": "区县级", "depth": 3, "type": "间接全资", "share": "100%", "project": "黄冈市蕲春县", "hasProject": false, "parent": "鹏辉力赫(湖北省)能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫(湖北省)能源科技有限公司 → 100%", "legal": "蓝晨刚", "capital": "500万", "projects": ["黄冈市蕲春县"]}, {"name": "鹏辉力赫(仙桃)储能技术有限公司", "province": "湖北", "level": "区县级", "depth": 3, "type": "间接全资", "share": "100%", "project": "仙桃市郭河镇", "hasProject": false, "parent": "鹏辉力赫(湖北省)能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫(湖北省)能源科技有限公司 → 100%", "legal": "蓝晨刚", "capital": "500万", "projects": ["仙桃市郭河镇"]}, {"name": "鹏辉力赫(利川市)储能技术有限公司", "province": "湖北", "level": "区县级", "depth": 3, "type": "间接全资", "share": "100%", "project": "恩施利川经开区", "hasProject": false, "parent": "鹏辉力赫(湖北省)能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫(湖北省)能源科技有限公司 → 100%", "legal": "陈雨欣", "capital": "500万", "projects": ["恩施利川经开区"]}, {"name": "鹏辉力赫(安陆市)储能技术有限责任公司", "province": "湖北", "level": "区县级", "depth": 3, "type": "间接全资", "share": "100%", "project": "安陆市经开区", "hasProject": false, "parent": "鹏辉力赫(湖北省)能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫(湖北省)能源科技有限公司 → 100%", "legal": "陈雨欣", "capital": "500万", "projects": ["安陆市经开区"]}, {"name": "鹏辉力赫(秭归)储能技术有限公司", "province": "湖北", "level": "区县级", "depth": 3, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫(湖北省)能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫(湖北省)能源科技有限公司 → 100%", "legal": "蓝晨刚", "capital": "500万", "projects": []}, {"name": "鹏辉力赫(英山县)储能技术有限公司", "province": "湖北", "level": "区县级", "depth": 3, "type": "间接全资", "share": "100%", "project": "黄冈市英山县", "hasProject": false, "parent": "鹏辉力赫(湖北省)能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫(湖北省)能源科技有限公司 → 100%", "legal": "陈雨欣", "capital": "500万", "projects": ["黄冈市英山县"]}, {"name": "鹏辉力赫(钟祥)储能技术有限公司", "province": "湖北", "level": "区县级", "depth": 3, "type": "间接全资", "share": "100%", "project": "钟祥市柴湖镇", "hasProject": false, "parent": "鹏辉力赫(湖北省)能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫(湖北省)能源科技有限公司 → 100%", "legal": "李浩天", "capital": "500万", "projects": ["钟祥市柴湖镇"]}, {"name": "鹏辉力赫(麻城)储能技术有限公司", "province": "湖北", "level": "区县级", "depth": 3, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫(湖北省)能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫(湖北省)能源科技有限公司 → 100%", "legal": "蓝晨刚", "capital": "500万", "projects": []}, {"name": "鹏辉力赫(黄石市)储能科技有限公司", "province": "湖北", "level": "区县级", "depth": 3, "type": "间接全资", "share": "100%", "project": "黄石新港工业园", "hasProject": false, "parent": "鹏辉力赫(湖北省)能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫(湖北省)能源科技有限公司 → 100%", "legal": "陈雨欣", "capital": "500万", "projects": ["黄石新港工业园"]}, {"name": "鹏辉力赫（十堰市）储能技术有限公司", "province": "湖北", "level": "区县级", "depth": 3, "type": "间接全资", "share": "100%", "project": "十堰郧阳区", "hasProject": false, "parent": "鹏辉力赫(湖北省)能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫(湖北省)能源科技有限公司 → 100%", "legal": "陈雨欣", "capital": "500万", "projects": ["十堰郧阳区"]}, {"name": "鹏辉力赫（咸宁市咸安区）储能技术有限公司", "province": "湖北", "level": "区县级", "depth": 3, "type": "间接全资", "share": "100%", "project": "咸宁市咸安区", "hasProject": false, "parent": "鹏辉力赫(湖北省)能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫(湖北省)能源科技有限公司 → 100%", "legal": "胡声治", "capital": "500万", "projects": ["咸宁市咸安区"]}, {"name": "鹏辉力赫（大悟）储能技术有限公司", "province": "湖北", "level": "区县级", "depth": 3, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫(湖北省)能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫(湖北省)能源科技有限公司 → 100%", "legal": "李浩天", "capital": "500万", "projects": []}, {"name": "鹏辉力赫（天门市）储能技术有限公司", "province": "湖北", "level": "区县级", "depth": 3, "type": "间接全资", "share": "100%", "project": "天门蒋湖农场", "hasProject": false, "parent": "鹏辉力赫(湖北省)能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫(湖北省)能源科技有限公司 → 100%", "legal": "陈雨欣", "capital": "500万", "projects": ["天门蒋湖农场"]}, {"name": "鹏辉力赫（孝感市孝南区）电力有限公司", "province": "湖北", "level": "区县级", "depth": 3, "type": "间接全资", "share": "100%", "project": "孝感市孝南区", "hasProject": false, "parent": "鹏辉力赫(湖北省)能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫(湖北省)能源科技有限公司 → 100%", "legal": "陈雨欣", "capital": "500万", "projects": ["孝感市孝南区"]}, {"name": "鹏辉力赫（应城）储能技术有限公司", "province": "湖北", "level": "区县级", "depth": 3, "type": "间接全资", "share": "100%", "project": "应城郎君镇", "hasProject": false, "parent": "鹏辉力赫(湖北省)能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫(湖北省)能源科技有限公司 → 100%", "legal": "陈雨欣", "capital": "500万", "projects": ["应城郎君镇"]}, {"name": "鹏辉力赫（枣阳市）储能技术有限公司", "province": "湖北", "level": "区县级", "depth": 3, "type": "间接全资", "share": "100%", "project": "襄阳枣阳市", "hasProject": false, "parent": "鹏辉力赫(湖北省)能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫(湖北省)能源科技有限公司 → 100%", "legal": "陈雨欣", "capital": "500万", "projects": ["襄阳枣阳市"]}, {"name": "鹏辉力赫（武汉市蔡甸区）储能技术有限公司", "province": "湖北", "level": "区县级", "depth": 3, "type": "间接全资", "share": "100%", "project": "武汉蔡甸区", "hasProject": false, "parent": "鹏辉力赫(湖北省)能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫(湖北省)能源科技有限公司 → 100%", "legal": "曹莹峰", "capital": "1000万", "projects": ["武汉蔡甸区"]}, {"name": "鹏辉力赫（汉川）电力服务有限公司", "province": "湖北", "level": "区县级", "depth": 3, "type": "间接全资", "share": "100%", "project": "孝感汉川经开区", "hasProject": false, "parent": "鹏辉力赫(湖北省)能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫(湖北省)能源科技有限公司 → 100%", "legal": "陈雨欣", "capital": "1000万", "projects": ["孝感汉川经开区"]}, {"name": "鹏辉力赫（江陵）储能技术有限公司", "province": "湖北", "level": "区县级", "depth": 3, "type": "间接全资", "share": "100%", "project": "荆州市江陵县", "hasProject": false, "parent": "鹏辉力赫(湖北省)能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫(湖北省)能源科技有限公司 → 100%", "legal": "陈雨欣", "capital": "500万", "projects": ["荆州市江陵县"]}, {"name": "鹏辉力赫（浠水县）储能技术有限公司", "province": "湖北", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "黄冈浠水县", "hasProject": false, "parent": "鹏辉力赫(湖北省)能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫(湖北省)能源科技有限公司 → 100%", "legal": "陈雨欣", "capital": "500万", "projects": ["黄冈浠水县"]}, {"name": "鹏辉力赫（监利市）储能技术有限公司", "province": "湖北", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "荆州监利市", "hasProject": false, "parent": "鹏辉力赫(湖北省)能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫(湖北省)能源科技有限公司 → 100%", "legal": "陈雨欣", "capital": "500万", "projects": ["荆州监利市"]}, {"name": "鹏辉力赫（罗田县）储能技术有限公司", "province": "湖北", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "罗田县三里潘畈镇", "hasProject": false, "parent": "鹏辉力赫(湖北省)能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫(湖北省)能源科技有限公司 → 100%", "legal": "陈雨欣", "capital": "500万", "projects": ["罗田县三里潘畈镇"]}, {"name": "鹏辉力赫（荆州市）电力科技有限公司", "province": "湖北", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "荆州区纪南镇", "hasProject": false, "parent": "鹏辉力赫(湖北省)能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫(湖北省)能源科技有限公司 → 100%", "legal": "陈雨欣", "capital": "500万", "projects": ["荆州区纪南镇"]}, {"name": "鹏辉力赫（襄阳市）储能技术有限公司", "province": "湖北", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "襄阳市黄庄", "hasProject": false, "parent": "鹏辉力赫(湖北省)能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫(湖北省)能源科技有限公司 → 100%", "legal": "陈雨欣", "capital": "500万", "projects": ["襄阳市黄庄"]}, {"name": "鹏辉力赫（赤壁市）电力储能技术有限公司", "province": "湖北", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "咸宁赤壁市", "hasProject": false, "parent": "鹏辉力赫(湖北省)能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫(湖北省)能源科技有限公司 → 100%", "legal": "陈雨欣", "capital": "500万", "projects": ["咸宁赤壁市"]}, {"name": "鹏辉力赫（通城县）电力科技有限公司", "province": "湖北", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "咸宁通城县", "hasProject": false, "parent": "鹏辉力赫(湖北省)能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫(湖北省)能源科技有限公司 → 100%", "legal": "陈雨欣", "capital": "500万", "projects": ["咸宁通城县"]}, {"name": "鹏辉力赫（黄冈）电力服务有限公司", "province": "湖北", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "黄冈高新区", "hasProject": false, "parent": "鹏辉力赫(湖北省)能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫(湖北省)能源科技有限公司 → 100%", "legal": "陈雨欣", "capital": "1000万", "projects": ["黄冈高新区"]}, {"name": "鹏辉力赫（黄石市下陆区）储能技术有限公司", "province": "湖北", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "黄石市下陆区", "hasProject": false, "parent": "鹏辉力赫(湖北省)能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫(湖北省)能源科技有限公司 → 100%", "legal": "潘菲", "capital": "500万", "projects": ["黄石市下陆区"]}, {"name": "力赫（株洲市）新能源科技有限公司", "province": "湖南", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "株洲清水塘集团", "hasProject": false, "parent": "鹏辉力赫(湖南)能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫(湖南)能源科技有限公司 → 100%", "legal": "张磊", "capital": "500万", "projects": ["株洲清水塘集团"]}, {"name": "双峰县鹏赫新能源科技有限公司", "province": "湖南", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "娄底双峰县", "hasProject": false, "parent": "鹏辉力赫(湖南)能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫(湖南)能源科技有限公司 → 100%", "legal": "熊浩", "capital": "500万", "projects": ["娄底双峰县"]}, {"name": "蓝山县鹏赫新能源科技有限公司", "province": "湖南", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "永州蓝山县", "hasProject": false, "parent": "鹏辉力赫(湖南)能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫(湖南)能源科技有限公司 → 100%", "legal": "蓝晨刚", "capital": "500万", "projects": ["永州蓝山县"]}, {"name": "成县鹏辉力赫能源科技有限公司", "province": "甘肃", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "陇南市成县", "hasProject": false, "parent": "鹏辉力赫（甘肃）能源技术有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（甘肃）能源技术有限公司 → 100%", "legal": "曹莹峰", "capital": "500万", "projects": ["陇南市成县"]}, {"name": "辉赫（兰州市红古区）能源科技有限公司", "province": "甘肃", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "兰州红古区", "hasProject": false, "parent": "鹏辉力赫（甘肃）能源技术有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（甘肃）能源技术有限公司 → 100%", "legal": "张磊", "capital": "500万", "projects": ["兰州红古区"]}, {"name": "鹏赫（武山县）储能技术有限公司", "province": "甘肃", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "天水市武山县", "hasProject": false, "parent": "鹏辉力赫（甘肃）能源技术有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（甘肃）能源技术有限公司 → 100%", "legal": "张磊", "capital": "500万", "projects": ["天水市武山县"]}, {"name": "鹏辉力赫(东乡)储能科技有限公司", "province": "甘肃", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "临夏州东乡县", "hasProject": false, "parent": "鹏辉力赫（甘肃）能源技术有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（甘肃）能源技术有限公司 → 100%", "legal": "詹天伟", "capital": "1000万", "projects": ["临夏州东乡县"]}, {"name": "鹏辉力赫（临夏州）能源科技有限公司", "province": "甘肃", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（甘肃）能源技术有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（甘肃）能源技术有限公司 → 100%", "legal": "蓝晨刚", "capital": "1000万", "projects": []}, {"name": "鹏辉力赫（和政）储能科技有限公司", "province": "甘肃", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "临夏州和政县", "hasProject": false, "parent": "鹏辉力赫（甘肃）能源技术有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（甘肃）能源技术有限公司 → 100%", "legal": "詹天伟", "capital": "1000万", "projects": ["临夏州和政县"]}, {"name": "鹏辉力赫（庆阳）储能科技有限公司", "province": "甘肃", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "庆阳市庆城县", "hasProject": false, "parent": "鹏辉力赫（甘肃）能源技术有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（甘肃）能源技术有限公司 → 100%", "legal": "姜龙", "capital": "500万", "projects": ["庆阳市庆城县"]}, {"name": "鹏辉力赫（张家川）能源有限公司", "province": "甘肃", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "天水张家川", "hasProject": false, "parent": "鹏辉力赫（甘肃）能源技术有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（甘肃）能源技术有限公司 → 100%", "legal": "姜龙", "capital": "500万", "projects": ["天水张家川"]}, {"name": "鹏辉力赫（玉门）能源有限公司", "province": "甘肃", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（甘肃）能源技术有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（甘肃）能源技术有限公司 → 100%", "legal": "陈雨欣", "capital": "500万", "projects": []}, {"name": "鹏辉力赫（甘谷）能源有限公司", "province": "甘肃", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "天水市甘谷县", "hasProject": false, "parent": "鹏辉力赫（甘肃）能源技术有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（甘肃）能源技术有限公司 → 100%", "legal": "姜龙", "capital": "500万", "projects": ["天水市甘谷县"]}, {"name": "鹏辉力赫（金昌）储能科技有限公司", "province": "甘肃", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（甘肃）能源技术有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（甘肃）能源技术有限公司 → 100%", "legal": "姜龙", "capital": "500万", "projects": []}, {"name": "力赫（思南县）能源科技有限公司", "province": "贵州", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "思南经开区", "hasProject": false, "parent": "鹏辉力赫（贵州）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（贵州）能源科技有限公司 → 100%", "legal": "曹莹峰", "capital": "500万", "projects": ["思南经开区"]}, {"name": "力赫（贵阳市）能源科技有限公司", "province": "贵州", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（贵州）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（贵州）能源科技有限公司 → 100%", "legal": "曹莹峰", "capital": "500万", "projects": []}, {"name": "平塘县鹏赫能源科技有限公司", "province": "贵州", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（贵州）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（贵州）能源科技有限公司 → 100%", "legal": "姜龙", "capital": "500万", "projects": []}, {"name": "鹏辉力赫(遵义)能源科技有限公司", "province": "贵州", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "遵义红花岗区", "hasProject": false, "parent": "鹏辉力赫（贵州）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（贵州）能源科技有限公司 → 100%", "legal": "曹莹峰", "capital": "500万", "projects": ["遵义红花岗区"]}, {"name": "鹏辉力赫（毕节市）储能技术有限公司", "province": "贵州", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "毕节七星关区", "hasProject": false, "parent": "鹏辉力赫（贵州）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（贵州）能源科技有限公司 → 100%", "legal": "曹莹峰", "capital": "500万", "projects": ["毕节七星关区"]}, {"name": "鹏辉力赫（盘州）能源科技有限公司", "province": "贵州", "level": "区县级", "depth": 4, "type": "间接全资", "share": "100%", "project": "盘北经开区", "hasProject": false, "parent": "鹏辉力赫（珙县）能源科技有限公司", "path": "力赫集团 → 力赫储能 → 鹏辉力赫四川 → 鹏辉力赫珙县 → 鹏辉力赫盘州", "legal": "曹莹峰", "capital": "500万", "projects": ["盘北经开区"]}, {"name": "鹏辉力赫（都匀市）储能技术有限公司", "province": "贵州", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "都匀经开区", "hasProject": false, "parent": "鹏辉力赫（贵州）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（贵州）能源科技有限公司 → 100%", "legal": "曹莹峰", "capital": "500万", "projects": ["都匀经开区"]}, {"name": "鹏辉力赫（锦屏）能源科技有限公司", "province": "贵州", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "侗族锦屏县", "hasProject": false, "parent": "鹏辉力赫（贵州）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（贵州）能源科技有限公司 → 100%", "legal": "曹莹峰", "capital": "500万", "projects": ["侗族锦屏县"]}, {"name": "力赫（沈阳市）能源科技有限公司", "province": "辽宁", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（辽宁省）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（辽宁省）能源科技有限公司 → 100%", "legal": "张兆丰", "capital": "500万", "projects": []}, {"name": "力赫（海城）能源科技有限公司", "province": "辽宁", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "腾鳌经开区", "hasProject": false, "parent": "鹏辉力赫（辽宁省）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（辽宁省）能源科技有限公司 → 100%", "legal": "姜龙", "capital": "500万", "projects": ["腾鳌经开区"]}, {"name": "沈阳市辽中区鹏赫能源科技有限公司", "province": "辽宁", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（辽宁省）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（辽宁省）能源科技有限公司 → 100%", "legal": "姜龙", "capital": "500万", "projects": []}, {"name": "鹏辉力赫（抚顺市）储能技术有限公司", "province": "辽宁", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（辽宁省）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（辽宁省）能源科技有限公司 → 100%", "legal": "李浩天", "capital": "500万", "projects": []}, {"name": "鹏辉力赫（法库县）储能技术有限公司", "province": "辽宁", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（辽宁省）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（辽宁省）能源科技有限公司 → 100%", "legal": "李浩天", "capital": "500万", "projects": []}, {"name": "鹏辉力赫（海城市）能源科技有限公司", "province": "辽宁", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（辽宁省）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（辽宁省）能源科技有限公司 → 100%", "legal": "张兆丰", "capital": "500万", "projects": []}, {"name": "鹏辉力赫（葫芦岛）能源科技有限公司", "province": "辽宁", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（辽宁省）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（辽宁省）能源科技有限公司 → 100%", "legal": "张兆丰", "capital": "500万", "projects": []}, {"name": "鹏辉力赫（铁岭市经济开发区）能源科技有限公司", "province": "辽宁", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（辽宁省）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（辽宁省）能源科技有限公司 → 100%", "legal": "张磊", "capital": "500万", "projects": []}, {"name": "鹏辉力赫（锦州）能源科技有限公司", "province": "辽宁", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "锦州经开区", "hasProject": false, "parent": "鹏辉力赫（辽宁省）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（辽宁省）能源科技有限公司 → 100%", "legal": "姜龙", "capital": "500万", "projects": ["锦州经开区"]}, {"name": "鹏辉力赫（阜新）能源科技有限公司", "province": "辽宁", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（辽宁省）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（辽宁省）能源科技有限公司 → 100%", "legal": "姜龙", "capital": "500万", "projects": []}, {"name": "鹏辉北源（锦州）能源有限公司", "province": "辽宁", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（辽宁省）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（辽宁省）能源科技有限公司 → 100%", "legal": "姜龙", "capital": "500万", "projects": []}, {"name": "力赫（忠县）储能技术有限公司", "province": "重庆", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "重庆市忠县", "hasProject": false, "parent": "鹏辉力赫（天津）能源科技有限公司", "path": "鹏辉力赫天津 → 100%", "legal": "曹莹峰", "capital": "500万", "projects": ["重庆市忠县"]}, {"name": "重庆市巴南区鹏辉力赫电力技术有限公司", "province": "重庆", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "重庆巴南区", "hasProject": false, "parent": "鹏辉力赫（天津）能源科技有限公司", "path": "鹏辉力赫天津 → 100%", "legal": "曹莹峰", "capital": "500万", "projects": ["重庆巴南区"]}, {"name": "重庆市黔江区鹏辉力赫能源科技有限公司", "province": "重庆", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "重庆黔江区", "hasProject": false, "parent": "鹏辉力赫（天津）能源科技有限公司", "path": "鹏辉力赫天津 → 100%", "legal": "曹莹峰", "capital": "500万", "projects": ["重庆黔江区"]}, {"name": "鹏赫（重庆）储能技术有限公司", "province": "重庆", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "重庆双桥区", "hasProject": false, "parent": "鹏辉力赫（天津）能源科技有限公司", "path": "鹏辉力赫天津 → 100%", "legal": "曹莹峰", "capital": "500万", "projects": ["重庆双桥区"]}, {"name": "力赫（富平县）能源科技有限公司", "province": "陕西", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（陕西）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（陕西）能源科技有限公司 → 100%", "legal": "焦阳", "capital": "500万", "projects": []}, {"name": "力赫（石泉县）能源科技有限公司", "province": "陕西", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（陕西）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（陕西）能源科技有限公司 → 100%", "legal": "蓝晨刚", "capital": "500万", "projects": []}, {"name": "力赫（镇坪县）能源科技有限公司", "province": "陕西", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（陕西）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（陕西）能源科技有限公司 → 100%", "legal": "蓝晨刚", "capital": "500万", "projects": []}, {"name": "眉县鹏辉力赫能源科技有限公司", "province": "陕西", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "宝鸡眉县经开区", "hasProject": false, "parent": "鹏辉力赫（陕西）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（陕西）能源科技有限公司 → 100%", "legal": "蓝晨刚", "capital": "500万", "projects": ["宝鸡眉县经开区"]}, {"name": "鹏辉力赫（商洛）电力科技有限公司", "province": "陕西", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "商洛洛南县", "hasProject": false, "parent": "鹏辉力赫（陕西）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（陕西）能源科技有限公司 → 100%", "legal": "李海玉", "capital": "500万", "projects": ["商洛洛南县"]}, {"name": "鹏辉力赫（宁强县）储能技术有限公司", "province": "陕西", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（陕西）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（陕西）能源科技有限公司 → 100%", "legal": "李海玉", "capital": "500万", "projects": []}, {"name": "鹏辉力赫（宝鸡市凤翔区）储能技术有限公司", "province": "陕西", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "宝鸡凤翔区", "hasProject": false, "parent": "鹏辉力赫（陕西）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（陕西）能源科技有限公司 → 100%", "legal": "李海玉", "capital": "500万", "projects": ["宝鸡凤翔区"]}, {"name": "鹏辉力赫（宝鸡）储能技术有限公司", "province": "陕西", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "宝鸡陈仓区", "hasProject": false, "parent": "鹏辉力赫（陕西）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（陕西）能源科技有限公司 → 100%", "legal": "李海玉", "capital": "500万", "projects": ["宝鸡陈仓区"]}, {"name": "鹏辉力赫（汉阴县）能源科技有限公司", "province": "陕西", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（陕西）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（陕西）能源科技有限公司 → 100%", "legal": "蓝晨刚", "capital": "500万", "projects": []}, {"name": "鹏辉力赫（铜川）能源科技有限责任公司", "province": "陕西", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（陕西）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（陕西）能源科技有限公司 → 100%", "legal": "詹天伟", "capital": "500万", "projects": []}, {"name": "鹏辉力赫（陕西）能源科技有限公司", "province": "陕西", "level": "省级平台", "depth": 1, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（天津）能源科技有限公司", "path": "鹏辉力赫天津 → 100%", "legal": "焦阳", "capital": "1000万", "projects": []}, {"name": "鹏赫（海东互助）储能科技有限公司", "province": "青海", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "海东互助土族县", "hasProject": false, "parent": "鹏辉力赫（青海）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（青海）能源科技有限公司 → 100%", "legal": "蓝晨刚", "capital": "500万", "projects": ["海东互助土族县"]}, {"name": "鹏辉力赫（海东）储能技术有限公司", "province": "青海", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（青海）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（青海）能源科技有限公司 → 100%", "legal": "曹莹峰", "capital": "500万", "projects": []}, {"name": "鹏辉力赫（青海）能源科技有限公司", "province": "青海", "level": "省级平台", "depth": 1, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（天津）能源科技有限公司", "path": "鹏辉力赫天津 → 100%", "legal": "焦阳", "capital": "500万", "projects": []}, {"name": "哈尔滨辉赫能源科技有限公司", "province": "黑龙江", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "哈尔滨经开区", "hasProject": false, "parent": "鹏辉力赫（黑龙江）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（黑龙江）能源科技有限公司 → 100%", "legal": "詹天伟", "capital": "500万", "projects": ["哈尔滨经开区"]}, {"name": "鹏辉力赫（哈尔滨市双城区）能源科技有限公司", "province": "黑龙江", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "哈尔滨双城区", "hasProject": false, "parent": "鹏辉力赫（黑龙江）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（黑龙江）能源科技有限公司 → 100%", "legal": "詹天伟", "capital": "500万", "projects": ["哈尔滨双城区"]}, {"name": "鹏辉力赫（哈尔滨市阿城区）能源科技有限公司", "province": "黑龙江", "level": "区县级", "depth": 2, "type": "间接全资", "share": "100%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（黑龙江）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫（黑龙江）能源科技有限公司 → 100%", "legal": "张兆丰", "capital": "500万", "projects": []}, {"name": "鹏辉力赫（广元）科技有限公司", "province": "四川", "level": "市级", "depth": 2, "type": "间接控股", "share": "60%", "project": "广元朝天区", "hasProject": false, "parent": "鹏辉力赫（四川）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫四川 → 60%", "legal": "林仙利", "capital": "500万", "projects": ["广元朝天区"]}, {"name": "鹏辉力赫（忻州）能源科技有限公司", "province": "山西", "level": "区县级", "depth": 2, "type": "间接控股", "share": "51%", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（山西）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫山西 → 51%", "legal": "李浩天", "capital": "500万", "projects": []}, {"name": "鹏辉力赫(长垣市)新能源电力有限公司", "province": "河南", "level": "区县级", "depth": 2, "type": "间接参股", "share": "", "project": "暂无", "hasProject": false, "parent": "鹏辉力赫（河南）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫河南 → 参股", "legal": "曹莹峰", "capital": "500万", "projects": []}, {"name": "鹏辉力赫（安阳）电力科技有限公司", "province": "河南", "level": "区县级", "depth": 2, "type": "间接参股", "share": "", "project": "安阳市北关区", "hasProject": false, "parent": "鹏辉力赫（河南）能源科技有限公司", "path": "鹏辉力赫天津 → 鹏辉力赫河南 → 参股", "legal": "蓝晨刚", "capital": "500万", "projects": ["安阳市北关区"]}, {"name": "鹏辉力赫(富源)能源科技有限公司", "province": "云南", "level": "区县级", "depth": 0, "type": "待核实", "share": "", "project": "暂无", "hasProject": false, "parent": "深圳赫力能源科技有限公司", "path": "股东链断裂：深圳赫力能源100%", "legal": "石磊", "capital": "500万", "projects": []}, {"name": "天津永辉电力科技有限公司", "province": "天津", "level": "天津总部", "depth": 0, "type": "待核实", "share": "", "project": "暂无", "hasProject": false, "parent": "", "path": "股东链断裂：柳缘70%+俞川30%", "legal": "俞川", "capital": "4000万", "projects": []}, {"name": "鹏辉力赫(新疆)能源科技有限公司", "province": "新疆", "level": "市级", "depth": 0, "type": "待核实", "share": "", "project": "暂无", "hasProject": false, "parent": "保信锦一新能源（北京）有限公司", "path": "股东链断裂：保信锦一新能源100%", "legal": "潘龙", "capital": "1000万", "projects": []}, {"name": "鹏辉力赫（周口）能源科技有限公司", "province": "河南", "level": "区县级", "depth": 0, "type": "待核实", "share": "", "project": "暂无", "hasProject": false, "parent": "黄金环99%+周华丽1%", "path": "股东链断裂：黄金环99%", "legal": "黄金环", "capital": "500万", "projects": []}, {"name": "鹏辉力赫（新乡经开区）储能技术有限公司", "province": "河南", "level": "区县级", "depth": 0, "type": "待核实", "share": "", "project": "暂无", "hasProject": false, "parent": "国重南方（天津）新能源有限公司", "path": "股东链断裂：国重南方天津100%", "legal": "周堃", "capital": "500万", "projects": []}, {"name": "柞水县鹏赫能源科技有限公司", "province": "陕西", "level": "区县级", "depth": 0, "type": "待核实", "share": "", "project": "暂无", "hasProject": false, "parent": "", "path": "股东链断裂", "legal": "", "capital": "", "projects": []}, {"name": "莎车县长储新能源开发有限公司", "province": "新疆", "level": "区县级", "depth": 0, "type": "关联公司", "share": "", "project": "喀什市莎车县", "hasProject": false, "parent": "鹏辉力赫(新疆)能源科技有限公司", "path": "鹏辉力赫(新疆)能源科技 → 参股100%", "legal": "潘龙", "capital": "500万", "projects": ["喀什市莎车县"]}, {"name": "天津德厚隆企业管理咨询有限公司", "province": "天津", "level": "天津总部", "depth": 0, "type": "非体系", "share": "", "project": "暂无", "hasProject": false, "parent": "", "path": "非体系公司", "legal": "张科", "capital": "100万元", "projects": []}, {"name": "天津祥和信息咨询有限公司", "province": "天津", "level": "天津总部", "depth": 0, "type": "非体系", "share": "", "project": "暂无", "hasProject": false, "parent": "", "path": "非体系公司：姜龙100%", "legal": "姜龙", "capital": "100万元", "projects": []}, {"name": "襄垣明远能源科技有限公司", "province": "山西", "level": "区县级", "depth": 0, "type": "非体系", "share": "", "project": "暂无", "hasProject": false, "parent": "", "path": "非体系公司：明远智慧能源100%", "legal": "褚江鹏", "capital": "100万", "projects": []}];
+
+// ===== Stats Cards =====
+function renderStats() {
+  const total = DATA.length;
+  const inSystem = DATA.filter(d => !['待核实','关联公司','非体系'].includes(d.type)).length;
+  const topParents = DATA.filter(d => d.type === '顶层母公司').length;
+  const directCount = DATA.filter(d => ['直接全资','直接控股','直接参股'].includes(d.type)).length;
+  const indirectCount = DATA.filter(d => ['间接全资','间接控股','间接参股'].includes(d.type)).length;
+  const toVerify = DATA.filter(d => d.type === '待核实').length;
+  const countyLevel = DATA.filter(d => d.level === '区县级').length;
+  const provPlatforms = DATA.filter(d => d.level === '省级平台').length;
+  const withProject = DATA.filter(d => d.hasProject).length;
+  
+  const cards = [
+    { num: total, label: '公司总数', cls: '' },
+    { num: inSystem, label: '体系内公司', cls: 'green' },
+    { num: topParents, label: '顶层母公司', cls: 'accent' },
+    { num: directCount, label: '直接控股', cls: 'blue' },
+    { num: indirectCount, label: '间接控股', cls: '' },
+    { num: toVerify, label: '待核实', cls: 'accent' },
+    { num: countyLevel, label: '区县级公司', cls: '' },
+    { num: provPlatforms, label: '省级平台', cls: 'blue' },
+    { num: withProject, label: '有项目公司', cls: 'green' },
+    { num: 28, label: '覆盖省份', cls: '' }
+  ];
+  
+  document.getElementById('statsCards').innerHTML = cards.map(c => 
+    '<div class="card '+c.cls+'"><div class="num">'+c.num+'</div><div class="label">'+c.label+'</div></div>'
+  ).join('');
+}
+
+// ===== Province Options =====
+function initProvinceFilter() {
+  const provinces = [...new Set(DATA.map(d => d.province))].sort();
+  const sel = document.getElementById('provinceFilter');
+  provinces.forEach(p => {
+    const opt = document.createElement('option');
+    opt.value = p; opt.textContent = p;
+    sel.appendChild(opt);
+  });
+}
+
+// ===== Table =====
+let filteredData = [];
+let currentPage = 1;
+const pageSize = 25;
+let sortCol = -1, sortAsc = true;
+let expandedRows = new Set();
+
+function applyFilters() {
+  const search = document.getElementById('searchInput').value.trim().toLowerCase();
+  const depth = document.getElementById('depthFilter').value;
+  const type = document.getElementById('typeFilter').value;
+  const level = document.getElementById('levelFilter').value;
+  const province = document.getElementById('provinceFilter').value;
+  const project = document.getElementById('projectFilter').value;
+  const legal = document.getElementById('legalFilter').value;
+  
+  filteredData = DATA.filter(d => {
+    if (search && !d.name.toLowerCase().includes(search)) return false;
+    if (depth !== '' && d.depth !== parseInt(depth)) return false;
+    if (type && d.type !== type) return false;
+    if (level && d.level !== level) return false;
+    if (province && d.province !== province) return false;
+    if (project === '__has__' && !d.hasProject) return false;
+    if (project === '__no__' && d.hasProject) return false;
+    if (project && project !== '__has__' && project !== '__no__') {
+      if (!d.projects || !d.projects.includes(project)) return false;
+    }
+    if (legal && d.legal !== legal) return false;
+    return true;
+  });
+  
+  document.getElementById('resultCount').textContent = filteredData.length;
+  currentPage = 1;
+  renderTable();
+}
+
+function sortTable(col) {
+  if (sortCol === col) { sortAsc = !sortAsc; } else { sortCol = col; sortAsc = true; }
+  const keys = ['name','name','province','level','depth','type','share',
+    'legal'
+  ];
+  const key = keys[col];
+  filteredData.sort((a,b) => {
+    let va = a[key], vb = b[key];
+    if (key === 'depth') { va = parseInt(va)||0; vb = parseInt(vb)||0; }
+    if (typeof va === 'string') { va = va.toLowerCase(); vb = vb.toLowerCase(); }
+    if (va < vb) return sortAsc ? -1 : 1;
+    if (va > vb) return sortAsc ? 1 : -1;
+    return 0;
+  });
+  renderTable();
+}
+
+function renderTable() {
+  const start = (currentPage - 1) * pageSize;
+  const pageData = filteredData.slice(start, start + pageSize);
+  const tbody = document.getElementById('tableBody');
+  let html = '';
+  
+  pageData.forEach((d, i) => {
+    const idx = start + i + 1;
+    const isExpanded = expandedRows.has(d.name);
+    const escapedName = d.name.replace(/'/g, "\\'");
+    html += '<tr class="'+(isExpanded?'expanded':'')+'" onclick="toggleDetail(\''+escapedName+'\')">' +
+      '<td>'+idx+'</td>' +
+      '<td style="font-weight:500">'+d.name+'</td>' +
+      '<td>'+d.province+'</td>' +
+      '<td>'+d.level+'</td>' +
+      '<td><span class="tag tag-'+d.depth+'">第'+d.depth+'层</span></td>' +
+      '<td><span class="tag-type type-'+d.type+'">'+d.type+'</span></td>' +
+      '<td>'+(d.share || '-')+'</td>' +
+      '<td>'+(d.legal || '-')+'</td>' +
+      '<td style="font-size:12px;color:#666;line-height:1.4">'+(d.projects && d.projects.length ? d.projects.join('<br>') : '暂无')+'</td>' +
+      '<td><span style="cursor:pointer;font-size:16px">'+(isExpanded?'▲':'▼')+'</span></td>' +
+      '</tr>';
+    if (isExpanded) {
+      html += '<tr class="detail-row"><td colspan="10">' +
+        '<div class="detail-content">' +
+        '<p><strong>公司全称：</strong>'+d.name+'</p>' +
+        '<p><strong>所在省份：</strong>'+d.province+'</p>' +
+        '<p><strong>行政层级：</strong>'+d.level+'</p>' +
+        '<p><strong>股权深度：</strong>第'+d.depth+'层</p>' +
+        '<p><strong>控股方式：</strong>'+d.type+'</p>' +
+        '<p><strong>持股比例：</strong>'+(d.share || '未知')+'</p>' +
+        '<p><strong>法定代表人：</strong>'+(d.legal || '—')+'</p>' +
+        '<p><strong>注册资本：</strong>'+(d.capital || '—')+'</p>' +
+        '<p><strong>对应项目：</strong>'+(d.projects && d.projects.length ? d.projects.join('、') : '暂无')+'</p>' +
+        '<p><strong>直接母公司：</strong>'+(d.parent || '—')+'</p>' +
+        '<p><strong>股权路径：</strong>'+(d.path || '—')+'</p>' +
+        '</div></td></tr>';
+    }
+  });
+  
+  tbody.innerHTML = html;
+  renderPagination();
+}
+
+function toggleDetail(name) {
+  if (expandedRows.has(name)) expandedRows.delete(name);
+  else expandedRows.add(name);
+  renderTable();
+}
+
+function renderPagination() {
+  const totalPages = Math.ceil(filteredData.length / pageSize) || 1;
+  let html = '<button '+(currentPage===1?'disabled':'')+' onclick="goPage('+(currentPage-1)+')">上一页</button>';
+  
+  const maxShow = 7;
+  let startP = Math.max(1, currentPage - 3);
+  let endP = Math.min(totalPages, startP + maxShow - 1);
+  if (endP - startP < maxShow - 1) startP = Math.max(1, endP - maxShow + 1);
+  
+  if (startP > 1) html += '<button onclick="goPage(1)">1</button><span>...</span>';
+  for (let p = startP; p <= endP; p++) {
+    html += '<button class="'+(p===currentPage?'active':'')+'" onclick="goPage('+p+')">'+p+'</button>';
+  }
+  if (endP < totalPages) html += '<span>...</span><button onclick="goPage('+totalPages+')">'+totalPages+'</button>';
+  
+  html += '<button '+(currentPage===totalPages?'disabled':'')+' onclick="goPage('+(currentPage+1)+')">下一页</button>';
+  html += '<span>共 '+filteredData.length+' 条 / '+totalPages+' 页</span>';
+  document.getElementById('pagination').innerHTML = html;
+}
+
+function goPage(p) { currentPage = p; renderTable(); }
+
+// ===== Tree =====
+function buildTree() {
+  const childrenOf = {};
+  DATA.forEach(d => {
+    if (d.parent) {
+      if (!childrenOf[d.parent]) childrenOf[d.parent] = [];
+      childrenOf[d.parent].push(d);
+    }
+  });
+  
+  function makeTreeNode(comp) {
+    const kids = (childrenOf[comp.name] || []).filter(k => k.name !== '鹏辉力赫（天津）能源科技有限公司');
+    return {
+      name: comp.name,
+      province: comp.province,
+      type: comp.type,
+      share: comp.share,
+      children: kids.map(k => makeTreeNode(k))
+    };
+  }
+  
+  const liheGroup = DATA.find(d => d.name === '力赫（天津）新能源科技集团有限公司');
+  const penghuiTJ = DATA.find(d => d.name === '鹏辉力赫（天津）能源科技有限公司');
+  
+  const treeRoot = makeTreeNode(liheGroup);
+  const penghuiNode = makeTreeNode(penghuiTJ);
+  treeRoot.children.unshift(penghuiNode);
+  
+  return treeRoot;
+}
+
+function renderTree() {
+  const tree = buildTree();
+  const container = document.getElementById('treeContainer');
+  container.innerHTML = renderTreeNode(tree, 0);
+}
+
+function renderTreeNode(node, level) {
+  const hasChildren = node.children && node.children.length > 0;
+  let html = '<div class="tree-node">' +
+    '<div class="tree-label" onclick="toggleTreeNode(this)" data-name="'+node.name.replace(/"/g,'&quot;')+'">' +
+    '<span class="toggle">'+(hasChildren ? '▶' : '•')+'</span>' +
+    '<span class="node-name">'+node.name+'</span>' +
+    '<span class="node-info">['+node.province+']'+(node.share ? ' '+node.share : '')+'</span>' +
+    '</div>';
+  if (hasChildren) {
+    html += '<div class="tree-children'+(level > 1 ? ' collapsed' : '')+'">';
+    node.children.forEach(child => {
+      html += renderTreeNode(child, level + 1);
+    });
+    html += '</div>';
+  }
+  html += '</div>';
+  return html;
+}
+
+function toggleTreeNode(el) {
+  const children = el.nextElementSibling;
+  const toggle = el.querySelector('.toggle');
+  if (children && children.classList.contains('tree-children')) {
+    children.classList.toggle('collapsed');
+    toggle.textContent = children.classList.contains('collapsed') ? '▶' : '▼';
+  }
+  const name = el.dataset.name;
+  highlightInTable(name);
+}
+
+function highlightInTable(name) {
+  document.getElementById('searchInput').value = name;
+  applyFilters();
+  document.getElementById('companyTable').scrollIntoView({ behavior:'smooth' });
+}
+
+function expandAll() {
+  document.querySelectorAll('.tree-children').forEach(el => el.classList.remove('collapsed'));
+  document.querySelectorAll('.tree-label .toggle').forEach(el => { if(el.textContent==='▶') el.textContent='▼'; });
+}
+function collapseAll() {
+  document.querySelectorAll('.tree-children').forEach(el => el.classList.add('collapsed'));
+  document.querySelectorAll('.tree-label .toggle').forEach(el => { if(el.textContent==='▼') el.textContent='▶'; });
+}
+
+// ===== Charts =====
+function renderCharts() {
+  // Chart 1: 控股方式分布
+  const typeCounts = {};
+  DATA.forEach(d => { typeCounts[d.type] = (typeCounts[d.type]||0) + 1; });
+  const chart1 = echarts.init(document.getElementById('chart1'));
+  chart1.setOption({
+    tooltip: { trigger:'item', formatter:'{b}: {c}家 ({d}%)' },
+    legend: { bottom:0, textStyle:{fontSize:11} },
+    color: ['#e65100','#2e7d32','#1565c0','#7b1fa2','#00695c','#f57f17','#c62828','#4e342e','#33691e','#9e9e9e'],
+    series: [{
+      type:'pie', radius:['35%','65%'], center:['50%','45%'],
+      label: { formatter:'{b}\n{c}家', fontSize:11 },
+      data: Object.entries(typeCounts).map(([k,v]) => ({name:k, value:v}))
+    }]
+  });
+  
+  // Chart 2: 行政层级分布
+  const levelCounts = {};
+  DATA.forEach(d => { levelCounts[d.level] = (levelCounts[d.level]||0) + 1; });
+  const chart2 = echarts.init(document.getElementById('chart2'));
+  chart2.setOption({
+    tooltip: { trigger:'item', formatter:'{b}: {c}家 ({d}%)' },
+    legend: { bottom:0, textStyle:{fontSize:11} },
+    color: ['#1a237e','#0d47a1','#1565c0','#42a5f5'],
+    series: [{
+      type:'pie', radius:['35%','65%'], center:['50%','45%'],
+      label: { formatter:'{b}\n{c}家', fontSize:11 },
+      data: Object.entries(levelCounts).map(([k,v]) => ({name:k, value:v}))
+    }]
+  });
+  
+  // Chart 3: 各省份公司数量
+  const provCounts = {};
+  DATA.forEach(d => { provCounts[d.province] = (provCounts[d.province]||0) + 1; });
+  const provSorted = Object.entries(provCounts).sort((a,b) => a[1]-b[1]);
+  const chart3 = echarts.init(document.getElementById('chart3'));
+  chart3.setOption({
+    tooltip: { trigger:'axis' },
+    grid: { left:100, right:60, top:10, bottom:30 },
+    xAxis: { type:'value' },
+    yAxis: { type:'category', data:provSorted.map(p=>p[0]), axisLabel:{fontSize:12} },
+    series: [{
+      type:'bar', data:provSorted.map(p=>p[1]),
+      itemStyle: { color: new echarts.graphic.LinearGradient(0,0,1,0,[
+        {offset:0,color:'#1a237e'},{offset:1,color:'#42a5f5'}
+      ]), borderRadius:[0,4,4,0] },
+      label: { show:true, position:'right', fontSize:12 }
+    }]
+  });
+  
+  // Chart 4: 各股权深度
+  const depthCounts = {};
+  DATA.forEach(d => { depthCounts[d.depth] = (depthCounts[d.depth]||0) + 1; });
+  const chart4 = echarts.init(document.getElementById('chart4'));
+  chart4.setOption({
+    tooltip: { trigger:'axis' },
+    grid: { left:60, right:40, top:30, bottom:40 },
+    xAxis: { type:'category', data:['第0层','第1层','第2层','第3层','第4层'], axisLabel:{fontSize:13} },
+    yAxis: { type:'value' },
+    series: [{
+      type:'bar', barWidth:50,
+      data: [
+        {value:depthCounts[0]||0, itemStyle:{color:'#f9a825'}},
+        {value:depthCounts[1]||0, itemStyle:{color:'#43a047'}},
+        {value:depthCounts[2]||0, itemStyle:{color:'#1e88e5'}},
+        {value:depthCounts[3]||0, itemStyle:{color:'#fb8c00'}},
+        {value:depthCounts[4]||0, itemStyle:{color:'#e53935'}}
+      ],
+      label: { show:true, position:'top', fontSize:14, fontWeight:'bold' },
+      itemStyle: { borderRadius:[6,6,0,0] }
+    }]
+  });
+  
+  window.addEventListener('resize', () => {
+    chart1.resize(); chart2.resize(); chart3.resize(); chart4.resize();
+  });
+}
+
+// ===== Init =====
+renderStats();
+initProvinceFilter();
+applyFilters();
+renderTree();
+renderCharts();
+</script>
+</body>
+</html>
