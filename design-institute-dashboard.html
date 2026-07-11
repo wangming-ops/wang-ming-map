@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>鹏辉力赫运营中心 - 重点项目设计院对接情况汇报</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+--bg-primary:#0a0e1a;
+--bg-secondary:#111827;
+--bg-card:#1a2236;
+--bg-card-hover:#1f2a42;
+--border-color:rgba(99,130,190,0.15);
+--text-primary:#e8ecf4;
+--text-secondary:#8b97b0;
+--text-muted:#5a6580;
+--accent-gold:#d4a853;
+--accent-gold-dim:rgba(212,168,83,0.15);
+--accent-blue:#4a9eff;
+--accent-green:#34d399;
+--accent-red:#f87171;
+--accent-orange:#fb923c;
+--accent-purple:#a78bfa;
+--shadow-card:0 4px 24px rgba(0,0,0,0.3);
+--shadow-glow:0 0 40px rgba(74,158,255,0.05);
+}
+html{font-size:14px}
+body{
+font-family:'Noto Sans SC','DM Sans',sans-serif;
+background:var(--bg-primary);
+color:var(--text-primary);
+min-height:100vh;
+overflow-x:hidden;
+}
+body::before{
+content:'';
+position:fixed;
+top:0;left:0;right:0;bottom:0;
+background:
+radial-gradient(ellipse 80% 50% at 20% 0%,rgba(74,158,255,0.06),transparent),
+radial-gradient(ellipse 60% 40% at 80% 100%,rgba(212,168,83,0.04),transparent);
+pointer-events:none;
+z-index:0;
+}
+
+.container{max-width:1600px;margin:0 auto;padding:24px 32px;position:relative;z-index:1}
+
+/* Header */
+.header{
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:28px 36px;
+background:linear-gradient(135deg,rgba(26,34,54,0.95),rgba(17,24,39,0.95));
+border:1px solid var(--border-color);
+border-radius:16px;
+margin-bottom:24px;
+backdrop-filter:blur(20px);
+position:relative;
+overflow:hidden;
+}
+.header::before{
+content:'';
+position:absolute;
+top:0;left:0;right:0;
+height:2px;
+background:linear-gradient(90deg,transparent,var(--accent-gold),var(--accent-blue),transparent);
+}
+.header-left{display:flex;align-items:center;gap:20px}
+.header-logo{
+width:52px;height:52px;
+background:linear-gradient(135deg,var(--accent-gold),#b8922e);
+border-radius:12px;
+display:flex;align-items:center;justify-content:center;
+font-size:22px;font-weight:900;color:#0a0e1a;
+letter-spacing:-1px;
+box-shadow:0 4px 16px rgba(212,168,83,0.3);
+}
+.header-title{font-size:1.65rem;font-weight:700;letter-spacing:0.5px;color:var(--text-primary)}
+.header-subtitle{font-size:0.85rem;color:var(--text-secondary);margin-top:4px;letter-spacing:1px}
+.header-right{text-align:right}
+.header-date{
+font-family:'DM Sans','Noto Sans SC',sans-serif;
+font-size:1.5rem;font-weight:700;
+color:var(--accent-gold);
+letter-spacing:1px;
+}
+.header-date-sub{font-size:0.78rem;color:var(--text-muted);margin-top:2px}
+
+/* KPI Cards */
+.kpi-grid{
+display:grid;
+grid-template-columns:repeat(6,1fr);
+gap:16px;
+margin-bottom:24px;
+}
+.kpi-card{
+background:var(--bg-card);
+border:1px solid var(--border-color);
+border-radius:14px;
+padding:22px 20px;
+position:relative;
+overflow:hidden;
+transition:all 0.3s ease;
+}
+.kpi-card:hover{
+transform:translateY(-2px);
+border-color:rgba(99,130,190,0.3);
+box-shadow:var(--shadow-card);
+}
+.kpi-card::after{
+content:'';
+position:absolute;
+top:0;left:0;right:0;
+height:3px;
+border-radius:14px 14px 0 0;
+}
+.kpi-card:nth-child(1)::after{background:var(--accent-blue)}
+.kpi-card:nth-child(2)::after{background:var(--accent-green)}
+.kpi-card:nth-child(3)::after{background:var(--accent-gold)}
+.kpi-card:nth-child(4)::after{background:var(--accent-purple)}
+.kpi-card:nth-child(5)::after{background:var(--accent-orange)}
+.kpi-card:nth-child(6)::after{background:var(--accent-red)}
+.kpi-label{font-size:0.78rem;color:var(--text-muted);margin-bottom:10px;font-weight:500;letter-spacing:0.5px}
+.kpi-value{
+font-family:'DM Sans','Noto Sans SC',sans-serif;
+font-size:2rem;font-weight:700;
+line-height:1;
+margin-bottom:6px;
+}
+.kpi-card:nth-child(1) .kpi-value{color:var(--accent-blue)}
+.kpi-card:nth-child(2) .kpi-value{color:var(--accent-green)}
+.kpi-card:nth-child(3) .kpi-value{color:var(--accent-gold)}
+.kpi-card:nth-child(4) .kpi-value{color:var(--accent-purple)}
+.kpi-card:nth-child(5) .kpi-value{color:var(--accent-orange)}
+.kpi-card:nth-child(6) .kpi-value{color:var(--accent-red)}
+.kpi-sub{font-size:0.72rem;color:var(--text-secondary)}
+.kpi-icon{
+position:absolute;
+top:16px;right:16px;
+width:36px;height:36px;
+border-radius:10px;
+display:flex;align-items:center;justify-content:center;
+font-size:16px;
+opacity:0.7;
+}
+.kpi-card:nth-child(1) .kpi-icon{background:rgba(74,158,255,0.1);color:var(--accent-blue)}
+.kpi-card:nth-child(2) .kpi-icon{background:rgba(52,211,153,0.1);color:var(--accent-green)}
+.kpi-card:nth-child(3) .kpi-icon{background:rgba(212,168,83,0.1);color:var(--accent-gold)}
+.kpi-card:nth-child(4) .kpi-icon{background:rgba(167,139,250,0.1);color:var(--accent-purple)}
+.kpi-card:nth-child(5) .kpi-icon{background:rgba(251,146,60,0.1);color:var(--accent-orange)}
+.kpi-card:nth-child(6) .kpi-icon{background:rgba(248,113,113,0.1);color:var(--accent-red)}
+
+/* Charts Section */
+.charts-section{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:20px;
+margin-bottom:24px;
+}
+.chart-card{
+background:var(--bg-card);
+border:1px solid var(--border-color);
+border-radius:14px;
+padding:24px;
+transition:all 0.3s ease;
+}
+.chart-card:hover{border-color:rgba(99,130,190,0.25)}
+.chart-title{
+font-size:0.95rem;
+font-weight:600;
+margin-bottom:16px;
+padding-bottom:12px;
+border-bottom:1px solid var(--border-color);
+display:flex;
+align-items:center;
+gap:8px;
+}
+.chart-title::before{
+content:'';
+width:4px;height:16px;
+background:var(--accent-blue);
+border-radius:2px;
+}
+.chart-container{width:100%;height:320px}
+
+/* Table Section */
+.table-section{
+background:var(--bg-card);
+border:1px solid var(--border-color);
+border-radius:14px;
+padding:24px;
+margin-bottom:24px;
+}
+.table-header{
+display:flex;
+align-items:center;
+justify-content:space-between;
+margin-bottom:20px;
+flex-wrap:wrap;
+gap:12px;
+}
+.table-title{
+font-size:1.05rem;
+font-weight:600;
+display:flex;align-items:center;gap:8px;
+}
+.table-title::before{
+content:'';width:4px;height:18px;
+background:var(--accent-gold);border-radius:2px;
+}
+.filters{display:flex;gap:10px;flex-wrap:wrap}
+.filter-select{
+background:var(--bg-secondary);
+border:1px solid var(--border-color);
+color:var(--text-primary);
+padding:8px 14px;
+border-radius:8px;
+font-size:0.8rem;
+font-family:inherit;
+cursor:pointer;
+outline:none;
+transition:border-color 0.2s;
+}
+.filter-select:focus{border-color:var(--accent-blue)}
+.filter-select option{background:var(--bg-secondary)}
+
+.data-table{width:100%;border-collapse:separate;border-spacing:0}
+.data-table thead th{
+background:rgba(74,158,255,0.06);
+padding:12px 14px;
+text-align:left;
+font-size:0.75rem;
+font-weight:600;
+color:var(--text-secondary);
+text-transform:uppercase;
+letter-spacing:0.5px;
+border-bottom:1px solid var(--border-color);
+position:sticky;top:0;
+white-space:nowrap;
+}
+.data-table thead th:first-child{border-radius:8px 0 0 0}
+.data-table thead th:last-child{border-radius:0 8px 0 0}
+.data-table tbody tr{transition:background 0.2s}
+.data-table tbody tr:hover{background:rgba(74,158,255,0.04)}
+.data-table tbody td{
+padding:11px 14px;
+font-size:0.8rem;
+color:var(--text-primary);
+border-bottom:1px solid rgba(99,130,190,0.07);
+white-space:nowrap;
+}
+.status-badge{
+display:inline-block;
+padding:3px 10px;
+border-radius:20px;
+font-size:0.7rem;
+font-weight:600;
+}
+.status-signed{background:rgba(52,211,153,0.12);color:var(--accent-green)}
+.status-unsigned{background:rgba(248,113,113,0.12);color:var(--accent-red)}
+.status-unknown{background:rgba(139,151,176,0.12);color:var(--text-secondary)}
+.status-plan{background:rgba(251,146,60,0.12);color:var(--accent-orange)}
+
+.pagination{
+display:flex;align-items:center;justify-content:center;
+gap:6px;margin-top:16px;
+}
+.page-btn{
+background:var(--bg-secondary);
+border:1px solid var(--border-color);
+color:var(--text-secondary);
+padding:6px 12px;
+border-radius:6px;
+font-size:0.78rem;
+cursor:pointer;
+font-family:inherit;
+transition:all 0.2s;
+}
+.page-btn:hover{border-color:var(--accent-blue);color:var(--accent-blue)}
+.page-btn.active{background:var(--accent-blue);color:#fff;border-color:var(--accent-blue)}
+.page-btn:disabled{opacity:0.4;cursor:not-allowed}
+.page-info{font-size:0.78rem;color:var(--text-muted);margin:0 8px}
+
+/* Risk Section */
+.risk-section{
+background:var(--bg-card);
+border:1px solid var(--border-color);
+border-radius:14px;
+padding:24px;
+margin-bottom:24px;
+}
+.risk-title{
+font-size:1.05rem;font-weight:600;
+margin-bottom:16px;
+display:flex;align-items:center;gap:8px;
+}
+.risk-title::before{
+content:'';width:4px;height:18px;
+background:var(--accent-red);border-radius:2px;
+}
+.risk-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.risk-card{
+background:rgba(248,113,113,0.04);
+border:1px solid rgba(248,113,113,0.12);
+border-radius:10px;
+padding:16px;
+transition:all 0.2s;
+}
+.risk-card:hover{border-color:rgba(248,113,113,0.25);background:rgba(248,113,113,0.06)}
+.risk-card.risk-warning{
+background:rgba(251,146,60,0.04);
+border-color:rgba(251,146,60,0.12);
+}
+.risk-card.risk-warning:hover{border-color:rgba(251,146,60,0.25)}
+.risk-level{
+display:inline-block;
+padding:2px 8px;
+border-radius:4px;
+font-size:0.68rem;
+font-weight:700;
+margin-bottom:8px;
+}
+.risk-high{background:rgba(248,113,113,0.15);color:var(--accent-red)}
+.risk-medium{background:rgba(251,146,60,0.15);color:var(--accent-orange)}
+.risk-project{font-size:0.85rem;font-weight:600;margin-bottom:4px}
+.risk-detail{font-size:0.75rem;color:var(--text-secondary);line-height:1.5}
+
+/* Footer */
+.footer{
+text-align:center;
+padding:20px;
+color:var(--text-muted);
+font-size:0.72rem;
+letter-spacing:0.5px;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar{width:6px;height:6px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:rgba(99,130,190,0.2);border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:rgba(99,130,190,0.35)}
+
+/* Table wrapper for horizontal scroll */
+.table-wrapper{overflow-x:auto;max-height:600px;overflow-y:auto}
+
+/* Animations */
+@keyframes fadeInUp{
+from{opacity:0;transform:translateY(20px)}
+to{opacity:1;transform:translateY(0)}
+}
+.kpi-card,.chart-card,.table-section,.risk-section{
+animation:fadeInUp 0.6s ease forwards;
+opacity:0;
+}
+.kpi-card:nth-child(1){animation-delay:0.05s}
+.kpi-card:nth-child(2){animation-delay:0.1s}
+.kpi-card:nth-child(3){animation-delay:0.15s}
+.kpi-card:nth-child(4){animation-delay:0.2s}
+.kpi-card:nth-child(5){animation-delay:0.25s}
+.kpi-card:nth-child(6){animation-delay:0.3s}
+.chart-card:nth-child(1){animation-delay:0.35s}
+.chart-card:nth-child(2){animation-delay:0.4s}
+.chart-card:nth-child(3){animation-delay:0.45s}
+.chart-card:nth-child(4){animation-delay:0.5s}
+.table-section{animation-delay:0.55s}
+.risk-section{animation-delay:0.6s}
+
+/* Responsive */
+@media(max-width:1200px){
+.kpi-grid{grid-template-columns:repeat(3,1fr)}
+.charts-section{grid-template-columns:1fr}
+.risk-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:768px){
+.container{padding:16px}
+.kpi-grid{grid-template-columns:repeat(2,1fr)}
+.header{flex-direction:column;text-align:center;gap:16px}
+.header-right{text-align:center}
+.risk-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="container">
+<!-- Header -->
+<div class="header">
+<div class="header-left">
+<div class="header-logo">鹏辉</div>
+<div>
+<div class="header-title">鹏辉力赫运营中心 · 重点项目设计院对接情况汇报</div>
+<div class="header-subtitle">PROJECT DESIGN INSTITUTE COORDINATION REPORT</div>
+</div>
+</div>
+<div class="header-right">
+<div class="header-date">2026.07</div>
+<div class="header-date-sub">汇报周期 · 截至2026年7月</div>
+</div>
+</div>
+
+<!-- KPI Cards -->
+<div class="kpi-grid">
+<div class="kpi-card">
+<div class="kpi-icon">📋</div>
+<div class="kpi-label">项目总数</div>
+<div class="kpi-value">45</div>
+<div class="kpi-sub">覆盖13个省份</div>
+</div>
+<div class="kpi-card">
+<div class="kpi-icon">⚡</div>
+<div class="kpi-label">总装机规模</div>
+<div class="kpi-value">8,700<small style="font-size:0.9rem;opacity:0.7">MW</small></div>
+<div class="kpi-sub">约 16,606 MWh</div>
+</div>
+<div class="kpi-card">
+<div class="kpi-icon">🔥</div>
+<div class="kpi-label">重点推进项目</div>
+<div class="kpi-value">38</div>
+<div class="kpi-sub">优质储备 7 个</div>
+</div>
+<div class="kpi-card">
+<div class="kpi-icon">📝</div>
+<div class="kpi-label">合同签订率</div>
+<div class="kpi-value">60<small style="font-size:0.9rem;opacity:0.7">%</small></div>
+<div class="kpi-sub">已签 27 / 未签 14 / 待确认 4</div>
+</div>
+<div class="kpi-card">
+<div class="kpi-icon">💰</div>
+<div class="kpi-label">合同总金额</div>
+<div class="kpi-value">5,752<small style="font-size:0.9rem;opacity:0.7">万</small></div>
+<div class="kpi-sub">已知合同总额</div>
+</div>
+<div class="kpi-card">
+<div class="kpi-icon">⏳</div>
+<div class="kpi-label">待付款合计</div>
+<div class="kpi-value">34.8<small style="font-size:0.9rem;opacity:0.7">万</small></div>
+<div class="kpi-sub">需及时跟进</div>
+</div>
+</div>
+
+<!-- Charts -->
+<div class="charts-section">
+<div class="chart-card">
+<div class="chart-title">各省项目数量分布</div>
+<div class="chart-container" id="chart-province"></div>
+</div>
+<div class="chart-card">
+<div class="chart-title">合同签订情况</div>
+<div class="chart-container" id="chart-contract"></div>
+</div>
+<div class="chart-card">
+<div class="chart-title">各负责人项目数对比</div>
+<div class="chart-container" id="chart-person"></div>
+</div>
+<div class="chart-card">
+<div class="chart-title">设计院合作排名 TOP10</div>
+<div class="chart-container" id="chart-designer"></div>
+</div>
+</div>
+
+<!-- Table -->
+<div class="table-section">
+<div class="table-header">
+<div class="table-title">项目详情清单</div>
+<div class="filters">
+<select class="filter-select" id="filter-status" onchange="filterTable()">
+<option value="">全部状态</option>
+<option value="已签">已签</option>
+<option value="未签">未签</option>
+<option value="需确定计划">需确定计划</option>
+</select>
+<select class="filter-select" id="filter-province" onchange="filterTable()">
+<option value="">全部省份</option>
+</select>
+<select class="filter-select" id="filter-person" onchange="filterTable()">
+<option value="">全部负责人</option>
+</select>
+</div>
+</div>
+<div class="table-wrapper">
+<table class="data-table">
+<thead>
+<tr>
+<th>序号</th>
+<th>项目名称</th>
+<th>省份</th>
+<th>规模</th>
+<th>负责人</th>
+<th>设计院</th>
+<th>合同状态</th>
+<th>合同金额</th>
+<th>接入批复时间</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody id="table-body"></tbody>
+</table>
+</div>
+<div class="pagination" id="pagination"></div>
+</div>
+
+<!-- Risk Section -->
+<div class="risk-section">
+<div class="risk-title">风险预警与重点关注事项</div>
+<div class="risk-grid">
+<div class="risk-card">
+<span class="risk-level risk-high">高风险</span>
+<div class="risk-project">吉林三项目（四平/双阳/桦甸）</div>
+<div class="risk-detail">融资方未签融资合同，设计院合同均未签署，12月批复存在较大不确定性</div>
+</div>
+<div class="risk-card">
+<span class="risk-level risk-high">高风险</span>
+<div class="risk-project">西藏三项目（山南/昌都/林芝）</div>
+<div class="risk-detail">合同均未签署，接入批复时间不确定，林芝项目规模未定</div>
+</div>
+<div class="risk-card">
+<span class="risk-level risk-high">高风险</span>
+<div class="risk-project">毕节七星关区（贵州）</div>
+<div class="risk-detail">涉及股权转让问题，无设计院对接，合同及批复均不确定</div>
+</div>
+<div class="risk-card risk-warning">
+<span class="risk-level risk-medium">中风险</span>
+<div class="risk-project">4个待确定计划项目</div>
+<div class="risk-detail">海南江东新区、河北张家口、广西北海、海南东方、广东清城区 — 尚无设计院，无明确推进计划</div>
+</div>
+<div class="risk-card risk-warning">
+<span class="risk-level risk-medium">中风险</span>
+<div class="risk-project">山西晋中开发区</div>
+<div class="risk-detail">已签合同但需支付300万额外费用，接入批复时间不确定</div>
+</div>
+<div class="risk-card risk-warning">
+<span class="risk-level risk-medium">中风险</span>
+<div class="risk-project">外线问题 — 商丘睢阳区</div>
+<div class="risk-detail">外线问题导致无法做接入方案，影响项目推进节奏</div>
+</div>
+<div class="risk-card risk-warning">
+<span class="risk-level risk-medium">关注</span>
+<div class="risk-project">待付款跟进</div>
+<div class="risk-detail">吉安遂川县 9.8万 + 商洛洛南县 25万待付，合计34.8万元需及时安排</div>
+</div>
+<div class="risk-card risk-warning">
+<span class="risk-level risk-medium">关注</span>
+<div class="risk-project">山东两项目（德州/日照）</div>
+<div class="risk-detail">入库完成后方可签合同，11月批复节点需持续跟踪</div>
+</div>
+<div class="risk-card risk-warning">
+<span class="risk-level risk-medium">关注</span>
+<div class="risk-project">思南经开区（贵州）</div>
+<div class="risk-detail">合同未签，接入批复时间不确定，需加速推进</div>
+</div>
+</div>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+鹏辉力赫运营中心 © 2026 · 内部汇报资料 · 数据截至2026年7月
+</div>
+</div>
+
+<script>
+// ===== Project Data =====
+const projects = [
+{id:1,name:"商丘市睢阳区",province:"河南",scale:"100MW/200MWh",person:"李震",designer:"河南同力电力设计",status:"已签",amount:"37万",time:"12月接入批复",note:"外线问题无法做接入方案"},
+{id:2,name:"鹤壁鹤山区",province:"河南",scale:"200MW/400MWh",person:"李震",designer:"河南旭鹏电力设计",status:"未签",amount:"80万",time:"7月中旬",note:"含在EPC内"},
+{id:3,name:"平顶山湛河区",province:"河南",scale:"100MW/200MWh",person:"李震",designer:"河南上能电力设计",status:"已签",amount:"30万",time:"9月",note:""},
+{id:4,name:"黄石市下陆区",province:"湖北",scale:"440MW/802MWh",person:"应俊",designer:"中犇工程设计武汉分公司",status:"已签",amount:"230万",time:"10月",note:""},
+{id:5,name:"晋中开发区",province:"山西",scale:"200MW/400MWh",person:"张磊",designer:"山西国源盛世电力设计",status:"已签",amount:"38万",time:"不确定",note:"需支付300万费用"},
+{id:6,name:"遵义红花岗区",province:"贵州",scale:"200MW/400MWh",person:"应俊",designer:"永建设计集团",status:"已签",amount:"230万",time:"7月底",note:""},
+{id:7,name:"四平铁西区",province:"吉林",scale:"200MW/400MWh",person:"林加亮",designer:"吉林省电力设计研究院",status:"未签",amount:"110万",time:"12月",note:"融资方未签融资合同"},
+{id:8,name:"双阳经开区",province:"吉林",scale:"200MW/800MWh",person:"林加亮",designer:"吉林省电力设计研究院",status:"未签",amount:"110万",time:"12月",note:"融资方未签融资合同"},
+{id:9,name:"德州庆云县",province:"山东",scale:"200MW/400MWh",person:"张磊",designer:"济南中庚工程技术",status:"未签",amount:"68万",time:"11月",note:"入库完成之后签"},
+{id:10,name:"日照岚山区",province:"山东",scale:"200MW/800MWh",person:"张磊",designer:"济南中庚工程技术",status:"未签",amount:"68万",time:"11月",note:"入库完成之后签"},
+{id:11,name:"江东新区潭连地区",province:"海南",scale:"200MW/400MWh",person:"王晶晶",designer:"无设计院",status:"需确定计划",amount:"—",time:"—",note:""},
+{id:12,name:"黄冈市英山县",province:"湖北",scale:"100MW/200MWh",person:"应俊",designer:"中犇工程设计武汉分公司",status:"已签",amount:"180万",time:"10月",note:""},
+{id:13,name:"孝感市孝南区",province:"湖北",scale:"220MW/401MWh",person:"应俊",designer:"中犇工程设计武汉分公司",status:"已签",amount:"230万",time:"10月",note:""},
+{id:14,name:"十堰郧阳区",province:"湖北",scale:"200MW/400MWh",person:"应俊",designer:"中犇工程设计武汉分公司",status:"已签",amount:"230万",time:"10月",note:""},
+{id:15,name:"黄冈浠水县",province:"湖北",scale:"200MW/400MWh",person:"应俊",designer:"中犇工程设计武汉分公司",status:"已签",amount:"230万",time:"10月",note:""},
+{id:16,name:"孝感汉川经开区",province:"湖北",scale:"200MW/400MWh",person:"应俊",designer:"中犇工程设计武汉分公司",status:"已签",amount:"230万",time:"10月",note:""},
+{id:17,name:"吉安遂川县",province:"江西",scale:"200MW/400MWh",person:"应俊",designer:"江西省电力设计规划院",status:"已签",amount:"138万",time:"入库后三个月",note:"9.8万待付款"},
+{id:18,name:"商洛洛南县",province:"陕西",scale:"100MW/200MWh",person:"李海玉",designer:"中国能建陕西电力设计院",status:"已签",amount:"45万",time:"7月",note:"25万待付"},
+{id:19,name:"思南经开区",province:"贵州",scale:"200MW/400MWh",person:"曹莹峰",designer:"贵州鲲诚工程咨询",status:"未签",amount:"25万",time:"不确定",note:""},
+{id:20,name:"都匀经开区",province:"贵州",scale:"200MW/800MWh",person:"曹莹峰",designer:"贵州鲲诚工程咨询",status:"已签",amount:"25万",time:"7月中旬",note:""},
+{id:21,name:"毕节七星关区",province:"贵州",scale:"200MW/800MWh",person:"曹莹峰",designer:"无设计院",status:"未签",amount:"不确定",time:"不确定",note:"涉及股权转让"},
+{id:22,name:"运城新绛县",province:"山西",scale:"200MW/400MWh",person:"张磊",designer:"山西国源盛世电力设计",status:"未签",amount:"38万",time:"12月",note:"入库后再找设计院"},
+{id:23,name:"黄冈市蕲春县",province:"湖北",scale:"200MW/400MWh",person:"应俊",designer:"中犇工程设计武汉分公司",status:"已签",amount:"230万",time:"10月",note:""},
+{id:24,name:"吉林市桦甸市",province:"吉林",scale:"200MW/400MWh",person:"林加亮",designer:"吉林省电力设计研究院",status:"未签",amount:"110万",time:"12月",note:"融资方未签融资合同"},
+{id:25,name:"襄阳市黄庄",province:"湖北",scale:"100MW/200MWh",person:"应俊",designer:"中犇工程设计武汉分公司",status:"已签",amount:"180万",time:"10月",note:""},
+{id:26,name:"唐山迁安永顺街道",province:"河北",scale:"150MW/600MWh",person:"姜龙",designer:"河北厦能新能源科技",status:"未签",amount:"预估120万",time:"拿到指标后开始",note:""},
+{id:27,name:"河北张家口桥西区",province:"河北",scale:"200MW/800MWh",person:"王晶晶",designer:"无设计院",status:"需确定计划",amount:"—",time:"—",note:""},
+{id:28,name:"广西北海合浦",province:"广西",scale:"200MW/400MWh",person:"王晶晶",designer:"无设计院",status:"需确定计划",amount:"—",time:"—",note:""},
+{id:29,name:"海南东方智谷工业园",province:"海南",scale:"200MW/800MWh",person:"王晶晶",designer:"无设计院",status:"需确定计划",amount:"—",time:"—",note:""},
+{id:30,name:"山南桑日县",province:"西藏",scale:"100MW/400MWh",person:"黄鑫",designer:"中电建四川院",status:"未签",amount:"50万",time:"不确定",note:""},
+{id:31,name:"昌都左贡",province:"西藏",scale:"200MW/800MWh",person:"黄鑫",designer:"中电建四川院",status:"未签",amount:"50万",time:"不确定",note:""},
+{id:32,name:"林芝",province:"西藏",scale:"未定",person:"黄鑫",designer:"中电建四川院",status:"未签",amount:"50万",time:"不确定",note:""},
+{id:33,name:"广东省清城区",province:"广东",scale:"200MW/400MWh",person:"姜龙",designer:"暂不需要设计院",status:"未签",amount:"需确定计划",time:"—",note:""},
+{id:34,name:"安陆市经开区",province:"湖北",scale:"400MW/800MWh",person:"应俊",designer:"中犇工程设计武汉分公司",status:"已签",amount:"230万",time:"10月",note:""},
+{id:35,name:"钟祥市柴湖镇",province:"湖北",scale:"200MW/400MWh",person:"应俊",designer:"中犇工程设计武汉分公司",status:"已签",amount:"230万",time:"10月",note:""},
+{id:36,name:"黄冈高新区",province:"湖北",scale:"200MW/400MWh",person:"应俊",designer:"中犇工程设计武汉分公司",status:"已签",amount:"230万",time:"10月",note:""},
+{id:37,name:"大柴湖经开区",province:"湖北",scale:"100MW/200MWh",person:"应俊",designer:"中犇工程设计武汉分公司",status:"已签",amount:"180万",time:"10月",note:""},
+{id:38,name:"咸宁通城县",province:"湖北",scale:"200MW/400MWh",person:"应俊",designer:"中犇工程设计武汉分公司",status:"已签",amount:"230万",time:"10月",note:""},
+{id:39,name:"荆州区纪南镇",province:"湖北",scale:"200MW/400MWh",person:"应俊",designer:"中犇工程设计武汉分公司",status:"已签",amount:"230万",time:"10月",note:""},
+{id:40,name:"荆州监利市",province:"湖北",scale:"400MW/800MWh",person:"应俊",designer:"中犇工程设计武汉分公司",status:"已签",amount:"230万",time:"10月",note:""},
+{id:41,name:"宜昌枝江市",province:"湖北",scale:"200MW/400MWh",person:"应俊",designer:"中犇工程设计武汉分公司",status:"已签",amount:"230万",time:"10月",note:""},
+{id:42,name:"襄阳枣阳市",province:"湖北",scale:"220MW/401MWh",person:"应俊",designer:"中犇工程设计武汉分公司",status:"已签",amount:"230万",time:"10月",note:""},
+{id:43,name:"天门蒋湖农场",province:"湖北",scale:"220MW/401MWh",person:"应俊",designer:"中犇工程设计武汉分公司",status:"已签",amount:"230万",time:"10月",note:""},
+{id:44,name:"应城郎君镇",province:"湖北",scale:"200MW/400MWh",person:"应俊",designer:"中犇工程设计武汉分公司",status:"已签",amount:"230万",time:"10月",note:""},
+{id:45,name:"咸宁赤壁市",province:"湖北",scale:"200MW/400MWh",person:"应俊",designer:"中犇工程设计武汉分公司",status:"已签",amount:"230万",time:"10月",note:""}
+];
+
+// ===== Chart Theme =====
+const chartColors = ['#4a9eff','#34d399','#d4a853','#a78bfa','#fb923c','#f87171','#38bdf8','#c084fc','#fbbf24','#2dd4bf','#818cf8','#f472b6','#a3e635'];
+const darkTheme = {
+textStyle:{color:'#8b97b0',fontFamily:'Noto Sans SC, DM Sans, sans-serif'},
+title:{textStyle:{color:'#e8ecf4'}},
+tooltip:{
+backgroundColor:'rgba(17,24,39,0.95)',
+borderColor:'rgba(99,130,190,0.2)',
+textStyle:{color:'#e8ecf4',fontSize:12}
+}
+};
+
+// ===== Chart 1: Province Distribution =====
+const provinceData = [
+{name:'湖北',value:20},{name:'贵州',value:4},{name:'河南',value:3},
+{name:'吉林',value:3},{name:'西藏',value:3},{name:'山西',value:2},
+{name:'山东',value:2},{name:'海南',value:2},{name:'河北',value:2},
+{name:'江西',value:1},{name:'陕西',value:1},{name:'广西',value:1},{name:'广东',value:1}
+];
+const chart1 = echarts.init(document.getElementById('chart-province'));
+chart1.setOption({
+...darkTheme,
+tooltip:{...darkTheme.tooltip,trigger:'axis',axisPointer:{type:'shadow',shadowStyle:{color:'rgba(74,158,255,0.06)'}}},
+grid:{left:60,right:24,top:16,bottom:36},
+xAxis:{type:'category',data:provinceData.map(d=>d.name),axisLabel:{color:'#8b97b0',fontSize:11,rotate:30},axisLine:{lineStyle:{color:'rgba(99,130,190,0.15)'}},axisTick:{show:false}},
+yAxis:{type:'value',axisLabel:{color:'#5a6580',fontSize:11},splitLine:{lineStyle:{color:'rgba(99,130,190,0.08)'}},axisLine:{show:false}},
+series:[{
+type:'bar',
+data:provinceData.map((d,i)=>({
+value:d.value,
+itemStyle:{
+color:new echarts.graphic.LinearGradient(0,0,0,1,[
+{offset:0,color:chartColors[i%chartColors.length]},
+{offset:1,color:chartColors[i%chartColors.length]+'33'}
+]),
+borderRadius:[4,4,0,0]
+}
+})),
+barWidth:'55%',
+label:{show:true,position:'top',color:'#8b97b0',fontSize:11,fontWeight:600}
+}]
+});
+
+// ===== Chart 2: Contract Status =====
+const chart2 = echarts.init(document.getElementById('chart-contract'));
+chart2.setOption({
+...darkTheme,
+tooltip:{...darkTheme.tooltip,trigger:'item',formatter:'{b}: {c}个 ({d}%)'},
+legend:{bottom:10,textStyle:{color:'#8b97b0',fontSize:11},itemGap:24},
+series:[{
+type:'pie',
+radius:['42%','72%'],
+center:['50%','45%'],
+avoidLabelOverlap:true,
+itemStyle:{borderRadius:6,borderColor:'#1a2236',borderWidth:3},
+label:{color:'#e8ecf4',fontSize:12,formatter:'{b}\n{c}个',lineHeight:18},
+labelLine:{lineStyle:{color:'rgba(99,130,190,0.3)'}},
+emphasis:{
+label:{fontSize:14,fontWeight:700},
+itemStyle:{shadowBlur:20,shadowColor:'rgba(0,0,0,0.3)'}
+},
+data:[
+{value:27,name:'已签',itemStyle:{color:new echarts.graphic.LinearGradient(0,0,1,1,[{offset:0,color:'#34d399'},{offset:1,color:'#059669'}])}},
+{value:14,name:'未签',itemStyle:{color:new echarts.graphic.LinearGradient(0,0,1,1,[{offset:0,color:'#f87171'},{offset:1,color:'#dc2626'}])}},
+{value:4,name:'待确认',itemStyle:{color:new echarts.graphic.LinearGradient(0,0,1,1,[{offset:0,color:'#8b97b0'},{offset:1,color:'#5a6580'}])}}
+]
+}]
+});
+
+// ===== Chart 3: Person Distribution =====
+const personData = [
+{name:'应俊',value:22},{name:'张磊',value:4},{name:'王晶晶',value:4},
+{name:'李震',value:3},{name:'林加亮',value:3},{name:'曹莹峰',value:3},
+{name:'黄鑫',value:3},{name:'姜龙',value:2},{name:'李海玉',value:1}
+];
+const chart3 = echarts.init(document.getElementById('chart-person'));
+chart3.setOption({
+...darkTheme,
+tooltip:{...darkTheme.tooltip,trigger:'axis',axisPointer:{type:'shadow',shadowStyle:{color:'rgba(74,158,255,0.06)'}}},
+grid:{left:70,right:30,top:16,bottom:20},
+xAxis:{type:'value',axisLabel:{color:'#5a6580',fontSize:11},splitLine:{lineStyle:{color:'rgba(99,130,190,0.08)'}},axisLine:{show:false}},
+yAxis:{type:'category',data:personData.map(d=>d.name).reverse(),axisLabel:{color:'#8b97b0',fontSize:11},axisLine:{lineStyle:{color:'rgba(99,130,190,0.15)'}},axisTick:{show:false}},
+series:[{
+type:'bar',
+data:personData.map(d=>d.value).reverse(),
+barWidth:'60%',
+itemStyle:{
+color:new echarts.graphic.LinearGradient(0,0,1,0,[
+{offset:0,color:'#a78bfa33'},
+{offset:1,color:'#a78bfa'}
+]),
+borderRadius:[0,4,4,0]
+},
+label:{show:true,position:'right',color:'#a78bfa',fontSize:12,fontWeight:600}
+}]
+});
+
+// ===== Chart 4: Designer Ranking =====
+const designerData = [
+{name:'中犇工程设计武汉分公司',value:18},
+{name:'吉林省电力设计研究院',value:3},
+{name:'山西国源盛世电力设计',value:2},
+{name:'贵州鲲诚工程咨询',value:2},
+{name:'济南中庚工程技术',value:2},
+{name:'中电建四川院',value:3},
+{name:'河南同力电力设计',value:1},
+{name:'河南旭鹏电力设计',value:1},
+{name:'河南上能电力设计',value:1},
+{name:'永建设计集团',value:1},
+{name:'江西省电力设计规划院',value:1},
+{name:'中国能建陕西电力设计院',value:1},
+{name:'河北厦能新能源科技',value:1}
+].sort((a,b)=>b.value-a.value).slice(0,10);
+
+const chart4 = echarts.init(document.getElementById('chart-designer'));
+chart4.setOption({
+...darkTheme,
+tooltip:{...darkTheme.tooltip,trigger:'axis',axisPointer:{type:'shadow',shadowStyle:{color:'rgba(74,158,255,0.06)'}}},
+grid:{left:160,right:40,top:16,bottom:20},
+xAxis:{type:'value',axisLabel:{color:'#5a6580',fontSize:11},splitLine:{lineStyle:{color:'rgba(99,130,190,0.08)'}},axisLine:{show:false}},
+yAxis:{type:'category',data:designerData.map(d=>d.name).reverse(),axisLabel:{color:'#8b97b0',fontSize:10,width:140,overflow:'truncate'},axisLine:{lineStyle:{color:'rgba(99,130,190,0.15)'}},axisTick:{show:false}},
+series:[{
+type:'bar',
+data:designerData.map((d,i)=>({
+value:d.value,
+itemStyle:{
+color:new echarts.graphic.LinearGradient(0,0,1,0,[
+{offset:0,color:'#d4a85333'},
+{offset:1,color: i===designerData.length-1 ? '#d4a853' : '#d4a853aa'}
+]),
+borderRadius:[0,4,4,0]
+}
+})).reverse(),
+barWidth:'55%',
+label:{show:true,position:'right',color:'#d4a853',fontSize:12,fontWeight:600}
+}]
+});
+
+// ===== Table Logic =====
+let currentPage = 1;
+const pageSize = 10;
+let filteredData = [...projects];
+
+// Populate filter options
+const provinceSelect = document.getElementById('filter-province');
+const personSelect = document.getElementById('filter-person');
+const provinces = [...new Set(projects.map(p=>p.province))].sort();
+const persons = [...new Set(projects.map(p=>p.person))].sort();
+provinces.forEach(p=>{const o=document.createElement('option');o.value=p;o.textContent=p;provinceSelect.appendChild(o)});
+persons.forEach(p=>{const o=document.createElement('option');o.value=p;o.textContent=p;personSelect.appendChild(o)});
+
+function getStatusClass(s){
+if(s==='已签') return 'status-signed';
+if(s==='未签') return 'status-unsigned';
+if(s==='需确定计划') return 'status-plan';
+return 'status-unknown';
+}
+
+function renderTable(){
+const start=(currentPage-1)*pageSize;
+const end=start+pageSize;
+const pageData=filteredData.slice(start,end);
+const tbody=document.getElementById('table-body');
+tbody.innerHTML=pageData.map((p,i)=>`
+<tr>
+<td style="color:var(--text-muted)">${start+i+1}</td>
+<td style="font-weight:500">${p.name}</td>
+<td>${p.province}</td>
+<td style="font-family:'DM Sans',monospace;font-size:0.78rem">${p.scale}</td>
+<td>${p.person}</td>
+<td style="max-width:160px;overflow:hidden;text-overflow:ellipsis">${p.designer}</td>
+<td><span class="status-badge ${getStatusClass(p.status)}">${p.status}</span></td>
+<td style="font-family:'DM Sans',monospace;font-size:0.78rem">${p.amount}</td>
+<td style="font-size:0.78rem">${p.time}</td>
+<td style="font-size:0.72rem;color:var(--text-secondary);max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:normal;line-height:1.4">${p.note||'—'}</td>
+</tr>
+`).join('');
+renderPagination();
+}
+
+function renderPagination(){
+const total=filteredData.length;
+const totalPages=Math.ceil(total/pageSize);
+const pag=document.getElementById('pagination');
+let html=`<button class="page-btn" onclick="goPage(${currentPage-1})" ${currentPage===1?'disabled':''}>‹ 上一页</button>`;
+const maxShow=7;
+let startP=Math.max(1,currentPage-3);
+let endP=Math.min(totalPages,startP+maxShow-1);
+if(endP-startP<maxShow-1) startP=Math.max(1,endP-maxShow+1);
+for(let i=startP;i<=endP;i++){
+html+=`<button class="page-btn ${i===currentPage?'active':''}" onclick="goPage(${i})">${i}</button>`;
+}
+html+=`<span class="page-info">${currentPage}/${totalPages} 页 共${total}条</span>`;
+html+=`<button class="page-btn" onclick="goPage(${currentPage+1})" ${currentPage===totalPages?'disabled':''}>下一页 ›</button>`;
+pag.innerHTML=html;
+}
+
+function goPage(p){
+const totalPages=Math.ceil(filteredData.length/pageSize);
+if(p<1||p>totalPages) return;
+currentPage=p;
+renderTable();
+}
+
+function filterTable(){
+const status=document.getElementById('filter-status').value;
+const province=document.getElementById('filter-province').value;
+const person=document.getElementById('filter-person').value;
+filteredData=projects.filter(p=>{
+if(status && p.status!==status) return false;
+if(province && p.province!==province) return false;
+if(person && p.person!==person) return false;
+return true;
+});
+currentPage=1;
+renderTable();
+}
+
+// Initial render
+renderTable();
+
+// ===== Responsive Charts =====
+window.addEventListener('resize',()=>{
+chart1.resize();chart2.resize();chart3.resize();chart4.resize();
+});
+</script>
+</body>
+</html>
